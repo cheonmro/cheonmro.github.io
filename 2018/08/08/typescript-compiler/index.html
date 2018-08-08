@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>트랜스파일링을 위한 typescript 개발환경 구축 방법 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="typescripttypescript compiler" />
+  
+  
+  
+  
+  <meta name="description" content="Typescript와 트랜스파일링 자바스크립트의 문제점을 보완하기 위해 typescript을 사용한다. 그러나, typescript으로 작성한 파일은 브라우저에서 동작하지 않는다. 따라서, typescript로 작성한 파일을 자바스크립트로 변환해야 하는데, 이를 트랜스파일링 또는 컴파일이라고 한다. 트랜스파일링을 하기 위해서는 typescript 컴파일러를">
+<meta name="keywords" content="typescript,typescript compiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="트랜스파일링을 위한 typescript 개발환경 구축 방법">
+<meta property="og:url" content="http://yoursite.com/2018/08/08/typescript-compiler/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Typescript와 트랜스파일링 자바스크립트의 문제점을 보완하기 위해 typescript을 사용한다. 그러나, typescript으로 작성한 파일은 브라우저에서 동작하지 않는다. 따라서, typescript로 작성한 파일을 자바스크립트로 변환해야 하는데, 이를 트랜스파일링 또는 컴파일이라고 한다. 트랜스파일링을 하기 위해서는 typescript 컴파일러를">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-08T06:19:55.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="트랜스파일링을 위한 typescript 개발환경 구축 방법">
+<meta name="twitter:description" content="Typescript와 트랜스파일링 자바스크립트의 문제점을 보완하기 위해 typescript을 사용한다. 그러나, typescript으로 작성한 파일은 브라우저에서 동작하지 않는다. 따라서, typescript로 작성한 파일을 자바스크립트로 변환해야 하는데, 이를 트랜스파일링 또는 컴파일이라고 한다. 트랜스파일링을 하기 위해서는 typescript 컴파일러를">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Hexo" rel="home"> Hexo </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-typescript-compiler" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      트랜스파일링을 위한 typescript 개발환경 구축 방법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/08/typescript-compiler/" class="article-date">
+	  <time datetime="2018-08-08T06:19:55.000Z" itemprop="datePublished">August 8, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/typescript/">typescript</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Typescript와-트랜스파일링"><a href="#Typescript와-트랜스파일링" class="headerlink" title="Typescript와 트랜스파일링"></a>Typescript와 트랜스파일링</h1><hr>
+<p>자바스크립트의 문제점을 보완하기 위해 typescript을 사용한다. 그러나, typescript으로 작성한 파일은 브라우저에서 동작하지 않는다. 따라서, typescript로 작성한 파일을 자바스크립트로 변환해야 하는데, 이를 트랜스파일링 또는 컴파일이라고 한다. 트랜스파일링을 하기 위해서는 typescript 컴파일러를 설치하여 사용하는 typescript 개발환경을 구축해야한다.</p>
+<p><br><br><br></p>
+<h1 id="typescript-컴파일러-설치-방법"><a href="#typescript-컴파일러-설치-방법" class="headerlink" title="typescript 컴파일러 설치 방법"></a>typescript 컴파일러 설치 방법</h1><hr>
+<p>다음과 같이 typescript를 전역에 설치한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>설치가 완료되면, typescript의 버전 체크를 하여, typescript 컴파일러 설치가 제대로 되었는지 확인한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc -v</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br></p>
+<h1 id="typescript-컴파일러로-트랜스파일링-하기"><a href="#typescript-컴파일러로-트랜스파일링-하기" class="headerlink" title="typescript 컴파일러로 트랜스파일링 하기"></a>typescript 컴파일러로 트랜스파일링 하기</h1><hr>
+<p>typescript로 작성된 파일(.ts)을 자바스크립트 파일로 트랜스파일링 하기 위해서는, 위에서 설치한 typescript 컴파일러(tsc)를 사용한다.</p>
+<p><br></p>
+<h2 id="1개의-파일-트랜스파일링-하기"><a href="#1개의-파일-트랜스파일링-하기" class="headerlink" title="1개의 파일 트랜스파일링 하기"></a>1개의 파일 트랜스파일링 하기</h2><hr>
+<p>아래의 코드를 작성하고, 확장자를 .ts로 하는 typescript 파일로 만든다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Cafe &#123;</span><br><span class="line">  private name: string;</span><br><span class="line"></span><br><span class="line">  constructor(name: string) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  greeting() &#123;</span><br><span class="line">    return &quot;Welcome to&quot; + this.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cafe = new Cafe(&apos;Starbucks&apos;);</span><br><span class="line">console.log(cafe.greeting());</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>위 typescript 파일을 트랜스파일링하여 자바스크립트로 만들기 위해서는 아래의 명령어를 작성하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc cafe</span><br></pre></td></tr></table></figure></p>
+<p>tsc 다음에 위 파일(cafe.ts)의 이름(cafe)을 입력하면 된다.</p>
+<p><br></p>
+<p>그러면, 트랜스파일링이 되어, 또 하나의 자바스크립트 파일이 생성된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">exports.__esModule = true;</span><br><span class="line">var Cafe = /** @class */ (function () &#123;</span><br><span class="line">    function Cafe(name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    Cafe.prototype.greeting = function () &#123;</span><br><span class="line">        return &quot;Welcome to&quot; + this.name;</span><br><span class="line">    &#125;;</span><br><span class="line">    return Cafe;</span><br><span class="line">&#125;());</span><br><span class="line">exports.Cafe = Cafe;</span><br><span class="line">var cafe = new Cafe(&apos;Starbucks&apos;);</span><br><span class="line">console.log(cafe.greeting());</span><br></pre></td></tr></table></figure></p>
+<p>그런데, 트랜스파일링된 자바스크립트 파일은 ES3 버전으로 생성되는데, 이는 트랜스파일링해서 생성되는 기본 버전이 ES3이기 때문이다.</p>
+<p><br></p>
+<h2 id="target-컴파일-옵션을-사용해서-원하는-버전으로-트랜스파일링-하기"><a href="#target-컴파일-옵션을-사용해서-원하는-버전으로-트랜스파일링-하기" class="headerlink" title="target 컴파일 옵션을 사용해서 원하는 버전으로 트랜스파일링 하기"></a>target 컴파일 옵션을 사용해서 원하는 버전으로 트랜스파일링 하기</h2><hr>
+<p>만약 원하는 버전으로 트랜스파일링 하고 싶다면, typescript 컴파일 옵션중 –target또는 -t를 사용하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc cafe -t es6</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>ES6 버전은 아래와 같이 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cafe &#123;</span><br><span class="line">    constructor(name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    greeting() &#123;</span><br><span class="line">        return &quot;Welcome to&quot; + this.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const cafe = new Cafe(&apos;Starbucks&apos;);</span><br><span class="line">console.log(cafe.greeting());</span><br></pre></td></tr></table></figure></p>
+<p>그러면, 처음에 생성된 ES3 버전의 자바스크립트 파일이 ES6 버전의 자바스크립트 파일로 코드의 내용이 변경된다.</p>
+<p><br></p>
+<h2 id="2개의-파일-트랜스파일링-하기"><a href="#2개의-파일-트랜스파일링-하기" class="headerlink" title="2개의 파일 트랜스파일링 하기"></a>2개의 파일 트랜스파일링 하기</h2><hr>
+<p>2개의 typescript 파일을 작성하여, 트랜스파일링을 해보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// cafe.ts</span><br><span class="line">export class Cafe &#123;</span><br><span class="line">  protected name: string;</span><br><span class="line"></span><br><span class="line">  constructor(name: string) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  greeting() &#123;</span><br><span class="line">    return &quot;Welcome to&quot; + this.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const cafe = new Cafe(&apos;Starbucks&apos;);</span><br><span class="line">console.log(cafe.greeting());</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// bakery.ts</span><br><span class="line">import &#123; Cafe &#125; from &apos;./cafe&apos;;</span><br><span class="line"></span><br><span class="line">class Bakery extends Cafe &#123;</span><br><span class="line">  bake(): string &#123;</span><br><span class="line">    return `$&#123;this.name&#125; is baking bread. Wow!!`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const bakery = new Bakery(&apos;Starbucks&apos;);</span><br><span class="line">console.log(bakery.greeting());</span><br><span class="line">console.log(bakery.bake());</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>위 두개의 typescript 파일들을 트랜스파일링 하기 위한 명령어를 작성하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc cafe bakery</span><br></pre></td></tr></table></figure></p>
+<p>그러면, 두개의 typescript 파일들이 두개의 자바스크립트 파일로 트랜스파일링 된다.</p>
+<p><br></p>
+<h2 id="3개-이상의-파일-트랜스파일링-하기"><a href="#3개-이상의-파일-트랜스파일링-하기" class="headerlink" title="3개 이상의 파일 트랜스파일링 하기"></a>3개 이상의 파일 트랜스파일링 하기</h2><hr>
+<p>3개 이상의 모든 typescript 파일들을 한번에 트랜스파일링 하기위해서는 와일드카드(*)를 사용해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc *.ts</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="자동으로-트랜스파일링-하기"><a href="#자동으로-트랜스파일링-하기" class="headerlink" title="자동으로 트랜스파일링 하기"></a>자동으로 트랜스파일링 하기</h2><hr>
+<p>typescript 컴파일 옵션 중 —watch 또는 -w 를 사용하면, 파일의 내용이 변경되었을 때, 이를 감지하여 자동으로 그 파일이 트랜스파일링 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc bakery —watch</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/typescript/">typescript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">typescript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript-compiler/">typescript compiler</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/07/what-is-typescript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">typescript란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Typescript와-트랜스파일링"><span class="nav-number">1.</span> <span class="nav-text">Typescript와 트랜스파일링</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-컴파일러-설치-방법"><span class="nav-number">2.</span> <span class="nav-text">typescript 컴파일러 설치 방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typescript-컴파일러로-트랜스파일링-하기"><span class="nav-number">3.</span> <span class="nav-text">typescript 컴파일러로 트랜스파일링 하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1개의-파일-트랜스파일링-하기"><span class="nav-number">3.1.</span> <span class="nav-text">1개의 파일 트랜스파일링 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#target-컴파일-옵션을-사용해서-원하는-버전으로-트랜스파일링-하기"><span class="nav-number">3.2.</span> <span class="nav-text">target 컴파일 옵션을 사용해서 원하는 버전으로 트랜스파일링 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2개의-파일-트랜스파일링-하기"><span class="nav-number">3.3.</span> <span class="nav-text">2개의 파일 트랜스파일링 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3개-이상의-파일-트랜스파일링-하기"><span class="nav-number">3.4.</span> <span class="nav-text">3개 이상의 파일 트랜스파일링 하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#자동으로-트랜스파일링-하기"><span class="nav-number">3.5.</span> <span class="nav-text">자동으로 트랜스파일링 하기</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
