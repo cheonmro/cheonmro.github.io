@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ajax란 무엇인가? | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Ajax" />
+  
+  
+  
+  
+  <meta name="description" content="Ajax란? Ajax는 Asynchronous JavaScript And XML의 약자로, 클라이언트와 서버가 통신할 때, 자바스크립트를 이용해 비동기적(Asynchronous)으로 데이터를 교환하는 방식을 말한다. 클라이언트와 서버가 통신할 때는 데이터를 교환하는데, 데이터 포맷은 예전에는 XML 방식이었으나, 요즘에는 JSON을 주로 사용한다. 비동기적">
+<meta name="keywords" content="Ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/08/31/ajax/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ajax란? Ajax는 Asynchronous JavaScript And XML의 약자로, 클라이언트와 서버가 통신할 때, 자바스크립트를 이용해 비동기적(Asynchronous)으로 데이터를 교환하는 방식을 말한다. 클라이언트와 서버가 통신할 때는 데이터를 교환하는데, 데이터 포맷은 예전에는 XML 방식이었으나, 요즘에는 JSON을 주로 사용한다. 비동기적">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/HTTP_request+response_message.gif">
+<meta property="og:updated_time" content="2018-08-31T00:48:40.498Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ajax란 무엇인가?">
+<meta name="twitter:description" content="Ajax란? Ajax는 Asynchronous JavaScript And XML의 약자로, 클라이언트와 서버가 통신할 때, 자바스크립트를 이용해 비동기적(Asynchronous)으로 데이터를 교환하는 방식을 말한다. 클라이언트와 서버가 통신할 때는 데이터를 교환하는데, 데이터 포맷은 예전에는 XML 방식이었으나, 요즘에는 JSON을 주로 사용한다. 비동기적">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/HTTP_request+response_message.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  
+  <div class="site-header-image">
+    <img id="originBg" width="100%" alt="Hike News" src="">
+  </div>
+
+  <div id="header-blur" class="site-header-image blur" style="position: absolute; top:0; height: 207px; min-height: 207px; min-width: 100%;">
+    <img id="blurBg" width="100%" style="top: 96%" alt="Hike News" src="">
+  </div>
+
+  <script>
+        var imgUrls = "css/images/pose01.jpg,https://source.unsplash.com/collection/954550/1920x1080,https://source.unsplash.com/collection/954550/1920x1081".split(",");
+        var random = Math.floor((Math.random() * imgUrls.length ));
+        if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+          document.getElementById("originBg").src=imgUrls[random];
+          document.getElementById("blurBg").src=imgUrls[random];
+        } else {
+          document.getElementById("originBg").src='/' + imgUrls[random];
+          document.getElementById("blurBg").src='/' + imgUrls[random];
+        }
+    </script>
+
+
+
+
+<header id="allheader" class="site-header" role="banner" 
+   style="width: 100%; position: absolute; top:0; background: rgba(255,255,255,.8);"  >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-ajax" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Ajax란 무엇인가?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/31/ajax/" class="article-date">
+	  <time datetime="2018-08-31T00:48:40.000Z" itemprop="datePublished">August 31, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ajax란"><a href="#Ajax란" class="headerlink" title="Ajax란?"></a>Ajax란?</h1><hr>
+<p>Ajax는 Asynchronous JavaScript And XML의 약자로, 클라이언트와 서버가 통신할 때, 자바스크립트를 이용해 비동기적(Asynchronous)으로 데이터를 교환하는 방식을 말한다. 클라이언트와 서버가 통신할 때는 데이터를 교환하는데, 데이터 포맷은 예전에는 XML 방식이었으나, 요즘에는 JSON을 주로 사용한다.</p>
+<p>비동기적이란, 서버에 요청을 하고 그냥 기다리는 것이 아닌, 기다림과 동시에 다른 작업을 할 수 있다는 것을 말한다. Ajax가 가지고 있는 중요 특징은 바로 이 비동기성으로, 서버로부터 웹페이지가 반환될 때, 화면 전체를 갱신하지 않고, 페이지 일부만을 갱신하게 해준다. 즉, 페이지 이동이나 새로고침 없이 페이지 일부만을 갱신할 수 있다. 예를 들어, 사용자가 페이지에서 어떤 이벤트를 발생시키면, 페이지 전체가 아닌 페이지 일부분만을 업데이트해서 보여주기 때문에, 페이지 전체가 Refresh 되지 않아, 사용자가 그 일부의 데이터를 기다리면서, 다른 일을 하여도 문제가 없다.</p>
+<p>Ajax를 사용하는 대표적인 애플리케이션이 페이스북 타임라인이다. 페이스북 타임라인을 밑으로 내려가면서 보면, 그 페이스북 페이지 자체는 그대로 있는데, 필요한 타임라인 데이터만 받아올 수 있다. 웹 사이트 중 페이지 전환없이 새로운 데이터를 불러오는 사이트는 대부분 Ajax 기술을 사용하고 있다.</p>
+<p><br></p>
+<h1 id="JSON이란"><a href="#JSON이란" class="headerlink" title="JSON이란?"></a>JSON이란?</h1><hr>
+<p>JSON은 JavaScript Object Notation의 약자로, 클라이언트와 서버간에 데이터를 교환하기 위해 필요한 데이터 포맷을 말한다. 예전에는 데이터 교환을 위한 데이터 포맷으로 XML을 사용했으나, 요즘에는 데이터 구조화도 잘 되어있고, 가볍고 가독성이 좋은 JSON을 사용한다. JSON의 형태는 자바스크립트의 객체 리터럴과 비슷하지만, 순수 문자열로 구성된 규칙이 있는 구조화된 데이터 포맷이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: 1,</span><br><span class="line">  &quot;content&quot;: &quot;HTML&quot;,</span><br><span class="line">  &quot;completed&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>JSON의 이름(key)는 반드시 큰따옴표(“”)로 둘러싸야 한다.(작은따옴표(‘’)는 사용이 안된다.)</p>
+<p><br></p>
+<h2 id="JSON-parse-amp-JSON-stringify"><a href="#JSON-parse-amp-JSON-stringify" class="headerlink" title="JSON.parse() &amp; JSON.stringify()"></a>JSON.parse() &amp; JSON.stringify()</h2><hr>
+<p>클라이언트와 서버간에 통신을 할때는, JSON 형태, 즉 문자열로 데이터를 주고 받는다. 그러나, 서버로부터 응답받은 데이터를 클라이언트(브라우저)에서 사용하기 위해서는 JSON 형태의 문자열을 객체로 바꿔줘야 한다. 이를 역직렬화(Deserializing)이라고 하는데, 이를 위해서는 내장 객체 JSON의 static 메소드인 JSON.parse()를 사용해야 한다.</p>
+<p>이와 반대로, 클라이언트(브라우저)에서 서버로 데이터를 보내기 위해서는 객체를 문자열로 바꿔줘야 한다. 이때는 JSON.stringify()를 사용해야 한다.</p>
+<p><a href="https://medium.com/@cheonmyung0217/%EA%B5%AC%ED%98%84-json-stringify-%EB%A5%BC-%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-972f08622562" target="_blank" rel="noopener">JSON.stringify()</a>에 대해 자세히 확인해보자.</p>
+<p><br></p>
+<h1 id="Ajax-Request-amp-Response"><a href="#Ajax-Request-amp-Response" class="headerlink" title="Ajax Request &amp; Response"></a>Ajax Request &amp; Response</h1><hr>
+<p>Javascript를 이용해서 서버로 보내는 Ajax Request를 만들기 위해서는 XMLHttpRequest 객체를 사용해서 Ajax 요청을 생성하고 전송한다. 서버로부터 응답을 받을때도 XMLHttpRequest 객체를 사용해서 처리한다. 즉, XMLHttpRequest 객체의 프로퍼티 및 메소드를 사용하여 코드를 작성한다.</p>
+<p>코드 작성시, 크게 3가지로 나눌 수 있다.</p>
+<ol>
+<li>서버로 요청 보내기</li>
+<li>서버로 요청보낼때, Request Header 보내기</li>
+<li>서버로부터 받은 응답 처리하기</li>
+</ol>
+<p><br></p>
+<h2 id="1-Ajax-Request-보내기"><a href="#1-Ajax-Request-보내기" class="headerlink" title="1. Ajax Request 보내기"></a>1. Ajax Request 보내기</h2><hr>
+<p>XMLHttpRequest 객체를 사용해서 Ajax 요청 처리에 대한 코드는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;GET&apos;, &apos;/users&apos;);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="1-1-XMLHttpRequest-인스턴스-생성"><a href="#1-1-XMLHttpRequest-인스턴스-생성" class="headerlink" title="1-1. XMLHttpRequest 인스턴스 생성"></a>1-1. XMLHttpRequest 인스턴스 생성</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// XMLHttpRequest 생성자로 xhr 인스턴스를 생성</span><br><span class="line">var xhr = new XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener">XMLHttpRequest 객체</a>는 다양한 프로퍼티 및 메소드를 가지고 있다.</p>
+<p><br></p>
+<h3 id="1-2-XMLHttpRequest-open-으로-요청-준비"><a href="#1-2-XMLHttpRequest-open-으로-요청-준비" class="headerlink" title="1-2. XMLHttpRequest.open()으로 요청 준비"></a>1-2. XMLHttpRequest.open()으로 요청 준비</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// XMLHttpRequest가 가지고 있는 open 메소드로 요청을 준비</span><br><span class="line">xhr.open(&apos;GET&apos;, &apos;/users&apos;);</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open" target="_blank" rel="noopener">XMLHttpRequest.open 메소드</a>를 사용할 때, 인수는 다음과 같다.</p>
+<ul>
+<li>첫번째 인수: HTTP Method(GET/POST/PUT/PATCH/DELETE 등)를 사용</li>
+<li>두번째 인수: 요청 보낼 URL</li>
+<li>세번째 인수(옵션): async로 비동기를 나타낸다.(true면 비동기, false면 동기인데, 아무것도 작성안하면 default로 비동기이다.)</li>
+</ul>
+<p><br></p>
+<h3 id="1-3-XMLHttpRequest-send-로-요청-전송"><a href="#1-3-XMLHttpRequest-send-로-요청-전송" class="headerlink" title="1-3. XMLHttpRequest.send()로 요청 전송"></a>1-3. XMLHttpRequest.send()로 요청 전송</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// XMLHttpRequest가 가지고 있는 send 메소드로 요청을 전송</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p>서버에 요청을 준비하는 단계를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&apos;GET&apos;, &apos;/users&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>이때 HTTP Method로 ‘GET’을 사용하게 되면, URL의 일부분인 query string(쿼리문자열)로 데이터를 서버로 전송하기 때문에, send 메소드에 인수로 데이터를 보낼 필요가 없다. send 메소드에 인수를 Request Body라고 하는데, 이부분이 null이 되어, 무시된다.</p>
+<p>그럼 만약, ‘GET’이 아닌 ‘POST’를 하게되면 어떻게 될까?</p>
+<p><br></p>
+<h2 id="2-서버로-요청보낼때-Request-Header-보내기"><a href="#2-서버로-요청보낼때-Request-Header-보내기" class="headerlink" title="2. 서버로 요청보낼때, Request Header 보내기"></a>2. 서버로 요청보낼때, Request Header 보내기</h2><hr>
+<p>‘POST’의 경우, 데이터(payload)를 Request Body에 담아 전송한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.send((&#123;</span><br><span class="line">  name: &quot;donald&quot;,</span><br><span class="line">  country: &quot;United States&quot;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<p>이럴 경우, XMLHttpRequest.setRequestHeader() 메소드를 사용해서, HTTP Request Header의 값을 설정해야 한다. 이때, setRequestHeader 메소드는 open 메소드 다음에, send 메소드 전에 호출해야 한다. 다음과 같이 작성하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&apos;POST&apos;, &apos;/users&apos;);</span><br><span class="line">xhr.setRequestHeader(&apos;Content-type&apos;, &apos;application/json&apos;);</span><br><span class="line">xhr.send(&#123;</span><br><span class="line">  name: &quot;donald&quot;,</span><br><span class="line">  country: &quot;United States&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/setRequestHeader" target="_blank" rel="noopener">setRequestHeader 메소드</a>를 사용할 때, 인수는 다음과 같다.</p>
+<ul>
+<li>첫번째 인수: 자주 사용하는 Request Header인 Content-type 또는 Accept을 사용한다.</li>
+<li>두번째 인수: MIME 타입</li>
+</ul>
+<p>예를 들어, 아래와 같은 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(&apos;Content-type&apos;, &apos;application/json&apos;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="‘Content-type’은-Request-Body에-담아-전송할-데이터의-MIME-type을-지정할-때-사용한다"><a href="#‘Content-type’은-Request-Body에-담아-전송할-데이터의-MIME-type을-지정할-때-사용한다" class="headerlink" title="‘Content-type’은 Request Body에 담아 전송할 데이터의 MIME-type을 지정할 때 사용한다."></a>‘Content-type’은 Request Body에 담아 전송할 데이터의 MIME-type을 지정할 때 사용한다.</h3><p><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="noopener">MIME-type</a>은 아래 테이블에 있는 타입들이며, 사용시에는 아래 서브타입처럼 작성한다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">타입</th>
+<th style="text-align:center">서브타입</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">text 타입</td>
+<td style="text-align:center">text/plain, text/html, text/css, text/javascript</td>
+</tr>
+<tr>
+<td style="text-align:center">Application 타입</td>
+<td style="text-align:center">application/json, application/x-www-form-urlencode</td>
+</tr>
+<tr>
+<td style="text-align:center">File 업로드하기 위한 타입</td>
+<td style="text-align:center">multipart/formed-date</td>
+</tr>
+</tbody>
+</table>
+<p>Request Body에 담아 전송할 데이터의 MIME-type을 지정하는 예제 코드는 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&apos;POST&apos;, &apos;/users&apos;);</span><br><span class="line">xhr.setRequestHeader(&apos;Content-type&apos;, &apos;application/json&apos;);</span><br><span class="line">xhr.send(JSON.stringify(&#123;</span><br><span class="line">  name: &quot;donald&quot;,</span><br><span class="line">  country: &quot;United States&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="‘Accept’은-HTTP-클라이언트가-서버에-요청할-때-서버가-센드백할-데이터의-MIME-type을-지정할-때-사용한다"><a href="#‘Accept’은-HTTP-클라이언트가-서버에-요청할-때-서버가-센드백할-데이터의-MIME-type을-지정할-때-사용한다" class="headerlink" title="‘Accept’은 HTTP 클라이언트가 서버에 요청할 때, 서버가 센드백할 데이터의 MIME-type을 지정할 때 사용한다."></a>‘Accept’은 HTTP 클라이언트가 서버에 요청할 때, 서버가 센드백할 데이터의 MIME-type을 지정할 때 사용한다.</h3><p>예를 들어, 아래와 같이 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(&apos;Accept&apos;, &apos;application/json&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>만약 ‘Accept’ 헤더를 설정하지 않을 경우, send 메소드가 호출될 때, ‘Accept’ 헤더가 <em>/</em>와 함께 전송된다.<br>(<em>/</em>은 모든 MIME 타입을 의미한다.)</p>
+<p>자세한 ‘Accept’에 대한 개념은 <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Accept" target="_blank" rel="noopener">MDN</a>에서 확인해보자.</p>
+<p>클라이언트와 서버사이에서의 Request &amp; Response Message는 다음과 같다.</p>
+<p><img src="/images/HTTP_request+response_message.gif" alt="HTTP Request and Resopnse Message"><br>출처: <a href="http://www.fmc-modeling.org/category/projects/apache/amp/2_3Protocols_Standards.html" target="_blank" rel="noopener">HTTP Request and Resopnse Message</a></p>
+<p><br></p>
+<h2 id="3-서버로부터-받은-응답-처리하기"><a href="#3-서버로부터-받은-응답-처리하기" class="headerlink" title="3. 서버로부터 받은 응답 처리하기"></a>3. 서버로부터 받은 응답 처리하기</h2><hr>
+<p>XMLHttpRequest 객체를 사용해서 Ajax 응답 처리에 대한 코드는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">xhr.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (xhr.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(xhr.status === 200) &#123;</span><br><span class="line">      console.log(xhr.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&apos;Error!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="3-1-XMLHttpRequest-onreadystatechange-호출"><a href="#3-1-XMLHttpRequest-onreadystatechange-호출" class="headerlink" title="3-1. XMLHttpRequest.onreadystatechange 호출"></a>3-1. XMLHttpRequest.onreadystatechange 호출</h3><p>XMLHttpRequest가 가지고 있는 readyState 프로퍼티가 변경(사용자로부터 이벤트 발생) 될 때마다, XMLHttpRequest가 가지고 있는 프로퍼티인 onreadystatechange(이벤트 핸들러)를 호출한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.onreadystatechange = function (e) &#123;</span><br><span class="line">  // readyState 프로퍼티가 변경될 때마다, 이 함수를 호출</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="3-2-XMLHttpRequest-readyState로-서버가-응답했는지-확인"><a href="#3-2-XMLHttpRequest-readyState로-서버가-응답했는지-확인" class="headerlink" title="3-2. XMLHttpRequest.readyState로 서버가 응답했는지 확인"></a>3-2. XMLHttpRequest.readyState로 서버가 응답했는지 확인</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (xhr.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">  // readyState가 완료되면, 이 함수를 호출</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>XMLHttpRequest.readyState의 값은 아래와 같다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Value</th>
+<th style="text-align:center">State</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">UNSENT</td>
+<td style="text-align:center">XMLHttpRequest.open() 메소드 호출 이전</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">OPENED</td>
+<td style="text-align:center">XMLHttpRequest.open() 메소드 호출 완료</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">HEADERS_RECEIVED</td>
+<td style="text-align:center">XMLHttpRequest.send() 메소드 호출 완료</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">LOADING</td>
+<td style="text-align:center">서버 응답 중(XMLHttpRequest.responseText 미완성 상태)</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">DONE</td>
+<td style="text-align:center">서버 응답 완료</td>
+</tr>
+</tbody>
+</table>
+<p>xhr.readyState의 값이 4(DONE)이면, 서버가 응답을 완료했다는 뜻이다.</p>
+<p><br></p>
+<h3 id="3-3-XMLHttpRequest-status로-정상-응답인지-확인"><a href="#3-3-XMLHttpRequest-status로-정상-응답인지-확인" class="headerlink" title="3-3. XMLHttpRequest.status로 정상 응답인지 확인"></a>3-3. XMLHttpRequest.status로 정상 응답인지 확인</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(xhr.status === 200) &#123;</span><br><span class="line">  console.log(xhr.responseText);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  console.log(&apos;Error!&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>응답코드가 200번 대 숫자면 정상 응답이므로, xhr.status가 정상적인 응답코드이면, 서버로부터 전송되는 데이터가 담겨 있는 xhr.responseText가 클라이언트로 전달된다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ajax/">Ajax</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/30/rest-api/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">REST API란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ajax란"><span class="nav-number">1.</span> <span class="nav-text">Ajax란?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON이란"><span class="nav-number">2.</span> <span class="nav-text">JSON이란?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-parse-amp-JSON-stringify"><span class="nav-number">2.1.</span> <span class="nav-text">JSON.parse() &amp; JSON.stringify()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ajax-Request-amp-Response"><span class="nav-number">3.</span> <span class="nav-text">Ajax Request &amp; Response</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Ajax-Request-보내기"><span class="nav-number">3.1.</span> <span class="nav-text">1. Ajax Request 보내기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-XMLHttpRequest-인스턴스-생성"><span class="nav-number">3.1.1.</span> <span class="nav-text">1-1. XMLHttpRequest 인스턴스 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-XMLHttpRequest-open-으로-요청-준비"><span class="nav-number">3.1.2.</span> <span class="nav-text">1-2. XMLHttpRequest.open()으로 요청 준비</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-XMLHttpRequest-send-로-요청-전송"><span class="nav-number">3.1.3.</span> <span class="nav-text">1-3. XMLHttpRequest.send()로 요청 전송</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-서버로-요청보낼때-Request-Header-보내기"><span class="nav-number">3.2.</span> <span class="nav-text">2. 서버로 요청보낼때, Request Header 보내기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#‘Content-type’은-Request-Body에-담아-전송할-데이터의-MIME-type을-지정할-때-사용한다"><span class="nav-number">3.2.1.</span> <span class="nav-text">‘Content-type’은 Request Body에 담아 전송할 데이터의 MIME-type을 지정할 때 사용한다.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘Accept’은-HTTP-클라이언트가-서버에-요청할-때-서버가-센드백할-데이터의-MIME-type을-지정할-때-사용한다"><span class="nav-number">3.2.2.</span> <span class="nav-text">‘Accept’은 HTTP 클라이언트가 서버에 요청할 때, 서버가 센드백할 데이터의 MIME-type을 지정할 때 사용한다.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-서버로부터-받은-응답-처리하기"><span class="nav-number">3.3.</span> <span class="nav-text">3. 서버로부터 받은 응답 처리하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-XMLHttpRequest-onreadystatechange-호출"><span class="nav-number">3.3.1.</span> <span class="nav-text">3-1. XMLHttpRequest.onreadystatechange 호출</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-XMLHttpRequest-readyState로-서버가-응답했는지-확인"><span class="nav-number">3.3.2.</span> <span class="nav-text">3-2. XMLHttpRequest.readyState로 서버가 응답했는지 확인</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-XMLHttpRequest-status로-정상-응답인지-확인"><span class="nav-number">3.3.3.</span> <span class="nav-text">3-3. XMLHttpRequest.status로 정상 응답인지 확인</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+      var headerblur = document.getElementById("header-blur");
+      headerblur.style.minHeight = window.getComputedStyle(document.getElementById("allheader"), null).height;
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
