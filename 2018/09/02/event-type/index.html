@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Event와 Event 종류 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Event" />
+  
+  
+  
+  
+  <meta name="description" content="Event(이벤트)란 무엇인가? 이벤트는 어떤 사건을 말한다. 브라우저에서 사건(Event)이란, 예를 들어, 사용자가 어떤 웹페이지에서 버튼을 클릭했을 ‘때’ 또는 어떤 박스에서 값을 입력했을 ‘때’를 의미한다. 이벤트는 이벤트가 발생했을 때, 그에 맞는 대응을 하도록 코드를 작성해야 한다. 이를 위해서는 보통, 이벤트는 함수에 연결되며 그 함수는 이벤트">
+<meta name="keywords" content="Event">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Event와 Event 종류">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/02/event-type/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Event(이벤트)란 무엇인가? 이벤트는 어떤 사건을 말한다. 브라우저에서 사건(Event)이란, 예를 들어, 사용자가 어떤 웹페이지에서 버튼을 클릭했을 ‘때’ 또는 어떤 박스에서 값을 입력했을 ‘때’를 의미한다. 이벤트는 이벤트가 발생했을 때, 그에 맞는 대응을 하도록 코드를 작성해야 한다. 이를 위해서는 보통, 이벤트는 함수에 연결되며 그 함수는 이벤트">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-02T05:29:53.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Event와 Event 종류">
+<meta name="twitter:description" content="Event(이벤트)란 무엇인가? 이벤트는 어떤 사건을 말한다. 브라우저에서 사건(Event)이란, 예를 들어, 사용자가 어떤 웹페이지에서 버튼을 클릭했을 ‘때’ 또는 어떤 박스에서 값을 입력했을 ‘때’를 의미한다. 이벤트는 이벤트가 발생했을 때, 그에 맞는 대응을 하도록 코드를 작성해야 한다. 이를 위해서는 보통, 이벤트는 함수에 연결되며 그 함수는 이벤트">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-event-type" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Event와 Event 종류
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/02/event-type/" class="article-date">
+	  <time datetime="2018-09-02T05:29:53.000Z" itemprop="datePublished">September 2, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Event-이벤트-란-무엇인가"><a href="#Event-이벤트-란-무엇인가" class="headerlink" title="Event(이벤트)란 무엇인가?"></a>Event(이벤트)란 무엇인가?</h1><hr>
+<p>이벤트는 어떤 사건을 말한다. 브라우저에서 사건(Event)이란, 예를 들어, 사용자가 어떤 웹페이지에서 버튼을 클릭했을 ‘때’ 또는 어떤 박스에서 값을 입력했을 ‘때’를 의미한다.</p>
+<p>이벤트는 이벤트가 발생했을 때, 그에 맞는 대응을 하도록 코드를 작성해야 한다. 이를 위해서는 보통, 이벤트는 함수에 연결되며 그 함수는 이벤트가 발생하기 전에는 실행되지 않다가 이벤트가 발생하면 실행되는데, 이 함수(콜백함수)를 이벤트 핸들러라고 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var elem = document.getElementById(&apos;alertButton&apos;);</span><br><span class="line">elem.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  alert(&apos;Hello World&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>id가 alertButton인 DOM 요소의 버튼을 클릭했을 때(이벤트), ‘Hello World’를 보여주는 alert가 실행되는 콜백함수가 이벤트 핸들러이다.</p>
+<p><br></p>
+<h1 id="Event-종류"><a href="#Event-종류" class="headerlink" title="Event 종류"></a>Event 종류</h1><hr>
+<p>브라우저에 사용하는 이벤트는 다양하지만, 자주 사용되거나 대표적인 이벤트만 정리한다.</p>
+<p><br></p>
+<h2 id="1-UI-Event"><a href="#1-UI-Event" class="headerlink" title="1. UI Event"></a>1. UI Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">load</td>
+<td style="text-align:center">웹페이지의 로드가 완료되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">unload</td>
+<td style="text-align:center">웹페이지가 언로드될 때(주로 새로운 페이지를 요청한 경우)</td>
+</tr>
+<tr>
+<td style="text-align:center">error</td>
+<td style="text-align:center">브라우저가 자바스크립트 오류를 만났거나 요청한 자원이 존재하지 않는 경우</td>
+</tr>
+<tr>
+<td style="text-align:center">resize</td>
+<td style="text-align:center">브라우저 창의 크기를 조절했을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">scroll</td>
+<td style="text-align:center">사용자가 페이지를 위아래로 스크롤할 때</td>
+</tr>
+<tr>
+<td style="text-align:center">select</td>
+<td style="text-align:center">텍스트를 선택했을 때</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>load 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(&quot;load&quot;, function(event) &#123;</span><br><span class="line">  console.log(&quot;All resources finished loading!&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="2-Keyboard-Event"><a href="#2-Keyboard-Event" class="headerlink" title="2. Keyboard Event"></a>2. Keyboard Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">keydown</td>
+<td style="text-align:center">키를 누르고 있을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">keyup</td>
+<td style="text-align:center">누르고 있던 키를 뗄 때</td>
+</tr>
+<tr>
+<td style="text-align:center">keypress</td>
+<td style="text-align:center">키를 누르고 뗏을 때</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>keyup 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inputTodo.addEventListener(&apos;keyup&apos;, function (e) &#123;</span><br><span class="line">  if (e.keyCode !== 13 || !inputTodo.value) return;</span><br><span class="line">  addTodo(inputTodo.value);</span><br><span class="line">  inputTodo.value = &apos;&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="3-Mouse-Event"><a href="#3-Mouse-Event" class="headerlink" title="3. Mouse Event"></a>3. Mouse Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">click</td>
+<td style="text-align:center">마우스 버튼을 클릭했을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">dbclick</td>
+<td style="text-align:center">마우스 버튼을 더블 클릭했을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">mousedown</td>
+<td style="text-align:center">마우스 버튼을 누르고 있을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">mouseup</td>
+<td style="text-align:center">누르고 있던 마우스 버튼을 뗄 때</td>
+</tr>
+<tr>
+<td style="text-align:center">mousemove</td>
+<td style="text-align:center">마우스를 움직일 때 (터치스크린에서 동작하지 않는다)</td>
+</tr>
+<tr>
+<td style="text-align:center">mouseover</td>
+<td style="text-align:center">마우스를 요소 위로 움직였을 때 (터치스크린에서 동작하지 않는다)</td>
+</tr>
+<tr>
+<td style="text-align:center">mouseout</td>
+<td style="text-align:center">마우스를 요소 밖으로 움직였을 때 (터치스크린에서 동작하지 않는다)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>click 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">todoList.addEventListener(&apos;click&apos;, function (e) &#123;</span><br><span class="line">  if (!e.target || e.target.nodeName !== &apos;SPAN&apos; || e.target.parentNode.nodeName === &apos;LABEL&apos;) return;</span><br><span class="line">  removeTodo(e.target.dataset.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="4-Focus-Event"><a href="#4-Focus-Event" class="headerlink" title="4. Focus Event"></a>4. Focus Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">focus</td>
+<td style="text-align:center">요소가 포커스를 얻었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">blur</td>
+<td style="text-align:center">요소가 포커스를 잃었을 때</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>focus와 blur 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var form = document.getElementById(&quot;form&quot;);</span><br><span class="line">form.addEventListener(&quot;focus&quot;, function( event ) &#123;</span><br><span class="line">  event.target.style.background = &quot;pink&quot;;</span><br><span class="line">&#125;, true);</span><br><span class="line"></span><br><span class="line">form.addEventListener(&quot;blur&quot;, function( event ) &#123;</span><br><span class="line">  event.target.style.background = &quot;&quot;;</span><br><span class="line">&#125;, true);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="5-Form-Event"><a href="#5-Form-Event" class="headerlink" title="5. Form Event"></a>5. Form Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">input</td>
+<td style="text-align:center">input 또는 textarea 요소의 값이 변경되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">change</td>
+<td style="text-align:center">select box, checkbox, radio button의 상태가 변경되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">submit</td>
+<td style="text-align:center">form을 submit할 때 (버튼 또는 키)</td>
+</tr>
+<tr>
+<td style="text-align:center">reset</td>
+<td style="text-align:center">reset 버튼을 클릭할 때 (최근에는 사용 안함)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>change 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">todoList.addEventListener(&apos;change&apos;, function (e) &#123;</span><br><span class="line">  toggleTodoComplete(e.target.id);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var toggleTodoComplete = function (id) &#123;</span><br><span class="line">  todos = todos.map(function (todo) &#123;</span><br><span class="line">    return todo.id === +id ? Object.assign(&#123;&#125;, todo, &#123; completed: !todo.completed &#125;) : todo;</span><br><span class="line">  &#125; );</span><br><span class="line">  renderTodos();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="6-Clipboard-Event"><a href="#6-Clipboard-Event" class="headerlink" title="6. Clipboard Event"></a>6. Clipboard Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cut</td>
+<td style="text-align:center">콘텐츠를 잘라내기할 때</td>
+</tr>
+<tr>
+<td style="text-align:center">copy</td>
+<td style="text-align:center">콘텐츠를 복사할 때</td>
+</tr>
+<tr>
+<td style="text-align:center">paste</td>
+<td style="text-align:center">콘텐츠를 붙여넣기할 때</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>copy 이벤트를 사용하는 예제<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListener(&apos;copy&apos;, function(e)&#123;</span><br><span class="line">    e.clipboardData.setData(&apos;text/plain&apos;, &apos;Hello, world!&apos;);</span><br><span class="line">    e.clipboardData.setData(&apos;text/html&apos;, &apos;&lt;b&gt;Hello, world!&lt;/b&gt;&apos;);</span><br><span class="line">    e.preventDefault(); // We want our data, not data from any selection, to be written to the clipboard</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="7-Websocket-Event"><a href="#7-Websocket-Event" class="headerlink" title="7. Websocket Event"></a>7. Websocket Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">open</td>
+<td style="text-align:center">웹소켓 연결이 되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">message</td>
+<td style="text-align:center">웹소켓을 통해 메세지가 전달되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">error</td>
+<td style="text-align:center">몇개의 메세지가 전달이 안된 상태로 웹소켓 연결이 끝났을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">close</td>
+<td style="text-align:center">웹소켓 연결이 끝났을 때</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="8-CSS-Animation-Event"><a href="#8-CSS-Animation-Event" class="headerlink" title="8. CSS Animation Event"></a>8. CSS Animation Event</h2><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">animationstart</td>
+<td style="text-align:center">CSS 애니메이션이 시작되었을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">animationend</td>
+<td style="text-align:center">CSS 애니메이션이 끝났을 때</td>
+</tr>
+<tr>
+<td style="text-align:center">animationiteration</td>
+<td style="text-align:center">CSS 애니메이션이 반복될 때</td>
+</tr>
+</tbody>
+</table>
+<p>이외에 다른 이벤트는 <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank" rel="noopener">MDN</a>에서 확인할 수 있다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event/">Event</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/02/event-loop-and-concurrency/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Event Loop(이벤트루프)와 Javascript Concurrency(동시성)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-이벤트-란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Event(이벤트)란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-종류"><span class="nav-number">2.</span> <span class="nav-text">Event 종류</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-UI-Event"><span class="nav-number">2.1.</span> <span class="nav-text">1. UI Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Keyboard-Event"><span class="nav-number">2.2.</span> <span class="nav-text">2. Keyboard Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Mouse-Event"><span class="nav-number">2.3.</span> <span class="nav-text">3. Mouse Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Focus-Event"><span class="nav-number">2.4.</span> <span class="nav-text">4. Focus Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Form-Event"><span class="nav-number">2.5.</span> <span class="nav-text">5. Form Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Clipboard-Event"><span class="nav-number">2.6.</span> <span class="nav-text">6. Clipboard Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Websocket-Event"><span class="nav-number">2.7.</span> <span class="nav-text">7. Websocket Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-CSS-Animation-Event"><span class="nav-number">2.8.</span> <span class="nav-text">8. CSS Animation Event</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
