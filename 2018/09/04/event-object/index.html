@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Event Object(이벤트 객체) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Event Object" />
+  
+  
+  
+  
+  <meta name="description" content="Event Object(이벤트 객체)란 무엇인가? 이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다. 1234567891011121314// HTML&amp;lt;div class=&amp;quot;parent&amp;quot;&amp;gt;  &amp;">
+<meta name="keywords" content="Event Object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Event Object(이벤트 객체)">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/04/event-object/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Event Object(이벤트 객체)란 무엇인가? 이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다. 1234567891011121314// HTML&amp;lt;div class=&amp;quot;parent&amp;quot;&amp;gt;  &amp;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-03T23:57:18.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Event Object(이벤트 객체)">
+<meta name="twitter:description" content="Event Object(이벤트 객체)란 무엇인가? 이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다. 1234567891011121314// HTML&amp;lt;div class=&amp;quot;parent&amp;quot;&amp;gt;  &amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-event-object" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Event Object(이벤트 객체)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/04/event-object/" class="article-date">
+	  <time datetime="2018-09-03T23:57:18.000Z" itemprop="datePublished">September 4, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Event-Object-이벤트-객체-란-무엇인가"><a href="#Event-Object-이벤트-객체-란-무엇인가" class="headerlink" title="Event Object(이벤트 객체)란 무엇인가?"></a>Event Object(이벤트 객체)란 무엇인가?</h1><hr>
+<p>이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">  function getColor(e) &#123;</span><br><span class="line">  e.target.style.color = &apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure>
+<p>위 코드에서 ‘e’가 이벤트 객체인데, 위 코드처럼 이벤트 핸들러를 선언할 때, 이벤트 객체를 전달받을 첫번째 매개변수를 명시적으로 선언해야 한다. 그 이름은 위와 같이 ‘e’가 되든, ‘event’가 되든 상관이 없다.</p>
+<p>이벤트도 객체이기 때문에, 프로퍼티와 메소드를 가진다.</p>
+<p><br></p>
+<h2 id="Event-Property"><a href="#Event-Property" class="headerlink" title="Event Property"></a>Event Property</h2><hr>
+<h3 id="Event-target-amp-amp-Event-currentTarget"><a href="#Event-target-amp-amp-Event-currentTarget" class="headerlink" title="Event.target &amp;&amp; Event.currentTarget"></a>Event.target &amp;&amp; Event.currentTarget</h3><hr>
+<ul>
+<li>Event.target: 실제로 이벤트를 발생시킨 요소</li>
+<li>Event.currentTarget: 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)</li>
+</ul>
+<p>버튼 2개를 자식요소로 가지고 있는 parent 요소가 있다고 해보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventTarget(e) &#123;</span><br><span class="line">  console.log(e.target); // &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  console.log(e.currentTarget); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(this); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(e.currentTarget === this); // true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getEventTarget);</span><br></pre></td></tr></table></figure></p>
+<p>만약 첫번째 버튼(button 1)을 클릭하게 되면 결과는 위와 같이 나온다. e.target은 실제로 이벤트를 발생시킨 요소로, 첫번째 버튼(button 1)이 된다. 그러나, e.currentTarget은 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)로, 이벤트가 발생된 곳은 첫번째 버튼이지만, 이벤트에 바인딩된 DOM 요소는 parent(부모요소)이기 때문에, e.currentTarget은 parent 요소가 된다. 또한, addEventListener 함수에서 지정한 이벤트 핸들러 내부의 this는 Event Listener에 바인딩된 요소(parent)를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.</p>
+<p><br></p>
+<h3 id="Event-type-amp-amp-Event-keyCode"><a href="#Event-type-amp-amp-Event-keyCode" class="headerlink" title="Event.type &amp;&amp; Event.keyCode"></a>Event.type &amp;&amp; Event.keyCode</h3><hr>
+<ul>
+<li>Event.type: 발생한 이벤트의 종류</li>
+<li>Event.keyCode: 발생한 이벤트의 키보드 번호</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; class=&quot;val&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn&quot;&gt;button&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventType(e) &#123;</span><br><span class="line">  console.log(e.type); // keyup</span><br><span class="line">  console.log(e.keyCode); // 13</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inputBox = document.querySelector(&apos;.val&apos;);</span><br><span class="line">inputBox.addEventListener(&apos;keyup&apos;, getEventType);</span><br></pre></td></tr></table></figure>
+<p>어떤 알파벳 하나를 입력하고, 키보드에서 ‘enter’를 입력하게 되면 e.type은 ‘keyup’이 되고, e.keyCode는 13이 된다. 즉, 발생한 이벤트의 타입은 ‘keyup’이고, 발생한 이벤트의 키보드 번호(enter의 키보드 번호)는 13이다.</p>
+<p><br></p>
+<h3 id="Event-preventDefault-amp-amp-Event-stopPropagation"><a href="#Event-preventDefault-amp-amp-Event-stopPropagation" class="headerlink" title="Event.preventDefault() &amp;&amp; Event.stopPropagation()"></a>Event.preventDefault() &amp;&amp; Event.stopPropagation()</h3><hr>
+<ul>
+<li>Event.preventDefault(): 이벤트의 기본 동작을 중단</li>
+<li>Event.stopPropagation(): 이벤트의 전파(버블링/캡처링)를 중단</li>
+</ul>
+<p><br></p>
+<h4 id="Event-preventDefault"><a href="#Event-preventDefault" class="headerlink" title="Event.preventDefault()"></a>Event.preventDefault()</h4><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"> &lt;a href=&quot;https://cheonmro.github.io/&quot;&gt;블로그로 이동&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var elem = document.querySelector(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">  elem.addEventListener(&apos;click&apos;, function (e) &#123;</span><br><span class="line">  console.log(e.cancelable); // true</span><br><span class="line"></span><br><span class="line">  // 이벤트의 기본 동작을 중단</span><br><span class="line">  e.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>원래는 ‘a’태그를 클릭하면 블로그로 이동을 해야하지만, 위와 같이 e.preventDefault()를 사용하게 되면, 이벤트의 기본 동작을 중단할 수 있다. 단, Event.cancelable가 true일 경우만 가능하다. Event.cancelable는 이벤트 객체의 프로퍼티로, 요소의 기본 동작을 중단할 수 있는지에 대한 여부(true/false)를 나타낸다.</p>
+<p><br></p>
+<h4 id="Event-stopPropagation"><a href="#Event-stopPropagation" class="headerlink" title="Event.stopPropagation()"></a>Event.stopPropagation()</h4><hr>
+<p>어느 한 요소를 이용하여 이벤트를 처리한 후, 이벤트가 부모 요소로 이벤트가 전파되는 것을 중단하기 위해 사용되는 메소드이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;divBox&quot;&gt;</span><br><span class="line">  &lt;p id=&quot;paraBox&quot;&gt;블로그</span><br><span class="line">    &lt;a id=&quot;linkBox&quot; href=&quot;https://cheonmro.github.io/&quot;&gt;클릭&lt;/a&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">document.getElementById(&quot;divBox&quot;).addEventListener(&quot;click&quot;, clickDiv);</span><br><span class="line">document.getElementById(&quot;paraBox&quot;).addEventListener(&quot;click&quot;, clickPara);</span><br><span class="line">document.getElementById(&quot;linkBox&quot;).addEventListener(&quot;click&quot;, clickLink);</span><br><span class="line"></span><br><span class="line">function clickDiv(event) &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickPara(event) &#123;</span><br><span class="line">  console.log(&apos;Event for p&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickLink(event) &#123;</span><br><span class="line">  event.stopPropagation();	// 이벤트의 전파를 중단함.</span><br><span class="line">  console.log(&apos;Stop Propagation!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드에서 paraBox 요소를 클릭하게 되면, 부모요소로 이벤트가 전파된다. 그러나, linkBox 요소를 클릭하게 되면, 이벤트는 부모요소로 전파되지 않는다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Object/">Event Object</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/03/event-flow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Event Flow(이벤트의 흐름)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Object-이벤트-객체-란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Event Object(이벤트 객체)란 무엇인가?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Property"><span class="nav-number">1.1.</span> <span class="nav-text">Event Property</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-target-amp-amp-Event-currentTarget"><span class="nav-number">1.1.1.</span> <span class="nav-text">Event.target &amp;&amp; Event.currentTarget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-type-amp-amp-Event-keyCode"><span class="nav-number">1.1.2.</span> <span class="nav-text">Event.type &amp;&amp; Event.keyCode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-preventDefault-amp-amp-Event-stopPropagation"><span class="nav-number">1.1.3.</span> <span class="nav-text">Event.preventDefault() &amp;&amp; Event.stopPropagation()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-preventDefault"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Event.preventDefault()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-stopPropagation"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Event.stopPropagation()</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
