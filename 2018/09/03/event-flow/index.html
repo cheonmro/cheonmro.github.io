@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Event Flow(이벤트의 흐름) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Event Flow" />
+  
+  
+  
+  
+  <meta name="description" content="Event Flow(이벤트의 흐름)이란 무엇인가? Event Flow란, 어떤 요소에서 이벤트가 발생했을 때, 그 이벤트를 전파하여 감지하는 흐름을 말한다. 이벤트의 흐름은 아래와 같이, 버블링과 캡처링 방식으로 이벤트를 감지한다.  출처: Event Flow  Event Delegation(이벤트 위임) Event Delegation이란, 다수의 자식 요">
+<meta name="keywords" content="Event Flow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Event Flow(이벤트의 흐름)">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/03/event-flow/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Event Flow(이벤트의 흐름)이란 무엇인가? Event Flow란, 어떤 요소에서 이벤트가 발생했을 때, 그 이벤트를 전파하여 감지하는 흐름을 말한다. 이벤트의 흐름은 아래와 같이, 버블링과 캡처링 방식으로 이벤트를 감지한다.  출처: Event Flow  Event Delegation(이벤트 위임) Event Delegation이란, 다수의 자식 요">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/eventflow.png">
+<meta property="og:updated_time" content="2018-09-03T05:38:03.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Event Flow(이벤트의 흐름)">
+<meta name="twitter:description" content="Event Flow(이벤트의 흐름)이란 무엇인가? Event Flow란, 어떤 요소에서 이벤트가 발생했을 때, 그 이벤트를 전파하여 감지하는 흐름을 말한다. 이벤트의 흐름은 아래와 같이, 버블링과 캡처링 방식으로 이벤트를 감지한다.  출처: Event Flow  Event Delegation(이벤트 위임) Event Delegation이란, 다수의 자식 요">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/eventflow.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-event-flow" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Event Flow(이벤트의 흐름)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/03/event-flow/" class="article-date">
+	  <time datetime="2018-09-03T05:38:03.000Z" itemprop="datePublished">September 3, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Event-Flow-이벤트의-흐름-이란-무엇인가"><a href="#Event-Flow-이벤트의-흐름-이란-무엇인가" class="headerlink" title="Event Flow(이벤트의 흐름)이란 무엇인가?"></a>Event Flow(이벤트의 흐름)이란 무엇인가?</h1><hr>
+<p>Event Flow란, 어떤 요소에서 이벤트가 발생했을 때, 그 이벤트를 전파하여 감지하는 흐름을 말한다.</p>
+<p>이벤트의 흐름은 아래와 같이, 버블링과 캡처링 방식으로 이벤트를 감지한다.</p>
+<p><br></p>
+<p><img src="/images/eventflow.png" alt="Event Flow"><br>출처: <a href="https://javascript.info/bubbling-and-capturing" target="_blank" rel="noopener">Event Flow</a></p>
+<p><br></p>
+<h1 id="Event-Delegation-이벤트-위임"><a href="#Event-Delegation-이벤트-위임" class="headerlink" title="Event Delegation(이벤트 위임)"></a>Event Delegation(이벤트 위임)</h1><hr>
+<p>Event Delegation이란, 다수의 자식 요소에 각각 이벤트 핸들러를 바인딩하는 대신에, 하나의 부모 요소에 이벤트 핸들러를 바인딩하는 방법이다.</p>
+<p>이벤트 위임을 하게 되면, 개별 자식 요소에 이벤트 핸들러를 바인딩할 필요가 없을 뿐 아니라, DOM 트리에 새로운 자식 요소가 추가되더라도, 이벤트 처리는 이벤트가 위임된 부모 요소에서 하기 때문에 코드도 간단해지고, 실행속도도 좋아지게 된다.</p>
+<p>아래의 코드를 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;li id=&quot;content1&quot;&gt;HTML&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;content2&quot;&gt;CSS&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;content3&quot;&gt;JAVASCRIPT&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">getColor() &#123;</span><br><span class="line">  console.log(&apos;get color&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var con1 = document.querySelector(&apos;#content1&apos;).addEventListener(&apos;click&apos;, getColor);</span><br><span class="line">var con2 = document.querySelector(&apos;#content2&apos;).addEventListener(&apos;click&apos;, getColor);</span><br><span class="line">var con3 = document.querySelector(&apos;#content3&apos;).addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure>
+<p>만약 이벤트 위임을 안한다면, 위 코드처럼 모든 자식 요소에 이벤트 핸들러를 바인딩해줘야 한다. 위 코드처럼 3개는 크게 문제가 안될 수도 있지만, 만약 10개, 100개면 어떨까? 그렇게 되면 자식요소가 너무 많아지기 때문에, 각 자식요소에 이벤트 핸들러를 바인딩하는 것도 힘들고, 코드 가독성도 안좋게 되고, 결국 실행속도도 저하가 된다.</p>
+<p>위 코드를 이벤트 위임을 하면 아래와 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;li id=&quot;content1&quot;&gt;HTML&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;content2&quot;&gt;CSS&lt;/li&gt;</span><br><span class="line">  &lt;li id=&quot;content3&quot;&gt;JAVASCRIPT&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">getColor() &#123;</span><br><span class="line">  console.log(&apos;get color&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var allContents = document.querySelector(&apos;#parent&apos;).addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure></p>
+<p>위와 같이 부모요소 1개에만 이벤트 핸들러를 바인딩하게 되면, 어떤 자식(하위)요소에서 이벤트가 발생하게 되면 그 이벤트를 부모요소가 감지하여 addEventListener의 콜백함수가 실행되게 된다. 이렇게 하위요소에서 이벤트가 발생하여 상위요소로 전달되어 상위요소가 그 이벤트를 감지하는 것을 버블링이라고 한다. 그 반대 방향으로 감지하는 것을 캡처링이라고 한다. 이부분을 잘 이해해야 이벤트 위임을 잘 할 수 있다.</p>
+<p><br></p>
+<h1 id="Event-Bubbling-이벤트-버블링-amp-Event-Capturing-이벤트-캡처링"><a href="#Event-Bubbling-이벤트-버블링-amp-Event-Capturing-이벤트-캡처링" class="headerlink" title="Event Bubbling(이벤트 버블링) &amp; Event Capturing(이벤트 캡처링)"></a>Event Bubbling(이벤트 버블링) &amp; Event Capturing(이벤트 캡처링)</h1><hr>
+<p>브라우저가 이벤트를 감지하는 방식은 2가지가 있다.</p>
+<ul>
+<li>Event Bubbling(이벤트 버블링)</li>
+<li>Event Capturing(이벤트 캡처링)</li>
+</ul>
+<p><br></p>
+<h2 id="Event-Bubbling-이벤트-버블링"><a href="#Event-Bubbling-이벤트-버블링" class="headerlink" title="Event Bubbling(이벤트 버블링)"></a>Event Bubbling(이벤트 버블링)</h2><hr>
+<p>이벤트 버블링이란, 자식(하위)요소에서 발생한 이벤트가 부모(상위)요소로 전파(이벤트 전파: Event Propagation)되는 것을 말한다.</p>
+<p>아래의 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;ancestor&quot;&gt;</span><br><span class="line">  &lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">    parent</span><br><span class="line">    &lt;li id=&quot;child&quot;&gt;child&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var divAncestor = document.querySelector(&apos;#ancestor&apos;);</span><br><span class="line">var ulParent = document.querySelector(&apos;#parent&apos;);</span><br><span class="line">var liChild = document.querySelector(&apos;#child&apos;);</span><br><span class="line"></span><br><span class="line">divAncestor.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">ulParent.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for ul&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">liChild.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for li&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>위 코드에서 ‘child’(li 요소)를 클릭하면, 아래와 같은 결과가 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Event for li</span><br><span class="line">Event for ul</span><br><span class="line">Event for div</span><br></pre></td></tr></table></figure></p>
+<p>자식요소인 li를 클릭하면, li에서 이벤트가 발생하고, 그 부모요소인 ul에서 이벤트가 발생하고, ul의 부모요소인 div에서 이벤트가 발생한다. 즉, 이벤트가 발생한 곳부터 위로 하나씩 이벤트가 발생하게 된다. 이때, 어떤 요소에 이벤트가 없을 경우(addEventListener가 없을 경우), 그 요소에서는 이벤트가 발생하지 않는다.</p>
+<p>예를 들어, 아래의 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;ancestor&quot;&gt;</span><br><span class="line">  &lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">    parent</span><br><span class="line">    &lt;li id=&quot;child&quot;&gt;child&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var divAncestor = document.querySelector(&apos;#ancestor&apos;);</span><br><span class="line">var liChild = document.querySelector(&apos;#child&apos;);</span><br><span class="line"></span><br><span class="line">divAncestor.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">liChild.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for li&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>위 코드에서 ‘child’(li 요소)를 클릭하면, 아래와 같은 결과가 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Event for li</span><br><span class="line">Event for div</span><br></pre></td></tr></table></figure></p>
+<p>즉, ul요소는 이벤트가 없기 때문에(addEventListener가 없다.), 이벤트가 발생하지 않고, 그 부모요소인 div요소로 넘어가 div요소의 이벤트가 발생하게 된다.</p>
+<p>또한, li요소가 아닌, ul을 클릭하게 되면, ul요소에서 이벤트가 발생하고, 그 부모요소인 div요소에서 이벤트가 전달된다. 즉, 이벤트가 발생한 요소부터 시작하여 상위요소로 이벤트가 발생하는 방식을 이벤트 버블링이라고 한다.</p>
+<p>그럼 여기서 이벤트 위임을 하는 코드를 확인해보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">  function getColor(e) &#123;</span><br><span class="line">  e.target.style.color = &apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure></p>
+<p>위 코드에서는, 모든 자식요소에 이벤트 핸들러를 바인딩하는 대신에, 부모요소 1개에만 이벤트핸들러를 바인딩했는데, 이것을 이벤트 위임이라고 한다. 따라서, 자식요소가 button1, button2 둘 중 어느 곳을 클릭을 하더라도, 이벤트가 부모요소로 전달되어, 부모요소인 parent 요소에서 이벤트를 감지하고 이벤트를 발생시킨다.</p>
+<p><br></p>
+<h2 id="Event-Capturing-이벤트-캡처링"><a href="#Event-Capturing-이벤트-캡처링" class="headerlink" title="Event Capturing(이벤트 캡처링)"></a>Event Capturing(이벤트 캡처링)</h2><hr>
+<p>이벤트 캡처링이란, 자식 요소에서 발생한 이벤트가 부모 요소부터 시작하여 이벤트를 발생시킨 자식 요소까지 도달하는 것을 말한다.</p>
+<p>아래의 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;ancestor&quot;&gt;</span><br><span class="line">  &lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">    parent</span><br><span class="line">    &lt;li id=&quot;child&quot;&gt;child&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var divAncestor = document.querySelector(&apos;#ancestor&apos;);</span><br><span class="line">var ulParent = document.querySelector(&apos;#parent&apos;);</span><br><span class="line">var liChild = document.querySelector(&apos;#child&apos;);</span><br><span class="line"></span><br><span class="line">divAncestor.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;, true)</span><br><span class="line"></span><br><span class="line">ulParent.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for ul&apos;);</span><br><span class="line">&#125;, true)</span><br><span class="line"></span><br><span class="line">liChild.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for li&apos;);</span><br><span class="line">&#125;, true)</span><br></pre></td></tr></table></figure></p>
+<p>참고로, 캡처링을 적용하려면, addEventListener 메소드의 세번째 매개변수에 true를 설정해야 한다. 설정하지 않으면 default로 버블링이다.</p>
+<p>위 코드에서 ‘child’(li 요소)를 클릭하면, 아래와 같은 결과가 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Event for div</span><br><span class="line">Event for ul</span><br><span class="line">Event for li</span><br></pre></td></tr></table></figure></p>
+<p>자식요소인 li를 클릭하면, 최상위 부모요소인 div에서 먼저 이벤트가 발생하고, 아래 방향으로 하나씩 이벤트가 발생한다. 즉, 버블링과 반대로, 이벤트가 발생한 곳은 자식요소이나, 이벤트를 감지하는 곳은 최상위 부모요소부터 시작하여 실제로 이벤트가 발생한 요소까지 도달하는데, 이런식으로 이벤트를 감지하는 것을 이벤트 캡처링이라고 한다.</p>
+<p>예를 들어, 아래의 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;ancestor&quot;&gt;</span><br><span class="line">  &lt;ul id=&quot;parent&quot;&gt;</span><br><span class="line">    parent</span><br><span class="line">    &lt;li id=&quot;child&quot;&gt;child&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var divAncestor = document.querySelector(&apos;#ancestor&apos;);</span><br><span class="line">var liChild = document.querySelector(&apos;#child&apos;);</span><br><span class="line"></span><br><span class="line">divAncestor.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">liChild.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(&apos;Event for li&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>위 코드에서 ‘child’(li 요소)를 클릭하면, 아래와 같은 결과가 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Event for div</span><br><span class="line">Event for li</span><br></pre></td></tr></table></figure></p>
+<p>즉, ul요소는 이벤트가 없기 때문에(addEventListener가 없다.), 이벤트가 발생하지 않고, 그 부모요소인 div요소부터 이벤트가 발생하고, 그 다음 li요소에서 이벤트가 발생하게 된다.</p>
+<p>또한, li요소가 아닌, ul을 클릭하게 되면, 최상위 요소인 div요소에서 이벤트가 발생하여, 이벤트가 발생한 ul요소까지 이벤트가 도달하게 된다. 즉, 이벤트가 어디서 발생하는 것과는 상관없이, 최상위 부모요소에서부터 이벤트가 발생하기 시작하여, 실제로 이벤트가 발생한 곳까지 가는 방식을 이벤트 캡처링이라고 한다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Flow/">Event Flow</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/03/event-binding-and-event-handler/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Event Binding(이벤트 바인딩)과 Event Handler(이벤트 핸들러)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Flow-이벤트의-흐름-이란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Event Flow(이벤트의 흐름)이란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Delegation-이벤트-위임"><span class="nav-number">2.</span> <span class="nav-text">Event Delegation(이벤트 위임)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-Bubbling-이벤트-버블링-amp-Event-Capturing-이벤트-캡처링"><span class="nav-number">3.</span> <span class="nav-text">Event Bubbling(이벤트 버블링) &amp; Event Capturing(이벤트 캡처링)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Bubbling-이벤트-버블링"><span class="nav-number">3.1.</span> <span class="nav-text">Event Bubbling(이벤트 버블링)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Capturing-이벤트-캡처링"><span class="nav-number">3.2.</span> <span class="nav-text">Event Capturing(이벤트 캡처링)</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
