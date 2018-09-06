@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="안녕하세요, 프론트엔드 개발자 노천명입니다. Email: cheonmro@gmail.com  About Projects   #1. 야놀자 펜션 클론 프로젝트  목표: 야놀자 펜션 웹사이트의 핵심 기능 위주로 MVP 개발 기간: 2018.07.30 ~ 2018.08.23 기술 스택: Angular, Typescript, Javascript, CSS, HTM">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-05T05:43:47.533Z">
+<meta property="og:updated_time" content="2018-09-06T06:36:23.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Me">
 <meta name="twitter:description" content="안녕하세요, 프론트엔드 개발자 노천명입니다. Email: cheonmro@gmail.com  About Projects   #1. 야놀자 펜션 클론 프로젝트  목표: 야놀자 펜션 웹사이트의 핵심 기능 위주로 MVP 개발 기간: 2018.07.30 ~ 2018.08.23 기술 스택: Angular, Typescript, Javascript, CSS, HTM">
@@ -134,23 +134,22 @@
 
 <h1 id="1-야놀자-펜션-클론-프로젝트"><a href="#1-야놀자-펜션-클론-프로젝트" class="headerlink" title="#1. 야놀자 펜션 클론 프로젝트"></a>#1. 야놀자 펜션 클론 프로젝트</h1><hr>
 <ul>
-<li>목표: <a href="http://www.yapen.co.kr/" target="_blank" rel="noopener">야놀자 펜션 웹사이트</a>의 핵심 기능 위주로 MVP 개발</li>
-<li>기간: 2018.07.30 ~ 2018.08.23</li>
-<li>기술 스택: Angular, Typescript, Javascript, CSS, HTML</li>
-<li>협업 방식: 프론트엔드 개발자 3명과 백엔드 개발자 3명<ul>
+<li><strong>목표</strong>: <a href="http://www.yapen.co.kr/" target="_blank" rel="noopener">야놀자 펜션 웹사이트</a>의 핵심 기능 위주로 MVP 개발</li>
+<li><strong>기간</strong>: 2018.07.30 ~ 2018.08.23</li>
+<li><strong>기술 스택</strong>: Angular, Typescript, Javascript, CSS, HTML</li>
+<li><strong>협업 방식</strong>: 프론트엔드 개발자 3명과 백엔드 개발자 3명<ul>
 <li>프론트엔드 개발자끼리는 핵심 기능을 역할분담하여 정해진 각 기간에 따라 각자 구현하고 코드를 Git으로 합치면서 진행</li>
-<li>백엔드 개발자와는 서버에서 데이터를 가져오기 위해 REST API를 활용하여 진행</li>
+<li>백엔드 개발자와는 데이터를 서버와 잘 주고 받기 위해 협업하면서 진행</li>
 </ul>
 </li>
-<li><p>나의 역할: 야놀자 펜션의 펜션 룸을 예약하는 예약페이지 및 결제 방식에 따라 결제하는 결제페이지 구현</p>
-</li>
-<li><p>소스코드:</p>
-</li>
-<li><p>동영상</p>
+<li><strong>나의 역할</strong>: 야놀자 펜션의 펜션 룸을 예약하는 예약페이지 및 결제 방식에 따라 결제하는 결제페이지 구현</li>
+</ul>
+<!-- - 소스코드: -->
+<ul>
+<li><strong>동영상</strong></li>
+</ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZkhfYziNRmQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-</li>
-</ul>
 <p><br></p>
 <h2 id="기능구현-예약페이지-amp-결제페이지"><a href="#기능구현-예약페이지-amp-결제페이지" class="headerlink" title="기능구현(예약페이지 &amp; 결제페이지)"></a>기능구현(예약페이지 &amp; 결제페이지)</h2><hr>
 <h3 id="1-Calendar"><a href="#1-Calendar" class="headerlink" title="1. Calendar"></a>1. Calendar</h3><ul>
@@ -164,7 +163,7 @@
 <li><strong>접근법</strong><ul>
 <li>Angular Bootstrap에서 <a href="https://ng-bootstrap.github.io/#/components/datepicker/overview" target="_blank" rel="noopener">Datepicker</a> API를 가져와 사용</li>
 <li>Datepicker API “markDisabled” 문법에 따라, Calendar에 있는 모든 날짜와 오늘 날짜를 비교해서 오늘 보다 이전 날짜들에 대해 Calendar에서 선택을 못하게 하는 코드 작성</li>
-<li>Calendar에서 날짜를 선택할 때마다, 함수를 호출하여 함수안에 매개변수를 선택한 날짜로 줘서, 그 선택한 날짜를 url로 하는 REST API에 요청하여 펜션 룸 Table에 펜션의 룸들의 예약상태를 그 선택한 날짜에 맞게 예약페이지에 보여주는 코드 작성</li>
+<li>Calendar에서 날짜를 선택할 때마다, 함수를 호출하여 함수안에 매개변수를 선택한 날짜로 줘서, 그 선택한 날짜를 url로 서버에 요청하여 펜션 룸 Table에 펜션의 룸들의 예약상태를 그 선택한 날짜에 맞게 예약페이지에 보여주는 코드 작성</li>
 </ul>
 </li>
 </ul>
@@ -184,22 +183,22 @@
 </ul>
 </li>
 </ul>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// Use markDisabled in Datepicker</span><br><span class="line">&lt;ngb-datepicker #dp (select)=&quot;changeDate.emit($event)&quot;</span><br><span class="line">  class=&quot;date-picker&quot;</span><br><span class="line">  [firstDayOfWeek]=&quot;firstDayOfWeek&quot;</span><br><span class="line">  [markDisabled]=&quot;isDisabled&quot;</span><br><span class="line">  [dayTemplate]=&quot;t&quot;&gt;</span><br><span class="line">&lt;/ngb-datepicker&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Disable the dates bofre today &amp; the months that are NOT current month</span><br><span class="line">isDisabled(date: NgbDateStruct, current: &#123;month: number&#125;) &#123;</span><br><span class="line">  const eachDate = new Date(date.year, date.month - 1, date.day + 1);</span><br><span class="line">  const todayDate = new Date().getTime();</span><br><span class="line">  return eachDate.getTime() &lt; todayDate || date.month !== current.month;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"></span><br><span class="line">// Use markDisabled in Datepicker</span><br><span class="line">&lt;ngb-datepicker #dp (select)=&quot;changeDate.emit($event)&quot;</span><br><span class="line">  class=&quot;date-picker&quot;</span><br><span class="line">  [firstDayOfWeek]=&quot;firstDayOfWeek&quot;</span><br><span class="line">  [markDisabled]=&quot;isDisabled&quot;</span><br><span class="line">  [dayTemplate]=&quot;t&quot;&gt;</span><br><span class="line">&lt;/ngb-datepicker&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line"></span><br><span class="line">// Disable the dates bofre today &amp; the months that are NOT current month</span><br><span class="line">isDisabled(date: NgbDateStruct, current: &#123;month: number&#125;) &#123;</span><br><span class="line">  const eachDate = new Date(date.year, date.month - 1, date.day + 1);</span><br><span class="line">  const todayDate = new Date().getTime();</span><br><span class="line">  return eachDate.getTime() &lt; todayDate || date.month !== current.month;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>#3<ul>
 <li><strong>Issue</strong>: 선택한 날짜를 가지고 어떻게 url을 만들어서 서버와 통신할지에 대한 고민</li>
-<li><strong>Solution</strong>: 선택한 날짜의 year/month/day로 문자열을 만들어서 http client를 사용해 REST API의 url로 코드를 작성</li>
+<li><strong>Solution</strong>: 선택한 날짜의 year/month/day로 문자열을 만들어서 http client를 사용해 url로 코드를 작성</li>
 <li><strong>Code</strong>:</li>
 </ul>
 </li>
 </ul>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Use event binding to get the date selected from calendar</span><br><span class="line">&lt;app-yapen-calendar</span><br><span class="line">(changeDate)=&quot;onDateSelection($event)&quot;</span><br><span class="line">[selectedDate]=&quot;selectedDate&quot;</span><br><span class="line">&gt;&lt;/app-yapen-calendar&gt;</span><br><span class="line"></span><br><span class="line">// when selecting a date, change to the date selected and to room status</span><br><span class="line">onDateSelection(date: NgbDateStruct) &#123;</span><br><span class="line">  this.selectedDate = date;</span><br><span class="line">  this.checkInDate = date;</span><br><span class="line">  const calendarSelectedDate = `$&#123;date.year&#125;-$&#123;date.month&#125;-$&#123;date.day&#125;`;</span><br><span class="line">  this.http.get&lt;Pension&gt;(`$&#123;this.urlDate&#125;/$&#123;this.pensionPk&#125;/$&#123;calendarSelectedDate&#125;/`)</span><br><span class="line">    .subscribe(pension =&gt; this.rooms = pension.rooms);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"></span><br><span class="line">// Use event binding to get the date selected from calendar</span><br><span class="line">&lt;app-yapen-calendar</span><br><span class="line">(changeDate)=&quot;onDateSelection($event)&quot;</span><br><span class="line">[selectedDate]=&quot;selectedDate&quot;</span><br><span class="line">&gt;&lt;/app-yapen-calendar&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line"></span><br><span class="line">// when selecting a date, change to the date selected and to room status</span><br><span class="line">onDateSelection(date: NgbDateStruct) &#123;</span><br><span class="line">  this.selectedDate = date;</span><br><span class="line">  this.checkInDate = date;</span><br><span class="line">  const calendarSelectedDate = `$&#123;date.year&#125;-$&#123;date.month&#125;-$&#123;date.day&#125;`;</span><br><span class="line">  this.http.get&lt;Pension&gt;(`$&#123;this.urlDate&#125;/$&#123;this.pensionPk&#125;/$&#123;calendarSelectedDate&#125;/`)</span><br><span class="line">    .subscribe(pension =&gt; this.rooms = pension.rooms);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <!-- - 완성도: -->
 <ul>
 <li><strong>배운점</strong><ul>
 <li>개발할 때, 밑바닥부터 모든 것을 코딩하는 것이 아닌 필요한 기능들에 대한 API를 찾아보고, 실제로 어떻게 적용하는 것인지를 경험함.</li>
 <li>Date 함수를 이용해 날짜를 비교하는 방법을 알게됨.</li>
-<li>백엔드와 협업하여 만든 REST API를 활용하여 원하는 데이터를 화면에 보여주는 방법을 알게됨.</li>
+<li>서버와 어떻게 통신하여 데이터를 화면에 보여주는 방법을 알게됨.</li>
 </ul>
 </li>
 </ul>
@@ -231,7 +230,7 @@
 </ul>
 </li>
 </ul>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- for period --&gt;</span><br><span class="line">&lt;div class=&quot;stay-div&quot;&gt;</span><br><span class="line">  &lt;select class=&quot;stay-select&quot; [attr.id]=&quot;room.pk&quot; class=&quot;selectStayBox&quot;</span><br><span class="line">    [disabled]=&quot;!(room.pk===checkedPk)&quot; [class.disabled-select]=&quot;!(room.pk===checkedPk)&quot;</span><br><span class="line">    (change)=&quot;selectPeriod($event.target.value)&quot; #selectStayNum&gt;</span><br><span class="line">  &lt;ng-container *range=&quot;[1, 6] let stayNum;&quot;&gt;</span><br><span class="line">    &lt;option [value]=&quot;stayNum&quot;&gt;&#123;&#123; stayNum &#125;&#125;박&lt;/option&gt;</span><br><span class="line">  &lt;/ng-container&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- for period --&gt;</span><br><span class="line"></span><br><span class="line">// When selecting a period(1박)</span><br><span class="line">selectPeriod(selectedStayNum: number) &#123;</span><br><span class="line">  this.stayDayNum = selectedStayNum;</span><br><span class="line"></span><br><span class="line">  const checkedRoom = this.rooms.filter(room =&gt; room.pk === this.checkedPk)[0];</span><br><span class="line">  this.totalPrice = checkedRoom.price * this.stayDayNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"></span><br><span class="line">&lt;!-- for period --&gt;</span><br><span class="line">&lt;div class=&quot;stay-div&quot;&gt;</span><br><span class="line">  &lt;select class=&quot;stay-select&quot; [attr.id]=&quot;room.pk&quot; class=&quot;selectStayBox&quot;</span><br><span class="line">    [disabled]=&quot;!(room.pk===checkedPk)&quot; [class.disabled-select]=&quot;!(room.pk===checkedPk)&quot;</span><br><span class="line">    (change)=&quot;selectPeriod($event.target.value)&quot; #selectStayNum&gt;</span><br><span class="line">  &lt;ng-container *range=&quot;[1, 6] let stayNum;&quot;&gt;</span><br><span class="line">    &lt;option [value]=&quot;stayNum&quot;&gt;&#123;&#123; stayNum &#125;&#125;박&lt;/option&gt;</span><br><span class="line">  &lt;/ng-container&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- for period --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line"></span><br><span class="line">// When selecting a period(1박)</span><br><span class="line">selectPeriod(selectedStayNum: number) &#123;</span><br><span class="line">  this.stayDayNum = selectedStayNum;</span><br><span class="line"></span><br><span class="line">  const checkedRoom = this.rooms.filter(room =&gt; room.pk === this.checkedPk)[0];</span><br><span class="line">  this.totalPrice = checkedRoom.price * this.stayDayNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>배운점</strong><ul>
 <li>select 박스 등의 HTML에서 이벤트 바인딩을 통해 값을 전달하여 변경된 값을 화면에 보여주는 코드를 작성하는 방법을 배움.</li>
@@ -241,27 +240,29 @@
 <p><br></p>
 <h3 id="3-결제-Form"><a href="#3-결제-Form" class="headerlink" title="3. 결제 Form"></a>3. 결제 Form</h3><ul>
 <li><strong>목표</strong><ul>
-<li>선택한 결제 방식(신용카드/무통장)에 맞는 결제 정보를 입력하는 폼 기능 구현</li>
-<li>각 결제 정보에 맞지 않게 입력되면, 경고를 주는 폼 에러처리 기능 구현</li>
+<li>예약자 정보 및 선택한 결제 방식(신용카드/무통장)에 맞는 결제 정보를 입력하는 폼 기능 구현</li>
+<li>예약자 정보 및 각 결제 정보에 대한 유효성 검증을 하여, 맞지 않게 입력되면, 경고를 주는 폼 에러처리 기능 구현</li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><strong>접근법</strong><ul>
-<li>Angular의 Reactive Form을 이용해서 폼 및 폼 에러처리 기능 코드 작성</li>
+<li>Angular에서 제공하는 폼을 이용해서 폼 및 폼 에러처리 기능 코드 작성</li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><strong>Issues &amp; Solutions</strong><ul>
 <li>#1<ul>
-<li><strong>Issue</strong>: Angular의 Reactive Form에 대한 이해 및 사용법을 숙지하는데 시간이 걸림</li>
+<li><strong>Issue</strong>: Angular에서 제공하는 폼에 대한 이해 및 사용법을 숙지하는데 시간이 걸림</li>
 <li><strong>Solution</strong>: 한번에 모든 결제 정보의 에러처리 기능을 테스트하기 보다, 하나씩 결제 정보의 에러 기능을 테스트하며 구현함.</li>
+<li><strong>Code</strong>:</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"></span><br><span class="line">&lt;!-- 예약자 이름 --&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;th scope=&quot;row&quot;&gt;예약자 이름&lt;/th&gt;</span><br><span class="line">  &lt;td&gt;</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; formControlName=&quot;userName&quot;</span><br><span class="line">        [style.border-color]=&quot;(isEmptyName ? &apos;rgb(255, 101, 89)&apos; : &apos;&apos;)&quot; #inputUserName&gt;</span><br><span class="line">      &lt;span class=&quot;help&quot;&gt;예) 홍길동&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  &lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;!-- 예약자 이름 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 휴대폰번호 --&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">  &lt;th scope=&quot;row&quot;&gt;휴대폰번호&lt;/th&gt;</span><br><span class="line">  &lt;td&gt;</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; formControlName=&quot;userPhone&quot;</span><br><span class="line">        [style.border-color]=&quot;(isEmptyPhone ? &apos;rgb(255, 101, 89)&apos; : &apos;&apos;)&quot; #inputUserPhone&gt;</span><br><span class="line">        &lt;span class=&quot;empty-phone-number&quot; *ngIf=&quot;isEmptyPhone&quot;&gt;</span><br><span class="line">          &#123;&#123; !inputUserPhone.value ? &apos;휴대폰번호가 입력되지 않았습니다.&apos; :  &apos;휴대폰번호가 정확히 입력되지 않았습니다.&apos; &#125;&#125;</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">      &lt;span class=&quot;help&quot;&gt;예) 0101234567&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  &lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;!-- 휴대폰번호 --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- pay button --&gt;</span><br><span class="line">&lt;div class=&quot;pay-btn&quot;&gt;</span><br><span class="line">  &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-lg&quot;</span><br><span class="line">  (click)=&quot;userName.errors ? (userPhone.errors ? isDoubleEmpty() : isEmptyName = true) :</span><br><span class="line">  (userPhone.errors ? isEmptyPhone = true : getUserInfo(inputUserName.value, inputUserPhone.value))&quot;&gt;결제하기&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- pay button --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line"></span><br><span class="line">this.userForm = this.fb.group(&#123;</span><br><span class="line">  userName: [&apos;&apos;, Validators.required],</span><br><span class="line">  userPhone: [&apos;&apos;, [</span><br><span class="line">    Validators.required,</span><br><span class="line">    Validators.pattern(&apos;[0-9]&#123;11&#125;&apos;)</span><br><span class="line">  ]]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>배운점</strong><ul>
 <li>처음 사용해 보는 기능을 코드에 잘 적용하기 위해서는 사용하려는 기능에 대해 충분히 이해를 하고 하나씩 작은 단위로 테스트 해보면서 하는 것이 결국, 더 정확하게 빠르게 코딩을 할 수 있다는 것을 배움.</li>
