@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hoisting(호이스팅)이란 무엇인가? | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Hoisting" />
+  
+  
+  
+  
+  <meta name="description" content="Hoisting(호이스팅) Hoisting(호이스팅)이란, Javascript의 모든 선언문(var, let, const, function, function*, class)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다. C 언어 등 C-family 언어와는 다르게, Javascript의 모든 선언문은 ‘호이스팅’이 되는 Javascri">
+<meta name="keywords" content="Hoisting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hoisting(호이스팅)이란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/13/what-is-hoisting/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hoisting(호이스팅) Hoisting(호이스팅)이란, Javascript의 모든 선언문(var, let, const, function, function*, class)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다. C 언어 등 C-family 언어와는 다르게, Javascript의 모든 선언문은 ‘호이스팅’이 되는 Javascri">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-13T06:03:47.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hoisting(호이스팅)이란 무엇인가?">
+<meta name="twitter:description" content="Hoisting(호이스팅) Hoisting(호이스팅)이란, Javascript의 모든 선언문(var, let, const, function, function*, class)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다. C 언어 등 C-family 언어와는 다르게, Javascript의 모든 선언문은 ‘호이스팅’이 되는 Javascri">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-is-hoisting" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Hoisting(호이스팅)이란 무엇인가?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/13/what-is-hoisting/" class="article-date">
+	  <time datetime="2018-09-13T06:03:47.000Z" itemprop="datePublished">September 13, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hoisting-호이스팅"><a href="#Hoisting-호이스팅" class="headerlink" title="Hoisting(호이스팅)"></a>Hoisting(호이스팅)</h1><hr>
+<p><strong>Hoisting(호이스팅)</strong>이란, <strong>Javascript의 모든 선언문(var, let, const, function, function*, class)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> C 언어 등 C-family 언어와는 다르게, Javascript의 모든 선언문은 ‘호이스팅’이 되는 Javascript만의 특징이 있다.<br><br><br>Hoisting에는 크게 2가지가 있다.</p>
+<ul>
+<li>변수 호이스팅</li>
+<li>함수 호이스팅</li>
+</ul>
+<p><br></p>
+<h2 id="변수-호이스팅-Variable-Hoisting"><a href="#변수-호이스팅-Variable-Hoisting" class="headerlink" title="변수 호이스팅(Variable Hoisting)"></a>변수 호이스팅(Variable Hoisting)</h2><hr>
+<p><strong>변수 호이스팅</strong>이란, <strong>Javascript의 변수 선언문(var, let, const)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> 즉, Javascript의 모든 선언문이 선언되기 전부터, 변수를 참조할 수 있게 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(num); // 1. -&gt; undefined</span><br><span class="line">var num = 100;</span><br><span class="line">console.log(num); // 2. -&gt; 100</span><br><span class="line">&#123;</span><br><span class="line">  var num = 5;</span><br><span class="line">&#125;</span><br><span class="line">console.log(num); // 3. -&gt; 5</span><br></pre></td></tr></table></figure></p>
+<p>위 코드를 처음 봤을 때, 첫줄의 출력 값은 Error가 날 것이라고 예상 할 수 있다. 그러나, 위 Javascript의 코드는 변수 호이스팅이 있기 때문에, undefined를 출력한다.</p>
+<p>Javascript 엔진이 위 코드를 읽어들일 때, 제일 먼저 선언문부터 읽는다. 그리고, 그 중 제일 첫번째로 선언된 변수를 찾아, 그 변수를 선언하고, 초기화를 한다. 이때, 변수의 호이스팅 때문에, 선언문은 해당 Scope의 최상단, 즉 제일 윗줄로 옮겨진 것처럼 행동하여, ‘num’을 출력(console.log(num)) 하기 전에, 변수가 존재하는 것처럼 행동하고, 이 변수는 선언이 되고, 초기화까지 되었기 때문에(변수를 초기화하면, ‘undefined’를 메모리에 할당한다.), console.log(num)의 결과로는 ‘undefined’가 출력된다.</p>
+<p>기본적으로, var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 변수가 선언이 될 때, 스코프에 Variable Object가 생성이 되고, 여기에 변수가 등록이 되어있어, 변수 선언문 이전에 변수에 접근해도 에러가 발생하지 않는다. 다만, 초기화 단계에서 변수는 메모리에 공간을 확보한 후, undefined를 저장하기 때문에, undefined를 반환한다. 이후, 변수 할당문(var num = 100;)에 도달하여 값의 할당이 이루어진다.</p>
+<p>호이스팅 관점에서 다시 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(num); // 1. -&gt; undefined</span><br><span class="line">var num = 100;</span><br><span class="line">console.log(num); // 2. -&gt; 100</span><br><span class="line">&#123;</span><br><span class="line">  var num = 5;</span><br><span class="line">&#125;</span><br><span class="line">console.log(num); // 3. -&gt; 5</span><br></pre></td></tr></table></figure></p>
+<p>‘1.’이 실행되기 이전에 var num = 100;이 호이스팅되어 ‘1.’ 구문 위에(최상단) var num;가 옮겨진 것처럼 된다. 실제로 변수 선언이 코드 레벨로 옮겨 진것은 아니고, 변수 객체(Variable Object)에 등록되고, undefined로 초기화된 것이다. 그러나, 변수 선언 단계와 초기화 단계가 할당 단계와 분리되어 진행되기 때문에, 이 단계에서는 num에 undefined가 할당되어 있다. 변수 num에 값이 할당되는 것은 두번째 행(var num = 100;)에서 실시된다.</p>
+<p>마지막 줄에서는 숫자 5가 출력이 되는데, 이는 코드 블록안에서 새롭게 변수가 중복 선언이 되어 num의 값이 5로 바뀌었기 때문이다. Javascript는 function-level scope를 갖기 때문에, 변수의 유효범위가 코드 블록에는 영향이 없다.</p>
+<p><br></p>
+<h2 id="함수-호이스팅-Function-Hoisting"><a href="#함수-호이스팅-Function-Hoisting" class="headerlink" title="함수 호이스팅(Function Hoisting)"></a>함수 호이스팅(Function Hoisting)</h2><hr>
+<p><strong>함수 호이스팅</strong>이란, <strong>Javascript의 함수 선언문(function)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> 즉, Javascript의 모든 선언문이 선언되기 전부터, 함수를 호출할 수 있게 된다. 함수선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능하게 만드는 것을 말한다. 단, 함수선언식에만 적용이 된다.</p>
+<p>함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 즉, 함수 선언, 초기화, 할당이 한번에 이루어진다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">square(5); // 25</span><br><span class="line"></span><br><span class="line">function square(number) &#123;</span><br><span class="line">  return number * number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>다음은 함수표현식으로 함수를 정의한 경우이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var res = square(5); // TypeError: square is not a function</span><br><span class="line"></span><br><span class="line">var square = function(number) &#123;</span><br><span class="line">  return number * number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>위와 같이 에러가 발생한 이유는, 함수표현식의 경우는 함수 호이스팅이 아니라, 변수 호이스팅이 발생하기 때문이다.</p>
+<p>함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 변수 객체(VO)에 함수를 할당하지 않고, runtime에 해석되고 실행된다. 즉, 선언과 초기화까지만 하여, undefined를 호출하는 것과 같기 때문에, 에러가 난다.</p>
+<p>그래서, 더글러스 크락포드는 ‘함수표현식’만 사용할 것을 권한다. 왜냐하면, 에러가 나서 미리 호출을 방지하기 때문이다. 왠만하면, 선언문 이전에 호출하지 않는 것이 좋다.<br><br><br><strong>변수와 함수의 호이스팅의 차이점</strong>:</p>
+<ul>
+<li><strong>함수 호이스팅</strong>: 함수선언문 이전에 함수가 호출이 된다.(함수 선언식으로 함수를 선언했을 경우)</li>
+<li><strong>변수 호이스팅</strong>: 함수표현식으로 함수를 선언했을 경우, 함수표현식 이전에 함수를 호출하면, 에러가 난다.<ul>
+<li>왜냐하면, 함수표현식은 변수 호이스팅을 따르기 때문에, 할당은 안되고, 초기화까지만 되기 때문이다. 즉, 초기화까지만 되면 undefined를 호출하는 것과 같기 때문이다. undefiend() 이런형식으로 나온다는 의미이기 때문에, 에러가 난다.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hoisting/">Hoisting</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/13/what-is-dom/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DOM(Document Object Model)이란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hoisting-호이스팅"><span class="nav-number">1.</span> <span class="nav-text">Hoisting(호이스팅)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#변수-호이스팅-Variable-Hoisting"><span class="nav-number">1.1.</span> <span class="nav-text">변수 호이스팅(Variable Hoisting)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#함수-호이스팅-Function-Hoisting"><span class="nav-number">1.2.</span> <span class="nav-text">함수 호이스팅(Function Hoisting)</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
