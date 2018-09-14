@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Pass-by-Value vs Pass-by-Reference | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Object" />
+  
+  
+  
+  
+  <meta name="description" content="Pass-by-Value  기본자료형의 값은 값(Value)으로 전달한다.(원래 값은 그대로 존재하고, 그 값이 복사되어 전달된다.) 기본자료형의 값은 한번 정해지면 변경할 수 없다.(Immutable, 재할당은 가능하지만 기존의 값은 메모리에 저장되어 있다.) 기본자료형의 값은 런타임(변수 할당 시점)에 메모리의 스택 영역(Stack Segment)에 고">
+<meta name="keywords" content="Object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pass-by-Value vs Pass-by-Reference">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/14/pass-by-value-and-pass-by-reference/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Pass-by-Value  기본자료형의 값은 값(Value)으로 전달한다.(원래 값은 그대로 존재하고, 그 값이 복사되어 전달된다.) 기본자료형의 값은 한번 정해지면 변경할 수 없다.(Immutable, 재할당은 가능하지만 기존의 값은 메모리에 저장되어 있다.) 기본자료형의 값은 런타임(변수 할당 시점)에 메모리의 스택 영역(Stack Segment)에 고">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-14T03:28:23.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pass-by-Value vs Pass-by-Reference">
+<meta name="twitter:description" content="Pass-by-Value  기본자료형의 값은 값(Value)으로 전달한다.(원래 값은 그대로 존재하고, 그 값이 복사되어 전달된다.) 기본자료형의 값은 한번 정해지면 변경할 수 없다.(Immutable, 재할당은 가능하지만 기존의 값은 메모리에 저장되어 있다.) 기본자료형의 값은 런타임(변수 할당 시점)에 메모리의 스택 영역(Stack Segment)에 고">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-pass-by-value-and-pass-by-reference" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Pass-by-Value vs Pass-by-Reference
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/14/pass-by-value-and-pass-by-reference/" class="article-date">
+	  <time datetime="2018-09-14T03:28:23.000Z" itemprop="datePublished">September 14, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Pass-by-Value"><a href="#Pass-by-Value" class="headerlink" title="Pass-by-Value"></a>Pass-by-Value</h1><hr>
+<ul>
+<li>기본자료형의 값은 값(Value)으로 전달한다.(원래 값은 그대로 존재하고, 그 값이 복사되어 전달된다.)</li>
+<li>기본자료형의 값은 한번 정해지면 변경할 수 없다.(Immutable, 재할당은 가능하지만 기존의 값은 메모리에 저장되어 있다.)</li>
+<li>기본자료형의 값은 런타임(변수 할당 시점)에 메모리의 스택 영역(Stack Segment)에 고정된 메모리 영역을 점유하고 저장된다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = a; // a의 값(1)이 복사되어 전달</span><br><span class="line"></span><br><span class="line">console.log(a, b);    // 1  1</span><br><span class="line">console.log(a === b); // true</span><br><span class="line"></span><br><span class="line">a = 10; // 재할당은 가능하지만, 기존의 값은 메모리에 저장되어 있다.</span><br><span class="line">console.log(a, b);    // 10  1</span><br><span class="line">console.log(a === b); // false</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="Pass-by-Reference"><a href="#Pass-by-Reference" class="headerlink" title="Pass-by-Reference"></a>Pass-by-Reference</h1><hr>
+<ul>
+<li>객체형의 값은 실제 값이 아닌 값을 참조하여 전달한다.(값의 주소(address)를 참조한다.)</li>
+<li>객체형은 변경 가능(mutable)한 값으로, 프로퍼티를 변경, 추가, 삭제가 가능하다.</li>
+<li>객체형의 값은 동적으로 변화할 수 있어서 어느 정도의 메모리 공간이 필요한지를 알 수가 없기 때문에, 런타임(변수 할당 시점)에 메모리 공간을 확보하고, 메모리의 힙 영역(Heap Segment)에 저장된다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123; val: 100 &#125;</span><br><span class="line"></span><br><span class="line">var obj2 = obj1; // 값을 참조하여 전달</span><br><span class="line">console.log(obj1.val, obj2.val); // 100 100</span><br><span class="line">console.log(obj1 === obj2);      // true</span><br><span class="line"></span><br><span class="line">obj2.val = 200; // 객체의 값은 변경 가능</span><br><span class="line">console.log(obj1.val, obj2.val); // 200 200</span><br><span class="line">console.log(obj1 === obj2);      // true</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="두-변수사이에-같은-내용을-할당하여도-각-별개의-객체를-생성하여-서로-다른-참조값을-가진다"><a href="#두-변수사이에-같은-내용을-할당하여도-각-별개의-객체를-생성하여-서로-다른-참조값을-가진다" class="headerlink" title="두 변수사이에 같은 내용을 할당하여도, 각 별개의 객체를 생성하여, 서로 다른 참조값을 가진다."></a>두 변수사이에 같은 내용을 할당하여도, 각 별개의 객체를 생성하여, 서로 다른 참조값을 가진다.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123; val: 100 &#125;;</span><br><span class="line">var obj2 = &#123; val: 100 &#125;;</span><br><span class="line"></span><br><span class="line">console.log(obj1.val, obj2.val); // 100 100</span><br><span class="line">console.log(obj1 === obj2);      // false -&gt; 서로 다른 참조값을 가지기 때문에, 두 변수는 같지 않다.</span><br><span class="line"></span><br><span class="line">var obj3 = obj2;</span><br><span class="line"></span><br><span class="line">console.log(obj3.val, obj2.val); // 100 100</span><br><span class="line">console.log(obj3 === obj2);      // true -&gt; 서로 같은 참조값을 가지기 때문에, 두 변수는 같다.</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="서로-다른-빈-객체-참조-및-모두-같은-빈-객체-참조-예제"><a href="#서로-다른-빈-객체-참조-및-모두-같은-빈-객체-참조-예제" class="headerlink" title="서로 다른 빈 객체 참조 및 모두 같은 빈 객체 참조(예제)"></a>서로 다른 빈 객체 참조 및 모두 같은 빈 객체 참조(예제)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// a, b, c는 각각 다른 빈 객체를 참조</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line">var b = &#123;&#125;;</span><br><span class="line">var c = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a === b, a === c, b === c); // false false false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// a, b, c는 모두 같은 빈 객체를 참조</span><br><span class="line">a = b = c = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">console.log(a === b, a === c, b === c); // true true true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object/">Object</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/14/complexity-for-algorithms/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">알고리즘 성능분석을 위한 복잡도 활용법</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pass-by-Value"><span class="nav-number">1.</span> <span class="nav-text">Pass-by-Value</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pass-by-Reference"><span class="nav-number">2.</span> <span class="nav-text">Pass-by-Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#두-변수사이에-같은-내용을-할당하여도-각-별개의-객체를-생성하여-서로-다른-참조값을-가진다"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">두 변수사이에 같은 내용을 할당하여도, 각 별개의 객체를 생성하여, 서로 다른 참조값을 가진다.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#서로-다른-빈-객체-참조-및-모두-같은-빈-객체-참조-예제"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">서로 다른 빈 객체 참조 및 모두 같은 빈 객체 참조(예제)</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
