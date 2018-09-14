@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>알고리즘 성능분석을 위한 복잡도 활용법 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ComplexityBig-OAlgorithms" />
+  
+  
+  
+  
+  <meta name="description" content="알고리즘 알고리즘이란, 어떤 목적이나 결과물(프로그램)을 만들어내기 위해 거쳐야 하는 일련의 과정들을 말한다. 어떤 프로그램을 만드는 데 있어서 방법은 여러가지가 있을 수 있다. 예를 들어, 어떤 케익 1개를 100가지 방법으로 자를 수 있는 것처럼, 하나의 문제를 여러가지의 알고리즘으로 풀 수 있다. 그렇기 때문에, 여러 알고리즘 중 최선의 알고리즘으로">
+<meta name="keywords" content="Complexity,Big-O,Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="알고리즘 성능분석을 위한 복잡도 활용법">
+<meta property="og:url" content="https://cheonmro.github.io/2018/09/14/complexity-for-algorithms/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="알고리즘 알고리즘이란, 어떤 목적이나 결과물(프로그램)을 만들어내기 위해 거쳐야 하는 일련의 과정들을 말한다. 어떤 프로그램을 만드는 데 있어서 방법은 여러가지가 있을 수 있다. 예를 들어, 어떤 케익 1개를 100가지 방법으로 자를 수 있는 것처럼, 하나의 문제를 여러가지의 알고리즘으로 풀 수 있다. 그렇기 때문에, 여러 알고리즘 중 최선의 알고리즘으로">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-09-14T02:55:28.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="알고리즘 성능분석을 위한 복잡도 활용법">
+<meta name="twitter:description" content="알고리즘 알고리즘이란, 어떤 목적이나 결과물(프로그램)을 만들어내기 위해 거쳐야 하는 일련의 과정들을 말한다. 어떤 프로그램을 만드는 데 있어서 방법은 여러가지가 있을 수 있다. 예를 들어, 어떤 케익 1개를 100가지 방법으로 자를 수 있는 것처럼, 하나의 문제를 여러가지의 알고리즘으로 풀 수 있다. 그렇기 때문에, 여러 알고리즘 중 최선의 알고리즘으로">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-complexity-for-algorithms" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      알고리즘 성능분석을 위한 복잡도 활용법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/14/complexity-for-algorithms/" class="article-date">
+	  <time datetime="2018-09-14T02:55:28.000Z" itemprop="datePublished">September 14, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h1><hr>
+<p><strong>알고리즘</strong>이란, <strong>어떤 목적이나 결과물(프로그램)을 만들어내기 위해 거쳐야 하는 일련의 과정들을 말한다.</strong> 어떤 프로그램을 만드는 데 있어서 방법은 여러가지가 있을 수 있다. 예를 들어, 어떤 케익 1개를 100가지 방법으로 자를 수 있는 것처럼, 하나의 문제를 여러가지의 알고리즘으로 풀 수 있다. 그렇기 때문에, 여러 알고리즘 중 최선의 알고리즘으로 하는 것이 좋다.</p>
+<p>어떤 프로그램 개발을 위해 코딩을 할 때, 여러가지의 알고리즘으로 풀 수 있지만, 최선의 알고리즘으로 푸는 것이 (웹페이지 등의) 성능을 위해서 좋다. 이때, 이 성능 분석을 위해 필요한 것이 복잡도이다.</p>
+<p><br></p>
+<h1 id="복잡도"><a href="#복잡도" class="headerlink" title="복잡도"></a>복잡도</h1><hr>
+<p>복잡도에는 크게 2가지가 있다.</p>
+<ul>
+<li><strong>시간 복잡도</strong>: 알고리즘이 문제를 해결하기 위한 연산의 횟수(얼마나 많은 연산이 수행되는지)</li>
+<li><strong>공간 복잡도</strong>: 메모리 사용량(얼마나 많은 양의 메모리를 차지하는지)</li>
+</ul>
+<p>이런 복잡도를 가지고 작성한 코드 알고리즘의 성능을 분석해서, 어떻게 하면 더 적은 연산으로(시간 복잡도), 더 적은 메모리를 차지하여(공간 복잡도) (웹페이지 등의) 성능을 좋게 할 수 있다.</p>
+<p>알고리즘의 성능을 평가하기 위해서는 작성된 코드의 시간복잡도 및 공간복잡도를 계산하고, 이를 점근적 표기법으로 나타내어 평가한다. 이때 점근적 표기법이란, 각 알고리즘이 주어진 데이터의 크기를 기준으로 코드에서의 연산의 횟수 또는 메모리 사용량이 얼마나 되는지를 비교할 수 있는 방법이다. 이 방법에는 Big-O, 오메가, 세타 등이 있다.</p>
+<p>이 방법중에서 Big-O 표기법에 대해 알아보자.</p>
+<p><br></p>
+<h1 id="Big-O-표기법"><a href="#Big-O-표기법" class="headerlink" title="Big-O 표기법"></a>Big-O 표기법</h1><hr>
+<p><strong>Big-O 표기법</strong>이란, <strong>계산된 복잡도를 O(n) 이런식으로 표기하는 방식인데, 이때, n은 최고차항의 차수가 된다.</strong> 예를 들어, T(n) = n^2+ 2n + 1 으로 시간복잡도가 계산되었다면, O(n^2)으로 표기하는 것이 Big-O 표기법이다.</p>
+<p>대표적인 복잡도를 Big-O 표기법으로 작성한 것은 다음과 같다.</p>
+<ul>
+<li><strong>O(1): 상수 시간</strong><ul>
+<li>입력값 n이 주어졌을 때, 알고리즘이 문제를 해결하는 데 오직 한 단계만 거친다.</li>
+</ul>
+</li>
+<li><strong>O(logn): 로그 시간</strong><ul>
+<li>입력값 n이 주어졌을 때, 문제를 해결하는데 필요한 단계들이 연산마다 특정 요인에 의해 줄어든다.</li>
+</ul>
+</li>
+<li><strong>O(n): 직선적 시간</strong><ul>
+<li>문제를 해결하기 위한 단계의 수와 입력값 n이 1:1 관계를 가진다.</li>
+</ul>
+</li>
+<li><strong>O(n^2): 2차 시간</strong><ul>
+<li>문제를 해결하기 위한 단계의 수는 입력값 n의 제곱이다.</li>
+</ul>
+</li>
+<li><strong>O(c^n): 지수 시간</strong><ul>
+<li>문제를 해결하기 위한 단계의 수는 주어진 상수값 c의 n 제곱이다.</li>
+</ul>
+</li>
+</ul>
+<p>복잡도의 크기는 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(n^3) &lt; O(2^n) &lt; O(n!)</span><br></pre></td></tr></table></figure></p>
+<p>보통 O(n^2) 이상의 복잡도를 가지는 알고리즘은 좋지 않다.</p>
+<p><br></p>
+<h1 id="복잡도-계산하기"><a href="#복잡도-계산하기" class="headerlink" title="복잡도 계산하기"></a>복잡도 계산하기</h1><hr>
+<h2 id="O-1-상수-시간-constant-time"><a href="#O-1-상수-시간-constant-time" class="headerlink" title="O(1): 상수 시간(constant time)"></a>O(1): 상수 시간(constant time)</h2><hr>
+<p><strong>알고리즘이 문제를 해결하는 데 오직 한 단계만 거친다.</strong></p>
+<p>O(1)은 여러가지 경우가 있겠지만, 예를 들면 다음과 같은 코드들이 있다.</p>
+<p><strong>1. 전달되는 인자를 반환하는 경우</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function addTwoNumbers(num1, num2) &#123;</span><br><span class="line">  return num1 + num2; // 1번 실행</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(addTwoNumbers(1, 3)); // 4</span><br></pre></td></tr></table></figure></p>
+<p>시간복잡도를 T(n)이라고 하는데, 위 코드의 시간복잡도를 계산하면 T(n) = 1 이다. 이것을 Big-O 표기법으로 나타내면 O(1)이다. 1인 이유는 Big-O 표기법에서 O(n)의 n은 최고차항의 차수를 나타내는데, 위의 경우 n^0이므로, 1이된다.</p>
+<p><br></p>
+<p><strong>2. 정렬되어 있는 배열에서 최소값과 최대값을 구하는 경우</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const numbers = [1, 2, 3, 4, 5, 10]; // 배열의 요소들이 순서대로 정렬되어 있다.</span><br><span class="line">function FindLargestNumber(items) &#123;</span><br><span class="line">  let smallest = items[0]; // 1번 실행</span><br><span class="line">  let largest = items[items.length - 1]; // 1번 실행</span><br><span class="line">  return (largest - smallest); // 1번 실행</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(FindLargestNumber(numbers)); // 9</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 3 이다. 이것을 Big-O 표기법으로 나타내면 O(1)이다.</p>
+<p><br></p>
+<p><strong>3. 값을 검색할 때, 객체에서 키를 알거나, 배열에서 인덱스를 알고 있으면 언제나 한 단계만 걸린다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function isCryptoCurrency(name) &#123;</span><br><span class="line">  return cryptoCurrency[name]; // 1번 실행</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var cryptoCurrency = &#123;</span><br><span class="line">  &apos;bitcoin&apos;: true,</span><br><span class="line">  &apos;ripple&apos;: true,</span><br><span class="line">  &apos;bitcoinCash&apos;: true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(isCryptoCurrency(&apos;bitcoin&apos;)); // true</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 1 이다. 이것을 Big-O 표기법으로 나타내면 O(1)이다.</p>
+<p><br></p>
+<h2 id="O-logN-로그-시간-log-time"><a href="#O-logN-로그-시간-log-time" class="headerlink" title="O(logN): 로그 시간(log time)"></a>O(logN): 로그 시간(log time)</h2><hr>
+<p><strong>문제를 해결하는데 필요한 단계들이 연산마다 특정 요인에 의해 줄어든다.</strong></p>
+<p>배열에서 값을 찾을 때, 어느 쪽에서 시작할지를 알고 있으면, 검색하는 시간이 줄어든다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function findAge(num, array) &#123;</span><br><span class="line">  var midPoint = Math.floor(array.length/2);</span><br><span class="line">  if(array[midPoint] === num) &#123;</span><br><span class="line">    return true; // 1번 실행</span><br><span class="line">  &#125;</span><br><span class="line">  if(array[midPoint] &lt; num) &#123;</span><br><span class="line">    for (let i = midPoint + 1; i &lt; array.length) &#123;</span><br><span class="line">      if(array[i] === num) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; n/2번 실행</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (let i = 0; i &lt; midPoint) &#123;</span><br><span class="line">      if(array[i] === num) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; n/2번 실행</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(findAge(27, sortedAges))</span><br><span class="line">sortedAges = [21, 23, 25, 27, 29];</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 1 + n/2 이다. 이것을 Big-O 표기법으로 나타내면 O(logn)이다.</p>
+<p><br></p>
+<h2 id="O-n-직선적-시간-linear-time"><a href="#O-n-직선적-시간-linear-time" class="headerlink" title="O(n): 직선적 시간(linear time)"></a>O(n): 직선적 시간(linear time)</h2><hr>
+<p><strong>문제를 해결하기 위한 단계의 수와 입력값 n이 1:1 관계를 가진다.</strong></p>
+<p>for문을 1번 사용하는 경우</p>
+<p>예를 들어, 배열이 정렬되어 있지 않을 경우, 최소 및 최대값을 찾기 위해 배열의 모든 숫자를 탐색하여, 비교를 수행한다. 이 경우, 수행시간은 배열의 크기에 따라 늘어난다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const numbers = [1, 9, 3, 10, 16];</span><br><span class="line">function FindLargestGap(items) &#123;</span><br><span class="line">  let smallest = items[0]; // 1번 실행</span><br><span class="line">  let largest = items[0]; // 1번 실행</span><br><span class="line">  for (let i = 1; i &lt; items.length; i++) &#123;</span><br><span class="line">    if (items[i] &lt; smallest) &#123;</span><br><span class="line">      smallest = items[i];</span><br><span class="line">    &#125; else if (items[i] &gt; largest) &#123;</span><br><span class="line">      largest = items[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; // n번 실행</span><br><span class="line">  return (largest - smallest); // 1번 실행</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(FindLargestGap(numbers));</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 3 + n 이다. 이것을 Big-O 표기법으로 나타내면 O(n)이다.</p>
+<p><br></p>
+<h2 id="O-n-2-2차-시간-quadratic-time"><a href="#O-n-2-2차-시간-quadratic-time" class="headerlink" title="O(n^2): 2차 시간(quadratic time)"></a>O(n^2): 2차 시간(quadratic time)</h2><hr>
+<p><strong>문제를 해결하기 위한 단계의 수는 입력값 n의 제곱이다.</strong></p>
+<p>중첩 for 문을 사용할 경우, 첫번째 for 문의 각 요소(n) x 두번째(안에있는) for 문의 각 요소(n) = n x n<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const number = [2, 10, 1, 4, 3, 10, 5];</span><br><span class="line">function FindLargestGap(items) &#123;</span><br><span class="line">  let gap; // 1번 실행</span><br><span class="line">  let maxGap = 0; // 1번 실행</span><br><span class="line">  for (let i = 0; i &lt; items.length; i++) &#123;</span><br><span class="line">    for(let j = 0; j &lt; items.length; j++) &#123;</span><br><span class="line">      gap = items[i] - items[j];</span><br><span class="line">      if (gap &lt; 0) &#123;</span><br><span class="line">        gap = gap * -1;</span><br><span class="line">      &#125;</span><br><span class="line">      if (gap &gt; maxGap) &#123;</span><br><span class="line">        maxGap = gap;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; // n^2번 실행</span><br><span class="line">  return maxGap; // 1번 실행</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(FindLargestGap(numbers)); // 9</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 3 + n^2 이다. 이것을 Big-O 표기법으로 나타내면 O(n^2)이다.</p>
+<p><br></p>
+<h2 id="O-c-n-지수-시간-exponential-time"><a href="#O-c-n-지수-시간-exponential-time" class="headerlink" title="O(c^n): 지수 시간(exponential time)"></a>O(c^n): 지수 시간(exponential time)</h2><hr>
+<p><strong>문제를 해결하기 위한 단계의 수는 주어진 상수값 c의 n 제곱이다.</strong></p>
+<p>지수 시간은 문제를 풀기 위해, 모든 조합과 방법을 시도할 때 사용된다.</p>
+<p><br></p>
+<h1 id="Worst-Case-Best-Case-and-Average-Case"><a href="#Worst-Case-Best-Case-and-Average-Case" class="headerlink" title="Worst Case, Best Case, and Average Case"></a>Worst Case, Best Case, and Average Case</h1><hr>
+<p>시간 복잡도 계산을 위한 연산 횟수를 카운팅할때, 3가지의 시나리오가 있다.</p>
+<ul>
+<li><strong>Worst Case</strong>: 입력값 n의 규모가 동일할 때, 가장 많은 횟수의 연산으로 처리되는 경우</li>
+<li><strong>Best Case</strong>: 입력값 n의 규모가 동일할 때, 가장 적은 횟수의 연산으로 처리되는 경우</li>
+<li><strong>Average Case</strong>: 입력값 n의 규모가 동일할 때, 평균적인 횟수의 연산으로 처리되는 경우</li>
+</ul>
+<p>예를 들면 다음과 같은 코드가 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getNumber7(items) &#123;</span><br><span class="line">  for (let i = 0; i &lt; items.length; i++) &#123;</span><br><span class="line">    if (i === 7) &#123;</span><br><span class="line">      return i</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getNumber7(numbers)</span><br><span class="line"></span><br><span class="line">// numbers = [7, 5, 3, 1]인 경우, 1번만 실행(Best Case)</span><br><span class="line">// numbers = [5, 7, 3, 1]인 경우, 2번만 실행</span><br><span class="line">// numbers = [1, 3, 5, 7]인 경우, 4번 모두 실행(Worst Case)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithms/">Algorithms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Big-O/">Big-O</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Complexity/">Complexity</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/13/what-is-hoisting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hoisting(호이스팅)이란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#알고리즘"><span class="nav-number">1.</span> <span class="nav-text">알고리즘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#복잡도"><span class="nav-number">2.</span> <span class="nav-text">복잡도</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Big-O-표기법"><span class="nav-number">3.</span> <span class="nav-text">Big-O 표기법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#복잡도-계산하기"><span class="nav-number">4.</span> <span class="nav-text">복잡도 계산하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#O-1-상수-시간-constant-time"><span class="nav-number">4.1.</span> <span class="nav-text">O(1): 상수 시간(constant time)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-logN-로그-시간-log-time"><span class="nav-number">4.2.</span> <span class="nav-text">O(logN): 로그 시간(log time)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-n-직선적-시간-linear-time"><span class="nav-number">4.3.</span> <span class="nav-text">O(n): 직선적 시간(linear time)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-n-2-2차-시간-quadratic-time"><span class="nav-number">4.4.</span> <span class="nav-text">O(n^2): 2차 시간(quadratic time)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#O-c-n-지수-시간-exponential-time"><span class="nav-number">4.5.</span> <span class="nav-text">O(c^n): 지수 시간(exponential time)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Worst-Case-Best-Case-and-Average-Case"><span class="nav-number">5.</span> <span class="nav-text">Worst Case, Best Case, and Average Case</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
