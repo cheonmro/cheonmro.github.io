@@ -98,6 +98,82 @@
         
           <section id="main">
   
+    <article id="post-search-algorithms"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/10/31/search-algorithms/">탐색(search) 알고리즘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/10/31/search-algorithms/" class="article-date">
+	  <time datetime="2018-10-31T02:54:03.000Z" itemprop="datePublished">October 31, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="탐색-알고리즘"><a href="#탐색-알고리즘" class="headerlink" title="탐색 알고리즘"></a>탐색 알고리즘</h1><hr>
+<p>탐색 알고리즘이란, 데이터를 탐색하면서 어떤 값을 찾는 알고리즘을 말한다.</p>
+<p><br></p>
+<h1 id="탐색-알고리즘-종류"><a href="#탐색-알고리즘-종류" class="headerlink" title="탐색 알고리즘 종류"></a>탐색 알고리즘 종류</h1><hr>
+<ul>
+<li>순차 탐색 알고리즘(linear search)</li>
+<li>이진 탐색 알고리즘(binary search)</li>
+</ul>
+<p><br></p>
+<h2 id="순차-탐색-알고리즘-linear-search"><a href="#순차-탐색-알고리즘-linear-search" class="headerlink" title="순차 탐색 알고리즘(linear search)"></a>순차 탐색 알고리즘(linear search)</h2><hr>
+<p>순차 탐색 알고리즘: 맨 앞에서부터 순서대로 탐색을 진행하는 알고리즘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">  if(array[i] === target)</span><br><span class="line">	  return i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>위 for문의 경우, 데이터의 수가 n개 일때, 최악의 경우에 해당하는 연산횟수는 n이다. T(n) = n, 시간복잡도는 O(n)이다.</p>
+<p><br></p>
+<h2 id="이진-탐색-알고리즘-binary-search"><a href="#이진-탐색-알고리즘-binary-search" class="headerlink" title="이진 탐색 알고리즘(binary search)"></a>이진 탐색 알고리즘(binary search)</h2><hr>
+<p>이진 탐색 알고리즘: 데이터가 정렬된 상태에서, 모든 데이터의 중간부터 시작해서 크기 비교를 통해 반씩 쪼개면서 탐색하는 알고리즘이다. 즉, 배열에 저장된 데이터는 정렬되어야 할 수 있는 탐색 알고리즘이다.</p>
+<ul>
+<li>예를 들어, array = [1, 2, 3, 4, 5, 6, 7, 8, 9]라는 배열이 있다고 해보자.</li>
+<li>이 중에서 데이터 ‘6’(key 값)을 찾는다고 하면, 먼저 배열의 중간인 5와 비교한다.</li>
+<li>이때, key 값이 더 크기 때문에 key 값은 중간값인 5를 기준으로 배열에서 오른쪽에 있다는 뜻이다.</li>
+<li>그럼 다시 오른쪽 데이터(6, 7, 8, 9) 중에서 중간값 7를 찾아서 key 값과 비교한다.</li>
+<li>이때, key 값이 더 작기 때문에 key 값은 중간값인 7보다 앞쪽에 있다는 뜻이다.</li>
+<li>결국 key 값 6을 찾을 수 있게 된다.</li>
+</ul>
+<p>이렇게 한번 처리가 진행될 때마다, 검색해야 하는 데이터의 양이 절반씩 떨어지는 알고리즘을 이진 탐색 알고리즘이라고 한다. 이를, 시간 복잡도로 나타내면 O(logN)이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function findAge(num, array) &#123;</span><br><span class="line">  var midPoint = Math.floor(array.length/2);</span><br><span class="line">  if(array[midPoint] === num) &#123;</span><br><span class="line">    return true; // 1번 실행</span><br><span class="line">  &#125;</span><br><span class="line">  if(array[midPoint] &lt; num) &#123;</span><br><span class="line">    for (let i = midPoint + 1; i &lt; array.length) &#123;</span><br><span class="line">      if(array[i] === num) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; n/2번 실행</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    for (let i = 0; i &lt; midPoint) &#123;</span><br><span class="line">      if(array[i] === num) &#123;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; n/2번 실행</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(findAge(27, sortedAges))</span><br><span class="line">sortedAges = [21, 23, 25, 27, 29];</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 시간복잡도를 계산하면 T(n) = 1 + n/2 이다. 이것을 Big-O 표기법으로 나타내면 O(logn)이다.</p>
+<p><br></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/search-algorithms/">search algorithms</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-fibonacci"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -900,93 +976,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-event-object"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/09/04/event-object/">Event Object(이벤트 객체)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/09/04/event-object/" class="article-date">
-	  <time datetime="2018-09-03T23:57:18.000Z" itemprop="datePublished">September 4, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Event-Object-이벤트-객체-란-무엇인가"><a href="#Event-Object-이벤트-객체-란-무엇인가" class="headerlink" title="Event Object(이벤트 객체)란 무엇인가?"></a>Event Object(이벤트 객체)란 무엇인가?</h1><hr>
-<p>이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">  function getColor(e) &#123;</span><br><span class="line">  e.target.style.color = &apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure>
-<p>위 코드에서 ‘e’가 이벤트 객체인데, 위 코드처럼 이벤트 핸들러를 선언할 때, 이벤트 객체를 전달받을 첫번째 매개변수를 명시적으로 선언해야 한다. 그 이름은 위와 같이 ‘e’가 되든, ‘event’가 되든 상관이 없다.</p>
-<p>이벤트도 객체이기 때문에, 프로퍼티와 메소드를 가진다.</p>
-<p><br></p>
-<h2 id="Event-Property"><a href="#Event-Property" class="headerlink" title="Event Property"></a>Event Property</h2><hr>
-<h3 id="Event-target-amp-amp-Event-currentTarget"><a href="#Event-target-amp-amp-Event-currentTarget" class="headerlink" title="Event.target &amp;&amp; Event.currentTarget"></a>Event.target &amp;&amp; Event.currentTarget</h3><hr>
-<ul>
-<li>Event.target: 실제로 이벤트를 발생시킨 요소</li>
-<li>Event.currentTarget: 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)</li>
-</ul>
-<p>버튼 2개를 자식요소로 가지고 있는 parent 요소가 있다고 해보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventTarget(e) &#123;</span><br><span class="line">  console.log(e.target); // &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  console.log(e.currentTarget); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(this); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(e.currentTarget === this); // true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getEventTarget);</span><br></pre></td></tr></table></figure></p>
-<p>만약 첫번째 버튼(button 1)을 클릭하게 되면 결과는 위와 같이 나온다. e.target은 실제로 이벤트를 발생시킨 요소로, 첫번째 버튼(button 1)이 된다. 그러나, e.currentTarget은 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)로, 이벤트가 발생된 곳은 첫번째 버튼이지만, 이벤트에 바인딩된 DOM 요소는 parent(부모요소)이기 때문에, e.currentTarget은 parent 요소가 된다. 또한, addEventListener 함수에서 지정한 이벤트 핸들러 내부의 this는 Event Listener에 바인딩된 요소(parent)를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.</p>
-<p><br></p>
-<h3 id="Event-type-amp-amp-Event-keyCode"><a href="#Event-type-amp-amp-Event-keyCode" class="headerlink" title="Event.type &amp;&amp; Event.keyCode"></a>Event.type &amp;&amp; Event.keyCode</h3><hr>
-<ul>
-<li>Event.type: 발생한 이벤트의 종류</li>
-<li>Event.keyCode: 발생한 이벤트의 키보드 번호</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; class=&quot;val&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn&quot;&gt;button&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventType(e) &#123;</span><br><span class="line">  console.log(e.type); // keyup</span><br><span class="line">  console.log(e.keyCode); // 13</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inputBox = document.querySelector(&apos;.val&apos;);</span><br><span class="line">inputBox.addEventListener(&apos;keyup&apos;, getEventType);</span><br></pre></td></tr></table></figure>
-<p>어떤 알파벳 하나를 입력하고, 키보드에서 ‘enter’를 입력하게 되면 e.type은 ‘keyup’이 되고, e.keyCode는 13이 된다. 즉, 발생한 이벤트의 타입은 ‘keyup’이고, 발생한 이벤트의 키보드 번호(enter의 키보드 번호)는 13이다.</p>
-<p><br></p>
-<h3 id="Event-preventDefault-amp-amp-Event-stopPropagation"><a href="#Event-preventDefault-amp-amp-Event-stopPropagation" class="headerlink" title="Event.preventDefault() &amp;&amp; Event.stopPropagation()"></a>Event.preventDefault() &amp;&amp; Event.stopPropagation()</h3><hr>
-<ul>
-<li>Event.preventDefault(): 이벤트의 기본 동작을 중단</li>
-<li>Event.stopPropagation(): 이벤트의 전파(버블링/캡처링)를 중단</li>
-</ul>
-<p><br></p>
-<h4 id="Event-preventDefault"><a href="#Event-preventDefault" class="headerlink" title="Event.preventDefault()"></a>Event.preventDefault()</h4><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"> &lt;a href=&quot;https://cheonmro.github.io/&quot;&gt;블로그로 이동&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var elem = document.querySelector(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">  elem.addEventListener(&apos;click&apos;, function (e) &#123;</span><br><span class="line">  console.log(e.cancelable); // true</span><br><span class="line"></span><br><span class="line">  // 이벤트의 기본 동작을 중단</span><br><span class="line">  e.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>원래는 ‘a’태그를 클릭하면 블로그로 이동을 해야하지만, 위와 같이 e.preventDefault()를 사용하게 되면, 이벤트의 기본 동작을 중단할 수 있다. 단, Event.cancelable가 true일 경우만 가능하다. Event.cancelable는 이벤트 객체의 프로퍼티로, 요소의 기본 동작을 중단할 수 있는지에 대한 여부(true/false)를 나타낸다.</p>
-<p><br></p>
-<h4 id="Event-stopPropagation"><a href="#Event-stopPropagation" class="headerlink" title="Event.stopPropagation()"></a>Event.stopPropagation()</h4><hr>
-<p>어느 한 요소를 이용하여 이벤트를 처리한 후, 이벤트가 부모 요소로 이벤트가 전파되는 것을 중단하기 위해 사용되는 메소드이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;divBox&quot;&gt;</span><br><span class="line">  &lt;p id=&quot;paraBox&quot;&gt;블로그</span><br><span class="line">    &lt;a id=&quot;linkBox&quot; href=&quot;https://cheonmro.github.io/&quot;&gt;클릭&lt;/a&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">document.getElementById(&quot;divBox&quot;).addEventListener(&quot;click&quot;, clickDiv);</span><br><span class="line">document.getElementById(&quot;paraBox&quot;).addEventListener(&quot;click&quot;, clickPara);</span><br><span class="line">document.getElementById(&quot;linkBox&quot;).addEventListener(&quot;click&quot;, clickLink);</span><br><span class="line"></span><br><span class="line">function clickDiv(event) &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickPara(event) &#123;</span><br><span class="line">  console.log(&apos;Event for p&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickLink(event) &#123;</span><br><span class="line">  event.stopPropagation();	// 이벤트의 전파를 중단함.</span><br><span class="line">  console.log(&apos;Stop Propagation!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>위 코드에서 paraBox 요소를 클릭하게 되면, 부모요소로 이벤트가 전파된다. 그러나, linkBox 요소를 클릭하게 되면, 이벤트는 부모요소로 전파되지 않는다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Object/">Event Object</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1097,6 +1086,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/10/31/search-algorithms/">탐색(search) 알고리즘</a></h6>
+              <span>October 31, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/10/31/fibonacci/">3. Fibonacci</a></h6>
               <span>October 31, 2018</span>
             </div>
@@ -1151,18 +1152,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/09/12/strict-equal-operator-difference/">==와 ===의 차이점</a></h6>
-              <span>September 12, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1172,7 +1161,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
