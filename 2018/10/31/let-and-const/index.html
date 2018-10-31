@@ -3,28 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>브라우저 동작원리 | Hexo</title>
+  <title>let &amp; const &amp; var | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Browser" />
+  <meta name="keywords" content="letconstvar" />
   
   
   
   
-  <meta name="description" content="브라우저 동작원리(How Browser Works) 브라우저와 서버와의 통신은 다음과 같이 진행된다. 출처: How Browser Works 브라우저의 핵심 기능은 사용자가 브라우저에서 URL 입력창에 어떤 사이트를 입력하게 될 때, 그 사이트의 서버에 요청(Request)을 하고, 서버로부터 응답(Response)을 받아 브라우저에 그 사이트의 웹페이지를">
-<meta name="keywords" content="Browser">
+  <meta name="description" content="var와 let/const의 차이점 ES5까지는 var를 사용했으나, var가 가지고 있는 단점들을 보완하기 위해 ES6에서는 let 과 const를 사용할 수 있다.  var는 중복선언이 가능했으나, let과 const는 불가능하다.  var a = 3; 이렇게 선언을 했어도, 다시 var a = 10; 이런식으로 중복 선언이 가능하다. 이는 의도치 않게">
+<meta name="keywords" content="let,const,var">
 <meta property="og:type" content="article">
-<meta property="og:title" content="브라우저 동작원리">
-<meta property="og:url" content="https://cheonmro.github.io/2018/10/31/how-browser-works/index.html">
+<meta property="og:title" content="let &amp; const &amp; var">
+<meta property="og:url" content="https://cheonmro.github.io/2018/10/31/let-and-const/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="브라우저 동작원리(How Browser Works) 브라우저와 서버와의 통신은 다음과 같이 진행된다. 출처: How Browser Works 브라우저의 핵심 기능은 사용자가 브라우저에서 URL 입력창에 어떤 사이트를 입력하게 될 때, 그 사이트의 서버에 요청(Request)을 하고, 서버로부터 응답(Response)을 받아 브라우저에 그 사이트의 웹페이지를">
+<meta property="og:description" content="var와 let/const의 차이점 ES5까지는 var를 사용했으나, var가 가지고 있는 단점들을 보완하기 위해 ES6에서는 let 과 const를 사용할 수 있다.  var는 중복선언이 가능했으나, let과 const는 불가능하다.  var a = 3; 이렇게 선언을 했어도, 다시 var a = 10; 이런식으로 중복 선언이 가능하다. 이는 의도치 않게">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://cheonmro.github.io/images/how_browser_works.png">
-<meta property="og:updated_time" content="2018-10-31T12:59:40.291Z">
+<meta property="og:updated_time" content="2018-10-31T13:45:37.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="브라우저 동작원리">
-<meta name="twitter:description" content="브라우저 동작원리(How Browser Works) 브라우저와 서버와의 통신은 다음과 같이 진행된다. 출처: How Browser Works 브라우저의 핵심 기능은 사용자가 브라우저에서 URL 입력창에 어떤 사이트를 입력하게 될 때, 그 사이트의 서버에 요청(Request)을 하고, 서버로부터 응답(Response)을 받아 브라우저에 그 사이트의 웹페이지를">
-<meta name="twitter:image" content="https://cheonmro.github.io/images/how_browser_works.png">
+<meta name="twitter:title" content="let &amp; const &amp; var">
+<meta name="twitter:description" content="var와 let/const의 차이점 ES5까지는 var를 사용했으나, var가 가지고 있는 단점들을 보완하기 위해 ES6에서는 let 과 const를 사용할 수 있다.  var는 중복선언이 가능했으나, let과 const는 불가능하다.  var a = 3; 이렇게 선언을 했어도, 다시 var a = 10; 이런식으로 중복 선언이 가능하다. 이는 의도치 않게">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -105,7 +103,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-how-browser-works" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-let-and-const" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -113,7 +111,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      브라우저 동작원리
+      let &amp; const &amp; var
     </h1>
   
 
@@ -121,13 +119,13 @@
     
     <div class="article-meta">
       
-	<a href="/2018/10/31/how-browser-works/" class="article-date">
-	  <time datetime="2018-10-31T12:59:40.000Z" itemprop="datePublished">October 31, 2018</time>
+	<a href="/2018/10/31/let-and-const/" class="article-date">
+	  <time datetime="2018-10-31T13:45:37.000Z" itemprop="datePublished">October 31, 2018</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Network/">Network</a>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
 
       
 	<!-- <span id="busuanzi_container_page_pv">
@@ -137,39 +135,53 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="브라우저-동작원리-How-Browser-Works"><a href="#브라우저-동작원리-How-Browser-Works" class="headerlink" title="브라우저 동작원리(How Browser Works)"></a>브라우저 동작원리(How Browser Works)</h1><hr>
-<p>브라우저와 서버와의 통신은 다음과 같이 진행된다.</p>
-<p><img src="/images/how_browser_works.png" alt="How Browser Works"><br>출처: <a href="https://poiemaweb.com/js-browser" target="_blank" rel="noopener">How Browser Works</a></p>
-<p>브라우저의 핵심 기능은 사용자가 브라우저에서 URL 입력창에 어떤 사이트를 입력하게 될 때, 그 사이트의 서버에 요청(Request)을 하고, 서버로부터 응답(Response)을 받아 브라우저에 그 사이트의 웹페이지를 표시하는 것이다. 이때, 브라우저는 서버로부터 HTML, CSS, Javascript, 그리고 이미지 파일 등을 받는데, 그 과정은 다음과 같다.</p>
-<ul>
-<li>브라우저가 서버에 첫 요청을 하고, 서버는 먼저 index.html을 응답으로 브라우저에 보낸다.</li>
-<li>브라우저의 렌더링 엔진에 있는 HTML 파서에 의해 파싱(해독)되어, DOM 트리를 생성한다.</li>
-<li>HTML 파서가 html 파일을 파싱할 때, css 태그를 만나면 다시 서버에 요청하고, 서버는 css 파일을 응답으로 브라우저에 보내준다.</li>
-<li>그러면, 브라우저의 렌더링 엔진에 있는 CSS 파서에 의해 파싱되어, CSSOM 트리를 생성한다.</li>
-<li>또한, HTML 파서는 script 태그를 만나게 되면, 자바스크립트 코드를 실행하기 위해, DOM 생성 프로세스를 중지하고, 자바스크립트 엔진으로 제어 권한을 넘긴다.</li>
-<li>그리고, 다시 서버에 요청해, 응답으로 자바스크립트 파일을 응답받아, 자바스크립트 엔진은 자바스크립트 파일을 파싱하여 실행한다.</li>
-<li>자바스크립트의 실행이 완료되면, 다시 HTML 파서로 제어 권한을 넘겨서 브라우저가 중지했던 시점부터 DOM 생성을 재개한다.</li>
-<li>DOM 생성이 완료되면, DOM과 CSSOM 트리는 최종적으로 렌더 트리로 결합하게 된다.</li>
-<li>이 렌더 트리를 기반으로 브라우저는 웹페이지를 화면에 표시하게 된다.</li>
-</ul>
+        <h1 id="var와-let-const의-차이점"><a href="#var와-let-const의-차이점" class="headerlink" title="var와 let/const의 차이점"></a>var와 let/const의 차이점</h1><hr>
+<p>ES5까지는 var를 사용했으나, var가 가지고 있는 단점들을 보완하기 위해 ES6에서는 let 과 const를 사용할 수 있다.</p>
+<ol>
+<li>var는 중복선언이 가능했으나, let과 const는 불가능하다.</li>
+</ol>
+<p>var a = 3; 이렇게 선언을 했어도, 다시 var a = 10; 이런식으로 중복 선언이 가능하다. 이는 의도치 않게 변수값을 변경하는 문제가 발생하게 된다. 하지만, let과 const로 선언을 할 경우, 중복선언을 하려고 하면, 에러가 발생하게 된다. 이렇게, let과 const를 사용하게 되면 중복선언을 미리 막을 수 있다.</p>
+<ol start="2">
+<li>유효범위가 다르다.</li>
+</ol>
+<p>var를 이용한 변수 선언은 유효범위가 함수레벨이다. 즉, 함수내에서는 지역변수이고, 함수 밖에서는 전역변수이다.<br>let과 const를 이용한 변수 선언은 유효범위가 블록레벨이다. 즉, 블록내에서는 지역변수이고, 블록 밖에서는 전역변수이다.</p>
+<!-- 테이블: 특징별 비교
+
+// 유효범위 레벨 + 중복 선언 + 호이스팅 + 전역객체
+var: 함수레벨
+let 과 const: 블록레벨
+
+| 특징비교        | var           | let  |    const   |
+| ------------- |:-------------:| -----:| -----:|
+| 유효범위 레벨      | right-aligned | $1600 |       |
+| 중복선언     | centered      |   $12 |       |
+| 호이스팅 | are neat      |    $1 |       |
+| 전역객체 | are neat      |    $1 |       |
+| 재할당 | are neat      |    $1 |       | -->
+<!-- # 각 특징비교를 코드로 설명 -->
 <p><br></p>
-<p>이처럼, 브라우저는 동기적으로 HTML/CSS/Javascript를 처리한다. 이는 script 태그의 위치에 따라 블로킹이 발생하여, DOM 생성이 지연될 수 있다는 것을 의미한다. 즉, script 태그의 위치는 중요하다.</p>
-<p>그래서, body 요소의 가장 아래에 자바스크립트 태그를 위치시키는 것이 좋다. 그 이유는 다음과 같다.</p>
-<ul>
-<li>HTML 요소들이 자바스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않기 때문에, 웹페이지 로딩 시간이 단축되기 때문이다.</li>
-<li>DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작하게 된다면, 에러가 발생할 수 있기 때문이다.</li>
-</ul>
+<h1 id="let-과-const-차이점"><a href="#let-과-const-차이점" class="headerlink" title="let 과 const 차이점"></a>let 과 const 차이점</h1><hr>
+<ol>
+<li>const는 상수(변하지 않는 값)를 위해 사용한다.(그렇다고 꼭 상수만을 위한 것은 아니다.)</li>
+<li>let은 재할당이 가능하고, const는 불가능하다.</li>
+<li>const는 반드시 선언과 동시에 할당이 이루어져야 한다. 그렇지 않으면, 문법에러가 발생한다.</li>
+<li>const 변수의 객체인 경우도 재할당이 불가능하다. 즉, 객체에 대한 참조를 변경하지 못한다는 것을 의미한다. 그러나, 할당된 객체의 프로퍼티 및 값은 변경할 수 있다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const user = &#123; name: &apos;Kim&apos; &#125;;</span><br><span class="line">user = &#123;&#125;; // TypeError: Assignment to constant variable.</span><br><span class="line"></span><br><span class="line">// 객체의 내용은 변경할 수 있다.</span><br><span class="line">user.name = &apos;Ro&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><br></p>
+<h1 id="var-와-let-과-const-활용"><a href="#var-와-let-과-const-활용" class="headerlink" title="var 와 let 과 const 활용"></a>var 와 let 과 const 활용</h1><hr>
+<p>let: 재할당이 필요한 변수에 사용한다.<br>const: 재할당이 필요없는 변수에 사용한다.<br>var: ES6에서는 사용하지 않는다.</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Network/">Network</a>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Browser/">Browser</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/const/">const</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/let/">let</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/var/">var</a></li></ul>
 
       
     </footer>
@@ -179,19 +191,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/10/31/let-and-const/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          let &amp; const &amp; var
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/31/sort-algorithms/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/10/31/how-browser-works/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">정렬(sort) 알고리즘</div>
+      <div class="article-nav-title">브라우저 동작원리</div>
     </a>
   
 </nav>
@@ -205,7 +208,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#브라우저-동작원리-How-Browser-Works"><span class="nav-number">1.</span> <span class="nav-text">브라우저 동작원리(How Browser Works)</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#var와-let-const의-차이점"><span class="nav-number">1.</span> <span class="nav-text">var와 let/const의 차이점</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#let-과-const-차이점"><span class="nav-number">2.</span> <span class="nav-text">let 과 const 차이점</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#var-와-let-과-const-활용"><span class="nav-number">3.</span> <span class="nav-text">var 와 let 과 const 활용</span></a></li></ol>
     
     </div>
   </aside>
