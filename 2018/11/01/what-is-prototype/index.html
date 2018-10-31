@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Closure란 무엇인가? | Hexo</title>
+  <title>Prototype이란 무엇인가? | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Closures" />
+  <meta name="keywords" content="Prototype" />
   
   
   
   
-  <meta name="description" content="클로저(Closure) 클로저란, 외부함수와 내부함수가 있을 때, 외부함수에 의해 내부함수가 반환된 이후에도, 내부함수에서 외부함수에 있는 변수를 참조할 수 있는 것을 말한다. 조건 3가지  외부함수와 내부함수가 존재 내부함수가 외부함수에 있는 변수를 참조해야 한다. 외부함수가 내부함수를 return(라이프사이클과 관련) 해야한다.  내부함수가 외부함수보다">
-<meta name="keywords" content="Closures">
+  <meta name="description" content="Prototype과 Prototype Architecture Prototype(객체)이란, 새로 생성된 인스턴스(객체)의 부모의 역할을 하는 객체를 말한다. 여기서 부모의 역할이란, 새로 생성된 인스턴스(객체)가 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있다는 뜻이다. Prototype 객체는 생성자 함수에 의해 생성된 각각의 객체에 공유 프">
+<meta name="keywords" content="Prototype">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Closure란 무엇인가?">
-<meta property="og:url" content="https://cheonmro.github.io/2018/10/31/what-is-closures/index.html">
+<meta property="og:title" content="Prototype이란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/01/what-is-prototype/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="클로저(Closure) 클로저란, 외부함수와 내부함수가 있을 때, 외부함수에 의해 내부함수가 반환된 이후에도, 내부함수에서 외부함수에 있는 변수를 참조할 수 있는 것을 말한다. 조건 3가지  외부함수와 내부함수가 존재 내부함수가 외부함수에 있는 변수를 참조해야 한다. 외부함수가 내부함수를 return(라이프사이클과 관련) 해야한다.  내부함수가 외부함수보다">
+<meta property="og:description" content="Prototype과 Prototype Architecture Prototype(객체)이란, 새로 생성된 인스턴스(객체)의 부모의 역할을 하는 객체를 말한다. 여기서 부모의 역할이란, 새로 생성된 인스턴스(객체)가 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있다는 뜻이다. Prototype 객체는 생성자 함수에 의해 생성된 각각의 객체에 공유 프">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-31T14:52:06.449Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/prototype.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/condition_prototype_chaining.png">
+<meta property="og:updated_time" content="2018-10-31T15:59:03.519Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Closure란 무엇인가?">
-<meta name="twitter:description" content="클로저(Closure) 클로저란, 외부함수와 내부함수가 있을 때, 외부함수에 의해 내부함수가 반환된 이후에도, 내부함수에서 외부함수에 있는 변수를 참조할 수 있는 것을 말한다. 조건 3가지  외부함수와 내부함수가 존재 내부함수가 외부함수에 있는 변수를 참조해야 한다. 외부함수가 내부함수를 return(라이프사이클과 관련) 해야한다.  내부함수가 외부함수보다">
+<meta name="twitter:title" content="Prototype이란 무엇인가?">
+<meta name="twitter:description" content="Prototype과 Prototype Architecture Prototype(객체)이란, 새로 생성된 인스턴스(객체)의 부모의 역할을 하는 객체를 말한다. 여기서 부모의 역할이란, 새로 생성된 인스턴스(객체)가 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있다는 뜻이다. Prototype 객체는 생성자 함수에 의해 생성된 각각의 객체에 공유 프">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/prototype.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +106,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-what-is-closures" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-what-is-prototype" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -111,7 +114,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Closure란 무엇인가?
+      Prototype이란 무엇인가?
     </h1>
   
 
@@ -119,8 +122,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/10/31/what-is-closures/" class="article-date">
-	  <time datetime="2018-10-31T14:52:06.000Z" itemprop="datePublished">October 31, 2018</time>
+	<a href="/2018/11/01/what-is-prototype/" class="article-date">
+	  <time datetime="2018-10-31T15:59:03.000Z" itemprop="datePublished">November 1, 2018</time>
 	</a>
 
       
@@ -135,26 +138,34 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="클로저-Closure"><a href="#클로저-Closure" class="headerlink" title="클로저(Closure)"></a>클로저(Closure)</h1><hr>
-<p><strong>클로저</strong>란, 외부함수와 내부함수가 있을 때, 외부함수에 의해 내부함수가 반환된 이후에도, 내부함수에서 외부함수에 있는 변수를 참조할 수 있는 것을 말한다.</p>
-<p>조건 3가지</p>
-<ul>
-<li>외부함수와 내부함수가 존재</li>
-<li>내부함수가 외부함수에 있는 변수를 참조해야 한다.</li>
-<li>외부함수가 내부함수를 return(라이프사이클과 관련) 해야한다.</li>
-</ul>
-<p>내부함수가 외부함수보다 더 긴 라이프 사이클을 가지고 있을때,<br>외부함수에 있는 변수를 내부함수가 참조하는데, 그 변수의 값은 유지되어있다.</p>
-<p>실행 컨텍스트의 관점에서 이해해보자.</p>
-<p>기본적으로 실행 컨텍스트는 함수가 종료되면, 실행 컨텍스트 스택에서 제거된다. 그래서 외부함수에서 내부함수를 반환하고, 모두 실행이 되면, 외부함수의 실행 컨텍스트는 제거된다. 그럼에도 불구하고, 내부함수에서 외부함수의 실행 컨텍스트 내에 있는 활성 객체는 유효하기 때문에, 내부함수에서 외부함수의 변수를 참조할 수 있다. (이때, 이 변수를 자유변수라고 한다.) 이는 내부함수가 스코프 체인을 통해 참조하려는 변수를 먼저 내부함수에서 찾고(내부함수 안에 있는 스코프체인의 ‘0’이 가리키는 활성객체에 참조하려는 변수가 있는지 확인한다.), 없으면, 상위지역인 외부함수에서 찾는다.(내부함수 안에 있는 스코프체인의 ‘1’이 가리키는 활성객체, 즉 외부함수의 활성객체에 들어있는 변수를 말한다.) 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라, 실제 변수에 접근하는 것이다.</p>
-<p>위 내용을 예제와 함께 요약하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function outerFunc() &#123;</span><br><span class="line">  var x = 10;</span><br><span class="line">  var innerFunc = function () &#123; console.log(x); &#125;;</span><br><span class="line">  return innerFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inner = outerFunc();</span><br><span class="line">inner(); // 10</span><br></pre></td></tr></table></figure></p>
-<p>순서</p>
-<ul>
-<li>외부함수(outerFunc)가 내부함수(innerFunc)를 반환하고, 외부함수는 종료된다.(이때, 외부함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 제거된다.)</li>
-<li>내부함수에서 변수 x를 참조하려 할 때, 먼저 내부함수(자기자신) 내에서 그 변수를 찾는다.(내부함수의 스코프체인의 ‘0’이 가리키는 활성객체내에 변수 x를 찾는다.)</li>
-<li>내부함수내에 없으면, 그 내부함수를 포함하고 있는 외부함수 내에서 그 변수를 찾는다.(내부함수의 스코프체인의 ‘1’이 가리키는 활성객체내에 변수 x를 찾아 참조한다.)</li>
-<li>이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라, 실제 변수에 접근한다.!</li>
-</ul>
+        <h1 id="Prototype과-Prototype-Architecture"><a href="#Prototype과-Prototype-Architecture" class="headerlink" title="Prototype과 Prototype Architecture"></a>Prototype과 Prototype Architecture</h1><hr>
+<p>Prototype(객체)이란, 새로 생성된 인스턴스(객체)의 부모의 역할을 하는 객체를 말한다. 여기서 부모의 역할이란, 새로 생성된 인스턴스(객체)가 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있다는 뜻이다. Prototype 객체는 생성자 함수에 의해 생성된 각각의 객체에 공유 프로퍼티를 제공하기 위해 사용한다.</p>
+<p>Java, C++과 같은 클래스 기반 객체지향 프로그래밍 언어와 달리 자바스크립트는 프로토타입 기반 객체지향 프로그래밍 언어이다.</p>
+<p>클래스 기반 객체지향 프로그래밍 언어는 객체 생성 이전에 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 프로토타입 기반 객체지향 프로그래밍 언어는 클래스 없이(Class-less)도 객체 리터럴 방식 또는 생성자 함수를 이용해서 객체를 생성할 수 있다. (ECMAScript 6에서 클래스가 추가되었다)</p>
 <p><br></p>
+<p>기본적으로 Prototype과 관련된 개념은 다음과 같다.</p>
+<p><img src="/images/prototype.png" alt="Prototype Architecture"><br>출처: <a href="https://poiemaweb.com/js-prototype" target="_blank" rel="noopener">Prototype Architecture</a></p>
+<p>어떤 생성자 함수(Person 생성자 함수)에 의해 인스턴스(foo 객체)가 생성되면, 그 인스턴스의 부모 역할을 하는 프로토타입 객체(Person.prototype)가 결정된다. 위 그림에서, 생성된 인스턴스는 name, gender 프로퍼티와, sayHello 메소드를 가지고 있다.</p>
+<p>ECMAScript spec에서는 자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 <code>[[Prototype]]</code> 프로퍼티가 <code>__proto__</code> 프로퍼티로 구현되어 있다. 즉, <code>__proto__</code>과 <code>[[Prototype]]</code>은 같은 개념이다.</p>
+<p>foo 객체는 <code>__proto__</code> 프로퍼티로 자신의 부모 객체(프로토타입 객체)인 Person.prototype을 가리키고 있다.</p>
+<p>객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.</p>
+<!-- # Javascript 동작원리
+---
+
+# [[Prototype]] 프로퍼티 v. prototype 프로퍼티
+--- -->
+<p><br></p>
+<h1 id="constructor-프로퍼티"><a href="#constructor-프로퍼티" class="headerlink" title="constructor 프로퍼티"></a>constructor 프로퍼티</h1><hr>
+<p>프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다.</p>
+<p>예를 들어 Person() 생성자 함수에 의해 생성된 객체를 foo라 하자. 이 foo 객체를 생성한 객체는 Person() 생성자 함수이다. 이때 foo 객체 입장에서 자신을 생성한 객체는 Person() 생성자 함수이며, foo 객체의 프로토타입 객체는 Person.prototype이다. 따라서 프로토타입 객체 Person.prototype의 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.</p>
+<p><br></p>
+<h1 id="Prototype-Chain"><a href="#Prototype-Chain" class="headerlink" title="Prototype Chain"></a>Prototype Chain</h1><hr>
+<p>자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.</p>
+<p><br></p>
+<h1 id="프로토타입-체인-동작-조건"><a href="#프로토타입-체인-동작-조건" class="headerlink" title="프로토타입 체인 동작 조건"></a>프로토타입 체인 동작 조건</h1><hr>
+<p>객체의 프로퍼티를 참조하는 경우, 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.</p>
+<p>객체의 프로퍼티에 값을 할당하는 경우, 프로토타입 체인이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.</p>
+<p><img src="/images/condition_prototype_chaining.png" alt="프로토타입 체인 동작 조건"><br>출처: <a href="https://poiemaweb.com/js-prototype" target="_blank" rel="noopener">프로토타입 체인 동작 조건</a></p>
 
       
     </div>
@@ -165,7 +176,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Closures/">Closures</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prototype/">Prototype</a></li></ul>
 
       
     </footer>
@@ -175,19 +186,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/01/what-is-prototype/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Prototype이란 무엇인가?
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/31/what-is-execution-context/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/10/31/what-is-closures/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">실행 컨텍스트란 무엇인가?</div>
+      <div class="article-nav-title">Closure란 무엇인가?</div>
     </a>
   
 </nav>
@@ -201,7 +203,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#클로저-Closure"><span class="nav-number">1.</span> <span class="nav-text">클로저(Closure)</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Prototype과-Prototype-Architecture"><span class="nav-number">1.</span> <span class="nav-text">Prototype과 Prototype Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#constructor-프로퍼티"><span class="nav-number">2.</span> <span class="nav-text">constructor 프로퍼티</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prototype-Chain"><span class="nav-number">3.</span> <span class="nav-text">Prototype Chain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#프로토타입-체인-동작-조건"><span class="nav-number">4.</span> <span class="nav-text">프로토타입 체인 동작 조건</span></a></li></ol>
     
     </div>
   </aside>
