@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="안녕하세요, 영향력있는 개발자 노천명입니다. Email: cheonmro@gmail.com  About Projects   #3. Banking System DApp 프로젝트  목표: Core 뱅킹 시스템 웹서비스 DApp 개발 기간: 2018.10.15 ~ 2018.10.19 기술 스택: Javascript, HTML, CSS, Web3.js, Mete">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-31T08:06:51.420Z">
+<meta property="og:updated_time" content="2018-10-31T09:41:42.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Me">
 <meta name="twitter:description" content="안녕하세요, 영향력있는 개발자 노천명입니다. Email: cheonmro@gmail.com  About Projects   #3. Banking System DApp 프로젝트  목표: Core 뱅킹 시스템 웹서비스 DApp 개발 기간: 2018.10.15 ~ 2018.10.19 기술 스택: Javascript, HTML, CSS, Web3.js, Mete">
@@ -262,6 +262,68 @@
 </ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kg4cv5MrmoA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+<p><br></p>
+<h2 id="기능구현-1"><a href="#기능구현-1" class="headerlink" title="기능구현"></a>기능구현</h2><hr>
+<h3 id="1-암호화폐-랭킹-테이블"><a href="#1-암호화폐-랭킹-테이블" class="headerlink" title="1. 암호화폐 랭킹 테이블"></a>1. 암호화폐 랭킹 테이블</h3><ul>
+<li><strong>목표</strong><ul>
+<li>Top 100개의 암호화폐 시가총액 및 가격을 랭킹별로 보여주는 테이블 기능 구현</li>
+<li>각 암호화폐를 클릭하면, 클릭한 암호화폐의 가격 차트를 보여주는 기능 구현</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>접근법</strong><ul>
+<li><a href="coincap.io">coincap.io</a> API에서 모든 암호화폐에 대한 시가총액 및 가격을 가져옴.</li>
+<li>암호화폐 랭킹 테이블에서 어떤 암호화폐를 클릭시, 클릭한 암호화폐에 대한 가격 차트를 보여주기 위해, <a href="coincap.io">coincap.io</a>에서 각 암호화폐에 맞는 API를 가져와 사용</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Issues &amp; Solutions</strong><ul>
+<li>#1<ul>
+<li><strong>Issue</strong>: 암호화페 랭킹 테이블에서 어떤 암호화폐를 처음 클릭시, 처음에는 차트가 표시가 안된다.</li>
+<li><strong>Solution</strong>: 원인은 httpclient로 서버에 요청을 보낼 때, 비동기이기 때문에 다른 코드가 먼저 실행된다. 그래서 서버에서 데이터를 받기 전에 차트가 표현되는 함수가 호출되어, 날짜(this.dates)가 undefined로 나타나게 되었기 때문에, 차트가 만들어지지 않게 되었다. 이를 해결하기 위해, httpclient에 subscribe안에서, 함수를 바로 호출하여 dates, prices 등을 가져왔고, 그럼으로써 dates가 만들어져 차트가 나타나게 구현되었다.</li>
+<li><strong>Code</strong>:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">// get a chart from api of coin clicked</span><br><span class="line">getCoinChart() &#123;</span><br><span class="line">  this.http.get(`http://coincap.io/history/$&#123;this.coinSymbol&#125;`).subscribe(element =&gt; &#123;</span><br><span class="line">    this.convertDates(element);</span><br><span class="line">    this.convertPrices(element);</span><br><span class="line">    this.coinChart(this.coinName);</span><br><span class="line">  &#125;,</span><br><span class="line">  error =&gt; &#123;</span><br><span class="line">    console.log(&apos;can\&apos;t get all days data&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- dates가 있어야 차트가 나타난다. --&gt;</span><br><span class="line">// show a chart of the coin clicked after clicking the coin in the ranking table</span><br><span class="line">coinChart(crytoName: string) &#123;</span><br><span class="line">  if (this.dates) &#123;</span><br><span class="line"></span><br><span class="line">    // -- coin chart starts --</span><br><span class="line">    this.type = &apos;line&apos;;</span><br><span class="line">    this.chartData = &#123;</span><br><span class="line">      labels: [...this.dates], // ...this.dates</span><br><span class="line">      datasets: [</span><br><span class="line">        &#123;</span><br><span class="line">          label: `$&#123;crytoName&#125; price`,</span><br><span class="line">          data: [...this.prices], // ...this.prices</span><br><span class="line">          borderColor: &apos;rgb(255, 99, 132)&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">    this.options = &#123;</span><br><span class="line">      responsive: true,</span><br><span class="line">      maintainAspectRatio: false,</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line">    // -- coin chart ends --</span><br><span class="line"></span><br><span class="line">  &#125; // if (this.dates)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>#2<ul>
+<li><strong>Issue</strong>: 시가총액 및 가격에 대한 날짜 데이터를 가져왔지만, 날짜 형태가 아닌 숫자로 나와 있었음.</li>
+<li><strong>Solution</strong>: 사람이 알아볼 수 있는 날짜 형태로 전환하기 위해, new Date()를 생성하고, Date 함수의 메소드를 이용해서 숫자를 날짜 형태로 전환함.</li>
+<li><strong>Code</strong>:</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">convertDates(data: any) &#123;</span><br><span class="line">  this.dates = data.price.map(element =&gt; &#123;</span><br><span class="line">    const eachDate = new Date(element[0]);</span><br><span class="line">      return `$&#123;eachDate.getFullYear()&#125;/$&#123;eachDate.getMonth()&#125;/$&#123;eachDate.getDay()&#125;`;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="2-암호화폐-가격-차트"><a href="#2-암호화폐-가격-차트" class="headerlink" title="2. 암호화폐 가격 차트"></a>2. 암호화폐 가격 차트</h3><ul>
+<li><strong>목표</strong><ul>
+<li>암호화폐별, 그리고 각 암호화폐의 history를 보여줄 수 있는 기간별 기능 구현</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>접근법</strong><ul>
+<li><a href="https://www.chartjs.org/" target="_blank" rel="noopener">chart.js</a> 라이브러리를 활용하여 기간에 따른 가격을 보여주는 차트 기능 구현</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Issues &amp; Solutions</strong><ul>
+<li>#1<ul>
+<li><strong>Issue</strong>: 차트 라이브러리는 처음 사용해봐서 어떻게 사용해야 하는지 잘 몰랐음.</li>
+<li><strong>Solution</strong>: <a href="http://www.chartjs.org/docs/latest/" target="_blank" rel="noopener">chart.js docs</a>를 보면서 최대한 간단한 차트 예제를 활용하여 적용함.</li>
+<li><strong>Code</strong>:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">coinChart(crytoName: string) &#123;</span><br><span class="line">  if (this.dates) &#123;</span><br><span class="line"></span><br><span class="line">    // -- coin chart starts --</span><br><span class="line">    this.type = &apos;line&apos;;</span><br><span class="line">    this.chartData = &#123;</span><br><span class="line">      labels: [...this.dates], // ...this.dates</span><br><span class="line">      datasets: [</span><br><span class="line">        &#123;</span><br><span class="line">          label: `$&#123;crytoName&#125; price`,</span><br><span class="line">          data: [...this.prices], // ...this.prices</span><br><span class="line">          borderColor: &apos;rgb(255, 99, 132)&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">    this.options = &#123;</span><br><span class="line">      responsive: true,</span><br><span class="line">      maintainAspectRatio: false,</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line">    // -- coin chart ends --</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h1 id="1-야놀자-펜션-클론-프로젝트"><a href="#1-야놀자-펜션-클론-프로젝트" class="headerlink" title="#1. 야놀자 펜션 클론 프로젝트"></a>#1. 야놀자 펜션 클론 프로젝트</h1><hr>
 <ul>
