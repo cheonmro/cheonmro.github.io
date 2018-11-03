@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Javascript에서의 this | Hexo</title>
+  <title>Linked List와 Array의 차이점 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="this" />
+  <meta name="keywords" content="Linked ListArray" />
   
   
   
   
-  <meta name="description" content="Javascript에서의 this는 다음과 같은 규칙을 따른다.  기본적으로, this는 전역객체(window)를 가리킨다. 예외1: 생성자 함수내의 this는 생성자 함수가 생성한 객체를 가리킨다. 예외2: 메소드 내에서 this는 메소드를 호출한(소유한) 객체를 가리킨다. 그외는 this는 언제나 window를 가리킨다. 또는, 명시적으로 this를 바">
-<meta name="keywords" content="this">
+  <meta name="description" content="Linked List(연결 리스트) Linked List란, 데이터를 논리적 순서에 따라 입력하지만, 물리적 주소는 순차적이지 않는 자료구조를 말한다. Linked List의 특징:  장점: Linked List에 데이터를 삽입하거나, 삭제시에 각 데이터가 가지고 있는 링크만 변경하면 되므로, 다른 데이터의 영향없이 빠르게 가능하다.  단점: 배열의 인덱스">
+<meta name="keywords" content="Linked List,Array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript에서의 this">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/01/what-is-this/index.html">
+<meta property="og:title" content="Linked List와 Array의 차이점">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/03/linkedlist-vs-array/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Javascript에서의 this는 다음과 같은 규칙을 따른다.  기본적으로, this는 전역객체(window)를 가리킨다. 예외1: 생성자 함수내의 this는 생성자 함수가 생성한 객체를 가리킨다. 예외2: 메소드 내에서 this는 메소드를 호출한(소유한) 객체를 가리킨다. 그외는 this는 언제나 window를 가리킨다. 또는, 명시적으로 this를 바">
+<meta property="og:description" content="Linked List(연결 리스트) Linked List란, 데이터를 논리적 순서에 따라 입력하지만, 물리적 주소는 순차적이지 않는 자료구조를 말한다. Linked List의 특징:  장점: Linked List에 데이터를 삽입하거나, 삭제시에 각 데이터가 가지고 있는 링크만 변경하면 되므로, 다른 데이터의 영향없이 빠르게 가능하다.  단점: 배열의 인덱스">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-01T01:54:20.385Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/Array-Linked-List.png">
+<meta property="og:updated_time" content="2018-11-03T07:20:39.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Javascript에서의 this">
-<meta name="twitter:description" content="Javascript에서의 this는 다음과 같은 규칙을 따른다.  기본적으로, this는 전역객체(window)를 가리킨다. 예외1: 생성자 함수내의 this는 생성자 함수가 생성한 객체를 가리킨다. 예외2: 메소드 내에서 this는 메소드를 호출한(소유한) 객체를 가리킨다. 그외는 this는 언제나 window를 가리킨다. 또는, 명시적으로 this를 바">
+<meta name="twitter:title" content="Linked List와 Array의 차이점">
+<meta name="twitter:description" content="Linked List(연결 리스트) Linked List란, 데이터를 논리적 순서에 따라 입력하지만, 물리적 주소는 순차적이지 않는 자료구조를 말한다. Linked List의 특징:  장점: Linked List에 데이터를 삽입하거나, 삭제시에 각 데이터가 가지고 있는 링크만 변경하면 되므로, 다른 데이터의 영향없이 빠르게 가능하다.  단점: 배열의 인덱스">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/Array-Linked-List.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-what-is-this" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-linkedlist-vs-array" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -111,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Javascript에서의 this
+      Linked List와 Array의 차이점
     </h1>
   
 
@@ -119,13 +121,13 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/01/what-is-this/" class="article-date">
-	  <time datetime="2018-11-01T01:54:20.000Z" itemprop="datePublished">November 1, 2018</time>
+	<a href="/2018/11/03/linkedlist-vs-array/" class="article-date">
+	  <time datetime="2018-11-03T07:20:39.000Z" itemprop="datePublished">November 3, 2018</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
 
       
 	<!-- <span id="busuanzi_container_page_pv">
@@ -135,25 +137,53 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Javascript에서의 this는 다음과 같은 규칙을 따른다.</p>
+        <h1 id="Linked-List-연결-리스트"><a href="#Linked-List-연결-리스트" class="headerlink" title="Linked List(연결 리스트)"></a>Linked List(연결 리스트)</h1><hr>
+<p><strong>Linked List</strong>란, 데이터를 논리적 순서에 따라 입력하지만, 물리적 주소는 순차적이지 않는 자료구조를 말한다.</p>
+<p><strong>Linked List</strong>의 특징:</p>
 <ul>
-<li>기본적으로, this는 전역객체(window)를 가리킨다.</li>
-<li><strong>예외1</strong>: 생성자 함수내의 this는 생성자 함수가 생성한 객체를 가리킨다.</li>
-<li><strong>예외2</strong>: 메소드 내에서 this는 메소드를 호출한(소유한) 객체를 가리킨다.</li>
-<li>그외는 this는 언제나 window를 가리킨다.</li>
-<li>또는, 명시적으로 this를 바꿀 수 있다.(apply() &amp; call() 메소드 사용)</li>
+<li><p><strong>장점</strong>: Linked List에 데이터를 삽입하거나, 삭제시에 각 데이터가 가지고 있는 링크만 변경하면 되므로, 다른 데이터의 영향없이 빠르게 가능하다.</p>
+</li>
+<li><p><strong>단점</strong>: 배열의 인덱스 대신에 각 데이터가 이전 위치 및 다음 위치를 가리키는 링크를 가지고 있기 때문에, 데이터에 한번에 접근할 수는 없고, 연결되어 있는 링크를 따라가야 하기 때문에, 배열에 비해 속도가 느리다.</p>
+</li>
 </ul>
+<p><br></p>
+<h1 id="Array-배열"><a href="#Array-배열" class="headerlink" title="Array(배열)"></a>Array(배열)</h1><hr>
+<p><strong>Array</strong>란, 데이터를 논리적 순서에 따라 순차적으로 데이터를 입력하며, 물리적 주소 또한 순차적인 자료구조를 말한다.</p>
+<p><strong>Array</strong>의 특징:</p>
+<ul>
+<li><p><strong>장점</strong>: 인덱스를 가지고 있어서 원하는 데이터에 한번에 접근이 가능하기 때문에 접근속도가 빠르다.</p>
+</li>
+<li><p><strong>단점</strong>: Array에 데이터를 삽입하거나 삭제할 시에 배열을 통째로 복사해서 삽입/삭제가 이루어지고, 삽입/삭제가 이루어진 위치의 다음부터 모든 데이터의 위치를 변경해야 하기 때문에, 삽입/삭제 때마다 데이터의 위치를 바꾸는 데만 많은 리소스를 사용하게 된다.</p>
+</li>
+</ul>
+<p><br></p>
+<h1 id="1-접근-속도-Access"><a href="#1-접근-속도-Access" class="headerlink" title="1. 접근 속도(Access)"></a>1. 접근 속도(Access)</h1><hr>
+<p><strong>Linked List</strong>: 최소 한번은 리스트를 순회해야 하기 때문에, 시간복잡도는 O(n)이다.</p>
+<p><strong>Array</strong>: 인덱스로 접근하기 때문에, 시간복잡도는 O(1)이다.</p>
+<p><br></p>
+<p><img src="/images/Array-Linked-List.png" alt="Array vs. LinkedList: Access"><br>출처: <a href="http://www.stoimen.com/blog/2012/07/24/php-arrays-or-linked-lists/" target="_blank" rel="noopener">Array vs. LinkedList</a></p>
+<p><br></p>
+<h1 id="2-삽입-삭제-속도-Add-Remove"><a href="#2-삽입-삭제-속도-Add-Remove" class="headerlink" title="2. 삽입/삭제 속도(Add/Remove)"></a>2. 삽입/삭제 속도(Add/Remove)</h1><hr>
+<p><strong>Linked List</strong>: 어느 곳에 삽입/삭제를 하던간에 리스트를 순회해야 하기 때문에, 시간복잡도는 O(n)이다.</p>
+<p><strong>Array</strong>:</p>
+<ul>
+<li>데이터를 삽입/삭제시에 삽입 또는 삭제될 위치 그 이후의 데이터를 한 칸씩 미뤄야하는 추가과정과 시간 등 리소스가 소비됨.(Linked List는 필요없음)</li>
+<li>또한, 데이터를 삽입시에 모든 공간이 다 꽉 차버렸다면, 새로운 메모리 공간이 필요함.(Linked List는 필요없음)</li>
+</ul>
+<p><br></p>
+<h1 id="목적과-상황에-따라-선택해야-하는-자료구조"><a href="#목적과-상황에-따라-선택해야-하는-자료구조" class="headerlink" title="목적과 상황에 따라 선택해야 하는 자료구조"></a>목적과 상황에 따라 선택해야 하는 자료구조</h1><hr>
+<p><strong>Linked List를 사용해야 하는 경우</strong>: 데이터의 삽입/삭제가 자주 일어나야 한다면 사용<br><strong>Array를 사용해야 하는 경우</strong>: 데이터의 삽입/삭제가 많이 없고, 대신에 데이터의 접근이 자주 일어나야 한다면 사용</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this/">this</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linked-List/">Linked List</a></li></ul>
 
       
     </footer>
@@ -163,19 +193,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/03/linkedlist-vs-array/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Linked List와 Array의 차이점
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/01/what-is-prototype/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/01/what-is-this/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Prototype이란 무엇인가?</div>
+      <div class="article-nav-title">Javascript에서의 this</div>
     </a>
   
 </nav>
@@ -189,7 +210,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav">None</ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linked-List-연결-리스트"><span class="nav-number">1.</span> <span class="nav-text">Linked List(연결 리스트)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-배열"><span class="nav-number">2.</span> <span class="nav-text">Array(배열)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-접근-속도-Access"><span class="nav-number">3.</span> <span class="nav-text">1. 접근 속도(Access)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-삽입-삭제-속도-Add-Remove"><span class="nav-number">4.</span> <span class="nav-text">2. 삽입/삭제 속도(Add/Remove)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#목적과-상황에-따라-선택해야-하는-자료구조"><span class="nav-number">5.</span> <span class="nav-text">목적과 상황에 따라 선택해야 하는 자료구조</span></a></li></ol>
     
     </div>
   </aside>
