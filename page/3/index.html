@@ -98,6 +98,74 @@
         
           <section id="main">
   
+    <article id="post-fizzbuzz"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/09/11/fizzbuzz/">1. Fizzbuzz</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/11/fizzbuzz/" class="article-date">
+	  <time datetime="2018-09-11T10:29:27.000Z" itemprop="datePublished">September 11, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>Write a function that takes an integer and returns an array [A, B, C], where A is the number of multiples of 3 (but not 5) below the given integer, B is the number of multiples of 5 (but not 3) below the given integer and C is the number of multiples of 3 and 5 below the given integer.</p>
+<p>For example, solution(20) should return [5, 2, 1]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function solution(number)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ol>
+<li>Declare variables for the number of multiples below the given integer(3, 5, 15)</li>
+<li>Add counts for the number of multiples below the given integer using <strong>‘for’</strong> statement</li>
+<li>get an array of the variables</li>
+</ol>
+<p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function solution(number)&#123;</span><br><span class="line">  var num3 = 0;</span><br><span class="line">  var num5 = 0;</span><br><span class="line">  var num15 = 0;</span><br><span class="line">  for(var i = 1; i &lt; number; i++) &#123;</span><br><span class="line">    if((i % 3 === 0) &amp;&amp; (i % 5 !== 0)) &#123;</span><br><span class="line">      num3 += 1;</span><br><span class="line">    &#125; else if((i % 5 === 0) &amp;&amp; (i % 3 !== 0)) &#123;</span><br><span class="line">      num5 += 1;</span><br><span class="line">    &#125; else if(i % 15 === 0) &#123;</span><br><span class="line">      num15 += 1;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  var result = [num3, num5, num15];</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Best-Practice"><a href="#Best-Practice" class="headerlink" title="[Best Practice]"></a><h3>[Best Practice]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function solution(n) &#123;</span><br><span class="line">  --n;</span><br><span class="line">  const c15 = Math.floor(n / 15);</span><br><span class="line">  const c3 = Math.floor(n / 3) - c15;</span><br><span class="line">  const c5 = Math.floor(n / 5) - c15;</span><br><span class="line">  return [c3, c5, c15];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="What-I-learned"><a href="#What-I-learned" class="headerlink" title="[What I learned]"></a><h3>[What I learned]</h3></h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor" target="_blank" rel="noopener">Math.floor</a></li>
+</ul>
+<p><br></p>
+<h2 id="Source"><a href="#Source" class="headerlink" title="[Source]"></a><h3>[Source]</h3></h2><p><a href="https://www.codewars.com/kata/fizz-slash-buzz/javascript" target="_blank" rel="noopener">CodeWars - Fizz/Buzz</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fizzbuzz/">Fizzbuzz</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-event-object"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1290,74 +1358,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 <!-- Table of Contents -->
 
   
-    <article id="post-how-to-write-posts"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/06/how-to-write-posts/">hexo 블로그 포스트 작성 및 배포하는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/08/06/how-to-write-posts/" class="article-date">
-	  <time datetime="2018-08-05T15:37:33.000Z" itemprop="datePublished">August 6, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="hexo-블로그에-포스트-작성-및-배포하는-방법"><a href="#hexo-블로그에-포스트-작성-및-배포하는-방법" class="headerlink" title="hexo 블로그에 포스트 작성 및 배포하는 방법"></a>hexo 블로그에 포스트 작성 및 배포하는 방법</h1><hr>
-<p><br></p>
-<h2 id="새-포스트-작성을-위한-글제목-명령어를-입력한다"><a href="#새-포스트-작성을-위한-글제목-명령어를-입력한다" class="headerlink" title="새 포스트 작성을 위한 글제목 명령어를 입력한다."></a>새 포스트 작성을 위한 글제목 명령어를 입력한다.</h2><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new option 글제목</span><br></pre></td></tr></table></figure>
-<p>이 명령어를 작성하게 되면, 글제목 폴더와 글제목.md 파일이 만들어진다.<br>이미지는 글제목 폴더에서 관리하고, 글의 내용은 글제목.md 파일에서 관리한다.<br>만약, 글제목 폴더가 만들어지지 않는다면, <code>_config.yml</code>에서 <code>post_asset_folder: true</code>를 추가하면 된다.</p>
-<p>이때, <code>option</code>에는 ‘post’ 또는 ‘draft’가 올 수 있다.</p>
-<p><br></p>
-<p>만약 작성한 글을 바로 배포하려면 ‘post’라고 쓴다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post 글제목</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>바로 배포하지 않고, 초안으로 보관만 하려고 할 때는 ‘draft’라고 쓴다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new draft 글제목</span><br></pre></td></tr></table></figure></p>
-<p><br><br><br></p>
-<h2 id="draft-글을-배포하기-위해서-posts-폴더로-이동시킨다"><a href="#draft-글을-배포하기-위해서-posts-폴더로-이동시킨다" class="headerlink" title="draft 글을 배포하기 위해서 _posts 폴더로 이동시킨다."></a>draft 글을 배포하기 위해서 _posts 폴더로 이동시킨다.</h2><hr>
-<p>‘draft’를 사용하여 명령어를 입력하게 되면, <code>source/_drafts</code> 폴더에 저장된다.<br>이 폴더에 저장이 되면, 배포 대상에서 제외되기 때문에, 원래 사용하던 ‘hexo server’로는 확인할 수 없고 ‘–draft’라는 옵션을 추가해여 로컬 서버에서 확인이 가능하다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>초안이 다 완성이 되어 배포를 하고 싶을 경우, 해당 파일과 폴더가 <code>source/_posts</code> 폴더에 있어야 한다.<br>이때, 아래와 같은 명령어를 입력하면 해당 파일과 폴더과 <code>source/_posts</code>로 이동하게 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo publish post 글제목</span><br></pre></td></tr></table></figure></p>
-<p><br><br><br></p>
-<h2 id="posts-폴더에-있는-글을-블로그에-배포한다"><a href="#posts-폴더에-있는-글을-블로그에-배포한다" class="headerlink" title="_posts 폴더에 있는 글을 블로그에 배포한다."></a>_posts 폴더에 있는 글을 블로그에 배포한다.</h2><hr>
-<p>최종적으로, <code>source/_posts</code>안에 있는 모든 글들을 배포하기 위해 아래의 명령어를 입력한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo-posts/">hexo posts</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1468,6 +1468,18 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/04/what-is-list/">리스트(List)란 무엇인가?</a></h6>
+              <span>November 4, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/04/types-of-data-structures/">자료구조(Data Structures)의 분류</a></h6>
               <span>November 4, 2018</span>
             </div>
@@ -1522,18 +1534,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/10/31/what-is-closures/">Closure란 무엇인가?</a></h6>
-              <span>October 31, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1543,7 +1543,7 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
