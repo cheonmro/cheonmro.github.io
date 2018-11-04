@@ -3,31 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>리스트(List)란 무엇인가? | Hexo</title>
+  <title>Hash Table이란 무엇인가? | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Data StructuresList" />
+  <meta name="keywords" content="Hash Table" />
   
   
   
   
-  <meta name="description" content="리스트(List) 리스트란, 자료를 순서대로 한 줄로 저장하는 선형 자료구조이다.  head: 리스트에서 제일 처음 데이터를 head라고 한다. tail: 리스트에서 제일 마지막 데이터를 tail이라고 한다.   리스트(List)의 종류 리스트는 구현방식에 따라, 다음과 같이 분류된다.  순차 리스트(Array List): 배열을 기반으로 구현된 리스트 연">
-<meta name="keywords" content="Data Structures,List">
+  <meta name="description" content="Hash Table(해시 테이블) Hash Table이란, 검색하고자 하는 key 값을 입력받아서 해시함수를 돌려서 반환받은 해시코드를 배열의 인덱스로 환산해서 데이터에 접근하는 방식의 자료구조이다.  Hash Table 작동원리 출처: Hash Table  검색하고자 하는 Key 값을 해시함수를 돌리면, 해시코드를 반환받는다.(해시코드는 정수이다) 반환된">
+<meta name="keywords" content="Hash Table">
 <meta property="og:type" content="article">
-<meta property="og:title" content="리스트(List)란 무엇인가?">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/04/what-is-list/index.html">
+<meta property="og:title" content="Hash Table이란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/04/what-is-hashtable/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="리스트(List) 리스트란, 자료를 순서대로 한 줄로 저장하는 선형 자료구조이다.  head: 리스트에서 제일 처음 데이터를 head라고 한다. tail: 리스트에서 제일 마지막 데이터를 tail이라고 한다.   리스트(List)의 종류 리스트는 구현방식에 따라, 다음과 같이 분류된다.  순차 리스트(Array List): 배열을 기반으로 구현된 리스트 연">
+<meta property="og:description" content="Hash Table(해시 테이블) Hash Table이란, 검색하고자 하는 key 값을 입력받아서 해시함수를 돌려서 반환받은 해시코드를 배열의 인덱스로 환산해서 데이터에 접근하는 방식의 자료구조이다.  Hash Table 작동원리 출처: Hash Table  검색하고자 하는 Key 값을 해시함수를 돌리면, 해시코드를 반환받는다.(해시코드는 정수이다) 반환된">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://cheonmro.github.io/images/ArrayList_LinkedList.jpg">
-<meta property="og:image" content="https://cheonmro.github.io/images/simple-list.png">
-<meta property="og:image" content="https://cheonmro.github.io/images/doubly-list.png">
-<meta property="og:image" content="https://cheonmro.github.io/images/circular-list.png">
-<meta property="og:updated_time" content="2018-11-04T06:42:53.202Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/hash_function.jpg">
+<meta property="og:updated_time" content="2018-11-04T11:53:11.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="리스트(List)란 무엇인가?">
-<meta name="twitter:description" content="리스트(List) 리스트란, 자료를 순서대로 한 줄로 저장하는 선형 자료구조이다.  head: 리스트에서 제일 처음 데이터를 head라고 한다. tail: 리스트에서 제일 마지막 데이터를 tail이라고 한다.   리스트(List)의 종류 리스트는 구현방식에 따라, 다음과 같이 분류된다.  순차 리스트(Array List): 배열을 기반으로 구현된 리스트 연">
-<meta name="twitter:image" content="https://cheonmro.github.io/images/ArrayList_LinkedList.jpg">
+<meta name="twitter:title" content="Hash Table이란 무엇인가?">
+<meta name="twitter:description" content="Hash Table(해시 테이블) Hash Table이란, 검색하고자 하는 key 값을 입력받아서 해시함수를 돌려서 반환받은 해시코드를 배열의 인덱스로 환산해서 데이터에 접근하는 방식의 자료구조이다.  Hash Table 작동원리 출처: Hash Table  검색하고자 하는 Key 값을 해시함수를 돌리면, 해시코드를 반환받는다.(해시코드는 정수이다) 반환된">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/hash_function.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -108,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-what-is-list" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-what-is-hashtable" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -116,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      리스트(List)란 무엇인가?
+      Hash Table이란 무엇인가?
     </h1>
   
 
@@ -124,8 +121,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/04/what-is-list/" class="article-date">
-	  <time datetime="2018-11-04T06:42:53.000Z" itemprop="datePublished">November 4, 2018</time>
+	<a href="/2018/11/04/what-is-hashtable/" class="article-date">
+	  <time datetime="2018-11-04T11:53:11.000Z" itemprop="datePublished">November 4, 2018</time>
 	</a>
 
       
@@ -140,38 +137,40 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="리스트-List"><a href="#리스트-List" class="headerlink" title="리스트(List)"></a>리스트(List)</h1><hr>
-<p><strong>리스트란</strong>, 자료를 순서대로 한 줄로 저장하는 선형 자료구조이다.</p>
-<ul>
-<li>head: 리스트에서 제일 처음 데이터를 head라고 한다.</li>
-<li>tail: 리스트에서 제일 마지막 데이터를 tail이라고 한다.</li>
-</ul>
+        <h1 id="Hash-Table-해시-테이블"><a href="#Hash-Table-해시-테이블" class="headerlink" title="Hash Table(해시 테이블)"></a>Hash Table(해시 테이블)</h1><hr>
+<p><strong>Hash Table</strong>이란, 검색하고자 하는 key 값을 입력받아서 해시함수를 돌려서 반환받은 해시코드를 배열의 인덱스로 환산해서 데이터에 접근하는 방식의 자료구조이다.</p>
 <p><br></p>
-<h1 id="리스트-List-의-종류"><a href="#리스트-List-의-종류" class="headerlink" title="리스트(List)의 종류"></a>리스트(List)의 종류</h1><hr>
-<p>리스트는 <code>구현방식</code>에 따라, 다음과 같이 분류된다.</p>
+<h2 id="Hash-Table-작동원리"><a href="#Hash-Table-작동원리" class="headerlink" title="Hash Table 작동원리"></a>Hash Table 작동원리</h2><hr>
+<p><img src="/images/hash_function.jpg" alt="Hash Table"><br>출처: <a href="https://www.tutorialspoint.com/data_structures_algorithms/hash_data_structure.htm" target="_blank" rel="noopener">Hash Table</a></p>
 <ol>
-<li><strong>순차 리스트(Array List)</strong>: 배열을 기반으로 구현된 리스트</li>
-<li><strong>연결 리스트(Linked List</strong> 메모리의 동적 할당을 기반으로 구현된 리스트</li>
+<li>검색하고자 하는 Key 값을 해시함수를 돌리면, 해시코드를 반환받는다.(해시코드는 정수이다)</li>
+<li>반환된 해시코드를 배열의 개수로 나머지(%) 연산을 해서 인덱스 번호로 바꾼다. 예를 들어, 어떤 Key 값의 해시코드가 445이고 배열의 크기가 3이면, 445 % 3 = 1이 되어, 인덱스 번호는 1이 된다.</li>
+<li>이 인덱스 번호로 배열에 데이터를 저장한다. 예를 들어, 인덱스 번호가 1이라면, 배열에서 배열방 1번에 저장한다.</li>
+<li>즉, 해시코드 자체가 배열방의 인덱스로 사용되어 검색이 필요없고, 해시코드로 바로 배열의 데이터에 접근이 가능하다.</li>
+<li>각 배열방에 저장되어 있는 데이터들은 연결 리스트로 되어 있어, 배열방에 새로운 데이터가 추가될 때마다, 연결 리스트에 추가가 된다.</li>
+<li>어떤 Key 값에 대한 검색 요청이 들어와 인덱스로 환산한 뒤, 어떤 배열방에서 그 Key 값을 찾기 위해서는, 그 배열방에 연결 리스트를 순회화면서 그 Key 값을 찾는다.</li>
 </ol>
 <p><br></p>
-<p><img src="/images/ArrayList_LinkedList.jpg" alt="ArrayList vs. LinkedList"><br>출처: <a href="http://www.codenuclear.com/difference-between-arraylist-and-linkedlist-arraylist-vs-linkedlist/" target="_blank" rel="noopener">ArrayList vs. LinkedList</a></p>
-<p>두 리스트의 차이점을 더 자세하게 알고 싶다면, <a href="https://cheonmro.github.io/2018/11/03/linkedlist-vs-array/">Linked List와 Array의 차이점</a>를 클릭한다.</p>
-<p><br></p>
-<h1 id="연결-리스트-Linked-List-의-종류"><a href="#연결-리스트-Linked-List-의-종류" class="headerlink" title="연결 리스트(Linked List)의 종류"></a>연결 리스트(Linked List)의 종류</h1><hr>
-<h2 id="1-Simple-Linked-List-단순-연결-리스트"><a href="#1-Simple-Linked-List-단순-연결-리스트" class="headerlink" title="1. Simple Linked List(단순 연결 리스트)"></a>1. Simple Linked List(단순 연결 리스트)</h2><hr>
-<p><strong>단순 연결 리스트</strong>란, 연결의 형태가 한쪽 방향으로 전개되고 시작과 끝이 분명히 존재하는 리스트를 말한다.</p>
-<p><br></p>
-<p><img src="/images/simple-list.png" alt="Simple Linked List"><br>출처: <a href="http://interconnection.tistory.com/104" target="_blank" rel="noopener">Simple Linked List</a></p>
-<p><br></p>
-<h2 id="2-Doubly-Linked-List-이중-양방향-연결-리스트"><a href="#2-Doubly-Linked-List-이중-양방향-연결-리스트" class="headerlink" title="2. Doubly Linked List(이중/양방향 연결 리스트)"></a>2. Doubly Linked List(이중/양방향 연결 리스트)</h2><hr>
-<p><strong>이중/양방향 연결 리스트</strong>란, 노드가 양쪽 방향으로 연결된 구조의 리스트를 말한다. 즉, 왼쪽 노드가 오른쪽 노드를 가리킴과 동시에 오른쪽 노드도 왼쪽 노드를 가리키는 구조이다.</p>
-<p><br></p>
-<p><img src="/images/doubly-list.png" alt="Doubly Linked List"><br>출처: <a href="http://interconnection.tistory.com/104" target="_blank" rel="noopener">Doubly Linked List</a></p>
-<p><br></p>
-<h2 id="3-Circular-Linked-List-원형-환형-연결-리스트"><a href="#3-Circular-Linked-List-원형-환형-연결-리스트" class="headerlink" title="3. Circular Linked List(원형/환형 연결 리스트)"></a>3. Circular Linked List(원형/환형 연결 리스트)</h2><hr>
-<p><strong>원형/환형 연결 리스트</strong>란, 단순 연결 리스트에서 마지막 노드가 첫 번째 노드를 가리켜서 연결의 형태가 원을 이루는 리스트를 말한다.</p>
-<p><br></p>
-<p><img src="/images/circular-list.png" alt="Circular Linked List"><br>출처: <a href="http://interconnection.tistory.com/104" target="_blank" rel="noopener">Circular  LinkedList</a></p>
+<h2 id="Hash-Table-특징"><a href="#Hash-Table-특징" class="headerlink" title="Hash Table 특징"></a>Hash Table 특징</h2><hr>
+<ul>
+<li><p><strong>장점</strong>: 해시코드 자체가 배열방의 인덱스로 사용되어 다른 검색이 필요없이 해시코드로 바로 배열의 데이터에 접근이 가능하기 때문에, 시간복잡도가 O(1)이다.</p>
+</li>
+<li><p><strong>단점</strong>: 1개의 배열방에 여러 데이터가 겹쳐서 저장되는 경우를 Collision(충돌)이라고 하는데, 이 경우 시간복잡도는 O(n)이다. 이는, 배열방에서 그 Key 값을 찾기 위해, 그 배열방에 연결 리스트를 순회화면서 그 Key 값을 찾아야 하기 때문이다. 이런 문제가 생기는 경우는 크게 2가지이다.</p>
+<ul>
+<li><p><strong>서로 다른 Key 값이지만, 동일한 해시코드로 반환받는 경우</strong></p>
+<ul>
+<li>Key 값은 문자열이고 그 가짓수가 무한한대 반해서 해시코드는 정수개 밖에 제공을 못하기 때문에, 알고리즘이 아무리 좋아도 어떤 Key들은 중복되는 해시코드를 가질 수 밖에 없다.</li>
+</ul>
+</li>
+<li><p><strong>서로 다른 해시코드이지만, 동일한 인덱스로 바뀌는 경우</strong></p>
+<ul>
+<li>배열방은 한정되어 있기 때문에, 서로 다른 해시코드이더라도, 환산할 때 동일한 인덱스를 얻게 되는 경우가 있을 수 있기 때문에, 같은 배열방에 배정받는 경우도 있다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>이런 Collision을 최소화하기 위해서는 좋은 해시 알고리즘을 만드는 것이 중요하다. 즉, 배열방을 나눌 때, 규칙을 잘 만들어야 한다.</p>
 
       
     </div>
@@ -182,7 +181,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structures/">Data Structures</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/List/">List</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash-Table/">Hash Table</a></li></ul>
 
       
     </footer>
@@ -192,19 +191,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/04/what-is-hashtable/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hash Table이란 무엇인가?
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/04/types-of-data-structures/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/04/what-is-list/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">자료구조(Data Structures)의 분류</div>
+      <div class="article-nav-title">리스트(List)란 무엇인가?</div>
     </a>
   
 </nav>
@@ -218,7 +208,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#리스트-List"><span class="nav-number">1.</span> <span class="nav-text">리스트(List)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#리스트-List-의-종류"><span class="nav-number">2.</span> <span class="nav-text">리스트(List)의 종류</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#연결-리스트-Linked-List-의-종류"><span class="nav-number">3.</span> <span class="nav-text">연결 리스트(Linked List)의 종류</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Simple-Linked-List-단순-연결-리스트"><span class="nav-number">3.1.</span> <span class="nav-text">1. Simple Linked List(단순 연결 리스트)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Doubly-Linked-List-이중-양방향-연결-리스트"><span class="nav-number">3.2.</span> <span class="nav-text">2. Doubly Linked List(이중/양방향 연결 리스트)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Circular-Linked-List-원형-환형-연결-리스트"><span class="nav-number">3.3.</span> <span class="nav-text">3. Circular Linked List(원형/환형 연결 리스트)</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash-Table-해시-테이블"><span class="nav-number">1.</span> <span class="nav-text">Hash Table(해시 테이블)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash-Table-작동원리"><span class="nav-number">1.1.</span> <span class="nav-text">Hash Table 작동원리</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash-Table-특징"><span class="nav-number">1.2.</span> <span class="nav-text">Hash Table 특징</span></a></li></ol></li></ol>
     
     </div>
   </aside>
