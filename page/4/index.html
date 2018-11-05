@@ -98,6 +98,67 @@
         
           <section id="main">
   
+    <article id="post-queue-stack"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/09/12/queue-stack/">2. Queue Using Two Stacks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/12/queue-stack/" class="article-date">
+	  <time datetime="2018-09-12T01:39:44.000Z" itemprop="datePublished">September 12, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>Create a queue using two stacks.</p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ol>
+<li>Create a stack.</li>
+<li>Create a queue with two instances of Stack( ).</li>
+<li>For dequeue of Queue, Move elements from stack1(inbox) to stack2(outbox), and return the highest element in outbox.</li>
+</ol>
+<p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">// STACK</span><br><span class="line">function Stack() &#123;</span><br><span class="line">  var items = [];</span><br><span class="line"></span><br><span class="line">  this.push = function() &#123;</span><br><span class="line">    items.push.apply(items, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.pop = function() &#123;</span><br><span class="line">      return items.pop.apply(items, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.size = function() &#123;</span><br><span class="line">      return items.length;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.peek = function() &#123;</span><br><span class="line">      return items;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.isEmpty = function() &#123;</span><br><span class="line">    return items.length === 0;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// STACK TESTS</span><br><span class="line">var stack = new Stack();</span><br><span class="line">stack.push(1, 2, 3, 4, 5);</span><br><span class="line">console.log(stack.peek()); // [ 1, 2, 3, 4, 5 ]</span><br><span class="line">stack.pop();</span><br><span class="line">console.log(stack.peek()); // [ 1, 2, 3, 4 ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// QUEUE</span><br><span class="line">function Queue() &#123;</span><br><span class="line">  var inbox = new Stack();</span><br><span class="line">  var outbox = new Stack();</span><br><span class="line"></span><br><span class="line">  this.eneque = function() &#123;</span><br><span class="line">      inbox.push.apply(inbox, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.dequeue = function() &#123;</span><br><span class="line">      if (outbox.size() === 0) &#123;</span><br><span class="line">          while (inbox.size())</span><br><span class="line">              outbox.push(inbox.pop());</span><br><span class="line">      &#125;</span><br><span class="line">      return outbox.pop();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.size = function()&#123;</span><br><span class="line">    return inbox.size() + outbox.size();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.peek = function() &#123;</span><br><span class="line">      return outbox.peek();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.isEmpty = function() &#123;</span><br><span class="line">    return inbox.length + outbox.length === 0;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.front = function() &#123;</span><br><span class="line">    if (outbox.size() === 0) &#123;</span><br><span class="line">      while (inbox.size())</span><br><span class="line">        outbox.push(inbox.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return outbox.peek()[0];</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// QUEUE TESTS</span><br><span class="line">var queue = new Queue();</span><br><span class="line">console.log(queue.size()); // 0</span><br><span class="line">queue.eneque(10, 20, 30, 40, 50, 60);</span><br><span class="line">console.log(queue.size()); // 6</span><br><span class="line">console.log(queue.peek()); // [] Not move to outbox yet</span><br><span class="line">console.log(queue.dequeue()); // 10</span><br><span class="line">console.log(queue.dequeue()); // 20</span><br><span class="line">console.log(queue.peek()); // [ 60, 50, 40, 30 ]</span><br><span class="line">console.log(queue.front()); // 60</span><br><span class="line">console.log(queue.size()); // 4</span><br><span class="line">console.log(queue.dequeue()); // 30</span><br><span class="line">console.log(queue.dequeue()); // 40</span><br><span class="line">console.log(queue.peek()); // [ 60, 50 ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="What-I-learned"><a href="#What-I-learned" class="headerlink" title="[What I learned]"></a><h3>[What I learned]</h3></h2><p>Use the value of array.pop() as parameter of other array.push()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this.dequeue = function() &#123;</span><br><span class="line">    if (outbox.size() === 0) &#123;</span><br><span class="line">        while (inbox.size())</span><br><span class="line">            outbox.push(inbox.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return outbox.pop();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-fizzbuzz"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1292,72 +1353,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-typescript"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/07/what-is-typescript/">typescript란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/08/07/what-is-typescript/" class="article-date">
-	  <time datetime="2018-08-07T13:36:53.000Z" itemprop="datePublished">August 7, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/typescript/">typescript</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="typescript란-무엇인가"><a href="#typescript란-무엇인가" class="headerlink" title="typescript란 무엇인가?"></a>typescript란 무엇인가?</h1><hr>
-<p>typescript는 자바스크립트에서 좀 더 확장된 언어로, 자바스크립트의 문법을 포함하면서 자바스크립트가 가지고 있는 문제를 보완하기 위한 문법을 가진 언어이다. 2012년에 마이크로소프트에서 발표한 오픈소스로써, C#을 개발한 아네르스 하일스베르가 개발하였다.</p>
-<p><img src="/images/typescript-superset.png" alt="Typescript Superset"></p>
-<p>위 그림과 같이, 타입스크립트는 ES5, ES6를 모두 포함하는 자바스크립트의 상위집합이기 때문에, 타입스크립트에서 기존의 자바스크립트 문법을 그대로 사용할 수 있다.</p>
-<p>또한, 타입스크립트는 아직 ECMAScript 표준에 포함되지는 않았지만(2018년 7월 기준), ECMAScript의 업그레이드에 따른 새로운 기능(스펙)을 계속 추가하기 때문에, ECMAScript의 표준을 따라가는 것처럼 보인다.</p>
-<p><br><br><br></p>
-<h1 id="typescript를-왜-사용할까"><a href="#typescript를-왜-사용할까" class="headerlink" title="typescript를 왜 사용할까?"></a>typescript를 왜 사용할까?</h1><hr>
-<p>C나 JAVA와 같은 C-family 언어와는 다른 자바스크립트만의 특성이 있다.</p>
-<ul>
-<li>프로토타입 기반 객체지향 언어</li>
-<li>스코프와 this</li>
-<li>동적 타입 언어</li>
-</ul>
-<p>이와 같은 특성들은 클래스 기반 객체지향 언어(C, JAVA 등)에 익숙한 개발자에게는 혼란스럽다.<br>또한, 할당하는 값에 따라 타입이 바뀌는 문제도 있어, 꼭 타입 체크를 해줘야 하는 점도 있다.</p>
-<p>이런 문제들을 보완하기 위해, 타입스크립트에는 클래스, 정적 타이핑 등이 포함되어있다.</p>
-<p>자바스크립트의 프레임워크인 Angular는 주력 언어로 타입스크립트를 채용했기 때문에, Angular를 사용하는 개발자는 타입스크립트를 이해하는 것이 필수적이다. 즉, Angular는 타입스크립트 뿐만 아니라, 자바스크립트, Dart 등으로도 작성이 가능하지만, Angular 사이트에 나와있는 문서나 커뮤니티 활동에서도 가장 많이 사용되고 있어, Angular를 사용하고 싶다면 타입스크립트를 아는 것이 좋다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/typescript/">typescript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">typescript</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1468,6 +1463,18 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/05/sum-two-integers/">8. 두 정수 사이의 함</a></h6>
+              <span>November 5, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/05/divide-array/">7. 나누어 떨어지는 숫자 배열</a></h6>
               <span>November 5, 2018</span>
             </div>
@@ -1522,18 +1529,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/05/array-method-advanced/">Array Method for Advanced</a></h6>
-              <span>November 5, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1543,7 +1538,7 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
