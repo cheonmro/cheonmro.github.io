@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>8. 두 정수 사이의 함 | Hexo</title>
+  <title>9. 최대공약수와 최소공배수 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Sum All Integers Between Two Integers" />
+  <meta name="keywords" content="최대공약수최소공배수" />
   
   
   
   
-  <meta name="description" content="[Problem]두 정수 a, b가 주어졌을 때, a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, sumInt() 함수를 작성하시오.  [Algorithms] [Solution]12345678910111213141516171819202122function sumInt(a, b) &amp;#123;  let answer = 0;  const sortNumbe">
-<meta name="keywords" content="Sum All Integers Between Two Integers">
+  <meta name="description" content="[Problem]두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm() 함수를 작성하시오.  예를 들어, 3과 12의 두 숫자의 최대공약수와 최소공배수를 비교한다고 해보자. 3의 약수는 1, 3이고, 12의 약수는 1, 2, 3, 4, 6, 12이다. 여기서, 최대공약수는 3이다. 3의 배수는 3, 6, 9, 12, 15, 18… 이">
+<meta name="keywords" content="최대공약수,최소공배수">
 <meta property="og:type" content="article">
-<meta property="og:title" content="8. 두 정수 사이의 함">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/sum-two-integers/index.html">
+<meta property="og:title" content="9. 최대공약수와 최소공배수">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/gcd-lcm/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="[Problem]두 정수 a, b가 주어졌을 때, a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, sumInt() 함수를 작성하시오.  [Algorithms] [Solution]12345678910111213141516171819202122function sumInt(a, b) &amp;#123;  let answer = 0;  const sortNumbe">
+<meta property="og:description" content="[Problem]두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm() 함수를 작성하시오.  예를 들어, 3과 12의 두 숫자의 최대공약수와 최소공배수를 비교한다고 해보자. 3의 약수는 1, 3이고, 12의 약수는 1, 2, 3, 4, 6, 12이다. 여기서, 최대공약수는 3이다. 3의 배수는 3, 6, 9, 12, 15, 18… 이">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-05T08:01:52.691Z">
+<meta property="og:updated_time" content="2018-11-05T08:37:39.269Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="8. 두 정수 사이의 함">
-<meta name="twitter:description" content="[Problem]두 정수 a, b가 주어졌을 때, a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, sumInt() 함수를 작성하시오.  [Algorithms] [Solution]12345678910111213141516171819202122function sumInt(a, b) &amp;#123;  let answer = 0;  const sortNumbe">
+<meta name="twitter:title" content="9. 최대공약수와 최소공배수">
+<meta name="twitter:description" content="[Problem]두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm() 함수를 작성하시오.  예를 들어, 3과 12의 두 숫자의 최대공약수와 최소공배수를 비교한다고 해보자. 3의 약수는 1, 3이고, 12의 약수는 1, 2, 3, 4, 6, 12이다. 여기서, 최대공약수는 3이다. 3의 배수는 3, 6, 9, 12, 15, 18… 이">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +103,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-sum-two-integers" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-gcd-lcm" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -111,7 +111,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      8. 두 정수 사이의 함
+      9. 최대공약수와 최소공배수
     </h1>
   
 
@@ -119,8 +119,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/05/sum-two-integers/" class="article-date">
-	  <time datetime="2018-11-05T08:01:52.000Z" itemprop="datePublished">November 5, 2018</time>
+	<a href="/2018/11/05/gcd-lcm/" class="article-date">
+	  <time datetime="2018-11-05T08:37:39.000Z" itemprop="datePublished">November 5, 2018</time>
 	</a>
 
       
@@ -135,10 +135,15 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>두 정수 a, b가 주어졌을 때, a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, sumInt() 함수를 작성하시오.</p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환해주는 gcdlcm() 함수를 작성하시오.</p>
+<ul>
+<li>예를 들어, 3과 12의 두 숫자의 최대공약수와 최소공배수를 비교한다고 해보자.</li>
+<li>3의 약수는 1, 3이고, 12의 약수는 1, 2, 3, 4, 6, 12이다. 여기서, 최대공약수는 3이다.</li>
+<li>3의 배수는 3, 6, 9, 12, 15, 18… 이다. 12의 배수는 12, 24, 36, 48… 이다. 여기서, 최소공배수는 12이다.</li>
+</ul>
 <p><br></p>
 <h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function sumInt(a, b) &#123;</span><br><span class="line">  let answer = 0;</span><br><span class="line"></span><br><span class="line">  const sortNumber = (a, b) =&gt; &#123;</span><br><span class="line">      return Array.prototype.slice.call(arguments).sort(function(a,b)&#123;</span><br><span class="line">          return a - b;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const newArray = sortNumber(a, b); // [ 1, 5 ]</span><br><span class="line">  if (newArray[0] === newArray[1]) &#123;</span><br><span class="line">      answer = newArray[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      for (let i = newArray[0]; i &lt;= newArray[1]; i++)&#123;</span><br><span class="line">          answer += i;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(sumInt(1, 5)); // 15 -&gt; sum of 1 ~ 5</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function gcdlcm(a, b) &#123;</span><br><span class="line">  let gcd = 1, lcm = 1;</span><br><span class="line">  const minNum = Math.min(a,b);</span><br><span class="line"></span><br><span class="line">  // 두 숫자 중에서 작은 값을 찾아, 1부터 그 작은값까지 비교하면서, 두 숫자에 대한 공약수를 찾는다.</span><br><span class="line">  for (let i = 1; i &lt;= minNum; i++) &#123;</span><br><span class="line">    if ((a%i == 0) &amp;&amp; (b%i == 0)) &#123; gcd = i &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  // 최소공배수는 두 수의 곱에 최대공약수로 나눈 값이다.</span><br><span class="line">  lcm = a*b/gcd;</span><br><span class="line">  return [gcd, lcm]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(gcdlcm(3,12)); // [ 3, 12 ]</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -148,7 +153,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sum-All-Integers-Between-Two-Integers/">Sum All Integers Between Two Integers</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대공약수/">최대공약수</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소공배수/">최소공배수</a></li></ul>
 
       
     </footer>
@@ -158,19 +163,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/05/gcd-lcm/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          9. 최대공약수와 최소공배수
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/05/divide-array/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/05/sum-two-integers/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">7. 나누어 떨어지는 숫자 배열</div>
+      <div class="article-nav-title">8. 두 정수 사이의 함</div>
     </a>
   
 </nav>
