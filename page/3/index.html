@@ -98,6 +98,85 @@
         
           <section id="main">
   
+    <article id="post-what-is-prototype"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/01/what-is-prototype/">Prototype이란 무엇인가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/01/what-is-prototype/" class="article-date">
+	  <time datetime="2018-10-31T15:59:03.000Z" itemprop="datePublished">November 1, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Prototype과-Prototype-Architecture"><a href="#Prototype과-Prototype-Architecture" class="headerlink" title="Prototype과 Prototype Architecture"></a>Prototype과 Prototype Architecture</h1><hr>
+<p>Prototype(객체)이란, 새로 생성된 인스턴스(객체)의 부모의 역할을 하는 객체를 말한다. 여기서 부모의 역할이란, 새로 생성된 인스턴스(객체)가 부모 객체의 프로퍼티 또는 메소드를 상속받아 사용할 수 있다는 뜻이다. Prototype 객체는 생성자 함수에 의해 생성된 각각의 객체에 공유 프로퍼티를 제공하기 위해 사용한다.</p>
+<p>Java, C++과 같은 클래스 기반 객체지향 프로그래밍 언어와 달리 자바스크립트는 프로토타입 기반 객체지향 프로그래밍 언어이다.</p>
+<p>클래스 기반 객체지향 프로그래밍 언어는 객체 생성 이전에 클래스를 정의하고 이를 통해 객체(인스턴스)를 생성한다. 하지만 프로토타입 기반 객체지향 프로그래밍 언어는 클래스 없이(Class-less)도 객체 리터럴 방식 또는 생성자 함수를 이용해서 객체를 생성할 수 있다. (ECMAScript 6에서 클래스가 추가되었다)</p>
+<p><br></p>
+<p>기본적으로 Prototype과 관련된 개념은 다음과 같다.</p>
+<p><img src="/images/prototype.png" alt="Prototype Architecture"><br>출처: <a href="https://poiemaweb.com/js-prototype" target="_blank" rel="noopener">Prototype Architecture</a></p>
+<p>어떤 생성자 함수(Person 생성자 함수)에 의해 인스턴스(foo 객체)가 생성되면, 그 인스턴스의 부모 역할을 하는 프로토타입 객체(Person.prototype)가 결정된다. 위 그림에서, 생성된 인스턴스는 name, gender 프로퍼티와, sayHello 메소드를 가지고 있다.</p>
+<p>ECMAScript spec에서는 자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 [[Prototype]]이라는 숨겨진 프로퍼티를 가진다 라고 되어있다. 크롬, 파이어폭스 등에서는 숨겨진 <code>[[Prototype]]</code> 프로퍼티가 <code>__proto__</code> 프로퍼티로 구현되어 있다. 즉, <code>__proto__</code>과 <code>[[Prototype]]</code>은 같은 개념이다.</p>
+<p>foo 객체는 <code>__proto__</code> 프로퍼티로 자신의 부모 객체(프로토타입 객체)인 Person.prototype을 가리키고 있다.</p>
+<p>객체를 생성할 때 프로토타입은 결정된다. 결정된 프로토타입 객체는 다른 임의의 객체로 변경할 수 있다. 이것은 부모 객체인 프로토타입을 동적으로 변경할 수 있다는 것을 의미한다. 이러한 특징을 활용하여 객체의 상속을 구현할 수 있다.</p>
+<!-- # Javascript 동작원리
+---
+
+# [[Prototype]] 프로퍼티 v. prototype 프로퍼티
+--- -->
+<p><br></p>
+<h1 id="constructor-프로퍼티"><a href="#constructor-프로퍼티" class="headerlink" title="constructor 프로퍼티"></a>constructor 프로퍼티</h1><hr>
+<p>프로토타입 객체는 constructor 프로퍼티를 갖는다. 이 constructor 프로퍼티는 객체의 입장에서 자신을 생성한 객체를 가리킨다.</p>
+<p>예를 들어 Person() 생성자 함수에 의해 생성된 객체를 foo라 하자. 이 foo 객체를 생성한 객체는 Person() 생성자 함수이다. 이때 foo 객체 입장에서 자신을 생성한 객체는 Person() 생성자 함수이며, foo 객체의 프로토타입 객체는 Person.prototype이다. 따라서 프로토타입 객체 Person.prototype의 constructor 프로퍼티는 Person() 생성자 함수를 가리킨다.</p>
+<p><br></p>
+<h1 id="Prototype-Chain"><a href="#Prototype-Chain" class="headerlink" title="Prototype Chain"></a>Prototype Chain</h1><hr>
+<p>자바스크립트는 특정 객체의 프로퍼티나 메소드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메소드가 없다면 [[Prototype]] 프로퍼티가 가리키는 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티나 메소드를 차례대로 검색한다. 이것을 프로토타입 체인이라 한다.</p>
+<p><br></p>
+<h1 id="프로토타입-체인-동작-조건"><a href="#프로토타입-체인-동작-조건" class="headerlink" title="프로토타입 체인 동작 조건"></a>프로토타입 체인 동작 조건</h1><hr>
+<p>객체의 프로퍼티를 참조하는 경우, 해당 객체에 프로퍼티가 없는 경우, 프로토타입 체인이 동작한다.</p>
+<p>객체의 프로퍼티에 값을 할당하는 경우, 프로토타입 체인이 동작하지 않는다. 이는 객체에 해당 프로퍼티가 있는 경우, 값을 재할당하고 해당 프로퍼티가 없는 경우는 해당 객체에 프로퍼티를 동적으로 추가하기 때문이다.</p>
+<p><br></p>
+<p><img src="/images/condition_prototype_chaining.png" alt="프로토타입 체인 동작 조건"><br>출처: <a href="https://poiemaweb.com/js-prototype" target="_blank" rel="noopener">프로토타입 체인 동작 조건</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prototype/">Prototype</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-what-is-closures"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -865,86 +944,6 @@ let 과 const: 블록레벨
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-hoisting"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/09/13/what-is-hoisting/">Hoisting(호이스팅)이란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/09/13/what-is-hoisting/" class="article-date">
-	  <time datetime="2018-09-13T06:03:47.000Z" itemprop="datePublished">September 13, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hoisting-호이스팅"><a href="#Hoisting-호이스팅" class="headerlink" title="Hoisting(호이스팅)"></a>Hoisting(호이스팅)</h1><hr>
-<p><strong>Hoisting(호이스팅)</strong>이란, <strong>Javascript의 모든 선언문(var, let, const, function, function*, class)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> C 언어 등 C-family 언어와는 다르게, Javascript의 모든 선언문은 ‘호이스팅’이 되는 Javascript만의 특징이 있다.<br><br><br>Hoisting에는 크게 2가지가 있다.</p>
-<ul>
-<li>변수 호이스팅</li>
-<li>함수 호이스팅</li>
-</ul>
-<p><br></p>
-<h2 id="변수-호이스팅-Variable-Hoisting"><a href="#변수-호이스팅-Variable-Hoisting" class="headerlink" title="변수 호이스팅(Variable Hoisting)"></a>변수 호이스팅(Variable Hoisting)</h2><hr>
-<p><strong>변수 호이스팅</strong>이란, <strong>Javascript의 변수 선언문(var, let, const)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> 즉, Javascript의 모든 선언문이 선언되기 전부터, 변수를 참조할 수 있게 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(num); // 1. -&gt; undefined</span><br><span class="line">var num = 100;</span><br><span class="line">console.log(num); // 2. -&gt; 100</span><br><span class="line">&#123;</span><br><span class="line">  var num = 5;</span><br><span class="line">&#125;</span><br><span class="line">console.log(num); // 3. -&gt; 5</span><br></pre></td></tr></table></figure></p>
-<p>위 코드를 처음 봤을 때, 첫줄의 출력 값은 Error가 날 것이라고 예상 할 수 있다. 그러나, 위 Javascript의 코드는 변수 호이스팅이 있기 때문에, undefined를 출력한다.</p>
-<p>Javascript 엔진이 위 코드를 읽어들일 때, 제일 먼저 선언문부터 읽는다. 그리고, 그 중 제일 첫번째로 선언된 변수를 찾아, 그 변수를 선언하고, 초기화를 한다. 이때, 변수의 호이스팅 때문에, 선언문은 해당 Scope의 최상단, 즉 제일 윗줄로 옮겨진 것처럼 행동하여, ‘num’을 출력(console.log(num)) 하기 전에, 변수가 존재하는 것처럼 행동하고, 이 변수는 선언이 되고, 초기화까지 되었기 때문에(변수를 초기화하면, ‘undefined’를 메모리에 할당한다.), console.log(num)의 결과로는 ‘undefined’가 출력된다.</p>
-<p>기본적으로, var 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어진다. 변수가 선언이 될 때, 스코프에 Variable Object가 생성이 되고, 여기에 변수가 등록이 되어있어, 변수 선언문 이전에 변수에 접근해도 에러가 발생하지 않는다. 다만, 초기화 단계에서 변수는 메모리에 공간을 확보한 후, undefined를 저장하기 때문에, undefined를 반환한다. 이후, 변수 할당문(var num = 100;)에 도달하여 값의 할당이 이루어진다.</p>
-<p>호이스팅 관점에서 다시 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(num); // 1. -&gt; undefined</span><br><span class="line">var num = 100;</span><br><span class="line">console.log(num); // 2. -&gt; 100</span><br><span class="line">&#123;</span><br><span class="line">  var num = 5;</span><br><span class="line">&#125;</span><br><span class="line">console.log(num); // 3. -&gt; 5</span><br></pre></td></tr></table></figure></p>
-<p>‘1.’이 실행되기 이전에 var num = 100;이 호이스팅되어 ‘1.’ 구문 위에(최상단) var num;가 옮겨진 것처럼 된다. 실제로 변수 선언이 코드 레벨로 옮겨 진것은 아니고, 변수 객체(Variable Object)에 등록되고, undefined로 초기화된 것이다. 그러나, 변수 선언 단계와 초기화 단계가 할당 단계와 분리되어 진행되기 때문에, 이 단계에서는 num에 undefined가 할당되어 있다. 변수 num에 값이 할당되는 것은 두번째 행(var num = 100;)에서 실시된다.</p>
-<p>마지막 줄에서는 숫자 5가 출력이 되는데, 이는 코드 블록안에서 새롭게 변수가 중복 선언이 되어 num의 값이 5로 바뀌었기 때문이다. Javascript는 function-level scope를 갖기 때문에, 변수의 유효범위가 코드 블록에는 영향이 없다.</p>
-<p><br></p>
-<h2 id="함수-호이스팅-Function-Hoisting"><a href="#함수-호이스팅-Function-Hoisting" class="headerlink" title="함수 호이스팅(Function Hoisting)"></a>함수 호이스팅(Function Hoisting)</h2><hr>
-<p><strong>함수 호이스팅</strong>이란, <strong>Javascript의 함수 선언문(function)이 해당 Scope의 최상단으로 옮겨진 것처럼 행동하는 것을 말한다.</strong> 즉, Javascript의 모든 선언문이 선언되기 전부터, 함수를 호출할 수 있게 된다. 함수선언의 위치와는 상관없이 코드 내 어느 곳에서든지 호출이 가능하게 만드는 것을 말한다. 단, 함수선언식에만 적용이 된다.</p>
-<p>함수선언식으로 정의된 함수는 자바스크립트 엔진이 스크립트가 로딩되는 시점에 바로 초기화하고 이를 VO(variable object)에 저장한다. 즉, 함수 선언, 초기화, 할당이 한번에 이루어진다. 그렇기 때문에 함수 선언의 위치와는 상관없이 소스 내 어느 곳에서든지 호출이 가능하다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">square(5); // 25</span><br><span class="line"></span><br><span class="line">function square(number) &#123;</span><br><span class="line">  return number * number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>다음은 함수표현식으로 함수를 정의한 경우이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var res = square(5); // TypeError: square is not a function</span><br><span class="line"></span><br><span class="line">var square = function(number) &#123;</span><br><span class="line">  return number * number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>위와 같이 에러가 발생한 이유는, 함수표현식의 경우는 함수 호이스팅이 아니라, 변수 호이스팅이 발생하기 때문이다.</p>
-<p>함수표현식은 함수선언식과는 달리 스크립트 로딩 시점에 변수 객체(VO)에 함수를 할당하지 않고, runtime에 해석되고 실행된다. 즉, 선언과 초기화까지만 하여, undefined를 호출하는 것과 같기 때문에, 에러가 난다.</p>
-<p>그래서, 더글러스 크락포드는 ‘함수표현식’만 사용할 것을 권한다. 왜냐하면, 에러가 나서 미리 호출을 방지하기 때문이다. 왠만하면, 선언문 이전에 호출하지 않는 것이 좋다.<br><br><br><strong>변수와 함수의 호이스팅의 차이점</strong>:</p>
-<ul>
-<li><strong>함수 호이스팅</strong>: 함수선언문 이전에 함수가 호출이 된다.(함수 선언식으로 함수를 선언했을 경우)</li>
-<li><strong>변수 호이스팅</strong>: 함수표현식으로 함수를 선언했을 경우, 함수표현식 이전에 함수를 호출하면, 에러가 난다.<ul>
-<li>왜냐하면, 함수표현식은 변수 호이스팅을 따르기 때문에, 할당은 안되고, 초기화까지만 되기 때문이다. 즉, 초기화까지만 되면 undefined를 호출하는 것과 같기 때문이다. undefiend() 이런형식으로 나온다는 의미이기 때문에, 에러가 난다.</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hoisting/">Hoisting</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1055,6 +1054,18 @@ let 과 const: 블록레벨
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/05/pipe/">12. 짝이 맞지 않는 괄호 문제(Stack/Queue)</a></h6>
+              <span>November 5, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/05/max-number/">11. 가장 큰 수(정렬)</a></h6>
               <span>November 5, 2018</span>
             </div>
@@ -1109,18 +1120,6 @@ let 과 const: 블록레벨
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/05/find-mid-character/">6. 가운데 글자 가져오기</a></h6>
-              <span>November 5, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1130,7 +1129,7 @@ let 과 const: 블록레벨
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

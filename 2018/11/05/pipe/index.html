@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>11. 가장 큰 수(정렬) | Hexo</title>
+  <title>12. 짝이 맞지 않는 괄호 문제(Stack/Queue) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="sort algorithms" />
+  <meta name="keywords" content="Stack/Queue algorithms" />
   
   
   
   
-  <meta name="description" content="[Problem]0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요. 예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다. 0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순">
-<meta name="keywords" content="sort algorithms">
+  <meta name="description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
+<meta name="keywords" content="Stack&#x2F;Queue algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="11. 가장 큰 수(정렬)">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/max-number/index.html">
+<meta property="og:title" content="12. 짝이 맞지 않는 괄호 문제(Stack&#x2F;Queue)">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/pipe/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="[Problem]0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요. 예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다. 0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순">
+<meta property="og:description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-05T11:26:20.551Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/pipe.png">
+<meta property="og:updated_time" content="2018-11-05T11:50:47.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="11. 가장 큰 수(정렬)">
-<meta name="twitter:description" content="[Problem]0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요. 예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다. 0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순">
+<meta name="twitter:title" content="12. 짝이 맞지 않는 괄호 문제(Stack&#x2F;Queue)">
+<meta name="twitter:description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/pipe.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-max-number" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-pipe" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -111,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      11. 가장 큰 수(정렬)
+      12. 짝이 맞지 않는 괄호 문제(Stack/Queue)
     </h1>
   
 
@@ -119,8 +121,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/05/max-number/" class="article-date">
-	  <time datetime="2018-11-05T11:26:20.000Z" itemprop="datePublished">November 5, 2018</time>
+	<a href="/2018/11/05/pipe/" class="article-date">
+	  <time datetime="2018-11-05T11:50:47.000Z" itemprop="datePublished">November 5, 2018</time>
 	</a>
 
       
@@ -135,11 +137,35 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요. 예를 들어, 주어진 정수가 [6, 10, 2]라면 [6102, 6210, 1062, 1026, 2610, 2106]를 만들 수 있고, 이중 가장 큰 수는 6210입니다.</p>
-<p>0 또는 양의 정수가 담긴 배열 numbers가 매개변수로 주어질 때, 순서를 재배치하여 만들 수 있는 가장 큰 수를 문자열로 바꾸어 return 하도록 solution 함수를 작성하시오.</p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.</p>
+<ul>
+<li>쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다.</li>
+<li>쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓되, 끝점은 겹치지 않도록 놓습니다.</li>
+<li>각 쇠막대기를 자르는 레이저는 적어도 하나 존재합니다.</li>
+<li>레이저는 어떤 쇠막대기의 양 끝점과도 겹치지 않습니다.</li>
+</ul>
+<p>아래 그림은 위 조건을 만족하는 예를 보여줍니다. 수평으로 그려진 굵은 실선은 쇠막대기이고, 점은 레이저의 위치, 수직으로 그려진 점선 화살표는 레이저의 발사 방향입니다.</p>
+<p><img src="/images/pipe.png" alt="쇠막대기와 레이저"></p>
+<p>이러한 레이저와 쇠막대기의 배치는 다음과 같이 괄호를 이용하여 왼쪽부터 순서대로 표현할 수 있습니다.</p>
+<p>(a) 레이저는 여는 괄호와 닫는 괄호의 인접한 쌍 ‘()’으로 표현합니다. 또한 모든 ‘()’는 반드시 레이저를 표현합니다.<br>(b) 쇠막대기의 왼쪽 끝은 여는 괄호 ‘(‘로, 오른쪽 끝은 닫힌 괄호 ‘)’로 표현됩니다.</p>
+<p>위 예의 괄호 표현은 그림 위에 주어져 있습니다.<br>쇠막대기는 레이저에 의해 몇 개의 조각으로 잘리는데, 위 예에서 가장 위에 있는 두 개의 쇠막대기는 각각 3개와 2개의 조각으로 잘리고, 이와 같은 방식으로 주어진 쇠막대기들은 총 17개의 조각으로 잘립니다.</p>
+<p>쇠막대기와 레이저의 배치를 표현한 문자열 arrangement가 매개변수로 주어질 때, 잘린 쇠막대기 조각의 총 개수를 return 하도록 solution 함수를 작성해주세요.</p>
 <p><br></p>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const solution = numbers =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    // 배열의 각 요소를 문자열로 만들기</span><br><span class="line">    const answer = numbers.map(v=&gt; v+&apos;&apos;) // [ &apos;3&apos;, &apos;30&apos;, &apos;34&apos;, &apos;5&apos;, &apos;9&apos; ]</span><br><span class="line">                        // 문자열이지만, 값이 숫자인 요소들을 앞 숫자가 큰 요소로 정렬하기</span><br><span class="line">                        .sort((a,b) =&gt; Number(b+a) - Number(a+b)) // [ &apos;9&apos;, &apos;5&apos;, &apos;34&apos;, &apos;3&apos;, &apos;30&apos; ]</span><br><span class="line">                        .join(&apos;&apos;);</span><br><span class="line"></span><br><span class="line">    return answer[0] === &apos;0&apos; ? &apos;0&apos; : answer;</span><br><span class="line">&#125;</span><br><span class="line">console.log(solution([3, 30, 34, 5, 9])) // &apos;9534330&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ul>
+<li>‘(’면 stack에 push해서 저장한다.</li>
+<li>‘)’일때, 이게 레이저냐 파이프냐에 따라 나뉜다.</li>
+<li>레이저일 경우, stack.size() 또는 stack.length를 이용해 쇠막대기 수를 계산한다.</li>
+<li>이때, 레이저인지는 앞에 입력 문자열의 전 문자가 ‘(‘일때이다.</li>
+<li>파이프일 경우, 쇠막대기 수에 1를 더한다.</li>
+<li>이때, 파이프인지는 앞에 입력 문자열의 전 문자가 ‘)’일때이다.</li>
+<li>중요한건,<ul>
+<li>기본적으로 이런 문제는 stack(배열)에 push/pop을 이용한다.</li>
+<li>stack의 사이즈(크기)를 이용하여 수를 구한다.</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const solution = arrangement =&gt; &#123;</span><br><span class="line">  let answer = 0; // 전체 조각난 쇠막대기 수</span><br><span class="line">  let stack = [];</span><br><span class="line">  let ironBar = 0; // 조각난 쇠막대기 수 ------</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; arrangement.length; i++) &#123;</span><br><span class="line">    if(arrangement[i] === &apos;(&apos;) &#123;</span><br><span class="line">      stack.push(arrangement[i]);</span><br><span class="line">    &#125; else if(arrangement[i] === &apos;)&apos;) &#123;</span><br><span class="line">      // check if it is lazer or pipe</span><br><span class="line">      stack.pop();</span><br><span class="line">      // if lazer</span><br><span class="line">      if (arrangement[i-1] === &apos;(&apos;) &#123;</span><br><span class="line">        ironBar = stack.length;</span><br><span class="line">        answer += ironBar;</span><br><span class="line">        // if pipe</span><br><span class="line">      &#125; else if (arrangement[i-1] === &apos;)&apos;) &#123;</span><br><span class="line">        answer += 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(solution(&apos;()(((()())(())()))(())&apos;)) // 17</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -150,7 +176,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort-algorithms/">sort algorithms</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack-Queue-algorithms/">Stack/Queue algorithms</a></li></ul>
 
       
     </footer>
@@ -160,19 +186,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/05/pipe/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          12. 짝이 맞지 않는 괄호 문제(Stack/Queue)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/05/k-number/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/05/max-number/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">10. K번째 수(정렬)</div>
+      <div class="article-nav-title">11. 가장 큰 수(정렬)</div>
     </a>
   
 </nav>

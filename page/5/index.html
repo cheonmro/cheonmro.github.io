@@ -98,6 +98,141 @@
         
           <section id="main">
   
+    <article id="post-event-loop-and-concurrency"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/09/02/event-loop-and-concurrency/">Event Loop(이벤트루프)와 Javascript Concurrency(동시성)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/02/event-loop-and-concurrency/" class="article-date">
+	  <time datetime="2018-09-02T03:09:06.000Z" itemprop="datePublished">September 2, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Browser-Architecture"><a href="#Browser-Architecture" class="headerlink" title="Browser Architecture"></a>Browser Architecture</h1><hr>
+<p><img src="/images/architecture.png" alt="Browser Architecture"><br>출처: <a href="https://www.zeolearn.com/magazine/understanding-the-javascript-event-loop" target="_blank" rel="noopener">Browser Architecture</a></p>
+<p>Browser안에는 위와 같이 자바스크립트엔진 뿐만 아니라 다른 것들이 같이 포함되어 있다.</p>
+<ol>
+<li>자바스크립트엔진(크롬: V8)<ul>
+<li>Heap과 Stack으로 구성되어있고, 자바스크립트가 브라우저에서 실행되는 곳이 자바스크립트엔진, 정확히는 Stack이다.</li>
+</ul>
+</li>
+<li>Web APIs<ul>
+<li>비동기 방식으로 호출되는 것들(Timer 함수/DOM Event/Ajax)이 정의되는 영역이다.</li>
+</ul>
+</li>
+<li>Callback Queue<ul>
+<li>Web APIs으로부터 옮겨와 자바스크립트엔진의 Stack으로 이동하기 위해 기다리는 곳이다.</li>
+</ul>
+</li>
+<li>Event Loop<ul>
+<li>Callback Queue에서 기다리고 있는 비동기 방식으로 호출되는 것들(Timer 함수/DOM Event/Ajax)을 Stack이 완전히 비어있을 때 이동시키는 역할을 한다.</li>
+</ul>
+</li>
+</ol>
+<p><br></p>
+<h1 id="자바스크립트-기본-특징"><a href="#자바스크립트-기본-특징" class="headerlink" title="자바스크립트 기본 특징"></a>자바스크립트 기본 특징</h1><hr>
+<p>자바스크립트는 싱글쓰레드(single-threaded), 즉 1개의 쓰레드를 가지고있다. 1개의 쓰레드를 가지고 있다는 말은 한번에 하나일을 처리한다는 것이다. 자바스크립트엔진의 Stack에서 한번에 하나의 일(함수 호출)을 처리한다는 뜻이다. 그런데, 실제로 자바스크립트 기반의 애플리케이션은 여러가지일이 동시에 일어난다.</p>
+<p>왜 그럴까? 이걸 전문적으로 말하면 자바스크립트는 동시성(Concurrency)을 지원한다는 것인데, 어떻게 그럴 수 있을까? 여기서 이벤트루프(Event Loop)에 대한 개념이 나온다.</p>
+<p>먼저 동기적(한번에 하나의 일을 처리)으로 작동하는 기본적인 자바스크립트 코드가 돌아가는 원리를 알아보자.</p>
+<p><br></p>
+<h1 id="기본-자바스크립트-동작-원리"><a href="#기본-자바스크립트-동작-원리" class="headerlink" title="(기본) 자바스크립트 동작 원리"></a>(기본) 자바스크립트 동작 원리</h1><hr>
+<p>다시 한번 Architecture를 보자.</p>
+<p><img src="/images/architecture.png" alt="Browser Architecture"><br>출처: <a href="https://www.zeolearn.com/magazine/understanding-the-javascript-event-loop" target="_blank" rel="noopener">Browser Architecture</a></p>
+<p>비동기로 호출되는 것들(Timer 함수/DOM Event/Ajax)이 없는 자바스크립트 코드의 경우, 자바스크립트엔진의 Stack에서만 하나씩 호출되어 코드가 돌아간다. 즉, Web AIPs, Callback Queue, 그리고 Event Loop 등을 사용하지 않는다.</p>
+<p>아래 동기적 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function multiply(a, b) &#123;</span><br><span class="line">   return a*b;</span><br><span class="line">&#125;</span><br><span class="line">function square(a) &#123;</span><br><span class="line">   const sq = multiply(a, a);</span><br><span class="line"></span><br><span class="line">   console.log(sq);</span><br><span class="line">&#125;</span><br><span class="line">square(3);</span><br></pre></td></tr></table></figure></p>
+<p>이 코드는 어떤 순서로 호출되어 값이 나오게 될까?</p>
+<p>호출되는 순서는 다음과 같다.</p>
+<ol>
+<li>square(3) 때문에, square 함수가 먼저 호출된다.</li>
+<li>sq에 multiply 함수를 할당하기 위해, multiply 함수가 호출된다.</li>
+<li>multiply의 return 값이 나온다.</li>
+<li>console.log(sq)의 결과값이 나온다.</li>
+</ol>
+<p>이 순서를 Stack에서 확인해보자.</p>
+<p><img src="/images/sync.gif" alt="동기적 자바스크립트"><br>출처: <a href="https://www.zeolearn.com/magazine/understanding-the-javascript-event-loop" target="_blank" rel="noopener">동기적 자바스크립트</a></p>
+<p>위 그림과 같이, Stack에서 push로 하나씩 함수가 쌓이고, pop으로 마지막에 쌓인 것부터 하나씩 호출되어 실행되고, 제거된다. 이런식으로, 한번에 하나씩 순서대로 일이 진행되어, 결과값이 나오게 된다. 이게 동기적 방식이다.</p>
+<!-- 제일 먼저 호출되는 함수가 쌓이기 전 가장 먼저 쌓이는 코드가 있는데, 이것을 전역코드라고 한다. 이는, 어떤 함수가 호출되기전 전역에서 먼저 전역 실행컨텍스트가 실행되기 때문에, 이 전역 실행컨텍스트가 먼저 Stack에 쌓이고, 다른 모든 함수가 호출되고 제거된 뒤, 가장 마지막에 Stack에서 제거된다. 이부분에 실행컨텍스트 부분에 자세히 다룬다. -->
+<p><br></p>
+<h2 id="Error-Maximum-call-stack-size-exceeded"><a href="#Error-Maximum-call-stack-size-exceeded" class="headerlink" title="Error: Maximum call stack size exceeded"></a>Error: Maximum call stack size exceeded</h2><p>Stack안에 쌓이는 각 함수를 Stack Frame이라고 한다. 보통, 이런 각 Stack Frame은 ms(1초=1000ms)안에 동작이 끝난다. 그런데, Stack에는 Stack Frame의 수가 정해져 있고, 이 수를 넘게되면 에러가 발생하게 된다.</p>
+<p>아래 코드를 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">  return foo();</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+<p>위 코드를 작성하고 실행하게 되면, 다음과 같은 에러가 발생한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RangeError: Maximum call stack size exceeded</span><br></pre></td></tr></table></figure></p>
+<p>이 에러의 원인은 Stack안에 정해진 Stack Frame의 수를 초과했다는 뜻이다. 즉, foo 함수가 호출될 때, return 값으로 foo 함수가 호출되기 때문에, 계속해서 호출되게 되고, 그 말은 Stack에 계속해서 foo 함수가 쌓인다는 뜻이다. 그래서 정해진 Stack Frame의 수를 초과하게 되어, 위와 같은 에러가 발생하게 된다. 이런 자바스크립트의 Stack에 대한 개념을 모르게되면, 이 에러가 발생했을 때 해결하기가 어려울 수 있다.</p>
+<p>그럼, 자바스크립트에 동시성(Concurrency)을 어떻게 지원하는지 알아보자.</p>
+<p><br></p>
+<h1 id="비동기적-자바스크립트-동작-원리"><a href="#비동기적-자바스크립트-동작-원리" class="headerlink" title="비동기적 자바스크립트 동작 원리"></a>비동기적 자바스크립트 동작 원리</h1><hr>
+<p>다시 한번 Architecture를 보자.</p>
+<p><img src="/images/architecture.png" alt="Browser Architecture"><br>출처: <a href="https://www.zeolearn.com/magazine/understanding-the-javascript-event-loop" target="_blank" rel="noopener">Browser Architecture</a></p>
+<p>비동기로 호출되는 것들(Timer 함수/DOM Event/Ajax)이 있는 자바스크립트 코드의 경우, 자바스크립트엔진의 Stack에서 Web AIPs로 이동하게 되고, 다시 Callback Queue로 이동하게 된다. 그리고 Stack에 있는 모든 함수가 제거되고 난뒤, Event Loop로 인해 Stack으로 이동되어, 함수가 호출되고 제거된다.</p>
+<p>아래 비동기적 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;Print this 1st&quot;);</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">   console.log(&quot;Print this 3rd&quot;);</span><br><span class="line">&#125;, 500);</span><br><span class="line">console.log(&quot;Print this 2nd&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>이 코드는 어떤 순서로 호출되어 값이 나오게 될까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;Print this 1st&quot;</span><br><span class="line">&quot;Print this 2nd&quot;</span><br><span class="line">&quot;Print this 3rd&quot;</span><br></pre></td></tr></table></figure></p>
+<p>비동기 함수인 setTimeout 함수가 0.5초뒤에 실행되니, 그 전에 마지막 console.log가 먼저 출력되어, 순서가 저렇게 된것일까? 이 과정을 정확하게 위해서는 이벤트루프(Event Loop) 개념을 이해해야 한다.</p>
+<p>이 순서를 Architecture에서 확인해보자.<br>위 코드가 실제로 실행되는 과정은 아래와 같다.</p>
+<p><br></p>
+<p><img src="/images/async.gif" alt="비동기적 자바스크립트"><br>출처: <a href="https://www.zeolearn.com/magazine/understanding-the-javascript-event-loop" target="_blank" rel="noopener">비동기적 자바스크립트</a></p>
+<ol>
+<li>먼저, 첫번째 console.log가 호출되고, 제거된다.</li>
+<li>그리고, 비동기 함수인 setTimeout 함수가 호출된뒤, Web APIs로 이동한다.</li>
+<li>이와 동시에, Stack에서 다음 console.log가 쌓인다.</li>
+<li>이동한 setTimeout 함수는 Web APIs에서 0.5초(500ms) 동안 있다가, Callback Queue로 이동한다.</li>
+<li>Event Loop는 Stack에 있는 모든 함수가 제거된 것을 확인한 후, Callback Queue에 있는 setTimeout 함수를 Stack으로 보내고 실행한다.</li>
+<li>그리고, 그 setTimeout 함수는 Stack에서 제거된다.</li>
+</ol>
+<p>자바스크립트에서의 비동기적 방식은 위와 같이 진행되기 때문에, 비동기 함수보다 다른 일반 함수들이 먼저 실행되고, 그 다음에 비동기 함수가 진행된다. 결국, 자바스크립트엔진 밖에 있는 Web APIs, Callback Queue, 그리고 Event Loop가 비동기 함수를 따로 관리함으로써 자바스크립트에 동시성이 가능하게 된다. 따라서, 자바스크립트 기반의 애플리케이션은 여러가지 일들이 동시에 발생할 수 있는 것이다.</p>
+<p><br></p>
+<h1 id="만약-setTimeout-함수의-두번째-인수가-‘0’초면-어떻게-될까"><a href="#만약-setTimeout-함수의-두번째-인수가-‘0’초면-어떻게-될까" class="headerlink" title="만약, setTimeout 함수의 두번째 인수가 ‘0’초면 어떻게 될까?"></a>만약, setTimeout 함수의 두번째 인수가 ‘0’초면 어떻게 될까?</h1><p>아래 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;Print this 1st&quot;);</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">   console.log(&quot;Print this 3rd&quot;);</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(&quot;Print this 2nd&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>이 코드는 어떤 순서로 호출되어 값이 나오게 될까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;Print this 1st&quot;</span><br><span class="line">&quot;Print this 2nd&quot;</span><br><span class="line">&quot;Print this 3rd&quot;</span><br></pre></td></tr></table></figure></p>
+<p>이 또한 setTimeout 함수의 두번째 인수가 0.5초일때와 동일하게 나온다. 즉, timer 함수의 시간과 상관없이, 이벤트루프는 Stack에 있는 다른 모든 함수가 제거된 뒤, timer 함수를 Stack으로 이동시키기 때문이다. 단지, Wep APIs에서 0.5초 걸리느냐, 0초 걸리느냐에 차이이다.</p>
+<p><br></p>
+<h1 id="다른-비동기인-DOM-이벤트의-경우는-어떻게-될까"><a href="#다른-비동기인-DOM-이벤트의-경우는-어떻게-될까" class="headerlink" title="다른 비동기인 DOM 이벤트의 경우는 어떻게 될까?"></a>다른 비동기인 DOM 이벤트의 경우는 어떻게 될까?</h1><p>아래 코드를 보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function func1() &#123;</span><br><span class="line">  console.log(&apos;func1&apos;);</span><br><span class="line">  func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func2() &#123;</span><br><span class="line">  // &lt;button id=&quot;bar&quot;&gt;bar&lt;/button&gt;</span><br><span class="line">  var elem = document.getElementById(&apos;bar&apos;);</span><br><span class="line"></span><br><span class="line">  elem.addEventListener(&apos;click&apos;, function () &#123;</span><br><span class="line">    this.style.backgroundColor = &apos;blue&apos;;</span><br><span class="line">    console.log(&apos;func2&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  func3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func3() &#123;</span><br><span class="line">  console.log(&apos;func3&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br></pre></td></tr></table></figure></p>
+<p>위 코드의 실행순서는 다음과 같다.</p>
+<ol>
+<li>함수 func1()이 호출되면 함수 func1()은 Stack에 쌓인다.</li>
+<li>함수 func1()은 함수 func2를 호출하므로 함수 func2()가 Stack에 쌓이고 addEventListener가 호출된다.</li>
+<li>이 addEventListener는 Wep APIs로 이동한다.</li>
+<li>Stack에는 func3()가 쌓인다. 이때, 만약 bar 버튼이 클릭되면, ‘click’ 이벤트가 발생하게 되어, addEventListener는 Callback Queue로 이동하게 된다.</li>
+<li>Stack에 있던 모든 함수가 제거되어 완전히 비어지면, 이벤트 루프는 이 addEventListener를 Stack으로 이동시키고, 실행하게 된다.</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Loop/">Event Loop</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-ajax"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -902,6 +1037,18 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/05/pipe/">12. 짝이 맞지 않는 괄호 문제(Stack/Queue)</a></h6>
+              <span>November 5, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/05/max-number/">11. 가장 큰 수(정렬)</a></h6>
               <span>November 5, 2018</span>
             </div>
@@ -956,18 +1103,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/05/find-mid-character/">6. 가운데 글자 가져오기</a></h6>
-              <span>November 5, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -977,7 +1112,7 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
