@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>12. 짝이 맞지 않는 괄호 문제(Stack/Queue) | Hexo</title>
+  <title>13. Printer(Stack/Queue) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="Stack/Queue algorithms" />
@@ -11,20 +11,18 @@
   
   
   
-  <meta name="description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
+  <meta name="description" content="[Problem]일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.  인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다">
 <meta name="keywords" content="Stack&#x2F;Queue algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="12. 짝이 맞지 않는 괄호 문제(Stack&#x2F;Queue)">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/pipe/index.html">
+<meta property="og:title" content="13. Printer(Stack&#x2F;Queue)">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/printer/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
+<meta property="og:description" content="[Problem]일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.  인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://cheonmro.github.io/images/pipe.png">
-<meta property="og:updated_time" content="2018-11-05T11:50:47.356Z">
+<meta property="og:updated_time" content="2018-11-05T12:01:48.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="12. 짝이 맞지 않는 괄호 문제(Stack&#x2F;Queue)">
-<meta name="twitter:description" content="[Problem]여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.  쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다. 쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓">
-<meta name="twitter:image" content="https://cheonmro.github.io/images/pipe.png">
+<meta name="twitter:title" content="13. Printer(Stack&#x2F;Queue)">
+<meta name="twitter:description" content="[Problem]일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.  인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -105,7 +103,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-pipe" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-printer" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -113,7 +111,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      12. 짝이 맞지 않는 괄호 문제(Stack/Queue)
+      13. Printer(Stack/Queue)
     </h1>
   
 
@@ -121,8 +119,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/05/pipe/" class="article-date">
-	  <time datetime="2018-11-05T11:50:47.000Z" itemprop="datePublished">November 5, 2018</time>
+	<a href="/2018/11/05/printer/" class="article-date">
+	  <time datetime="2018-11-05T12:01:48.000Z" itemprop="datePublished">November 5, 2018</time>
 	</a>
 
       
@@ -137,35 +135,24 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>여러 개의 쇠막대기를 레이저로 절단하려고 합니다. 효율적인 작업을 위해서 쇠막대기를 아래에서 위로 겹쳐 놓고, 레이저를 위에서 수직으로 발사하여 쇠막대기들을 자릅니다. 쇠막대기와 레이저의 배치는 다음 조건을 만족합니다.</p>
-<ul>
-<li>쇠막대기는 자신보다 긴 쇠막대기 위에만 놓일 수 있습니다.</li>
-<li>쇠막대기를 다른 쇠막대기 위에 놓는 경우 완전히 포함되도록 놓되, 끝점은 겹치지 않도록 놓습니다.</li>
-<li>각 쇠막대기를 자르는 레이저는 적어도 하나 존재합니다.</li>
-<li>레이저는 어떤 쇠막대기의 양 끝점과도 겹치지 않습니다.</li>
-</ul>
-<p>아래 그림은 위 조건을 만족하는 예를 보여줍니다. 수평으로 그려진 굵은 실선은 쇠막대기이고, 점은 레이저의 위치, 수직으로 그려진 점선 화살표는 레이저의 발사 방향입니다.</p>
-<p><img src="/images/pipe.png" alt="쇠막대기와 레이저"></p>
-<p>이러한 레이저와 쇠막대기의 배치는 다음과 같이 괄호를 이용하여 왼쪽부터 순서대로 표현할 수 있습니다.</p>
-<p>(a) 레이저는 여는 괄호와 닫는 괄호의 인접한 쌍 ‘()’으로 표현합니다. 또한 모든 ‘()’는 반드시 레이저를 표현합니다.<br>(b) 쇠막대기의 왼쪽 끝은 여는 괄호 ‘(‘로, 오른쪽 끝은 닫힌 괄호 ‘)’로 표현됩니다.</p>
-<p>위 예의 괄호 표현은 그림 위에 주어져 있습니다.<br>쇠막대기는 레이저에 의해 몇 개의 조각으로 잘리는데, 위 예에서 가장 위에 있는 두 개의 쇠막대기는 각각 3개와 2개의 조각으로 잘리고, 이와 같은 방식으로 주어진 쇠막대기들은 총 17개의 조각으로 잘립니다.</p>
-<p>쇠막대기와 레이저의 배치를 표현한 문자열 arrangement가 매개변수로 주어질 때, 잘린 쇠막대기 조각의 총 개수를 return 하도록 solution 함수를 작성해주세요.</p>
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.</p>
+<ol>
+<li>인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다.</li>
+<li>나머지 인쇄 대기목록에서 J보다 중요도가 높은 문서가 한 개라도 존재하면 J를 대기목록의 가장 마지막에 넣습니다.</li>
+<li>그렇지 않으면 J를 인쇄합니다.</li>
+</ol>
+<p>예를 들어, 4개의 문서(A, B, C, D)가 순서대로 인쇄 대기목록에 있고 중요도가 2 1 3 2 라면 C D A B 순으로 인쇄하게 됩니다. 내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 알고 싶습니다. 위의 예에서 C는 1번째로, A는 3번째로 인쇄됩니다.</p>
+<p>현재 대기목록에 있는 문서의 중요도가 순서대로 담긴 배열 priorities와 내가 인쇄를 요청한 문서가 현재 대기목록의 어떤 위치에 있는지를 알려주는 location이 매개변수로 주어질 때, 내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 return 하도록 solution 함수를 작성해주세요.</p>
 <p><br></p>
 <h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ul>
-<li>‘(’면 stack에 push해서 저장한다.</li>
-<li>‘)’일때, 이게 레이저냐 파이프냐에 따라 나뉜다.</li>
-<li>레이저일 경우, stack.size() 또는 stack.length를 이용해 쇠막대기 수를 계산한다.</li>
-<li>이때, 레이저인지는 앞에 입력 문자열의 전 문자가 ‘(‘일때이다.</li>
-<li>파이프일 경우, 쇠막대기 수에 1를 더한다.</li>
-<li>이때, 파이프인지는 앞에 입력 문자열의 전 문자가 ‘)’일때이다.</li>
-<li>중요한건,<ul>
-<li>기본적으로 이런 문제는 stack(배열)에 push/pop을 이용한다.</li>
-<li>stack의 사이즈(크기)를 이용하여 수를 구한다.</li>
-</ul>
-</li>
+<li>queue의 push/shift를 이용한 문제</li>
+<li>Array 중에서 최대값을 구하고, 각 첫 요소가 최대값보다 같거나 크면, queue로 push한다.</li>
+<li>이때, 그 첫 요소가 우리가 찾는 값이면, 그 값의 순서는 queue.length(사이즈)로 몇번째인지 알 수 있다.</li>
+<li>array는 요소의 값이 아니라, 우선순위만 나와있기 때문에, 순서가 같을 수 있다. 그래서 그 첫 요소가 우리가 찾는 값인지 알기 위해, 두번째 인자로 제공되는 location의 인덱스를 활용한다. location을 계속 array안에서 변경시키면서 확인한다.</li>
+<li>그리고, 첫번째 요소만 확인하기 위해, while(i === 0)일때를 사용하여, 계속 첫번째 값만 확인하게 한다.</li>
 </ul>
 <p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const solution = arrangement =&gt; &#123;</span><br><span class="line">  let answer = 0; // 전체 조각난 쇠막대기 수</span><br><span class="line">  let stack = [];</span><br><span class="line">  let ironBar = 0; // 조각난 쇠막대기 수 ------</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; arrangement.length; i++) &#123;</span><br><span class="line">    if(arrangement[i] === &apos;(&apos;) &#123;</span><br><span class="line">      stack.push(arrangement[i]);</span><br><span class="line">    &#125; else if(arrangement[i] === &apos;)&apos;) &#123;</span><br><span class="line">      // check if it is lazer or pipe</span><br><span class="line">      stack.pop();</span><br><span class="line">      // if lazer</span><br><span class="line">      if (arrangement[i-1] === &apos;(&apos;) &#123;</span><br><span class="line">        ironBar = stack.length;</span><br><span class="line">        answer += ironBar;</span><br><span class="line">        // if pipe</span><br><span class="line">      &#125; else if (arrangement[i-1] === &apos;)&apos;) &#123;</span><br><span class="line">        answer += 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(solution(&apos;()(((()())(())()))(())&apos;)) // 17</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function solution(priorities, location) &#123;</span><br><span class="line">  let answer = 0;</span><br><span class="line">  let queue = [];</span><br><span class="line">  let i = 0;</span><br><span class="line"></span><br><span class="line">  while(i === 0) &#123;</span><br><span class="line">    let max = Math.max(...priorities); // max = 9</span><br><span class="line">    if(priorities[i] &lt; max) &#123;</span><br><span class="line">      const notMaxValue = priorities.shift();</span><br><span class="line">      priorities.push(notMaxValue); // [1, 3, 2, 2]</span><br><span class="line">      location === 0 ? location = priorities.length - 1 : location = location - 1;</span><br><span class="line">    &#125; else if(priorities[i] &gt;= max) &#123;</span><br><span class="line">      const maxValue = priorities.shift(); // 9</span><br><span class="line">      queue.push(maxValue); // queue = [9], priorities = [1, 1, 1, 1, 1]</span><br><span class="line">      if(i === location) &#123;</span><br><span class="line">        return answer = queue.length;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        location = location - 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line">console.log(solution([1, 1, 9, 1, 1, 1], 0)); // 5</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -186,19 +173,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/05/printer/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          13. Printer(Stack/Queue)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/05/max-number/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/05/pipe/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">11. 가장 큰 수(정렬)</div>
+      <div class="article-nav-title">12. 짝이 맞지 않는 괄호 문제(Stack/Queue)</div>
     </a>
   
 </nav>
