@@ -98,6 +98,92 @@
         
           <section id="main">
   
+    <article id="post-array-method-basic"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/05/array-method-basic/">Array Method for Basic</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/array-method-basic/" class="article-date">
+	  <time datetime="2018-11-05T02:37:57.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Array-prototype-indexOf"><a href="#1-Array-prototype-indexOf" class="headerlink" title="1. Array.prototype.indexOf()"></a>1. Array.prototype.indexOf()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener">arr.indexOf(searchElement, fromIndex)</a>: arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용</p>
+<p>indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되는 요소가 있는 경우 첫번째 인덱스만 반환된다. 만일 해당하는 요소가 없는 경우, -1을 반환한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 2, 3];</span><br><span class="line">console.log(arr.indexOf(2));    // 1</span><br><span class="line">console.log(arr.indexOf(4));    // -1</span><br><span class="line">console.log(arr.indexOf(2, 2)); // 1</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="2-Array-prototype-concat"><a href="#2-Array-prototype-concat" class="headerlink" title="2. Array.prototype.concat()"></a>2. Array.prototype.concat()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">concat</a> 메소드의 인수로 넘어온 값들(배열 또는 값)을 자신의 복사본에 요소로 추가하고 반환한다. 이때 원본 배열은 변경되지 않는다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = [&apos;x&apos;, &apos;y&apos;, &apos;z&apos;];</span><br><span class="line"></span><br><span class="line">const c = arr1.concat(arr2);</span><br><span class="line">console.log(c); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]</span><br><span class="line"></span><br><span class="line">const d = arr1.concat(&apos;hello&apos;);</span><br><span class="line">console.log(d); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;]</span><br><span class="line"></span><br><span class="line">// 원본 배열은 변하지 않는다.</span><br><span class="line">console.log(arr1); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="3-Array-prototype-join"><a href="#3-Array-prototype-join" class="headerlink" title="3. Array.prototype.join()"></a>3. Array.prototype.join()</h1><hr>
+<p>배열 요소 전체를 연결하여 생성한 문자열을 반환한다. 구분자(separator)는 생략 가능하며 기본 구분자는 ,이다. 이때, 원본 배열은 유지된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</span><br><span class="line"></span><br><span class="line">const x = arr.join();</span><br><span class="line">console.log(x);  // &apos;a,b,c,d&apos;;</span><br><span class="line"></span><br><span class="line">const y = arr.join(&apos;&apos;);</span><br><span class="line">console.log(y);  // &apos;abcd&apos;</span><br><span class="line"></span><br><span class="line">const z = arr.join(&apos;:&apos;);</span><br><span class="line">console.log(z);  // &apos;a:b:c:d&apos;</span><br><span class="line"></span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="4-Array-prototype-reverse"><a href="#4-Array-prototype-reverse" class="headerlink" title="4. Array.prototype.reverse()"></a>4. Array.prototype.reverse()</h1><hr>
+<p>배열 요소의 순서를 반대로 변경한다. 이때 원본 배열이 변경된다. 반환값은 변경된 배열이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = arr1.reverse();</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다</span><br><span class="line">console.log(arr1); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br><span class="line">console.log(arr2); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="5-Array-prototype-slice-start-end"><a href="#5-Array-prototype-slice-start-end" class="headerlink" title="5. Array.prototype.slice(start, end)"></a>5. Array.prototype.slice(start, end)</h1><hr>
+<p>인자로 지정된 배열의 부분을 복사하여 반환한다. 원본 배열은 변경되지 않는다. 첫번째 매개변수 start에 해당하는 인덱스를 갖는 요소부터 매개변수 end에 해당하는 인덱스를 가진 요소 전까지 복사된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];</span><br><span class="line"></span><br><span class="line">// items[1]부터 items[2] 이전(items[2] 미포함)까지 반환</span><br><span class="line">const res2 = arr.slice(1, 2);</span><br><span class="line">console.log(res2);  // [ &apos;b&apos; ]</span><br><span class="line"></span><br><span class="line">// items[1]부터 이후의 모든 요소 반환</span><br><span class="line">const res3 = arr.slice(1);</span><br><span class="line">console.log(res3);  // [ &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 인자가 음수인 경우 배열의 끝에서 2개의 요소를 반환</span><br><span class="line">const res4 = arr.slice(-2);</span><br><span class="line">console.log(res4);  // [ &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 모든 요소를 반환 (= 복사본 생성)</span><br><span class="line">const res5 = arr.slice();</span><br><span class="line">console.log(res5);  // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 원본은 변경되지 않는다.</span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="6-Array-prototype-splice-start-end"><a href="#6-Array-prototype-splice-start-end" class="headerlink" title="6. Array.prototype.splice(start, end)"></a>6. Array.prototype.splice(start, end)</h1><hr>
+<p>기존의 배열의 요소를 제거하고 그 위치에 새로운 요소를 추가한다. 배열 중간에 새로운 요소를 추가할 때도 사용되고, 삭제만 할 때도 사용된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 3, 4, 5, 6];</span><br><span class="line"></span><br><span class="line">// items[1]부터 2개의 요소를 제거하고 제거된 요소를 배열로 반환</span><br><span class="line">const res = arr.splice(1, 2);</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다.</span><br><span class="line">console.log(arr); // [ 1, 4, 5, 6 ]</span><br><span class="line">// 제거한 요소가 배열로 반환된다.</span><br><span class="line">console.log(res);   // [ 2, 3 ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="7-Array-prototype-push-pop-shift-unshift"><a href="#7-Array-prototype-push-pop-shift-unshift" class="headerlink" title="7. Array.prototype.push()/pop()/shift()/unshift()"></a>7. Array.prototype.push()/pop()/shift()/unshift()</h1><hr>
+<p>4가지 메소드는 모두 원본을 변경한다.</p>
+<p><img src="/images/push_pop.png" alt="Array push/pop/shift/unshift"><br>출처: <a href="https://poiemaweb.com/js-array" target="_blank" rel="noopener">Array push/pop/shift/unshift</a></p>
+<p><br></p>
+<h1 id="8-Array-prototype-includes"><a href="#8-Array-prototype-includes" class="headerlink" title="8. Array.prototype.includes()"></a>8. Array.prototype.includes()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.includes(searchElement, fromIndex)</a>: 배열에 특정 요소가 포함되어 있는지 여부를 확인할 때 사용</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3,4];</span><br><span class="line">const result1 = arr.includes(3);</span><br><span class="line">const result2 = arr.includes(1, 1);</span><br><span class="line">console.log(result1); // true</span><br><span class="line">console.log(result2); // false</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3,4]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="9-Array-prototype-toString"><a href="#9-Array-prototype-toString" class="headerlink" title="9. Array.prototype.toString()"></a>9. Array.prototype.toString()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.toString()</a>: 배열에 있는 원소를 문자열로 반환할 때 사용</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3];</span><br><span class="line">const result = arr.toString();</span><br><span class="line">console.log(result); // &quot;1,2,3&quot;</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array-Method/">Array Method</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-javascript-technique"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -790,87 +876,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-execution-context"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/10/31/what-is-execution-context/">실행 컨텍스트란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/10/31/what-is-execution-context/" class="article-date">
-	  <time datetime="2018-10-31T14:42:23.000Z" itemprop="datePublished">October 31, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="실행-컨텍스트-Execution-Context"><a href="#실행-컨텍스트-Execution-Context" class="headerlink" title="실행 컨텍스트(Execution Context)"></a>실행 컨텍스트(Execution Context)</h1><hr>
-<p><strong>실행 컨텍스트</strong>란, 실행 가능한 코드가 실행되기 위해 필요한 환경을 의미하는데, 이 환경은 코드가 실행되기 전에 설정이 된다. 이때, 실행 가능한 코드는 총 3개(전역코드/함수코드/Eval코드)가 있는데, 일반적으로 전역코드/함수코드를 말한다. 여기서 환경이 설정된다는 것은 실행에 필요한 여러가지 정보를 담는다는 뜻이다.</p>
-<p>코드가 전역변수와 외부함수 그리고 그 안에 내부함수 있다고 해보자.</p>
-<p>코드가 실행되기 전, 전역에 실행 컨텍스트가 생성이 되는데, 이것을 전역 실행 컨텍스트라고 한다. 전역 실행 컨텍스트가 생성이 되면, 실행 컨텍스트 스택(콜 스택)에 추가된다. 그리고, 외부함수가 호출이 되면, 외부함수가 실행되기 전에 외부함수에 대한 실행 컨텍스트가 생성이 되는데, 이것을 함수 실행 컨텍스트라고 한다. 이 외부함수 실행 컨텍스트 또한 실행 컨텍스트 스택에 그 전에 추가된 전역 실행 컨텍스트 위에 쌓이게 된다. 내부함수 또한 호출되면, 내부함수 실행되기 전에 내부함수 실행 컨텍스트가 생성되고, 실행 컨텍스트 스택에 있는 외부함수 실행 컨텍스트 위에 쌓이게 된다.</p>
-<p>전체적인 과정에서 봤을때, 코드의 종류(전역코드/함수코드)에 따라 실행 컨텍스트가 생성되고, 실행 컨텍스트 스택에 쌓이는 구조이다.</p>
-<p>실행 컨텍스트가 생성되고 코드가 실행되기 전에, 실행 컨텍스트는 3가지 프로퍼티를 가지게 된다.</p>
-<ul>
-<li>Scope Chain</li>
-<li>VO(변수객체)</li>
-<li>thisvalue</li>
-</ul>
-<p>실행 컨텍스트가 생성이 되면, 먼저 Scope Chain이라는 전역 객체 또는 활성 객체를 가리키는 리스트가 생성되고 초기화 된다. 리스트는 배열처럼 ‘0’: {}, ‘1’: {}, 이런 방식으로 생성되는데, ‘0’은 자기자신(위치)를 가리키고, 1은 자기 위치의 상위 지역을 가리킨다. 예를 들어, 외부함수의 Scope Chain의 ‘0’은 자기 자신인 외부함수를 가리키고, ‘1’은 외부함수의 상위지역인 전역코드를 가리킨다. 좀 더 구체적으로 말하면, ‘0’은 자기자신(외부함수)가 가지고 있는 활성객체(A0)를 가리키고, ‘1’은 상위지역인 전역코드가 가지고 있는 전역객체(GO)를 가리킨다. 그리고, 변수 객체(VO)가 생성되어, 각 코드(전역코드/함수코드)가 가지고 있는 객체를 담는다. 전역코드의 경우, 전역함수와 전역변수를 가지고 있고, 함수코드의 경우, arguments, 내부함수, 지역변수 등을 가지고 있다.</p>
-<p>this의 값은 문맥에 따라 결정이 되는데, 예외사항이 아니면 전역객체를 가리킨다.</p>
-<p>위 내용을 요약하면 다음과 같다.</p>
-<p>순서</p>
-<ul>
-<li>브라우저안에 기본적으로 전역객체(window)가 존재</li>
-<li>(브라우저에서) 코드가 실행되기전, 전역 실행 컨텍스트가 생성</li>
-<li>전역 실행 컨텍스트가 생성되면서, Scope Chain의 리스트 생성 및 초기화(이때, Scope Chain의 리스트 ‘0’은 전역객체를 가리킨다)</li>
-<li>변수객체의 생성후, 변수객체에 전역변수 및 전역함수를 추가</li>
-<li>전역함수를 추가할 때, 전역 함수 객체는 <code>[[Scopes]]</code> 프로퍼티를 가짐(이 프로퍼티는 함수 객체만이 소유하는 내부 프로퍼티로, 함수 객체가 실행되는 환경을 가리킨다.)</li>
-<li>this 값이 결정되기 이전에 this는 전역 객체를 가리키다가, 함수 호출 패턴에 의해 this에 할당되는 값이 결정됨</li>
-<li>전역코드가 실행(예를 들어, 전역변수에 값이 할당되고, 전역함수가 호출됨)</li>
-<li>외부함수가 호출되면, 외부함수에 대한 실행 컨텍스트 생성</li>
-<li>외부함수도 전역 실행 컨텍스트와 같은 방식으로 진행</li>
-<li>이때, 외부함수의 변수객체에는 arguments, 내부함수, 지역변수 등이 포함됨</li>
-<li>외부함수 실행</li>
-<li>내부함수도 위와 동일</li>
-<li>위에서 생성된 각 실행 컨텍스트가 순서대로 실행 컨텍스트 스택에 하나씩 쌓이고, 함수 실행이 끝나면, 해당 함수의 실행 컨텍스트가 제거된다. 전역 실행 컨텍스트는 애플리케이션이 종료될 때까지 유지된다.!!</li>
-</ul>
-<p><br></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Execution-Context/">Execution Context</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -981,6 +986,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/05/array-method-basic/">Array Method for Basic</a></h6>
+              <span>November 5, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/05/javascript-technique/">Javascript Technique for Algorithms</a></h6>
               <span>November 5, 2018</span>
             </div>
@@ -1035,18 +1052,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/03/linkedlist-vs-array/">Linked List와 Array의 차이점</a></h6>
-              <span>November 3, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1056,7 +1061,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

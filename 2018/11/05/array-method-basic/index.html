@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Array Method for Basic | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Array Method" />
+  
+  
+  
+  
+  <meta name="description" content="1. Array.prototype.indexOf() arr.indexOf(searchElement, fromIndex): arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용 indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되">
+<meta name="keywords" content="Array Method">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array Method for Basic">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/05/array-method-basic/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. Array.prototype.indexOf() arr.indexOf(searchElement, fromIndex): arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용 indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/push_pop.png">
+<meta property="og:updated_time" content="2018-11-05T02:37:57.989Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array Method for Basic">
+<meta name="twitter:description" content="1. Array.prototype.indexOf() arr.indexOf(searchElement, fromIndex): arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용 indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/push_pop.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-array-method-basic" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Array Method for Basic
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/array-method-basic/" class="article-date">
+	  <time datetime="2018-11-05T02:37:57.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Array-prototype-indexOf"><a href="#1-Array-prototype-indexOf" class="headerlink" title="1. Array.prototype.indexOf()"></a>1. Array.prototype.indexOf()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener">arr.indexOf(searchElement, fromIndex)</a>: arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용</p>
+<p>indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되는 요소가 있는 경우 첫번째 인덱스만 반환된다. 만일 해당하는 요소가 없는 경우, -1을 반환한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 2, 3];</span><br><span class="line">console.log(arr.indexOf(2));    // 1</span><br><span class="line">console.log(arr.indexOf(4));    // -1</span><br><span class="line">console.log(arr.indexOf(2, 2)); // 1</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="2-Array-prototype-concat"><a href="#2-Array-prototype-concat" class="headerlink" title="2. Array.prototype.concat()"></a>2. Array.prototype.concat()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">concat</a> 메소드의 인수로 넘어온 값들(배열 또는 값)을 자신의 복사본에 요소로 추가하고 반환한다. 이때 원본 배열은 변경되지 않는다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = [&apos;x&apos;, &apos;y&apos;, &apos;z&apos;];</span><br><span class="line"></span><br><span class="line">const c = arr1.concat(arr2);</span><br><span class="line">console.log(c); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]</span><br><span class="line"></span><br><span class="line">const d = arr1.concat(&apos;hello&apos;);</span><br><span class="line">console.log(d); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;]</span><br><span class="line"></span><br><span class="line">// 원본 배열은 변하지 않는다.</span><br><span class="line">console.log(arr1); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="3-Array-prototype-join"><a href="#3-Array-prototype-join" class="headerlink" title="3. Array.prototype.join()"></a>3. Array.prototype.join()</h1><hr>
+<p>배열 요소 전체를 연결하여 생성한 문자열을 반환한다. 구분자(separator)는 생략 가능하며 기본 구분자는 ,이다. 이때, 원본 배열은 유지된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</span><br><span class="line"></span><br><span class="line">const x = arr.join();</span><br><span class="line">console.log(x);  // &apos;a,b,c,d&apos;;</span><br><span class="line"></span><br><span class="line">const y = arr.join(&apos;&apos;);</span><br><span class="line">console.log(y);  // &apos;abcd&apos;</span><br><span class="line"></span><br><span class="line">const z = arr.join(&apos;:&apos;);</span><br><span class="line">console.log(z);  // &apos;a:b:c:d&apos;</span><br><span class="line"></span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="4-Array-prototype-reverse"><a href="#4-Array-prototype-reverse" class="headerlink" title="4. Array.prototype.reverse()"></a>4. Array.prototype.reverse()</h1><hr>
+<p>배열 요소의 순서를 반대로 변경한다. 이때 원본 배열이 변경된다. 반환값은 변경된 배열이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = arr1.reverse();</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다</span><br><span class="line">console.log(arr1); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br><span class="line">console.log(arr2); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="5-Array-prototype-slice-start-end"><a href="#5-Array-prototype-slice-start-end" class="headerlink" title="5. Array.prototype.slice(start, end)"></a>5. Array.prototype.slice(start, end)</h1><hr>
+<p>인자로 지정된 배열의 부분을 복사하여 반환한다. 원본 배열은 변경되지 않는다. 첫번째 매개변수 start에 해당하는 인덱스를 갖는 요소부터 매개변수 end에 해당하는 인덱스를 가진 요소 전까지 복사된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];</span><br><span class="line"></span><br><span class="line">// items[1]부터 items[2] 이전(items[2] 미포함)까지 반환</span><br><span class="line">const res2 = arr.slice(1, 2);</span><br><span class="line">console.log(res2);  // [ &apos;b&apos; ]</span><br><span class="line"></span><br><span class="line">// items[1]부터 이후의 모든 요소 반환</span><br><span class="line">const res3 = arr.slice(1);</span><br><span class="line">console.log(res3);  // [ &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 인자가 음수인 경우 배열의 끝에서 2개의 요소를 반환</span><br><span class="line">const res4 = arr.slice(-2);</span><br><span class="line">console.log(res4);  // [ &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 모든 요소를 반환 (= 복사본 생성)</span><br><span class="line">const res5 = arr.slice();</span><br><span class="line">console.log(res5);  // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 원본은 변경되지 않는다.</span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="6-Array-prototype-splice-start-end"><a href="#6-Array-prototype-splice-start-end" class="headerlink" title="6. Array.prototype.splice(start, end)"></a>6. Array.prototype.splice(start, end)</h1><hr>
+<p>기존의 배열의 요소를 제거하고 그 위치에 새로운 요소를 추가한다. 배열 중간에 새로운 요소를 추가할 때도 사용되고, 삭제만 할 때도 사용된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 3, 4, 5, 6];</span><br><span class="line"></span><br><span class="line">// items[1]부터 2개의 요소를 제거하고 제거된 요소를 배열로 반환</span><br><span class="line">const res = arr.splice(1, 2);</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다.</span><br><span class="line">console.log(arr); // [ 1, 4, 5, 6 ]</span><br><span class="line">// 제거한 요소가 배열로 반환된다.</span><br><span class="line">console.log(res);   // [ 2, 3 ]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="7-Array-prototype-push-pop-shift-unshift"><a href="#7-Array-prototype-push-pop-shift-unshift" class="headerlink" title="7. Array.prototype.push()/pop()/shift()/unshift()"></a>7. Array.prototype.push()/pop()/shift()/unshift()</h1><hr>
+<p>4가지 메소드는 모두 원본을 변경한다.</p>
+<p><img src="/images/push_pop.png" alt="Array push/pop/shift/unshift"><br>출처: <a href="https://poiemaweb.com/js-array" target="_blank" rel="noopener">Array push/pop/shift/unshift</a></p>
+<p><br></p>
+<h1 id="8-Array-prototype-includes"><a href="#8-Array-prototype-includes" class="headerlink" title="8. Array.prototype.includes()"></a>8. Array.prototype.includes()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.includes(searchElement, fromIndex)</a>: 배열에 특정 요소가 포함되어 있는지 여부를 확인할 때 사용</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3,4];</span><br><span class="line">const result1 = arr.includes(3);</span><br><span class="line">const result2 = arr.includes(1, 1);</span><br><span class="line">console.log(result1); // true</span><br><span class="line">console.log(result2); // false</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3,4]</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="9-Array-prototype-toString"><a href="#9-Array-prototype-toString" class="headerlink" title="9. Array.prototype.toString()"></a>9. Array.prototype.toString()</h1><hr>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.toString()</a>: 배열에 있는 원소를 문자열로 반환할 때 사용</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3];</span><br><span class="line">const result = arr.toString();</span><br><span class="line">console.log(result); // &quot;1,2,3&quot;</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3]</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array-Method/">Array Method</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/05/javascript-technique/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Javascript Technique for Algorithms</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Array-prototype-indexOf"><span class="nav-number">1.</span> <span class="nav-text">1. Array.prototype.indexOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Array-prototype-concat"><span class="nav-number">2.</span> <span class="nav-text">2. Array.prototype.concat()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Array-prototype-join"><span class="nav-number">3.</span> <span class="nav-text">3. Array.prototype.join()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Array-prototype-reverse"><span class="nav-number">4.</span> <span class="nav-text">4. Array.prototype.reverse()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Array-prototype-slice-start-end"><span class="nav-number">5.</span> <span class="nav-text">5. Array.prototype.slice(start, end)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Array-prototype-splice-start-end"><span class="nav-number">6.</span> <span class="nav-text">6. Array.prototype.splice(start, end)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Array-prototype-push-pop-shift-unshift"><span class="nav-number">7.</span> <span class="nav-text">7. Array.prototype.push()/pop()/shift()/unshift()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-Array-prototype-includes"><span class="nav-number">8.</span> <span class="nav-text">8. Array.prototype.includes()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Array-prototype-toString"><span class="nav-number">9.</span> <span class="nav-text">9. Array.prototype.toString()</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
