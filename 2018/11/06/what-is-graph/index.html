@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>그래프(Graph)란 무엇인가? | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Graph" />
+  
+  
+  
+  
+  <meta name="description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
+<meta name="keywords" content="Graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="그래프(Graph)란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/what-is-graph/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/graph.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/graph_types.gif">
+<meta property="og:updated_time" content="2018-11-06T02:37:39.231Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="그래프(Graph)란 무엇인가?">
+<meta name="twitter:description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/graph.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-is-graph" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      그래프(Graph)란 무엇인가?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/06/what-is-graph/" class="article-date">
+	  <time datetime="2018-11-06T02:37:39.000Z" itemprop="datePublished">November 6, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="그래프-Graph"><a href="#그래프-Graph" class="headerlink" title="그래프(Graph)"></a>그래프(Graph)</h1><hr>
+<p><strong>그래프(Graph)</strong>란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.</p>
+<p><br></p>
+<h1 id="그래프-Graph-의-용어"><a href="#그래프-Graph-의-용어" class="headerlink" title="그래프(Graph)의 용어"></a>그래프(Graph)의 용어</h1><hr>
+<p><img src="/images/graph.png" alt="Graph"><br>출처: <a href="https://librewiki.net/wiki/%EC%8B%9C%EB%A6%AC%EC%A6%88:%EC%88%98%ED%95%99%EC%9D%B8%EB%93%AF_%EA%B3%BC%ED%95%99%EC%95%84%EB%8B%8C_%EA%B3%B5%ED%95%99%EA%B0%99%EC%9D%80_%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98_%EA%B8%B0%EC%B4%88" target="_blank" rel="noopener">Graph</a></p>
+<ul>
+<li><strong>정점(vertex)</strong>: 위치라는 개념인데, 노드라고도 함.</li>
+<li><strong>간선(edge)</strong>: 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름)</li>
+<li><strong>인접 정점(adjacent vertex)</strong>: 간선에 의해 직접 연결된 정점</li>
+<li><strong>정점의 차수(degree)</strong>: 무방향 그래프에서 하나의 정점에 인접한 정점의 수</li>
+<li><strong>무방향 그래프에 존재하는 정점의 모든 차수의 합 = 그래프의 간선 수의 2배</strong></li>
+<li><strong>진입 차수(in-degree)</strong>: 방향 그래프에서 외부에서 오는 간선의 수 (내차수 라고도 부름)</li>
+<li><strong>진출 차수(out-degree)</strong>: 방향 그래픙에서 외부로 향하는 간선의 수 (외차수 라고도 부름)</li>
+<li><strong>방향 그래프에 있는 정점의 진입 차수 또는 진출 차수의 합 = 방향 그래프의 간선의 수(내차수 + 외차수)</strong></li>
+<li><strong>경로 길이(path length)</strong>: 경로를 구성하는 데 사용된 간선의 수</li>
+<li><strong>단순 경로(simple path)</strong>: 경로 중에서 반복되는 정점이 없는 경우</li>
+<li><strong>사이클(cycle)</strong>: 단순 경로의 시작 정점과 종료 정점이 동일한 경우</li>
+</ul>
+<p><br></p>
+<h1 id="그래프-Graph-의-특징"><a href="#그래프-Graph-의-특징" class="headerlink" title="그래프(Graph)의 특징"></a>그래프(Graph)의 특징</h1><hr>
+<ul>
+<li>그래프는 네트워크 모델이다.</li>
+<li>그래프는 크게 방향 그래프와 무방향 그래프 2가지 종류가 있다.(노드들 사이에서 무방향 경로를 가질 수 있고, 단방향/양방향 경로를 가질 수 있다.)</li>
+<li>루트노드라는 개념과, 부모/자식관계라는 개념이 없다.</li>
+<li>그래프는 순환(Cyclic)/비순환(Acyclic)이 있다.(loop/circuit, self-loop 모두 가능하다.)</li>
+<li>순회는 DFS/BFS로 이루어진다.</li>
+</ul>
+<p><br></p>
+<h1 id="그래프-Graph-의-종류"><a href="#그래프-Graph-의-종류" class="headerlink" title="그래프(Graph)의 종류"></a>그래프(Graph)의 종류</h1><hr>
+<ul>
+<li><strong>무방향 그래프(Undirected Graph)</strong>: 연결 관계에 있어서 방향성이 없는 그래프이다.</li>
+</ul>
+<ul>
+<li><strong>방향 그래프(Directed Graph)</strong>: 간선에 방향성이 존재하는 그래프이다.</li>
+</ul>
+<p><img src="/images/graph_types.gif" alt="Graph Types"><br>출처: <a href="https://www.way2net.co.il/javascript-data-structures-graph/" target="_blank" rel="noopener">Graph Types</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/06/what-is-tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">트리(Tree)란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph"><span class="nav-number">1.</span> <span class="nav-text">그래프(Graph)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-용어"><span class="nav-number">2.</span> <span class="nav-text">그래프(Graph)의 용어</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-특징"><span class="nav-number">3.</span> <span class="nav-text">그래프(Graph)의 특징</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-종류"><span class="nav-number">4.</span> <span class="nav-text">그래프(Graph)의 종류</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
