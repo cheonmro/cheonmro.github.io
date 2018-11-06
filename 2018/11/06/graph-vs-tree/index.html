@@ -3,29 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>그래프(Graph)란 무엇인가? | Hexo</title>
+  <title>그래프(Graph)와 트리(Tree)의 차이점 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Graph" />
+  <meta name="keywords" content="GraphTree" />
   
   
   
   
-  <meta name="description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
-<meta name="keywords" content="Graph">
+  <meta name="description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
+<meta name="keywords" content="Graph,Tree">
 <meta property="og:type" content="article">
-<meta property="og:title" content="그래프(Graph)란 무엇인가?">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/what-is-graph/index.html">
+<meta property="og:title" content="그래프(Graph)와 트리(Tree)의 차이점">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/graph-vs-tree/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
+<meta property="og:description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://cheonmro.github.io/images/graph.png">
-<meta property="og:image" content="https://cheonmro.github.io/images/graph_types.gif">
-<meta property="og:updated_time" content="2018-11-06T02:37:39.231Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/graph-vs-tree.png">
+<meta property="og:updated_time" content="2018-11-06T02:41:24.494Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="그래프(Graph)란 무엇인가?">
-<meta name="twitter:description" content="그래프(Graph) 그래프(Graph)란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.  그래프(Graph)의 용어 출처: Graph  정점(vertex): 위치라는 개념인데, 노드라고도 함. 간선(edge): 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름) 인접 정점(adjac">
-<meta name="twitter:image" content="https://cheonmro.github.io/images/graph.png">
+<meta name="twitter:title" content="그래프(Graph)와 트리(Tree)의 차이점">
+<meta name="twitter:description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/graph-vs-tree.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -106,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-what-is-graph" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-graph-vs-tree" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -114,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      그래프(Graph)란 무엇인가?
+      그래프(Graph)와 트리(Tree)의 차이점
     </h1>
   
 
@@ -122,8 +121,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/06/what-is-graph/" class="article-date">
-	  <time datetime="2018-11-06T02:37:39.000Z" itemprop="datePublished">November 6, 2018</time>
+	<a href="/2018/11/06/graph-vs-tree/" class="article-date">
+	  <time datetime="2018-11-06T02:41:24.000Z" itemprop="datePublished">November 6, 2018</time>
 	</a>
 
       
@@ -138,42 +137,8 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="그래프-Graph"><a href="#그래프-Graph" class="headerlink" title="그래프(Graph)"></a>그래프(Graph)</h1><hr>
-<p><strong>그래프(Graph)</strong>란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.</p>
-<p><br></p>
-<h1 id="그래프-Graph-의-용어"><a href="#그래프-Graph-의-용어" class="headerlink" title="그래프(Graph)의 용어"></a>그래프(Graph)의 용어</h1><hr>
-<p><img src="/images/graph.png" alt="Graph"><br>출처: <a href="https://librewiki.net/wiki/%EC%8B%9C%EB%A6%AC%EC%A6%88:%EC%88%98%ED%95%99%EC%9D%B8%EB%93%AF_%EA%B3%BC%ED%95%99%EC%95%84%EB%8B%8C_%EA%B3%B5%ED%95%99%EA%B0%99%EC%9D%80_%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98_%EA%B8%B0%EC%B4%88" target="_blank" rel="noopener">Graph</a></p>
-<ul>
-<li><strong>정점(vertex)</strong>: 위치라는 개념인데, 노드라고도 함.</li>
-<li><strong>간선(edge)</strong>: 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름)</li>
-<li><strong>인접 정점(adjacent vertex)</strong>: 간선에 의해 직접 연결된 정점</li>
-<li><strong>정점의 차수(degree)</strong>: 무방향 그래프에서 하나의 정점에 인접한 정점의 수</li>
-<li><strong>무방향 그래프에 존재하는 정점의 모든 차수의 합 = 그래프의 간선 수의 2배</strong></li>
-<li><strong>진입 차수(in-degree)</strong>: 방향 그래프에서 외부에서 오는 간선의 수 (내차수 라고도 부름)</li>
-<li><strong>진출 차수(out-degree)</strong>: 방향 그래픙에서 외부로 향하는 간선의 수 (외차수 라고도 부름)</li>
-<li><strong>방향 그래프에 있는 정점의 진입 차수 또는 진출 차수의 합 = 방향 그래프의 간선의 수(내차수 + 외차수)</strong></li>
-<li><strong>경로 길이(path length)</strong>: 경로를 구성하는 데 사용된 간선의 수</li>
-<li><strong>단순 경로(simple path)</strong>: 경로 중에서 반복되는 정점이 없는 경우</li>
-<li><strong>사이클(cycle)</strong>: 단순 경로의 시작 정점과 종료 정점이 동일한 경우</li>
-</ul>
-<p><br></p>
-<h1 id="그래프-Graph-의-특징"><a href="#그래프-Graph-의-특징" class="headerlink" title="그래프(Graph)의 특징"></a>그래프(Graph)의 특징</h1><hr>
-<ul>
-<li>그래프는 네트워크 모델이다.</li>
-<li>그래프는 크게 방향 그래프와 무방향 그래프 2가지 종류가 있다.(노드들 사이에서 무방향 경로를 가질 수 있고, 단방향/양방향 경로를 가질 수 있다.)</li>
-<li>루트노드라는 개념과, 부모/자식관계라는 개념이 없다.</li>
-<li>그래프는 순환(Cyclic)/비순환(Acyclic)이 있다.(loop/circuit, self-loop 모두 가능하다.)</li>
-<li>순회는 DFS/BFS로 이루어진다.</li>
-</ul>
-<p><br></p>
-<h1 id="그래프-Graph-의-종류"><a href="#그래프-Graph-의-종류" class="headerlink" title="그래프(Graph)의 종류"></a>그래프(Graph)의 종류</h1><hr>
-<ul>
-<li><strong>무방향 그래프(Undirected Graph)</strong>: 연결 관계에 있어서 방향성이 없는 그래프이다.</li>
-</ul>
-<ul>
-<li><strong>방향 그래프(Directed Graph)</strong>: 간선에 방향성이 존재하는 그래프이다.</li>
-</ul>
-<p><img src="/images/graph_types.gif" alt="Graph Types"><br>출처: <a href="https://www.way2net.co.il/javascript-data-structures-graph/" target="_blank" rel="noopener">Graph Types</a></p>
+        <h1 id="그래프-Graph-vs-트리-Tree"><a href="#그래프-Graph-vs-트리-Tree" class="headerlink" title="그래프(Graph) vs. 트리(Tree)"></a>그래프(Graph) vs. 트리(Tree)</h1><hr>
+<p><img src="/images/graph-vs-tree.png" alt="Graph vs. Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html" target="_blank" rel="noopener">Graph vs. Tree</a></p>
 
       
     </div>
@@ -184,7 +149,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
 
       
     </footer>
@@ -194,19 +159,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/06/graph-vs-tree/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          그래프(Graph)와 트리(Tree)의 차이점
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/06/what-is-tree/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/06/what-is-graph/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">트리(Tree)란 무엇인가?</div>
+      <div class="article-nav-title">그래프(Graph)란 무엇인가?</div>
     </a>
   
 </nav>
@@ -220,7 +176,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph"><span class="nav-number">1.</span> <span class="nav-text">그래프(Graph)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-용어"><span class="nav-number">2.</span> <span class="nav-text">그래프(Graph)의 용어</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-특징"><span class="nav-number">3.</span> <span class="nav-text">그래프(Graph)의 특징</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-의-종류"><span class="nav-number">4.</span> <span class="nav-text">그래프(Graph)의 종류</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-vs-트리-Tree"><span class="nav-number">1.</span> <span class="nav-text">그래프(Graph) vs. 트리(Tree)</span></a></li></ol>
     
     </div>
   </aside>

@@ -98,6 +98,101 @@
         
           <section id="main">
   
+    <article id="post-how-to-setup-hexo"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/06/how-to-setup-hexo/">hexo를 이용해서 블로그를 설치하는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/06/how-to-setup-hexo/" class="article-date">
+	  <time datetime="2018-08-05T15:24:54.000Z" itemprop="datePublished">August 6, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hexo를-이용해서-블로그-설치하기"><a href="#hexo를-이용해서-블로그-설치하기" class="headerlink" title="hexo를 이용해서 블로그 설치하기"></a>hexo를 이용해서 블로그 설치하기</h1><hr>
+<h2 id="hexo-설치하기"><a href="#hexo-설치하기" class="headerlink" title="hexo 설치하기"></a>hexo 설치하기</h2><hr>
+<p>hexo 설치하기 위해서는 기본적으로 설치해야할 것이 2가지가 있다.</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<p><br></p>
+<p>위 2개를 설치했다면, 먼저 npm을 사용해서 hexo를 설치해야 한다.<br>나같은 경우에는 git을 관리하는 dev 폴더안에서 설치했다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>본인이 원하는 이름(나의 경우: myblog)으로 hexo init을 하고, npm을 설치한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myblog</span><br><span class="line">cd myblog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>hexo 서버를 통해 구축된 hexo 기본 사이트를 확인한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
+<p>위와 같이 따라서 설치하면 기본적인 hexo 블로그를 로컬 호스트로 구축을 할 수 있다.</p>
+<p><br><br><br></p>
+<h2 id="Github에서-제공하는-github-io로-사이트-구축하기"><a href="#Github에서-제공하는-github-io로-사이트-구축하기" class="headerlink" title="Github에서 제공하는 github.io로 사이트 구축하기"></a>Github에서 제공하는 github.io로 사이트 구축하기</h2><hr>
+<p>hexo 블로그를 사용하기 위해서는 깃헙에서 제공하는 블로그용 깃헙사이트가 필요하다.</p>
+<p><br></p>
+<p>Github에서 블로그용으로 만들 repo를 생성한다.<br>repo를 username.github.io 이런식으로 만들면 된다.</p>
+<p><br></p>
+<p>내 컴퓨터로 클론한다.<br>나같은 경우 dev 폴더안에서 클론했다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cheonmro/cheonmro.github.io.git</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br></p>
+<h2 id="config-yml에서-세팅하기"><a href="#config-yml에서-세팅하기" class="headerlink" title="_config.yml에서 세팅하기"></a><code>_config.yml</code>에서 세팅하기</h2><hr>
+<p>실제 사이트 url로 배포하기 위해 기본적인 세팅이 필요하다.<br>세팅 관련해서는 항상 <code>_config.yml</code>에서 한다.</p>
+<p>앞으로 hexo 블로그를 이용해서 작성할 모든 내용들을, 위에서 생성한 블로그용 깃헙에서 관리를 할 것이기 때문에, 아래와 같이 type에 git으로 하고, repository에 자신의 블로그용 깃헙 주소를 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/cheonmro/cheonmro.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br></p>
+<h2 id="구축한-사이트-배포하기"><a href="#구축한-사이트-배포하기" class="headerlink" title="구축한 사이트 배포하기"></a>구축한 사이트 배포하기</h2><hr>
+<p>지금까지 구축한 hexo 블로그를 배포(deploy)한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>위 명령어를 실행하게 되면, 자동으로 commit, push가 되어, 깃헙과 웹사이트(블로그)에 파일들이 generate되어, 기본적인 사이트 구축이 완성되게 된다.(웹사이트 자체를 배포할 때 사용한다.)</p>
+<p><br></p>
+<p>위에서 구축한 사이트를 직접 확인한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cheonmro.github.io/</span><br></pre></td></tr></table></figure></p>
+<p><br><br><br></p>
+<h1 id="hexo-블로그의-테마를-바꾸는-방법"><a href="#hexo-블로그의-테마를-바꾸는-방법" class="headerlink" title="hexo 블로그의 테마를 바꾸는 방법"></a>hexo 블로그의 테마를 바꾸는 방법</h1><hr>
+<p>위와 같이, 기본적인 hexo 블로그 설치는 간단한다.<br>기본적으로 <code>themes</code> 폴더안에 있는 <code>landscape</code> 테마를 바탕으로한 기본 사이트가 구축된다.</p>
+<p>hexo 블로그에서 테마를 바꾸고 싶을 때는, 원하는 테마를 <code>themes</code> 안에 가져오고, <code>_config.yml</code>에서 theme의 이름만 바꿔주면 된다.</p>
+<p>원하는 테마를 <code>themes</code> 폴더안으로 git clone 한다.<br>(나같은 경우는 <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank" rel="noopener">hexo-theme-hipaper</a> 테마를 사용했다.)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iTimeTraveler/hexo-theme-hipaper.git</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p><code>_config.yml</code>에서 theme 옆에 이름을 새로 변경할 테마의 이름으로 바꾼다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: hexo-theme-hipaper</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>기존 테마를 지우고, 새로 변경할 테마로 바꾸려면, hexo 블로그를 다시 배포(deploy)해야한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>위와같이 하면, Github의 파일들이 새로 변경할 테마의 내용들로 바뀌고, 사이트 또한 새롭게 변경된다.</p>
+<p><br></p>
+<p>만약, “Deployer not found: git” 이라는 에러가 난다면, deployer를 설치하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>그리고, 다시 배포한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-hello-world"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -258,6 +353,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/11/06/graph-vs-tree/">그래프(Graph)와 트리(Tree)의 차이점</a></h6>
+              <span>November 6, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/11/06/what-is-graph/">그래프(Graph)란 무엇인가?</a></h6>
               <span>November 6, 2018</span>
             </div>
@@ -312,18 +419,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/05/k-number/">10. K번째 수(정렬)</a></h6>
-              <span>November 5, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -333,7 +428,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
