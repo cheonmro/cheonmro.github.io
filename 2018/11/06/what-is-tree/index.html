@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>트리(Tree)란 무엇인가? | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Tree" />
+  
+  
+  
+  
+  <meta name="description" content="트리(Tree) 트리(Tree)란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.  트리(Tree)의 용어 출처: Tree  루트 노드(root node): 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐. 단말 노드(leaf node): 자식이 없는 노드로, ‘말단 노드’ 또">
+<meta name="keywords" content="Tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="트리(Tree)란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/what-is-tree/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="트리(Tree) 트리(Tree)란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.  트리(Tree)의 용어 출처: Tree  루트 노드(root node): 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐. 단말 노드(leaf node): 자식이 없는 노드로, ‘말단 노드’ 또">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/tree-terms.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/binary_tree.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/binary_search_tree.png">
+<meta property="og:updated_time" content="2018-11-06T01:50:51.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="트리(Tree)란 무엇인가?">
+<meta name="twitter:description" content="트리(Tree) 트리(Tree)란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.  트리(Tree)의 용어 출처: Tree  루트 노드(root node): 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐. 단말 노드(leaf node): 자식이 없는 노드로, ‘말단 노드’ 또">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/tree-terms.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-is-tree" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      트리(Tree)란 무엇인가?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/06/what-is-tree/" class="article-date">
+	  <time datetime="2018-11-06T01:50:51.000Z" itemprop="datePublished">November 6, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="트리-Tree"><a href="#트리-Tree" class="headerlink" title="트리(Tree)"></a>트리(Tree)</h1><hr>
+<p><strong>트리(Tree)</strong>란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.</p>
+<p><br></p>
+<h1 id="트리-Tree-의-용어"><a href="#트리-Tree-의-용어" class="headerlink" title="트리(Tree)의 용어"></a>트리(Tree)의 용어</h1><hr>
+<p><img src="/images/tree-terms.png" alt="Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html" target="_blank" rel="noopener">Tree</a></p>
+<ul>
+<li><strong>루트 노드(root node)</strong>: 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐.</li>
+<li><strong>단말 노드(leaf node)</strong>: 자식이 없는 노드로, ‘말단 노드’ 또는 ‘잎 노드’라고도 함.</li>
+<li><strong>내부(internal) 노드</strong>: 단말 노드가 아닌 노드가 아닌 노드</li>
+<li><strong>간선(edge)</strong>: 노드를 연결하는 선 (link, branch 라고도 부름)</li>
+<li><strong>형제(sibling)</strong>: 같은 부모를 가지는 노드</li>
+<li><strong>노드의 크기(size)</strong>: 자신을 포함한 모든 자손 노드의 개수</li>
+<li><strong>노드의 깊이(depth)</strong>: 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수</li>
+<li><strong>노드의 레벨(level)</strong>: 트리의 특정 깊이를 가지는 노드의 집합</li>
+<li><strong>노드의 차수(degree)</strong>: 하위 트리 개수 / 간선 수 (degree) = 각 노드가 지닌 가지의 수</li>
+<li><strong>트리의 차수(degree of tree)</strong>: 트리의 최대 차수</li>
+<li><strong>트리의 높이(height)</strong>: 루트 노드에서 가장 깊숙히 있는 노드의 깊이</li>
+</ul>
+<p><br></p>
+<h1 id="트리-Tree-의-특징"><a href="#트리-Tree-의-특징" class="headerlink" title="트리(Tree)의 특징"></a>트리(Tree)의 특징</h1><hr>
+<ul>
+<li>트리는 그래프의 한 형태이다. 즉, 그래프 안에 여러 종류 중 트리가 있다.</li>
+<li>트리는 방향이 위에서 아래로만 향하는 방향 그래프이다. 즉, 노드들 사이의 선을 간선(edge)라고 하는데, 트리는 간선의 방향이 위에서 아래이다.</li>
+<li>트리는 DAG(Directed Acyclic Graphs, 방향성이 있는 비순환 그래프)의 한 종류이다. 즉, loop나 circuit이 없고, self-loop도 없다. 즉, 사이클이 없다.</li>
+<li>한 개의 루트 노드만이 존재하며 모든 자식 노드는 한 개의 부모 노드만을 가진다.</li>
+</ul>
+<p><br></p>
+<h1 id="트리-Tree-의-종류"><a href="#트리-Tree-의-종류" class="headerlink" title="트리(Tree)의 종류"></a>트리(Tree)의 종류</h1><hr>
+<ul>
+<li><strong>서브 트리(Sub Tree)</strong>: 전체 트리는 작은 트리로 구성되어 있는데, 이 작은 트리를 서브 트리(Sub Tree)라고 한다.</li>
+</ul>
+<ul>
+<li><strong>이진 트리(Binary Tree)</strong>: 자식 노드가 최대 2개까지만 붙는 트리를 이진 트리(Binary Tree)라고 한다. 즉, 자식 노드가 1개이거나, 2개일 경우 모두 이진 트리이다.</li>
+</ul>
+<p><img src="/images/binary_tree.png" alt="Binary Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_tree" target="_blank" rel="noopener">Binary Tree</a></p>
+<ul>
+<li><strong>이진 검색 트리(Binary Search Tree)</strong>: 노드안에 데이터가 왼쪽 노드와 그 이하 자식 노드들은 현재 노드보다 작아야 하고, 오른쪽 노드와 그 이하 노드들은 현재 노드보다 커야 한다. 이 조건을 만족하는 트리를 이진 검색 트리(Binary Search Tree)라고 한다. 노드를 보고, 해당 노드보다 큰 값을 찾고 싶으면, 오른쪽에서 찾으면 되고, 해당 노드보다 작은 값을 찾고 싶으면, 왼쪽에서 찾으면 된다. 따라서, 어떤 값을 찾을 때, 두 갈래 길을 선택해서 가다보면, 그 값을 찾을 수 있다.</li>
+</ul>
+<p><img src="/images/binary_search_tree.png" alt="Binary Search Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="noopener">Binary Search Tree</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/05/printer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">13. Printer(Stack/Queue)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#트리-Tree"><span class="nav-number">1.</span> <span class="nav-text">트리(Tree)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#트리-Tree-의-용어"><span class="nav-number">2.</span> <span class="nav-text">트리(Tree)의 용어</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#트리-Tree-의-특징"><span class="nav-number">3.</span> <span class="nav-text">트리(Tree)의 특징</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#트리-Tree-의-종류"><span class="nav-number">4.</span> <span class="nav-text">트리(Tree)의 종류</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
