@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>그래프(Graph)와 트리(Tree)의 차이점 | Hexo</title>
+  <title>우선순위 큐(Queue)와 힙(Heap) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="GraphTree" />
+  <meta name="keywords" content="우선순위 큐Heap" />
   
   
   
   
-  <meta name="description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
-<meta name="keywords" content="Graph,Tree">
+  <meta name="description" content="우선순위 큐(Queue) 우선순위 큐(Queue)란, 우선순위 개념을 큐에 도입한 자료구조이다.  우선순위 큐(Queue): 가장 우선순위가 높은 데이터부터 삭제된다. 큐(Queue): 가장 먼저 들어온 데이터부터 삭제된다. 스택(Stack): 가장 최근에 들어온 데이터부터 삭제된다.   힙(Heap)  힙(Heap)이란, 완전 이진 트리(Complete">
+<meta name="keywords" content="우선순위 큐,Heap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="그래프(Graph)와 트리(Tree)의 차이점">
-<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/graph-vs-tree/index.html">
+<meta property="og:title" content="우선순위 큐(Queue)와 힙(Heap)">
+<meta property="og:url" content="https://cheonmro.github.io/2018/11/06/what-is-heap/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
+<meta property="og:description" content="우선순위 큐(Queue) 우선순위 큐(Queue)란, 우선순위 개념을 큐에 도입한 자료구조이다.  우선순위 큐(Queue): 가장 우선순위가 높은 데이터부터 삭제된다. 큐(Queue): 가장 먼저 들어온 데이터부터 삭제된다. 스택(Stack): 가장 최근에 들어온 데이터부터 삭제된다.   힙(Heap)  힙(Heap)이란, 완전 이진 트리(Complete">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://cheonmro.github.io/images/graph-vs-tree.png">
-<meta property="og:updated_time" content="2018-11-06T02:41:24.494Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/types-of-heap.png">
+<meta property="og:updated_time" content="2018-11-06T03:08:59.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="그래프(Graph)와 트리(Tree)의 차이점">
-<meta name="twitter:description" content="그래프(Graph) vs. 트리(Tree) 출처: Graph vs. Tree">
-<meta name="twitter:image" content="https://cheonmro.github.io/images/graph-vs-tree.png">
+<meta name="twitter:title" content="우선순위 큐(Queue)와 힙(Heap)">
+<meta name="twitter:description" content="우선순위 큐(Queue) 우선순위 큐(Queue)란, 우선순위 개념을 큐에 도입한 자료구조이다.  우선순위 큐(Queue): 가장 우선순위가 높은 데이터부터 삭제된다. 큐(Queue): 가장 먼저 들어온 데이터부터 삭제된다. 스택(Stack): 가장 최근에 들어온 데이터부터 삭제된다.   힙(Heap)  힙(Heap)이란, 완전 이진 트리(Complete">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/types-of-heap.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -105,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-graph-vs-tree" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-what-is-heap" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -113,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      그래프(Graph)와 트리(Tree)의 차이점
+      우선순위 큐(Queue)와 힙(Heap)
     </h1>
   
 
@@ -121,8 +121,8 @@
     
     <div class="article-meta">
       
-	<a href="/2018/11/06/graph-vs-tree/" class="article-date">
-	  <time datetime="2018-11-06T02:41:24.000Z" itemprop="datePublished">November 6, 2018</time>
+	<a href="/2018/11/06/what-is-heap/" class="article-date">
+	  <time datetime="2018-11-06T03:08:59.000Z" itemprop="datePublished">November 6, 2018</time>
 	</a>
 
       
@@ -137,8 +137,33 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="그래프-Graph-vs-트리-Tree"><a href="#그래프-Graph-vs-트리-Tree" class="headerlink" title="그래프(Graph) vs. 트리(Tree)"></a>그래프(Graph) vs. 트리(Tree)</h1><hr>
-<p><img src="/images/graph-vs-tree.png" alt="Graph vs. Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html" target="_blank" rel="noopener">Graph vs. Tree</a></p>
+        <h1 id="우선순위-큐-Queue"><a href="#우선순위-큐-Queue" class="headerlink" title="우선순위 큐(Queue)"></a>우선순위 큐(Queue)</h1><hr>
+<p><strong>우선순위 큐(Queue)</strong>란, 우선순위 개념을 큐에 도입한 자료구조이다.</p>
+<ul>
+<li><strong>우선순위 큐(Queue)</strong>: 가장 우선순위가 높은 데이터부터 삭제된다.</li>
+<li><strong>큐(Queue)</strong>: 가장 먼저 들어온 데이터부터 삭제된다.</li>
+<li><strong>스택(Stack)</strong>: 가장 최근에 들어온 데이터부터 삭제된다.</li>
+</ul>
+<p><br></p>
+<h1 id="힙-Heap"><a href="#힙-Heap" class="headerlink" title="힙(Heap)"></a>힙(Heap)</h1><hr>
+<p> <strong>힙(Heap)</strong>이란, 완전 이진 트리(Complete Binary Tree)의 일종으로, 우선순위 큐를 위해 만들어진 자료구조이다.</p>
+<p> 여러 개의 값들 중에서, 최대값이나 최소값을 빠르게 찾아내도록 만들어진 자료구조이다.</p>
+<p> *<strong>완전 이진 트리</strong>란, 마지막 레벨을 제외한 나머지 모든 레벨에서 노드가 완전히 채워진 트리를 말한다. 또한, 마지막 레벨은 꽉 차 있지 않아도 되지만, 노드가 왼쪽에서 오른쪽으로 채워져야 한다.</p>
+<p><br></p>
+<h1 id="힙-Heap-의-종류"><a href="#힙-Heap-의-종류" class="headerlink" title="힙(Heap)의 종류"></a>힙(Heap)의 종류</h1><hr>
+<ul>
+<li><strong>최대 힙(max heap)</strong><ul>
+<li>부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>최소 힙(min heap)</strong><ul>
+<li>부모 노드의 키 값이 자식 노드의 키 값보다 크거나 같은 완전 이진 트리</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/types-of-heap.png" alt="Types of Heap"><br>출처: <a href="https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html" target="_blank" rel="noopener">ypes of Heap</a></p>
 
       
     </div>
@@ -149,7 +174,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Heap/">Heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/우선순위-큐/">우선순위 큐</a></li></ul>
 
       
     </footer>
@@ -159,19 +184,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/06/what-is-heap/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          우선순위 큐(Queue)와 힙(Heap)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/06/what-is-graph/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/06/graph-vs-tree/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">그래프(Graph)란 무엇인가?</div>
+      <div class="article-nav-title">그래프(Graph)와 트리(Tree)의 차이점</div>
     </a>
   
 </nav>
@@ -185,7 +201,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#그래프-Graph-vs-트리-Tree"><span class="nav-number">1.</span> <span class="nav-text">그래프(Graph) vs. 트리(Tree)</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#우선순위-큐-Queue"><span class="nav-number">1.</span> <span class="nav-text">우선순위 큐(Queue)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#힙-Heap"><span class="nav-number">2.</span> <span class="nav-text">힙(Heap)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#힙-Heap-의-종류"><span class="nav-number">3.</span> <span class="nav-text">힙(Heap)의 종류</span></a></li></ol>
     
     </div>
   </aside>
