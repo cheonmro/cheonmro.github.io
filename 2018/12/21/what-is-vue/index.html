@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue &amp; MVVM Pattern | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="VueMVVM" />
+  
+  
+  
+  
+  <meta name="description" content="What is Vue? Vue.js 공식사이트에서는 Vue.js를 ‘점진적인 JavaScript 프레임워크’(The Progressive JavaScript Framework)라 소개한다. Vue.js의 코어 라이브러리는 React와 유사하게 데이터 바인딩과 컴포넌트에만 집중한다. 그러나 복잡한 대규모 애플리케이션을 개발하려면 라우팅, 상태 공유, 컴포넌트">
+<meta name="keywords" content="Vue,MVVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue &amp; MVVM Pattern">
+<meta property="og:url" content="https://cheonmro.github.io/2018/12/21/what-is-vue/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="What is Vue? Vue.js 공식사이트에서는 Vue.js를 ‘점진적인 JavaScript 프레임워크’(The Progressive JavaScript Framework)라 소개한다. Vue.js의 코어 라이브러리는 React와 유사하게 데이터 바인딩과 컴포넌트에만 집중한다. 그러나 복잡한 대규모 애플리케이션을 개발하려면 라우팅, 상태 공유, 컴포넌트">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/vue.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/mvvm.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/mvvm_p.JPG">
+<meta property="og:updated_time" content="2018-12-20T15:32:39.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue &amp; MVVM Pattern">
+<meta name="twitter:description" content="What is Vue? Vue.js 공식사이트에서는 Vue.js를 ‘점진적인 JavaScript 프레임워크’(The Progressive JavaScript Framework)라 소개한다. Vue.js의 코어 라이브러리는 React와 유사하게 데이터 바인딩과 컴포넌트에만 집중한다. 그러나 복잡한 대규모 애플리케이션을 개발하려면 라우팅, 상태 공유, 컴포넌트">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/vue.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-is-vue" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vue &amp; MVVM Pattern
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/21/what-is-vue/" class="article-date">
+	  <time datetime="2018-12-20T15:32:39.000Z" itemprop="datePublished">December 21, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="What-is-Vue"><a href="#What-is-Vue" class="headerlink" title="What is Vue?"></a>What is Vue?</h1><hr>
+<p>Vue.js 공식사이트에서는 Vue.js를 <strong>‘점진적인 JavaScript 프레임워크’(The Progressive JavaScript Framework)</strong>라 소개한다. Vue.js의 코어 라이브러리는 React와 유사하게 데이터 바인딩과 컴포넌트에만 집중한다. 그러나 복잡한 대규모 애플리케이션을 개발하려면 라우팅, 상태 공유, 컴포넌트 간의 통신 등을 위해 별도의 수많은 도구가 필요해진다. Ember나 Angular는 이런 도구를 프레임워크에 내재하는 형태로 접근한다. React는 도구를 제공하는 역할을 커뮤니티를 통한 생태계에 맡기고 있다.</p>
+<p>Vue.js는 중간적인 형태로 접근을 한다. 코어는 최소한의 기능만 제공하고, 필요한 다른 도구는 별도로 제공한다. Vue.js의 도구는 모두 공식적으로 관리되고 완성도 높은 문서가 함께 제공된다.</p>
+<p><img src="/images/vue.png" alt="Vue"><br>출처: <a href="https://joshua1988.github.io/web_dev/vuejs-tutorial-for-beginner/" target="_blank" rel="noopener">Vue</a></p>
+<p>위에서 Vue.js는 프레임워크라고 말했지만, ‘점진적인’ 말에 주목해야 한다. 즉, Vue.js는 작은 화면단 라이브러리 역할부터 큰 규모의 웹 애플리케이션 개발을 돕는 프레임워크 역할까지 점진적으로 적용할 수 있는 프론트엔드 프레임워크를 말한다. Vue.js는 MVVM 패턴에서 View와 Model을 연결해주는 ViewModel 계층에 초점을 둔 프레임워크이다. 뷰모델을 통해서 양방향 데이터 바인딩이 가능하게 해주며, 뷰 계층을 좀 더 간단하고 유연하게 디자인하게 해준다. 즉, 모델과 뷰의 동기화 역할을 한다.</p>
+<p><br></p>
+<h1 id="MVVM-Pattern"><a href="#MVVM-Pattern" class="headerlink" title="MVVM Pattern"></a>MVVM Pattern</h1><hr>
+<p><strong>MVVM 패턴</strong>이란, Mode - View - ViewModel의 줄임말로, 로직과 UI의 분리를 위해 설계된 패턴이다. 웹페이지는 돔과 자바스크립트로 만들어지게 되는데 돔이 View 역할을 하고, 자바스크립트가 Model 역할을 한다. 뷰모델이 없는 경우에는 직접 모델과 뷰를 연결해야 한다. 그러나 뷰모델이 중간에서 연결해 주는 것이 MVVM 모델이다.</p>
+<p><img src="/images/mvvm.png" alt="MVVM Pattern"><br>출처: <a href="https://meetup.toast.com/posts/99" target="_blank" rel="noopener">MVVM Pattern</a></p>
+<p>사용자 인터페이스에 해당하는 뷰(View)와 뷰에 표시되는 데이터(Model) 그리고 뷰(View)와 모델(Model) 사이에서 여러 비즈니스 로직을 처리하는 뷰-모델(View-Model)로 분리하여, 유지보수를 쉽게하고 뷰(View) 처리에 다양한 기능을 사용할 수 있게 되었다.</p>
+<p>MVVM Pattern을 총 3개로 나눌 수 있다.</p>
+<ul>
+<li>Model (비즈니스 규칙, 데이터 접근, 모델 클래스)</li>
+<li>View (사용자 인터페이스)</li>
+<li>ViewModel (모델과 뷰 사이의 인터페이스)</li>
+</ul>
+<p>뷰모델(ViewModel)은 모델(Model)과 뷰(View)사이에 인터페이스 역할을 한다.<br>뷰모델은 모델의 데이터를 뷰에 바인딩하고, 명령어를 사용하여 모든 UI의 동작들을 다룬다.<br>뷰는 뷰모델의 프로퍼티에 제어값을 바인딩하며 차례대로 모델 객체에 있는 데이터를 노출시킨다.</p>
+<p>예를 들어 사용자가 뷰에 있는 계산기 프로그램을 사용하여 결과값을 요청하는 버튼을 클릭했을 때, 뷰모델이 요청받은 동작을 수행한다. 뷰모델의 연산 기능을 담당하는 명령어는 연산 후 모델의 데이터 값을 변경시킨다. 만약 뷰모델의 속성값이 변경되면(모델의 데이터 값이 변경되면) 새로운 속성 값들은 데이터 바인딩(data binding)과 알림(notification)을 통해 자동적으로 뷰에 적용된다.</p>
+<p>간단한 코드로 보면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">// View</span><br><span class="line">&lt;div id = “app”</span><br><span class="line">    &#123;&#123;message&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// Model</span><br><span class="line">var model = &#123;</span><br><span class="line">    message : “뷰 생성&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line"> new Vue(&#123;</span><br><span class="line">    el : ‘#app’,</span><br><span class="line">    data : model</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/mvvm_p.JPG" alt="MVVM Pattern"><br>출처: <a href="https://wikidocs.net/17701" target="_blank" rel="noopener">MVVM Pattern</a></p>
+<p><br></p>
+<h1 id="Todo-앱으로-MVVM-Pattern으로-개발하기"><a href="#Todo-앱으로-MVVM-Pattern으로-개발하기" class="headerlink" title="Todo 앱으로 MVVM Pattern으로 개발하기"></a>Todo 앱으로 MVVM Pattern으로 개발하기</h1><hr>
+<p>먼저, 부모 역할을 하는 Todolist.vue가 있는데, 여기서 Todo List App을 클릭하면, 라우터를 통해 홈(‘/‘)으로 이동한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div id=&quot;todolistapp&quot;&gt;</span><br><span class="line">        &lt;div id=&quot;header&quot; class=&quot;header&quot;&gt;</span><br><span class="line">            &lt;router-link to=&apos;/&apos;&gt;&lt;h2&gt;Todo List App&lt;/h2&gt;&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&apos;/note&apos;&gt;&lt;p&gt;Note&lt;/p&gt;&lt;/router-link&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;br&gt;</span><br><span class="line"></span><br><span class="line">        &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;todo-list&apos;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>아래는, Todo를 추가할 수 있는 Todo.vue인데, 여기서는 InputTodo.vue와 List.vue를 보여준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;input-todo /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line"></span><br><span class="line">        &lt;list&gt;&lt;/list&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import InputTodo from &apos;./InputTodo&apos;;</span><br><span class="line">import List from &apos;./List&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;todo&apos;,</span><br><span class="line">    components : &#123; InputTodo, List &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>아래는, InputTodo.vue이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    // View</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input class=&quot;input&quot; type=&quot;text&quot; id=&quot;task&quot; v-model=&quot;todo&quot;</span><br><span class="line">            placeholder=&quot;입력 후 엔터!&quot; v-on:keyup.enter=&quot;addTodo&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;addbutton&quot; v-on:click=&quot;addTodo&quot;&gt;추 가&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">import eventBus from &apos;../EventBus&apos;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;input-todo&apos;,</span><br><span class="line">    // Model</span><br><span class="line">    data : function() &#123;</span><br><span class="line">        return &#123; todo : &quot;&quot; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods : &#123;</span><br><span class="line">        addTodo : function() &#123;</span><br><span class="line">            console.log(this.todo);</span><br><span class="line">            eventBus.$emit(&apos;add-todo&apos;, this.todo);</span><br><span class="line">            this.todo = &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>아래는, List.vue이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    // View</span><br><span class="line">    &lt;ul id=&quot;todolist&quot;&gt;</span><br><span class="line">        &lt;li v-for=&quot;a in todolist&quot; :key=&quot;a.id&quot; :class=&quot;checked(a.done)&quot;</span><br><span class="line">            @click=&quot;doneToggle(a.id)&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; a.todo &#125;&#125;&lt;/span&gt;</span><br><span class="line">            &lt;span v-if=&quot;a.done&quot;&gt; (완료)&lt;/span&gt;</span><br><span class="line">            &lt;span class=&quot;close&quot; v-on:click.stop=&quot;deleteTodo(a.id)&quot;&gt;&amp;#x00D7;&lt;/span&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">import eventBus from &apos;../EventBus&apos;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line">export default &#123;</span><br><span class="line">    created : function() &#123;</span><br><span class="line">         eventBus.$on(&apos;add-todo&apos;, this.addTodo);</span><br><span class="line">    &#125;,</span><br><span class="line">    // Model</span><br><span class="line">    data : function() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            todolist : [</span><br><span class="line">                &#123; id:1, todo : &quot;vue&quot;, done:false &#125;,</span><br><span class="line">                &#123; id:2, todo : &quot;react&quot;, done:true &#125;,</span><br><span class="line">                &#123; id:3, todo : &quot;python&quot;, done:false &#125;,</span><br><span class="line">                &#123; id:4, todo : &quot;java&quot;, done:false &#125;,</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods : &#123;</span><br><span class="line">        checked : function(done) &#123;</span><br><span class="line">            if(done) return &#123; checked:true &#125;;</span><br><span class="line">            else return &#123; checked:false &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        addTodo : function(todo) &#123;</span><br><span class="line">            if (todo !== &quot;&quot;) &#123;</span><br><span class="line">                this.todolist.push(</span><br><span class="line">                    &#123; id:new Date().getTime(), todo : todo, done:false &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        doneToggle : function(id) &#123;</span><br><span class="line">            var index = this.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">            this.todolist[index].done = !this.todolist[index].done;</span><br><span class="line">        &#125;,</span><br><span class="line">        deleteTodo : function(id) &#123;</span><br><span class="line">            var index = this.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">            this.todolist.splice(index,1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVVM/">MVVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/18/what-is-stablecoin/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">What Is Stablecoin?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Vue"><span class="nav-number">1.</span> <span class="nav-text">What is Vue?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVVM-Pattern"><span class="nav-number">2.</span> <span class="nav-text">MVVM Pattern</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Todo-앱으로-MVVM-Pattern으로-개발하기"><span class="nav-number">3.</span> <span class="nav-text">Todo 앱으로 MVVM Pattern으로 개발하기</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
