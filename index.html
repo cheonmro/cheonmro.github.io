@@ -98,6 +98,141 @@
         
           <section id="main">
   
+    <article id="post-vue-project"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/22/vue-project/">Vue 프로젝트 Directory 구조</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/22/vue-project/" class="article-date">
+	  <time datetime="2018-12-22T08:23:03.000Z" itemprop="datePublished">December 22, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vue-프로젝트-Directory-구조-생성"><a href="#Vue-프로젝트-Directory-구조-생성" class="headerlink" title="Vue 프로젝트 Directory 구조 생성"></a>Vue 프로젝트 Directory 구조 생성</h1><hr>
+<p>Vue 프로젝트를 vue-cli 명령어로 입력해서 프로젝트 구조를 생성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create &lt;project name&gt;</span><br></pre></td></tr></table></figure></p>
+<p>vue-cli 2.x 버전에서는 프로젝트 생성시, 선택가능한 템플릿(simple, webpack 등)이 있었으나, vue-cli 3 버전부터는 기본적인 프로젝트를 먼저 생성하고, 필요한 플러그인을 그때마다 추가하여 자신이 원하는 구조로 프로젝트를 변경할 수 있게 되었다.</p>
+<p><br></p>
+<h1 id="플러그인-설치"><a href="#플러그인-설치" class="headerlink" title="플러그인 설치"></a>플러그인 설치</h1><hr>
+<p>기본적으로, 프로젝트를 생성할 때 pre-installed 플러그인을 추가하여 설치할 수 있다. 이후, 필요한 플러그인이 있을 때마다 다음과 같은 명령어로 이미 생성된 프로젝트에 플러그인을 추가할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue add @vue/eslint</span><br></pre></td></tr></table></figure></p>
+<p>@vue/eslint 명령어는 @vue/cli-plugin-eslint 명령어의 약어다.</p>
+<p>플러그인 중에서 vue-roter와 vuex는 특별한 케이스로 다음과 같이 설치한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue add router</span><br><span class="line">vue add vuex</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Vue-프로젝트-파일과-구조"><a href="#Vue-프로젝트-파일과-구조" class="headerlink" title="Vue 프로젝트 파일과 구조"></a>Vue 프로젝트 파일과 구조</h1><hr>
+<p>Vue 프로젝트 생성시, 생성되는 파일과 구조는 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Directory/File</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dist</td>
+<td style="text-align:center">Production용으로 빌드를 하면, 최종 결과물이 나오는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">public</td>
+<td style="text-align:center">공용으로 접근 가능한 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">public/index.html</td>
+<td style="text-align:center">어플리케이션의 뼈대가 되는 html 파일</td>
+</tr>
+<tr>
+<td style="text-align:center">public/favicon.io</td>
+<td style="text-align:center">웹브라우저 주소창에 표시되는 웹사이트를 대표하는 아이콘</td>
+</tr>
+<tr>
+<td style="text-align:center">src</td>
+<td style="text-align:center">애플리케이션의 소스코드가 있는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">src/main.js</td>
+<td style="text-align:center">Vue 인스턴스를 생성하는 javascript 파일</td>
+</tr>
+<tr>
+<td style="text-align:center">src/App.vue</td>
+<td style="text-align:center">Vue 애플리케이션의 가장 최상위 컴포넌트</td>
+</tr>
+<tr>
+<td style="text-align:center">src/assets</td>
+<td style="text-align:center">이미지 등 static assets이 모여 있는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">src/components</td>
+<td style="text-align:center">Vue 컴포넌트들이 모여 있는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">src/router.js</td>
+<td style="text-align:center">Vue Router로 설정한 라우팅 정보</td>
+</tr>
+<tr>
+<td style="text-align:center">src/views</td>
+<td style="text-align:center">화면을 전체 구성하는 View와 관련된 파일(라우팅과 관련된 컴포넌트들이 모여 있는 Directory)</td>
+</tr>
+<tr>
+<td style="text-align:center">test</td>
+<td style="text-align:center">테스트 관련된 코드가 있는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">babel.config.js</td>
+<td style="text-align:center">babel을 위한 설정 파일</td>
+</tr>
+<tr>
+<td style="text-align:center">node_modules</td>
+<td style="text-align:center">yarn 또는 npm으로 설치한 의존성 모듈들이 있는 Directory</td>
+</tr>
+<tr>
+<td style="text-align:center">package.json</td>
+<td style="text-align:center">Vue 프로젝트의 메타 정보와 해당 프로젝트에서 사용하는 패키지(모듈)(의존성관련 정보)들의 정보가 저장되는 파일</td>
+</tr>
+<tr>
+<td style="text-align:center">package-lock.json</td>
+<td style="text-align:center">node_modules(의존성 트리) Directory에 대한 모든 정보를 가지고 있는 파일</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-what-is-vue"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -936,97 +1071,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-graph"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/06/what-is-graph/">그래프(Graph)란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/06/what-is-graph/" class="article-date">
-	  <time datetime="2018-11-06T02:37:39.000Z" itemprop="datePublished">November 6, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="그래프-Graph"><a href="#그래프-Graph" class="headerlink" title="그래프(Graph)"></a>그래프(Graph)</h1><hr>
-<p><strong>그래프(Graph)</strong>란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.</p>
-<p><br></p>
-<h1 id="그래프-Graph-의-용어"><a href="#그래프-Graph-의-용어" class="headerlink" title="그래프(Graph)의 용어"></a>그래프(Graph)의 용어</h1><hr>
-<p><img src="/images/graph.png" alt="Graph"><br>출처: <a href="https://librewiki.net/wiki/%EC%8B%9C%EB%A6%AC%EC%A6%88:%EC%88%98%ED%95%99%EC%9D%B8%EB%93%AF_%EA%B3%BC%ED%95%99%EC%95%84%EB%8B%8C_%EA%B3%B5%ED%95%99%EA%B0%99%EC%9D%80_%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98_%EA%B8%B0%EC%B4%88" target="_blank" rel="noopener">Graph</a></p>
-<ul>
-<li><strong>정점(vertex)</strong>: 위치라는 개념인데, 노드라고도 함.</li>
-<li><strong>간선(edge)</strong>: 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름)</li>
-<li><strong>인접 정점(adjacent vertex)</strong>: 간선에 의해 직접 연결된 정점</li>
-<li><strong>정점의 차수(degree)</strong>: 무방향 그래프에서 하나의 정점에 인접한 정점의 수</li>
-<li><strong>무방향 그래프에 존재하는 정점의 모든 차수의 합 = 그래프의 간선 수의 2배</strong></li>
-<li><strong>진입 차수(in-degree)</strong>: 방향 그래프에서 외부에서 오는 간선의 수 (내차수 라고도 부름)</li>
-<li><strong>진출 차수(out-degree)</strong>: 방향 그래픙에서 외부로 향하는 간선의 수 (외차수 라고도 부름)</li>
-<li><strong>방향 그래프에 있는 정점의 진입 차수 또는 진출 차수의 합 = 방향 그래프의 간선의 수(내차수 + 외차수)</strong></li>
-<li><strong>경로 길이(path length)</strong>: 경로를 구성하는 데 사용된 간선의 수</li>
-<li><strong>단순 경로(simple path)</strong>: 경로 중에서 반복되는 정점이 없는 경우</li>
-<li><strong>사이클(cycle)</strong>: 단순 경로의 시작 정점과 종료 정점이 동일한 경우</li>
-</ul>
-<p><br></p>
-<h1 id="그래프-Graph-의-특징"><a href="#그래프-Graph-의-특징" class="headerlink" title="그래프(Graph)의 특징"></a>그래프(Graph)의 특징</h1><hr>
-<ul>
-<li>그래프는 네트워크 모델이다.</li>
-<li>그래프는 크게 방향 그래프와 무방향 그래프 2가지 종류가 있다.(노드들 사이에서 무방향 경로를 가질 수 있고, 단방향/양방향 경로를 가질 수 있다.)</li>
-<li>루트노드라는 개념과, 부모/자식관계라는 개념이 없다.</li>
-<li>그래프는 순환(Cyclic)/비순환(Acyclic)이 있다.(loop/circuit, self-loop 모두 가능하다.)</li>
-<li>순회는 DFS/BFS로 이루어진다.</li>
-</ul>
-<p><br></p>
-<h1 id="그래프-Graph-의-종류"><a href="#그래프-Graph-의-종류" class="headerlink" title="그래프(Graph)의 종류"></a>그래프(Graph)의 종류</h1><hr>
-<ul>
-<li><strong>무방향 그래프(Undirected Graph)</strong>: 연결 관계에 있어서 방향성이 없는 그래프이다.</li>
-</ul>
-<ul>
-<li><strong>방향 그래프(Directed Graph)</strong>: 간선에 방향성이 존재하는 그래프이다.</li>
-</ul>
-<p><img src="/images/graph_types.gif" alt="Graph Types"><br>출처: <a href="https://www.way2net.co.il/javascript-data-structures-graph/" target="_blank" rel="noopener">Graph Types</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -1132,6 +1181,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/12/22/vue-project/">Vue 프로젝트 Directory 구조</a></h6>
+              <span>December 22, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/12/21/what-is-vue/">Vue &amp; MVVM Pattern</a></h6>
               <span>December 21, 2018</span>
             </div>
@@ -1186,18 +1247,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/13/cryptocurrency-introduction-stage/">금융의 새로운 패러다임, 암호화폐(도입기)</a></h6>
-              <span>November 13, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1207,7 +1256,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
