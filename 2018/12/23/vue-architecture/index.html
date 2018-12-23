@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue Architecture | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="VueArchitecture" />
+  
+  
+  
+  
+  <meta name="description" content="Component 단위로 개발하는 Vue Vue는 컴포넌트 단위로 개발할 수 있다. 컴포넌트(Component)란, html, css, javascript를 1개의 파일 단위로 나눠서 개발하는 것을 말한다. Vue에서는 이를 싱글 파일 컴포넌트라고 하는데, UI 단위로 나눠서 개발하여, 코드의 재사용 측면에서 좋다. 즉, Vue.js는 컴포넌트를 조합해 전">
+<meta name="keywords" content="Vue,Architecture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Architecture">
+<meta property="og:url" content="https://cheonmro.github.io/2018/12/23/vue-architecture/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Component 단위로 개발하는 Vue Vue는 컴포넌트 단위로 개발할 수 있다. 컴포넌트(Component)란, html, css, javascript를 1개의 파일 단위로 나눠서 개발하는 것을 말한다. Vue에서는 이를 싱글 파일 컴포넌트라고 하는데, UI 단위로 나눠서 개발하여, 코드의 재사용 측면에서 좋다. 즉, Vue.js는 컴포넌트를 조합해 전">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-23T11:57:29.995Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue Architecture">
+<meta name="twitter:description" content="Component 단위로 개발하는 Vue Vue는 컴포넌트 단위로 개발할 수 있다. 컴포넌트(Component)란, html, css, javascript를 1개의 파일 단위로 나눠서 개발하는 것을 말한다. Vue에서는 이를 싱글 파일 컴포넌트라고 하는데, UI 단위로 나눠서 개발하여, 코드의 재사용 측면에서 좋다. 즉, Vue.js는 컴포넌트를 조합해 전">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-vue-architecture" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vue Architecture
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/23/vue-architecture/" class="article-date">
+	  <time datetime="2018-12-23T11:57:29.000Z" itemprop="datePublished">December 23, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Component-단위로-개발하는-Vue"><a href="#Component-단위로-개발하는-Vue" class="headerlink" title="Component 단위로 개발하는 Vue"></a>Component 단위로 개발하는 Vue</h1><hr>
+<p>Vue는 컴포넌트 단위로 개발할 수 있다. <strong>컴포넌트(Component)란, html, css, javascript를 1개의 파일 단위로 나눠서 개발하는 것을 말한다.</strong> Vue에서는 이를 싱글 파일 컴포넌트라고 하는데, UI 단위로 나눠서 개발하여, 코드의 재사용 측면에서 좋다.</p>
+<p>즉, Vue.js는 컴포넌트를 조합해 전체 애플리케이션을 만든다. 이때, 컴포넌트들은 부모-자식 관계를 갖는 트리구조로 작성할 수 있다.</p>
+<p>Vue 프로젝트를 생성하게 되면, 다양한 파일이 만들어진다.</p>
+<p><br></p>
+<h1 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h1><hr>
+<p><strong>index.html: 어플리케이션 전체의 뼈대가 되는 html 파일이다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;link rel=&quot;icon&quot; href=&quot;&lt;%= BASE_URL %&gt;favicon.ico&quot;&gt;</span><br><span class="line">    &lt;title&gt;what&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;noscript&gt;</span><br><span class="line">      &lt;strong&gt;We&apos;re sorry but what doesn&apos;t work properly without JavaScript enabled. Please enable it to continue.&lt;/strong&gt;</span><br><span class="line">    &lt;/noscript&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;!-- built files will be auto injected --&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h1><hr>
+<p><strong>main.js: Vue 인스턴스를 생성해주는 파일이다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">&#125;).$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>이 자바스크립트 파일은 new 연산자를 사용해서 Vue 인스턴스를 생성해준다. Vue는 기본적으로 인스턴스를 생성하여 개발을 하는데, 컴포넌트 단위로 개발을 할 경우, main.js에서 new 연산자로 Vue 인스턴스를 생성하게 해주고, 각 컴포넌트에서 각 UI에 맞게 인스턴스를 활용해서 컴포넌트를 개발한다.</p>
+<p>render에서 h() 안에 있는 ‘App’은 첫 화면에 뿌려질 Vue 컴포넌트를 의미한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render: h =&gt; h(App)</span><br></pre></td></tr></table></figure></p>
+<p>$mount() 안에 있는 ‘#app’은 id를 ‘app’으로 가지고 있는 html 태그를 의미한다. 이 태그로 마운트한다는 것인데, 마운트한다는 것은 위 App 컴포넌트를 이 html 태그(id를 ‘app’으로 가지고 있는 태그)에 연결시킨다는 의미이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>즉, 위 index.html에 있는 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code> 안으로 App 컴포넌트를 연결(넣는다)한다는 뜻이다.</p>
+<p><br></p>
+<h1 id="component-vue"><a href="#component-vue" class="headerlink" title="component.vue"></a>component.vue</h1><hr>
+<p><strong>component.vue: 재사용성을 고려해 UI 단위로 개발하는 vue 파일이다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;img alt=&quot;Vue logo&quot; src=&quot;./assets/logo.png&quot;&gt;</span><br><span class="line">    &lt;HelloWorld msg=&quot;Welcome to Your Vue.js App&quot;/&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import HelloWorld from &apos;./components/HelloWorld.vue&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;app&apos;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    HelloWorld</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">#app &#123;</span><br><span class="line">  font-family: &apos;Avenir&apos;, Helvetica, Arial, sans-serif;</span><br><span class="line">  -webkit-font-smoothing: antialiased;</span><br><span class="line">  -moz-osx-font-smoothing: grayscale;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #2c3e50;</span><br><span class="line">  margin-top: 60px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>component는 위와 같이 3가지로 구성되어 있다.</p>
+<ul>
+<li>template</li>
+<li>script</li>
+<li>style</li>
+</ul>
+<p>Vue의 MVVM 패턴에 따라 나누면 다음과 같은 3가지로 구성되어 있다.</p>
+<ul>
+<li>ViewModel</li>
+<li>View</li>
+<li>Model</li>
+</ul>
+<p><br></p>
+<p><strong>1. ViewModel</strong></p>
+<p><strong>Vue.js에서 모든 Vue 인스턴스는 ViewModel인데, 이 ViewModel은 Model과 View 사이에서 양방향 데이터 바인딩을 해줌으로써, 동기화 역할을 한다.</strong> ViewModel은 Vue 생성자 혹은 하위 클래스들에 의해 인스턴스화된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var vm = new Vue(&#123; /* options */ &#125;)</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<p><strong>2. View</strong></p>
+<p><strong>Vue.js는 DOM 기반의 템플릿을 사용하는데, View의 실제 돔(DOM)은 Vue instance에 의해 관리된다.</strong> 각 Vue 인스턴스는 해당 DOM 요소에 연관된다. Vue 인스턴스가 생성되면 필요한 데이터 바인딩을 설정하는 동안 루트 요소의 모든 자식 노드를 반복적으로 탐색한다. 뷰가 컴파일이 되면 데이터 변경에 반응할 수 있게 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;img alt=&quot;Vue logo&quot; src=&quot;./assets/logo.png&quot;&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; msg &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>즉, 해당 HTML 컴포넌트 범위(해당 DOM 요소가 담긴 템플릿)를 Vue 인스턴스의 vm.$el에 설정한다. 뷰는 Vue 인스턴스가 생성 될 때, 컴파일 되며 뷰모델의 다양한 동작 기능들이 바인딩 된다. 그렇게 됨으로써 뷰의 변경이 감지되면 뷰모델이 이를 감지하여 반응할 수 있게된다. 또한, 뷰의 변경은 집단적으로, 비동기로 실행되기 때문에 높은 성능을 발휘한다.</p>
+<p><br></p>
+<p><strong>3. Model</strong></p>
+<p><strong>Vue.js에서 모델은 단순히 자바스크립트 객체 혹은 데이터 객체로 표현할 수 있다. 데이터 객체의 프로퍼티를 조작하면 이를 관찰하는 뷰 인스턴스가 변경을 알린다.</strong> Vue.js는 ES5 getter/setters로 데이터 객체의 프로퍼티를 변환한다. 그렇기에 뷰를 변경하기 위해 Vue에 명시적으로 신호를 보낼 필요가 없다. 그리고, 각 뷰 인스턴스는 데이터 객체에 있는 모든 프로퍼티들을 프록시한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  name: &apos;app&apos;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    HelloWorld</span><br><span class="line">  &#125;,</span><br><span class="line">  // Model</span><br><span class="line">  data: function() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;hello&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/23/package-json/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">package.json, node_modules, 그리고 package-lock.json간의 관계</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Component-단위로-개발하는-Vue"><span class="nav-number">1.</span> <span class="nav-text">Component 단위로 개발하는 Vue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#index-html"><span class="nav-number">2.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#main-js"><span class="nav-number">3.</span> <span class="nav-text">main.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#component-vue"><span class="nav-number">4.</span> <span class="nav-text">component.vue</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
