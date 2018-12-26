@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vuex란 무엇인가? | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Vuex" />
+  
+  
+  
+  
+  <meta name="description" content="Vuex란 무엇인가? Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.  Vuex는 왜 사용하는가? Vuex는 상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터">
+<meta name="keywords" content="Vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex란 무엇인가?">
+<meta property="og:url" content="https://cheonmro.github.io/2018/12/26/what-is-vuex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Vuex란 무엇인가? Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.  Vuex는 왜 사용하는가? Vuex는 상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/vuex1.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/vuex2.png">
+<meta property="og:updated_time" content="2018-12-26T11:16:20.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuex란 무엇인가?">
+<meta name="twitter:description" content="Vuex란 무엇인가? Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.  Vuex는 왜 사용하는가? Vuex는 상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/vuex1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-what-is-vuex" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vuex란 무엇인가?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/26/what-is-vuex/" class="article-date">
+	  <time datetime="2018-12-26T11:16:20.000Z" itemprop="datePublished">December 26, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vuex란-무엇인가"><a href="#Vuex란-무엇인가" class="headerlink" title="Vuex란 무엇인가?"></a>Vuex란 무엇인가?</h1><hr>
+<p>Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.</p>
+<p><br></p>
+<h1 id="Vuex는-왜-사용하는가"><a href="#Vuex는-왜-사용하는가" class="headerlink" title="Vuex는 왜 사용하는가?"></a>Vuex는 왜 사용하는가?</h1><hr>
+<p>Vuex는 상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터 통신 및 전달을 효율적으로 관리를 쉽게 하기 위해 Vuex를 사용한다.</p>
+<p>Vuex는 중대형 규모의 앱 컴포넌트들을 관리할 때 좋은데, 일반적으로 앱의 규모가 커지면 다음과 같은 문제가 생긴다.</p>
+<ul>
+<li>단순 부모-자식간의 데이터 통신이 아닌, 그 중간에 많은 컴포넌트들이 있을 경우, 데이터 통신 방식이 복잡해짐</li>
+<li>EventBus를 사용하여 상하위 관계가 아닌 컴포넌트들간의 통신시에 관리가 안됨</li>
+</ul>
+<p>이런 문제를 해결하기 위해, Vuex를 사용하여 모든 데이터(State)를 한 곳에서 중앙 집중식으로 관리한다. 즉, Vuex는 공통의 상태를 공유하는 여러 컴포넌트가 있을 경우, 이를 Vuex 한 곳(전역)에서 집중적으로 관리하는 역할을 한다. 그러나, 만약 공통으로 공유하는 것이 아닌, 개별의 로컬 컴포넌트에서 사용하는 경우에는, 꼭 Vuex에 저장할 필요가 없다.</p>
+<p><br></p>
+<h1 id="Vuex-Architecture"><a href="#Vuex-Architecture" class="headerlink" title="Vuex Architecture"></a>Vuex Architecture</h1><hr>
+<p>위에서, Vuex는 상태관리 패턴에 대한 라이브러리라고 했다. 즉, 상태관리 패턴이란, 상태를 관리하기 위한 하나의 패턴방식을 말한다. Vuex에서의 패턴방식은 <code>단반향 데이터 흐름</code>을 따른다.</p>
+<p><img src="/images/vuex1.png" alt="Vuex One-Way Data Flow"><br>출처: <a href="https://vuex.vuejs.org/" target="_blank" rel="noopener">Vuex One-Way Data Flow</a></p>
+<p>상태관리는 3가지로 구성되어 있다.</p>
+<ul>
+<li>state: 컴포넌트간에 공유하는 data</li>
+<li>view: data가 보여지는 template</li>
+<li>actions: 사용자의 입력에 따라 반응하는 methods</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line"></span><br><span class="line">  // state</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;hello world&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // view</span><br><span class="line">  template: `</span><br><span class="line">    &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">  `,</span><br><span class="line"></span><br><span class="line">  // actions</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeMsg () &#123;</span><br><span class="line">      this.msg = &apos;world hello&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="Vuex-Architecture-1"><a href="#Vuex-Architecture-1" class="headerlink" title="Vuex Architecture"></a>Vuex Architecture</h1><hr>
+<p>전체적인 Vuex Architecture는 다음과 같다.</p>
+<p><img src="/images/vuex2.png" alt="Vuex Architecture"><br>출처: <a href="https://vuex.vuejs.org/" target="_blank" rel="noopener">Vuex Architecture</a></p>
+<p><br></p>
+<h1 id="Vuex-설치-및-등록"><a href="#Vuex-설치-및-등록" class="headerlink" title="Vuex 설치 및 등록"></a>Vuex 설치 및 등록</h1><hr>
+<ol>
+<li><p>npm을 이용해서 설치한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vuex</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vuex를 등록할 js 파일을 새로 생성하는데, 보통 관례로 store.js로 만든다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vuex를 전역에서 사용하기 위해, main.js에 등록한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line">// store를 import</span><br><span class="line">import store from &apos;./store&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  // store를 전역 인스턴스에 등록</span><br><span class="line">  store,</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">&#125;).$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vuex/">Vuex</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/23/vue-architecture/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue Architecture</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Vuex란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex는-왜-사용하는가"><span class="nav-number">2.</span> <span class="nav-text">Vuex는 왜 사용하는가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex-Architecture"><span class="nav-number">3.</span> <span class="nav-text">Vuex Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex-Architecture-1"><span class="nav-number">4.</span> <span class="nav-text">Vuex Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex-설치-및-등록"><span class="nav-number">5.</span> <span class="nav-text">Vuex 설치 및 등록</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

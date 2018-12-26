@@ -98,6 +98,59 @@
         
           <section id="main">
   
+    <article id="post-sum-two-integers"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/05/sum-two-integers/">8. 두 정수 사이의 함</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/sum-two-integers/" class="article-date">
+	  <time datetime="2018-11-05T08:01:52.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>두 정수 a, b가 주어졌을 때, a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, sumInt() 함수를 작성하시오.</p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function sumInt(a, b) &#123;</span><br><span class="line">  let answer = 0;</span><br><span class="line"></span><br><span class="line">  const sortNumber = (a, b) =&gt; &#123;</span><br><span class="line">      return Array.prototype.slice.call(arguments).sort(function(a,b)&#123;</span><br><span class="line">          return a - b;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const newArray = sortNumber(a, b); // [ 1, 5 ]</span><br><span class="line">  if (newArray[0] === newArray[1]) &#123;</span><br><span class="line">      answer = newArray[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      for (let i = newArray[0]; i &lt;= newArray[1]; i++)&#123;</span><br><span class="line">          answer += i;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(sumInt(1, 5)); // 15 -&gt; sum of 1 ~ 5</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sum-All-Integers-Between-Two-Integers/">Sum All Integers Between Two Integers</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-divide-array"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -729,90 +782,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-hashtable"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/04/what-is-hashtable/">Hash Table이란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/04/what-is-hashtable/" class="article-date">
-	  <time datetime="2018-11-04T11:53:11.000Z" itemprop="datePublished">November 4, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hash-Table-해시-테이블"><a href="#Hash-Table-해시-테이블" class="headerlink" title="Hash Table(해시 테이블)"></a>Hash Table(해시 테이블)</h1><hr>
-<p><strong>Hash Table</strong>이란, 검색하고자 하는 key 값을 입력받아서 해시함수를 돌려서 반환받은 해시코드를 배열의 인덱스로 환산해서 데이터에 접근하는 방식의 자료구조이다.</p>
-<p><br></p>
-<h2 id="Hash-Table-작동원리"><a href="#Hash-Table-작동원리" class="headerlink" title="Hash Table 작동원리"></a>Hash Table 작동원리</h2><hr>
-<p><img src="/images/hash_function.jpg" alt="Hash Table"><br>출처: <a href="https://www.tutorialspoint.com/data_structures_algorithms/hash_data_structure.htm" target="_blank" rel="noopener">Hash Table</a></p>
-<ol>
-<li>검색하고자 하는 Key 값을 해시함수를 돌리면, 해시코드를 반환받는다.(해시코드는 정수이다)</li>
-<li>반환된 해시코드를 배열의 개수로 나머지(%) 연산을 해서 인덱스 번호로 바꾼다. 예를 들어, 어떤 Key 값의 해시코드가 445이고 배열의 크기가 3이면, 445 % 3 = 1이 되어, 인덱스 번호는 1이 된다.</li>
-<li>이 인덱스 번호로 배열에 데이터를 저장한다. 예를 들어, 인덱스 번호가 1이라면, 배열에서 배열방 1번에 저장한다.</li>
-<li>즉, 해시코드 자체가 배열방의 인덱스로 사용되어 검색이 필요없고, 해시코드로 바로 배열의 데이터에 접근이 가능하다.</li>
-<li>각 배열방에 저장되어 있는 데이터들은 연결 리스트로 되어 있어, 배열방에 새로운 데이터가 추가될 때마다, 연결 리스트에 추가가 된다.</li>
-<li>어떤 Key 값에 대한 검색 요청이 들어와 인덱스로 환산한 뒤, 어떤 배열방에서 그 Key 값을 찾기 위해서는, 그 배열방에 연결 리스트를 순회화면서 그 Key 값을 찾는다.</li>
-</ol>
-<p><br></p>
-<h2 id="Hash-Table-특징"><a href="#Hash-Table-특징" class="headerlink" title="Hash Table 특징"></a>Hash Table 특징</h2><hr>
-<ul>
-<li><p><strong>장점</strong>: 해시코드 자체가 배열방의 인덱스로 사용되어 다른 검색이 필요없이 해시코드로 바로 배열의 데이터에 접근이 가능하기 때문에, 시간복잡도가 O(1)이다.</p>
-</li>
-<li><p><strong>단점</strong>: 1개의 배열방에 여러 데이터가 겹쳐서 저장되는 경우를 Collision(충돌)이라고 하는데, 이 경우 시간복잡도는 O(n)이다. 이는, 배열방에서 그 Key 값을 찾기 위해, 그 배열방에 연결 리스트를 순회화면서 그 Key 값을 찾아야 하기 때문이다. 이런 문제가 생기는 경우는 크게 2가지이다.</p>
-<ul>
-<li><p><strong>서로 다른 Key 값이지만, 동일한 해시코드로 반환받는 경우</strong></p>
-<ul>
-<li>Key 값은 문자열이고 그 가짓수가 무한한대 반해서 해시코드는 정수개 밖에 제공을 못하기 때문에, 알고리즘이 아무리 좋아도 어떤 Key들은 중복되는 해시코드를 가질 수 밖에 없다.</li>
-</ul>
-</li>
-<li><p><strong>서로 다른 해시코드이지만, 동일한 인덱스로 바뀌는 경우</strong></p>
-<ul>
-<li>배열방은 한정되어 있기 때문에, 서로 다른 해시코드이더라도, 환산할 때 동일한 인덱스를 얻게 되는 경우가 있을 수 있기 때문에, 같은 배열방에 배정받는 경우도 있다.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>이런 Collision을 최소화하기 위해서는 좋은 해시 알고리즘을 만드는 것이 중요하다. 즉, 배열방을 나눌 때, 규칙을 잘 만들어야 한다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash-Table/">Hash Table</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -923,6 +892,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2018/12/26/what-is-vuex/">Vuex란 무엇인가?</a></h6>
+              <span>December 26, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/12/23/vue-architecture/">Vue Architecture</a></h6>
               <span>December 23, 2018</span>
             </div>
@@ -977,18 +958,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/11/19/cryptocurrency-revolution/">암호화폐는 화폐 혁명을 이루어 낼것인가?</a></h6>
-              <span>November 19, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -998,7 +967,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
