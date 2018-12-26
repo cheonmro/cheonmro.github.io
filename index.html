@@ -127,10 +127,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Vuex란-무엇인가"><a href="#Vuex란-무엇인가" class="headerlink" title="Vuex란 무엇인가?"></a>Vuex란 무엇인가?</h1><hr>
-<p>Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.</p>
+<p><strong>Vuex란, 상태관리 패턴에 대한 라이브러리로써, 애플리케이션의 모든 컴포넌트에 대한 중앙집중식 저장소 역할을 하며, 예측 가능한 방식으로 상태를 변경할 수 있다.</strong></p>
 <p><br></p>
 <h1 id="Vuex는-왜-사용하는가"><a href="#Vuex는-왜-사용하는가" class="headerlink" title="Vuex는 왜 사용하는가?"></a>Vuex는 왜 사용하는가?</h1><hr>
-<p>Vuex는 상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터 통신 및 전달을 효율적으로 관리를 쉽게 하기 위해 Vuex를 사용한다.</p>
+<p>Vuex는 <strong>상태관리(State Management)를 위해 사용한다. 여기서 말하는 상태(State)란, 데이터를 말하며, 컴포넌트간에 데이터 통신 및 전달을 효율적으로 관리를 쉽게 하기 위해 Vuex를 사용한다.</strong></p>
 <p>Vuex는 중대형 규모의 앱 컴포넌트들을 관리할 때 좋은데, 일반적으로 앱의 규모가 커지면 다음과 같은 문제가 생긴다.</p>
 <ul>
 <li>단순 부모-자식간의 데이터 통신이 아닌, 그 중간에 많은 컴포넌트들이 있을 경우, 데이터 통신 방식이 복잡해짐</li>
@@ -139,13 +139,13 @@
 <p>이런 문제를 해결하기 위해, Vuex를 사용하여 모든 데이터(State)를 한 곳에서 중앙 집중식으로 관리한다. 즉, Vuex는 공통의 상태를 공유하는 여러 컴포넌트가 있을 경우, 이를 Vuex 한 곳(전역)에서 집중적으로 관리하는 역할을 한다. 그러나, 만약 공통으로 공유하는 것이 아닌, 개별의 로컬 컴포넌트에서 사용하는 경우에는, 꼭 Vuex에 저장할 필요가 없다.</p>
 <p><br></p>
 <h1 id="Vuex-Architecture"><a href="#Vuex-Architecture" class="headerlink" title="Vuex Architecture"></a>Vuex Architecture</h1><hr>
-<p>위에서, Vuex는 상태관리 패턴에 대한 라이브러리라고 했다. 즉, 상태관리 패턴이란, 상태를 관리하기 위한 하나의 패턴방식을 말한다. Vuex에서의 패턴방식은 <code>단반향 데이터 흐름</code>을 따른다.</p>
+<p>위에서, Vuex는 상태관리 패턴에 대한 라이브러리라고 했다. 즉, <strong>상태관리 패턴</strong>이란, <strong>상태를 관리하기 위한 하나의 패턴방식을 말한다. Vuex에서의 패턴방식은 <code>단반향 데이터 흐름</code>을 따른다.</strong></p>
 <p><img src="/images/vuex1.png" alt="Vuex One-Way Data Flow"><br>출처: <a href="https://vuex.vuejs.org/" target="_blank" rel="noopener">Vuex One-Way Data Flow</a></p>
 <p>상태관리는 3가지로 구성되어 있다.</p>
 <ul>
-<li>state: 컴포넌트간에 공유하는 data</li>
-<li>view: data가 보여지는 template</li>
-<li>actions: 사용자의 입력에 따라 반응하는 methods</li>
+<li><strong>state</strong>: 컴포넌트간에 공유하는 data</li>
+<li><strong>view</strong>: data가 보여지는 template</li>
+<li><strong>actions</strong>: 사용자의 입력에 따라 반응하는 methods</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line"></span><br><span class="line">  // state</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;hello world&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // view</span><br><span class="line">  template: `</span><br><span class="line">    &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">  `,</span><br><span class="line"></span><br><span class="line">  // actions</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeMsg () &#123;</span><br><span class="line">      this.msg = &apos;world hello&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><br></p>
@@ -162,9 +162,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Vuex를 전역에서 사용하기 위해, main.js에 등록한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line">// store를 import</span><br><span class="line">import store from &apos;./store&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  // store를 전역 인스턴스에 등록</span><br><span class="line">  store,</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">&#125;).$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import App from &apos;./App.vue&apos;</span><br><span class="line">// store를 import</span><br><span class="line">import store from &apos;./store&apos;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  // store를 루트(전역) 인스턴스에 등록</span><br><span class="line">  store,</span><br><span class="line">  render: h =&gt; h(App),</span><br><span class="line">&#125;).$mount(&apos;#app&apos;)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>루트 인스턴스에 store 옵션을 제공함으로써 저장소는 루트의 모든 하위 컴포넌트에 주입되고, 하위 컴포넌트에서 this.$store로 사용할 수 있다. (루트 인스턴스: main.js에 있는 최상단의 인스턴스)</p>
 
       
     </div>
