@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue에서 Axios 사용하는 방법 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="AxiosVue" />
+  
+  
+  
+  
+  <meta name="description" content="Axios란 무엇인가? axios란, Pormise 기반의 http 통신을 위한 클라이언트 라이브러리이다. vue에는 vue-resource라는 것이 있으나, 2016년 9월 이후 업데이트가 되어있지않고, Evan You(Vue 만든사람) 또한, 공식적으로 추천하지 않고, axios 쓰는 것을 추천한다.  Axios 설치하기 npm으로 axios를 설치한다">
+<meta name="keywords" content="Axios,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue에서 Axios 사용하는 방법">
+<meta property="og:url" content="https://cheonmro.github.io/2018/12/27/axios-and-vue/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Axios란 무엇인가? axios란, Pormise 기반의 http 통신을 위한 클라이언트 라이브러리이다. vue에는 vue-resource라는 것이 있으나, 2016년 9월 이후 업데이트가 되어있지않고, Evan You(Vue 만든사람) 또한, 공식적으로 추천하지 않고, axios 쓰는 것을 추천한다.  Axios 설치하기 npm으로 axios를 설치한다">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-27T12:39:31.599Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue에서 Axios 사용하는 방법">
+<meta name="twitter:description" content="Axios란 무엇인가? axios란, Pormise 기반의 http 통신을 위한 클라이언트 라이브러리이다. vue에는 vue-resource라는 것이 있으나, 2016년 9월 이후 업데이트가 되어있지않고, Evan You(Vue 만든사람) 또한, 공식적으로 추천하지 않고, axios 쓰는 것을 추천한다.  Axios 설치하기 npm으로 axios를 설치한다">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-axios-and-vue" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vue에서 Axios 사용하는 방법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/27/axios-and-vue/" class="article-date">
+	  <time datetime="2018-12-27T12:39:31.000Z" itemprop="datePublished">December 27, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Axios란-무엇인가"><a href="#Axios란-무엇인가" class="headerlink" title="Axios란 무엇인가?"></a>Axios란 무엇인가?</h1><hr>
+<p><strong>axios란, Pormise 기반의 http 통신을 위한 클라이언트 라이브러리이다.</strong></p>
+<p>vue에는 vue-resource라는 것이 있으나, 2016년 9월 이후 업데이트가 되어있지않고, Evan You(Vue 만든사람) 또한, 공식적으로 추천하지 않고, axios 쓰는 것을 추천한다.</p>
+<p><br></p>
+<h1 id="Axios-설치하기"><a href="#Axios-설치하기" class="headerlink" title="Axios 설치하기"></a>Axios 설치하기</h1><hr>
+<p>npm으로 axios를 설치한다.</p>
+<p><code>npm install axios vue-axios</code></p>
+<p><br></p>
+<h1 id="Axios-등록하기"><a href="#Axios-등록하기" class="headerlink" title="Axios 등록하기"></a>Axios 등록하기</h1><hr>
+<p><strong>Vue 애플리케이션을 개발할 때, Vuex(store.js)의 actions에서 axios를 사용하므로, store.js에 axios를 등록한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">// axios &amp; vue-axios를 import</span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import VueAxios from &apos;vue-axios&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line">// axios &amp; vue-axios를 등록</span><br><span class="line">Vue.use(VueAxios, axios);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Axios-사용하기"><a href="#Axios-사용하기" class="headerlink" title="Axios 사용하기"></a>Axios 사용하기</h1><hr>
+<h2 id="1-JSON-server-만들기"><a href="#1-JSON-server-만들기" class="headerlink" title="1. JSON server 만들기"></a>1. JSON server 만들기</h2><hr>
+<p><strong>가상의 서버에서 데이터를 만들어 사용하기 위해, 프론트엔드 개발자가 직접 JSON server를 구축하여, axios 통신을 테스트할 수 있다.</strong></p>
+<p><code>npm install -g json-server</code></p>
+<p><br></p>
+<h2 id="2-JSON-server-만들기"><a href="#2-JSON-server-만들기" class="headerlink" title="2. JSON server 만들기"></a>2. JSON server 만들기</h2><hr>
+<p><strong>JSON server에 가상 데이터를 만들기 위해, db.json 파일을 src 폴더 아래에 만들고, 다음과 같이 데이터를 추가한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// db.json</span><br><span class="line">&#123;</span><br><span class="line">    &quot;todos&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">         &quot;id&quot;: &quot;1&quot;,</span><br><span class="line">         &quot;text&quot;: &quot;vue&quot;,</span><br><span class="line">         &quot;completed&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;2&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;react&quot;,</span><br><span class="line">          &quot;completed&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;3&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;angular&quot;,</span><br><span class="line">          &quot;completed&quot;: true</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;4&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;python&quot;,</span><br><span class="line">          &quot;completed&quot;: false</span><br><span class="line">      &#125;</span><br><span class="line">       ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="3-JSON-server-띄우기-Running"><a href="#3-JSON-server-띄우기-Running" class="headerlink" title="3. JSON server 띄우기(Running)"></a>3. JSON server 띄우기(Running)</h2><hr>
+<p><code>json-server --watch src/db.json --port 4000</code></p>
+<p><br></p>
+<h2 id="4-Vuex-store-js-의-actions에-메소드-등록하기"><a href="#4-Vuex-store-js-의-actions에-메소드-등록하기" class="headerlink" title="4. Vuex(store.js)의 actions에 메소드 등록하기"></a>4. Vuex(store.js)의 actions에 메소드 등록하기</h2><hr>
+<p>actions에 등록하고, 등록할 때, mutations를 commit하여 변경된 상태를 추적가능하게 하면 된다.</p>
+<p>서버와 통신을 할 때, CRUD라는 것이 있는데, todo 앱과 비교하면 다음과 같다.</p>
+<ul>
+<li><strong>Create</strong>: addTodo</li>
+<li><strong>Read</strong>: getTodo</li>
+<li><strong>Update</strong>: changeTodo(toggle)</li>
+<li><strong>Delete</strong>: deleteTodo</li>
+</ul>
+<p>Vuex(store.js)의 actions에 메소드 등록할 때, 위에 4가지로 나눠서 코드를 작성해보자.</p>
+<p><br></p>
+<h3 id="Create-addTodo"><a href="#Create-addTodo" class="headerlink" title=". Create: addTodo"></a><1>. Create: addTodo</1></h3><hr>
+<p><strong>Create는 클라이언트단에서 데이터를 새로 생성하여, 서버에 추가하는 것이다. todo 앱에서는 addTodo가 된다.</strong></p>
+<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 post<strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  addTodo: function(context, payload) &#123;</span><br><span class="line">    // post를 사용할 때는, 요청할 uri에 보낼 데이터를 같이 요청한다.</span><br><span class="line">    axios.post(&apos;http://localhost:4000/todos&apos;, &#123;</span><br><span class="line">        id: 4,</span><br><span class="line">        text: payload,</span><br><span class="line">        completed: false</span><br><span class="line">    &#125;)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 원래 데이터에 요청한 데이터를 추가한다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;addTodo&apos;, res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">        // 요청이 실패하면, 에러에 대한 조치를 취한다.</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></strong></strong></p>
+<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  addTodo (state, todo) &#123;</span><br><span class="line">    state.todoList = [...state.todoList, todo]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Read-getTodo"><a href="#Read-getTodo" class="headerlink" title=". Read: getTodo"></a><2>. Read: getTodo</2></h3><hr>
+<p><strong>Read는 클라이언트단에서 데이터를 서버에 요청하여, 데이터를 받는 것이다. todo 앱에서는 getTodo가 된다.</strong></p>
+<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 get</strong>을 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  getTodo: function(context) &#123;</span><br><span class="line">    // get을 사용할 때는, 요청할 uri를 작성한다.</span><br><span class="line">    axios.get(&apos;http://localhost:4000/todos&apos;)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 원래 데이터에 요청받은 데이터를 할당한다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;getTodo&apos;, res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">        // 요청이 실패하면, 에러에 대한 조치를 취한다.</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  getTodo (state, data) &#123;</span><br><span class="line">    state.todoList = data;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Update-changeTodo-toggle"><a href="#Update-changeTodo-toggle" class="headerlink" title=". Update: changeTodo(toggle)"></a><3>. Update: changeTodo(toggle)</3></h3><hr>
+<p><strong>Update는 클라이언트단에서 기존에 있던 데이터를 서버에 요청하여, 데이터를 변경하는 것이다. todo 앱에서는 toggle이 된다.</strong></p>
+<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 patch</strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  toggle: function(context, payload) &#123;</span><br><span class="line">    // patch를 사용할 때는, 요청할 uri에 변경할 데이터의 uri를 붙여서 보낸다. 예를 들어, /todos/id가 올 수 있다.</span><br><span class="line">    axios.patch(`http://localhost:4000/todos/$&#123;payload&#125;`)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 특정 데이터가 변경된 상태로 데이터가 변경된다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;toggle&apos;, payload)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  toggle (state, id) &#123;</span><br><span class="line">    const index = state.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">    state.todolist[index].completed = !this.todolist[index].completed;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Delete-deleteTodo"><a href="#Delete-deleteTodo" class="headerlink" title=". Delete: deleteTodo"></a><4>. Delete: deleteTodo</4></h3><hr>
+<p><strong>Update는 클라이언트단에서 기존에 있던 데이터를 서버에 요청하여, 데이터를 변경하는 것이다. todo 앱에서는 toggle이 된다.</strong></p>
+<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 patch</strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  deleteTodo: function(context, payload) &#123;</span><br><span class="line">    // delete를 사용할 때는, 요청할 uri에 제거할 데이터의 uri를 붙여서 보낸다. 예를 들어, /todos/id가 올 수 있다.</span><br><span class="line">    axios.delete(`http://localhost:4000/todos/$&#123;payload&#125;`)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 특정 데이터가 지워진 상태로 데이터가 변경된다.</span><br><span class="line">        .then((res =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;deleteTodo&apos;, payload)</span><br><span class="line">        &#125;))</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  deleteTodo (state, id) &#123;</span><br><span class="line">    state.todoList = state.todoList.filter((t) =&gt; &#123;</span><br><span class="line">        return t.id !== id</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axios/">Axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/27/how-to-use-vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vuex 사용법</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Axios란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Axios란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Axios-설치하기"><span class="nav-number">2.</span> <span class="nav-text">Axios 설치하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Axios-등록하기"><span class="nav-number">3.</span> <span class="nav-text">Axios 등록하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Axios-사용하기"><span class="nav-number">4.</span> <span class="nav-text">Axios 사용하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JSON-server-만들기"><span class="nav-number">4.1.</span> <span class="nav-text">1. JSON server 만들기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JSON-server-만들기"><span class="nav-number">4.2.</span> <span class="nav-text">2. JSON server 만들기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JSON-server-띄우기-Running"><span class="nav-number">4.3.</span> <span class="nav-text">3. JSON server 띄우기(Running)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Vuex-store-js-의-actions에-메소드-등록하기"><span class="nav-number">4.4.</span> <span class="nav-text">4. Vuex(store.js)의 actions에 메소드 등록하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-addTodo"><span class="nav-number">4.4.1.</span> <span class="nav-text">. Create: addTodo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-getTodo"><span class="nav-number">4.4.2.</span> <span class="nav-text">. Read: getTodo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Update-changeTodo-toggle"><span class="nav-number">4.4.3.</span> <span class="nav-text">. Update: changeTodo(toggle)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete-deleteTodo"><span class="nav-number">4.4.4.</span> <span class="nav-text">. Delete: deleteTodo</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
