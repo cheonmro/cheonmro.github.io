@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vuex 사용법 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Vuex" />
+  
+  
+  
+  
+  <meta name="description" content="State란 무엇인가? state는 컴포넌트 간에 공유할 data를 말한다. 각 컴포넌트에서의 data 속성과 동일하기 때문에, 각 컴포넌트의 인스턴스에서 data() 속성을 사용하는 대신, Vuex에 state로 등록하여 사용한다.  State 등록하기 store.js에 state(데이터)를 등록한다.123456789101112// store.jsimpo">
+<meta name="keywords" content="Vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex 사용법">
+<meta property="og:url" content="https://cheonmro.github.io/2018/12/27/how-to-use-vuex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="State란 무엇인가? state는 컴포넌트 간에 공유할 data를 말한다. 각 컴포넌트에서의 data 속성과 동일하기 때문에, 각 컴포넌트의 인스턴스에서 data() 속성을 사용하는 대신, Vuex에 state로 등록하여 사용한다.  State 등록하기 store.js에 state(데이터)를 등록한다.123456789101112// store.jsimpo">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-27T11:34:01.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuex 사용법">
+<meta name="twitter:description" content="State란 무엇인가? state는 컴포넌트 간에 공유할 data를 말한다. 각 컴포넌트에서의 data 속성과 동일하기 때문에, 각 컴포넌트의 인스턴스에서 data() 속성을 사용하는 대신, Vuex에 state로 등록하여 사용한다.  State 등록하기 store.js에 state(데이터)를 등록한다.123456789101112// store.jsimpo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-how-to-use-vuex" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Vuex 사용법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/27/how-to-use-vuex/" class="article-date">
+	  <time datetime="2018-12-27T11:34:01.000Z" itemprop="datePublished">December 27, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="State란-무엇인가"><a href="#State란-무엇인가" class="headerlink" title="State란 무엇인가?"></a>State란 무엇인가?</h1><hr>
+<p>state는 컴포넌트 간에 공유할 data를 말한다. 각 컴포넌트에서의 data 속성과 동일하기 때문에, 각 컴포넌트의 인스턴스에서 <code>data()</code> 속성을 사용하는 대신, Vuex에 state로 등록하여 사용한다.</p>
+<p><br></p>
+<h1 id="State-등록하기"><a href="#State-등록하기" class="headerlink" title="State 등록하기"></a>State 등록하기</h1><hr>
+<p>store.js에 state(데이터)를 등록한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  // state안에 데이터를 등록</span><br><span class="line">  state: &#123;</span><br><span class="line">    value: 10</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="State-사용하기"><a href="#State-사용하기" class="headerlink" title="State 사용하기"></a>State 사용하기</h1><hr>
+<p>가져와서 사용할 각 컴포넌트에서 Vuex의 state에 접근하여 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  // store.js의 state에 있는 데이터(value)에 접근하여 가져와서 사용</span><br><span class="line">    &#123;&#123; this.$store.state.value &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure></p>
+<p>위와 같은 방식으로, 어떤 컴포넌트든 Vuex(store.js)에 접근하여 state를 가져와 사용할 수 있다.</p>
+<p>그러나, Template의 표현식은 최대한 간소화해야 한다. 다음과 같이 <code>computed</code>를 사용해서 state에 접근할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123; getValue &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    getValue() &#123;</span><br><span class="line">      return this.$store.state.value</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="Getters란-무엇인가"><a href="#Getters란-무엇인가" class="headerlink" title="Getters란 무엇인가?"></a>Getters란 무엇인가?</h1><hr>
+<p>Getters는 인스턴스의 computed(계산된 속성)과 같은 역할을 한다. 인스턴스에서 computed는 이미 어떤 값이 캐싱되어 있어, 종속된 값이 변경되지 않으면, 이미 계산되 값이 바로 나오고, 종속된 값이 변경된 경우에만 다시 재계산되어 나온다.</p>
+<p>그래서, Getters를 사용하면 여러 컴포넌트에서 같은 로직을 비효율적으로 사용하는 것을 막는다. 즉, 각 컴포넌트에서는 수행 로직을 호출만 하면, Vuex의 Getters를 보내주어, 코드의 가독성과 성능이 좋아진다.</p>
+<p><br></p>
+<h1 id="Getters-등록하기"><a href="#Getters-등록하기" class="headerlink" title="Getters 등록하기"></a>Getters 등록하기</h1><hr>
+<p>store.js에 getters를 등록한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; id: 1, text: &apos;vue&apos;, complete: true &#125;,</span><br><span class="line">      &#123; id: 2, text: &apos;react&apos;, complete: false &#125;,</span><br><span class="line">      &#123; id: 3, text: &apos;angular&apos;, complete: true &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  // todos의 complete가 true인 데이터만 필터</span><br><span class="line">  getters: &#123;</span><br><span class="line">    doneTodos: state =&gt; &#123;</span><br><span class="line">      return state.todos.filter(todo =&gt; todo.complete)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Getters-사용하기"><a href="#Getters-사용하기" class="headerlink" title="Getters 사용하기"></a>Getters 사용하기</h1><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">  // doneTodos를 화면에 보여줌</span><br><span class="line">    &#123;&#123; doneTodos &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // store.js의 getters에 있는 doneTodos에 접근하여 사용</span><br><span class="line">  computed: &#123;</span><br><span class="line">    doneTodos() &#123;</span><br><span class="line">      return this.$store.getters.doneTodos</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="mapGetters-사용하기"><a href="#mapGetters-사용하기" class="headerlink" title="mapGetters 사용하기"></a>mapGetters 사용하기</h1><hr>
+<p>Vuex에 내장된 helper 함수 중, mapGetters를 사용하여, 좀 더 간단하게 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &#123;&#123; doneTodos &#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// mapGetters를 import</span><br><span class="line">import &#123; mapGetters &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">// computed에서 mapGetters를 사용</span><br><span class="line">export default &#123;</span><br><span class="line">  // Vuex 의 Getters 메서드 명과 App.vue 메서드 명이 동일할 때, [] 사용</span><br><span class="line">  computed: mapGetters([</span><br><span class="line">  &apos;doneTodos&apos;</span><br><span class="line">]),</span><br><span class="line"></span><br><span class="line">  // Vuex 의 Mutations 메서드 명과 App.vue 메서드 명을 다르게 매칭할 때, &#123;&#125; 사용</span><br><span class="line">  computed: mapGetters(&#123;</span><br><span class="line">    // 앞 doneTodos 해당 컴포넌트의 메서드를, 뒤 &apos;doneTodos&apos;는 Vuex의 getters를 의미</span><br><span class="line">    doneTodos: &apos;doneTodos&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Mutations란-무엇인가"><a href="#Mutations란-무엇인가" class="headerlink" title="Mutations란 무엇인가?"></a>Mutations란 무엇인가?</h1><hr>
+<p>Mutations(변이)란, Vuex의 데이터, 즉 state 값을 변경하는 로직들을 의미한다. Vuex 저장소에서 실제로 상태를 변경하는 유일한 방법이다.</p>
+<p>Mutations 특징</p>
+<ul>
+<li>모든 state의 변화를 추적해야 하기 때문에, 순차적, 즉 동기적으로 일을 처리한다.</li>
+<li>컴포넌트의 인스턴스에서는 methods에서 사용하여, Vuex의 mutations에 접근한다.</li>
+<li>이때, 인자를 받아서 Vuex로 보낼 수 있다.</li>
+</ul>
+<p>Getters와의 차이점</p>
+<ul>
+<li>인자를 받아서 Vuex에 넘겨줄 수 있다.</li>
+<li>methods에서 사용(Getters는 computed에서 사용)</li>
+</ul>
+<p>Actions와의 차이점</p>
+<ul>
+<li>mutations: 동기적 로직</li>
+<li>actions: 비동기적 로직</li>
+</ul>
+<p>만약, 여러 개의 컴포넌트에서 같은 state 값을 동시에 제어하게 되면, state 값이 어느 컴포넌트에서 호출해서 어떻게 변경된지를 추적하기가 어렵기 때문에, mutations에서는 동기적으로 하나씩 일을 처리하여, 상태의 변화를 정확하게 추적할 수 있다.</p>
+<!-- mutations는 state를 변경할 때, commit을 사용한다. -->
+<p><br></p>
+<h1 id="Mutations-등록하기"><a href="#Mutations-등록하기" class="headerlink" title="Mutations 등록하기"></a>Mutations 등록하기</h1><hr>
+<p>먼저 Vuex(store.js)에 mutations를 등록해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line"></span><br><span class="line">mutations: &#123;</span><br><span class="line">  getTodo (state, payload) &#123;</span><br><span class="line">    state.todoList = payload;</span><br><span class="line">  &#125;,</span><br><span class="line">  // function을 같이 써줘도 된다.</span><br><span class="line">  addTodo: function(state, payload) &#123;</span><br><span class="line">    state.todoList = [...state.todoList, payload];</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>mutations는 getters와 다르게, 인자를 받아서 Vuex에 넘겨줄 수 있다.</p>
+<ul>
+<li>첫번째 인자: state로, store.js에 있는 state를 의미한다.</li>
+<li>두번째 인자: payload로, 컴포넌트에서 보내주는 데이터이다.(만약 데이터가 없다면, 생략 가능)</li>
+</ul>
+<p><br></p>
+<h1 id="Mutations-사용하기"><a href="#Mutations-사용하기" class="headerlink" title="Mutations 사용하기"></a>Mutations 사용하기</h1><hr>
+<p>컴포넌트의 인스턴스에서는 methods에서 사용하여, <code>commit</code>으로 Vuex(store.js)의 mutations에 접근한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;section&gt;</span><br><span class="line">    &lt;div class=&quot;row justify-content-center mt-4&quot;&gt;</span><br><span class="line">      &lt;input v-model=&quot;inputField&quot; v-on:keyup.enter=&quot;addTodo&quot; class=&quot;mr-1&quot; placeholder=&quot;Todo Item&quot; /&gt;</span><br><span class="line">      &lt;button @click=&quot;addTodo&quot; class=&quot;btn btn-primary&quot;&gt;Add Todo&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/section&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // store.js에서의 mutations 중 &apos;getTodo&apos;에 접근</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.$store.commit(&apos;getTodo&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  // store.js에서의 mutations 중 &apos;addTodo&apos;에 접근</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addTodo: function() &#123;</span><br><span class="line">        if(this.inputField) &#123;</span><br><span class="line">          // &apos;addTodo&apos;는 mutations에 있는 &apos;addTodo&apos;, this.inputField는 Vuex(store.js)에 넘겨줄 데이터</span><br><span class="line">           this.$store.commit(&apos;addTodo&apos;, this.inputField);</span><br><span class="line">           this.inputField = &apos;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>참고로, main.js에 전역 인스턴스에 store를 등록했기 때문에, this.$store를 사용할 수 있다.</p>
+<p><br></p>
+<h1 id="mapMutations-사용하기"><a href="#mapMutations-사용하기" class="headerlink" title="mapMutations 사용하기"></a>mapMutations 사용하기</h1><hr>
+<p>Vuex에 내장된 helper 함수 중, mapMutations를 사용하여, 좀 더 코드 가독성을 높일 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">// mapMutations를 import 해야함</span><br><span class="line">import &#123; mapMutations &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  // Vuex 의 Mutations 메서드 명과 App.vue 메서드 명이 동일할 때, [] 사용</span><br><span class="line">  ...mapMutations([</span><br><span class="line">    &apos;addTodo&apos;</span><br><span class="line">  ]),</span><br><span class="line"></span><br><span class="line">  // Vuex 의 Mutations 메서드 명과 App.vue 메서드 명을 다르게 매칭할 때, &#123;&#125; 사용</span><br><span class="line">  ...mapMutations(&#123;</span><br><span class="line">    addTodo: &apos;addTodo&apos; // 앞 addTodo는 해당 컴포넌트의 메서드를, 뒤 &apos;addTodo&apos;는 Vuex의 mutations를 의미</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Actions란-무엇인가"><a href="#Actions란-무엇인가" class="headerlink" title="Actions란 무엇인가?"></a>Actions란 무엇인가?</h1><hr>
+<p>actions란, Vue에서 비동기적으로 처리되야 하는 것들을 관리하기 위한것이다. 즉, 서버와의 http 통신이나 setTimeout() 등과 같이, 결과를 받아올 타이밍이 예측되지 않은 로직을 actions에 선언하고 처리한다.</p>
+<p>대표적으로 비동기인 다음의 2가지를 actions에서 주로 사용한다.</p>
+<ul>
+<li>http통신</li>
+<li>setTimeout()</li>
+</ul>
+<p><br></p>
+<h1 id="http-통신-axios-사용"><a href="#http-통신-axios-사용" class="headerlink" title=" http 통신: axios 사용"></a><1> http 통신: axios 사용</1></h1><hr>
+<h2 id="Actions-등록하기"><a href="#Actions-등록하기" class="headerlink" title="Actions 등록하기"></a>Actions 등록하기</h2><hr>
+<p>먼저 Vuex(store.js)에 actions를 등록해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line"></span><br><span class="line">  actions: &#123;</span><br><span class="line">      addTodo: function(context, payload) &#123;</span><br><span class="line">        axios.post(&apos;http://localhost:4000/todos&apos;, &#123;</span><br><span class="line">            id: 4,</span><br><span class="line">            text: payload,</span><br><span class="line">            completed: false</span><br><span class="line">        &#125;)</span><br><span class="line">            .then((res) =&gt; &#123;</span><br><span class="line">              // 상태(state)가 변경된 것을 추적하기 위해, mutations의 메소드를 호출(commit)</span><br><span class="line">                context.commit(&apos;addTodo&apos;, res.data)</span><br><span class="line">            &#125;)</span><br><span class="line">            .catch((err) =&gt; &#123;</span><br><span class="line">                console.log(err);</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Mutations-등록하기-1"><a href="#Mutations-등록하기-1" class="headerlink" title="Mutations 등록하기"></a>Mutations 등록하기</h2><hr>
+<p>actions에 등록을 했어도, 상태가 변경된 것을 추적하기 위해서는 mutations의 메소드를 호출(commit) 해야한다. 그리고, mutations에 actions에 등록한 메소드를 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  addTodo (state, todo) &#123;</span><br><span class="line">      state.todoList = [...state.todoList, todo]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Actions-사용하기"><a href="#Actions-사용하기" class="headerlink" title="Actions 사용하기"></a>Actions 사용하기</h2><hr>
+<p>actions를 호출할 때는 <code>dispatch</code>를 사용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">methods: &#123;</span><br><span class="line">  addTodo() &#123;</span><br><span class="line">    // &apos;addTodo&apos;는 actions에 있는 &apos;addTodo&apos;, this.inputField는 Vuex(store.js)에 넘겨줄 데이터</span><br><span class="line">    this.$store.dispatch(&apos;addTodo&apos;, this.inputField);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="mapActions-사용하기"><a href="#mapActions-사용하기" class="headerlink" title="mapActions 사용하기"></a>mapActions 사용하기</h2><hr>
+<p>Vuex에 내장된 helper 함수 중, mapActions를 사용하여, 좀 더 간단하게 작성할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">import &#123;mapActions&#125; from &apos;vuex&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    // Vuex 의 Actions 메서드 명과 App.vue 메서드 명이 동일할 때, [] 사용</span><br><span class="line">    ...mapActions([</span><br><span class="line">      &apos;addTodo&apos;,</span><br><span class="line">      &apos;getTodo&apos;</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    // Vuex 의 Actions 메서드 명과 App.vue 메서드 명을 다르게 매칭할 때, &#123;&#125; 사용</span><br><span class="line">  ...mapActions(&#123;</span><br><span class="line">    addTodo: &apos;addTodo&apos; // 앞 addTodo는 해당 컴포넌트의 메서드를, 뒤 &apos;addTodo&apos;는 Vuex의 actions를 의미</span><br><span class="line">  &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="setTimeout-사용"><a href="#setTimeout-사용" class="headerlink" title=" setTimeout() 사용"></a><2> setTimeout() 사용</2></h1><hr>
+<h2 id="Actions-등록하기-1"><a href="#Actions-등록하기-1" class="headerlink" title="Actions 등록하기"></a>Actions 등록하기</h2><hr>
+<p>먼저 Vuex(store.js)에 actions를 등록해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line"></span><br><span class="line">  delayTime: function (context, payload) &#123;</span><br><span class="line">     return setTimeout(function () &#123;</span><br><span class="line">       commit(&apos;addTodo&apos;, payload); // mutations에 있는 &apos;addTodo&apos; 호출</span><br><span class="line">     &#125;, 5000);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Mutations-등록하기-2"><a href="#Mutations-등록하기-2" class="headerlink" title="Mutations 등록하기"></a>Mutations 등록하기</h2><hr>
+<p>actions에 등록을 했어도, 상태가 변경된 것을 추적하기 위해서는 mutations의 메소드를 호출(commit) 해야한다. 그리고, mutations에 actions에 등록한 메소드를 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  addTodo (state, todo) &#123;</span><br><span class="line">      state.todoList = [...state.todoList, todo]</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Actions-사용하기-1"><a href="#Actions-사용하기-1" class="headerlink" title="Actions 사용하기"></a>Actions 사용하기</h2><hr>
+<p>actions를 호출할 때는 <code>dispatch</code>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// App.vue</span><br><span class="line">addTime(time) &#123;</span><br><span class="line">   this.$store.dispatch(&apos;delayTime&apos;, time);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vuex/">Vuex</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/26/what-is-vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vuex란 무엇인가?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#State란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">State란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#State-등록하기"><span class="nav-number">2.</span> <span class="nav-text">State 등록하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#State-사용하기"><span class="nav-number">3.</span> <span class="nav-text">State 사용하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getters란-무엇인가"><span class="nav-number">4.</span> <span class="nav-text">Getters란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getters-등록하기"><span class="nav-number">5.</span> <span class="nav-text">Getters 등록하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getters-사용하기"><span class="nav-number">6.</span> <span class="nav-text">Getters 사용하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mapGetters-사용하기"><span class="nav-number">7.</span> <span class="nav-text">mapGetters 사용하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mutations란-무엇인가"><span class="nav-number">8.</span> <span class="nav-text">Mutations란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mutations-등록하기"><span class="nav-number">9.</span> <span class="nav-text">Mutations 등록하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mutations-사용하기"><span class="nav-number">10.</span> <span class="nav-text">Mutations 사용하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mapMutations-사용하기"><span class="nav-number">11.</span> <span class="nav-text">mapMutations 사용하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Actions란-무엇인가"><span class="nav-number">12.</span> <span class="nav-text">Actions란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-통신-axios-사용"><span class="nav-number">13.</span> <span class="nav-text"> http 통신: axios 사용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions-등록하기"><span class="nav-number">13.1.</span> <span class="nav-text">Actions 등록하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutations-등록하기-1"><span class="nav-number">13.2.</span> <span class="nav-text">Mutations 등록하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions-사용하기"><span class="nav-number">13.3.</span> <span class="nav-text">Actions 사용하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapActions-사용하기"><span class="nav-number">13.4.</span> <span class="nav-text">mapActions 사용하기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setTimeout-사용"><span class="nav-number">14.</span> <span class="nav-text"> setTimeout() 사용</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions-등록하기-1"><span class="nav-number">14.1.</span> <span class="nav-text">Actions 등록하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutations-등록하기-2"><span class="nav-number">14.2.</span> <span class="nav-text">Mutations 등록하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions-사용하기-1"><span class="nav-number">14.3.</span> <span class="nav-text">Actions 사용하기</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2018 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
