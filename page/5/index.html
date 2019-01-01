@@ -98,6 +98,76 @@
         
           <section id="main">
   
+    <article id="post-what-is-closures"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/10/31/what-is-closures/">Closure란 무엇인가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/10/31/what-is-closures/" class="article-date">
+	  <time datetime="2018-10-31T14:52:06.000Z" itemprop="datePublished">October 31, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="클로저-Closure"><a href="#클로저-Closure" class="headerlink" title="클로저(Closure)"></a>클로저(Closure)</h1><hr>
+<p><strong>클로저</strong>란, 외부함수와 내부함수가 있을 때, 외부함수에 의해 내부함수가 반환된 이후에도, 내부함수에서 외부함수에 있는 변수를 참조할 수 있는 것을 말한다.</p>
+<p>조건 3가지</p>
+<ul>
+<li>외부함수와 내부함수가 존재</li>
+<li>내부함수가 외부함수에 있는 변수를 참조해야 한다.</li>
+<li>외부함수가 내부함수를 return(라이프사이클과 관련) 해야한다.</li>
+</ul>
+<p>내부함수가 외부함수보다 더 긴 라이프 사이클을 가지고 있을때,<br>외부함수에 있는 변수를 내부함수가 참조하는데, 그 변수의 값은 유지되어있다.</p>
+<p>실행 컨텍스트의 관점에서 이해해보자.</p>
+<p>기본적으로 실행 컨텍스트는 함수가 종료되면, 실행 컨텍스트 스택에서 제거된다. 그래서 외부함수에서 내부함수를 반환하고, 모두 실행이 되면, 외부함수의 실행 컨텍스트는 제거된다. 그럼에도 불구하고, 내부함수에서 외부함수의 실행 컨텍스트 내에 있는 활성 객체는 유효하기 때문에, 내부함수에서 외부함수의 변수를 참조할 수 있다. (이때, 이 변수를 자유변수라고 한다.) 이는 내부함수가 스코프 체인을 통해 참조하려는 변수를 먼저 내부함수에서 찾고(내부함수 안에 있는 스코프체인의 ‘0’이 가리키는 활성객체에 참조하려는 변수가 있는지 확인한다.), 없으면, 상위지역인 외부함수에서 찾는다.(내부함수 안에 있는 스코프체인의 ‘1’이 가리키는 활성객체, 즉 외부함수의 활성객체에 들어있는 변수를 말한다.) 이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라, 실제 변수에 접근하는 것이다.</p>
+<p>위 내용을 예제와 함께 요약하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function outerFunc() &#123;</span><br><span class="line">  var x = 10;</span><br><span class="line">  var innerFunc = function () &#123; console.log(x); &#125;;</span><br><span class="line">  return innerFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inner = outerFunc();</span><br><span class="line">inner(); // 10</span><br></pre></td></tr></table></figure></p>
+<p>순서</p>
+<ul>
+<li>외부함수(outerFunc)가 내부함수(innerFunc)를 반환하고, 외부함수는 종료된다.(이때, 외부함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 제거된다.)</li>
+<li>내부함수에서 변수 x를 참조하려 할 때, 먼저 내부함수(자기자신) 내에서 그 변수를 찾는다.(내부함수의 스코프체인의 ‘0’이 가리키는 활성객체내에 변수 x를 찾는다.)</li>
+<li>내부함수내에 없으면, 그 내부함수를 포함하고 있는 외부함수 내에서 그 변수를 찾는다.(내부함수의 스코프체인의 ‘1’이 가리키는 활성객체내에 변수 x를 찾아 참조한다.)</li>
+<li>이때 내부함수가 외부함수에 있는 변수의 복사본이 아니라, 실제 변수에 접근한다.!</li>
+</ul>
+<p><br></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Closures/">Closures</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-what-is-execution-context"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -875,105 +945,6 @@ let 과 const: 블록레벨
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-dom"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/09/13/what-is-dom/">DOM(Document Object Model)이란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/09/13/what-is-dom/" class="article-date">
-	  <time datetime="2018-09-13T03:01:26.000Z" itemprop="datePublished">September 13, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DOM-Document-Object-Model"><a href="#DOM-Document-Object-Model" class="headerlink" title="DOM(Document Object Model)"></a>DOM(Document Object Model)</h1><hr>
-<p>DOM이란, 브라우저가 서버에게 요청하여, 응답으로 받은 웹 문서(HTML, XML, SVG 등)를 브라우저의 렌더링 엔진이 로드하고, 파싱하여 브라우저가 이해할 수 있는 형태로 구성된 것을 말한다. 이 DOM은 자바스크립트를 이용해 동적으로 변경이 가능하고, 이 변경된 DOM은 렌더링에 반영된다. 이때, 자바스크립트로 이 DOM에 접근하고 수정할 수 있는 DOM API가 있으며, 이 DOM API가 가지고 있는 프로퍼티와 메소드로 정적인 웹페이지에 접근하여 동적으로 변경할 수 있다.</p>
-<p>DOM은 W3C의 공식 표준이고, HTML, JavaScript에서 정의한 표준이 아니다.</p>
-<p><br></p>
-<h1 id="DOM의-기능"><a href="#DOM의-기능" class="headerlink" title="DOM의 기능"></a>DOM의 기능</h1><hr>
-<ul>
-<li><strong>HTML 문서에 대한 모델 구성</strong><ul>
-<li>브라우저가 이해할 수 있는 형태로 HTML 문서를 모델로 구성하여 메모리에 생성하는데, 이때 모델은 객체의 트리로 구성된다.</li>
-</ul>
-</li>
-<li><strong>HTML 문서 내의 각 요소에 접근 및 수정</strong><ul>
-<li>객체의 트리로 구성되어있는 모델 내의 각 객체에 접근 및 수정할 수 있는 프로퍼티와 메소드를 제공한다. 이때, DOM이 수정되면, 브라우저를 통해 사용자가 보게 될 내용 또한 변경된다.</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<h1 id="DOM-구조"><a href="#DOM-구조" class="headerlink" title="DOM 구조"></a>DOM 구조</h1><hr>
-<p>DOM 구조는 브라우저가 이해할 수 있는 형태로 HTML 문서를 모델로 구성하여 메모리에 생성하는데, 이때 모델은 객체의 트리로 구성되었다고 하여, DOM tree라고 부른다. DOM tree는 HTML 문서의 모든 요소와 요소의 attribute, text 등을 각각의 객체로 만들고, 이들 객체간에 관계를 부자 관계로 표현하는 tree(나무 가지)처럼 구성되어있다.</p>
-<p><br></p>
-<p><img src="/images/dom-tree.png" alt="DOM 구조"><br>출처: <a href="https://poiemaweb.com/js-dom" target="_blank" rel="noopener">DOM 구조</a></p>
-<p>위 구조를 코드로 작성하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Cryptocurrency&lt;/h1&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li id=&quot;one&quot;&gt;Bitcoin&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;two&quot;&gt;Bitcoin Cash&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;three&quot;&gt;Ripple&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;four&quot;&gt;Ethereum&lt;/li&gt;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="DOM-tree-노드의-종류"><a href="#DOM-tree-노드의-종류" class="headerlink" title="DOM tree 노드의 종류"></a>DOM tree 노드의 종류</h1><p>DOM tree는 4 종류의 노드로 구성된다.</p>
-<ul>
-<li>문서 노드(Document Node)</li>
-<li>요소 노드(Element Node)</li>
-<li>어트리뷰트 노드(Attribute Node)</li>
-<li>텍스트 노드(Text Node)</li>
-</ul>
-<p><br></p>
-<h2 id="문서-노드-Document-Node"><a href="#문서-노드-Document-Node" class="headerlink" title="문서 노드(Document Node)"></a>문서 노드(Document Node)</h2><hr>
-<p>Document Node란, DOM tree에 접근하기 위한 시작점(entry point)이다.<br>DOM tree의 최상위에 존재하고, DOM tree에 있는 요소, 어트리뷰트, 또는 텍스트 노드 등에 접근하기 위해서는 Document Node를 통해 접근해야 한다.</p>
-<p>Document Node의 프로퍼티 및 메소드는 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document" target="_blank" rel="noopener">MDN</a>에서 확인할 수 있다.</p>
-<p><br></p>
-<h2 id="요소-노드-Element-Node"><a href="#요소-노드-Element-Node" class="headerlink" title="요소 노드(Element Node)"></a>요소 노드(Element Node)</h2><hr>
-<p>Element Node란, html, body, div 등 HTML 요소를 말한다. Element Node는 서로 부자 관계를 가지며, 이 부자 관계를 통해 정보를 구조화한다. Attribute Node 또는 Text Node에 접근하기 위해서는 먼저 Element Node에 접근해야 한다. 모든 Element Node는 요소별 특성을 표현하기 위해 HTMLElement 객체를 상속한 객체로 구성된다.</p>
-<p>Element Node의 프로퍼티 및 메소드는 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" target="_blank" rel="noopener">MDN</a>에서 확인할 수 있다.</p>
-<p><br></p>
-<h2 id="어트리뷰트-노드-Attribute-Node"><a href="#어트리뷰트-노드-Attribute-Node" class="headerlink" title="어트리뷰트 노드(Attribute Node)"></a>어트리뷰트 노드(Attribute Node)</h2><hr>
-<p>Attribute Node란, HTML 요소의 어트리뷰트로, HTML 요소의 자식이 아닌 일부이다.</p>
-<p>Attribute Node의 프로퍼티 및 메소드는 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Attr" target="_blank" rel="noopener">MDN</a>에서 확인할 수 있다.</p>
-<p><br></p>
-<h2 id="텍스트-노드-Text-Node"><a href="#텍스트-노드-Text-Node" class="headerlink" title="텍스트 노드(Text Node)"></a>텍스트 노드(Text Node)</h2><hr>
-<p>Text Node란, 텍스트로 표현된 Element Node의 자식 요소이다. DOM tree의 최하단에 있는 Node로, Text Node는 자식 노드를 가질 수 없다.</p>
-<p>Text Node의 프로퍼티 및 메소드는 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text" target="_blank" rel="noopener">MDN</a>에서 확인할 수 있다.</p>
-<p><br></p>
-<h2 id="DOM-tree의-객체-구성"><a href="#DOM-tree의-객체-구성" class="headerlink" title="DOM tree의 객체 구성"></a>DOM tree의 객체 구성</h2><hr>
-<p><img src="/images/dom_types.png" alt="DOM tree의 객체 구성"><br>출처: <a href="https://web.stanford.edu/class/cs98si/slides/the-document-object-model.html" target="_blank" rel="noopener">DOM tree의 객체 구성</a></p>
-<p>DOM tree의 객체는 위 그림과 같이 구성되어 있다. 또한, 모든 Element Node는 HTMLElement 객체를 상속한 객체로 구성되어 있다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1084,6 +1055,18 @@ let 과 const: 블록레벨
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/01/vue-routing/">Vue에서 Routing 사용하는 방법</a></h6>
+              <span>January 1, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2018/12/27/axios-and-vue/">Vue에서 Axios 사용하는 방법</a></h6>
               <span>December 27, 2018</span>
             </div>
@@ -1138,18 +1121,6 @@ let 과 const: 블록레벨
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/22/vue-project/">Vue 프로젝트 Directory 구조</a></h6>
-              <span>December 22, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1159,7 +1130,7 @@ let 과 const: 블록레벨
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -1184,7 +1155,7 @@ let 과 const: 블록레벨
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2018 Hexo All Rights Reserved.
+	      &copy; 2019 Hexo All Rights Reserved.
         
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
