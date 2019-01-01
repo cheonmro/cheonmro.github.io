@@ -98,6 +98,85 @@
         
           <section id="main">
   
+    <article id="post-what-is-vue"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/21/what-is-vue/">Vue &amp; MVVM Pattern</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/21/what-is-vue/" class="article-date">
+	  <time datetime="2018-12-20T15:32:39.000Z" itemprop="datePublished">December 21, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="What-is-Vue"><a href="#What-is-Vue" class="headerlink" title="What is Vue?"></a>What is Vue?</h1><hr>
+<p>Vue.js 공식사이트에서는 Vue.js를 <strong>‘점진적인 JavaScript 프레임워크’(The Progressive JavaScript Framework)</strong>라 소개한다. Vue.js의 코어 라이브러리는 React와 유사하게 데이터 바인딩과 컴포넌트에만 집중한다. 그러나 복잡한 대규모 애플리케이션을 개발하려면 라우팅, 상태 공유, 컴포넌트 간의 통신 등을 위해 별도의 수많은 도구가 필요해진다. Ember나 Angular는 이런 도구를 프레임워크에 내재하는 형태로 접근한다. React는 도구를 제공하는 역할을 커뮤니티를 통한 생태계에 맡기고 있다.</p>
+<p>Vue.js는 중간적인 형태로 접근을 한다. 코어는 최소한의 기능만 제공하고, 필요한 다른 도구는 별도로 제공한다. Vue.js의 도구는 모두 공식적으로 관리되고 완성도 높은 문서가 함께 제공된다.</p>
+<p><img src="/images/vue.png" alt="Vue"><br>출처: <a href="https://joshua1988.github.io/web_dev/vuejs-tutorial-for-beginner/" target="_blank" rel="noopener">Vue</a></p>
+<p>위에서 Vue.js는 프레임워크라고 말했지만, ‘점진적인’ 말에 주목해야 한다. 즉, Vue.js는 작은 화면단 라이브러리 역할부터 큰 규모의 웹 애플리케이션 개발을 돕는 프레임워크 역할까지 점진적으로 적용할 수 있는 프론트엔드 프레임워크를 말한다. Vue.js는 MVVM 패턴에서 View와 Model을 연결해주는 ViewModel 계층에 초점을 둔 프레임워크이다. 뷰모델을 통해서 양방향 데이터 바인딩이 가능하게 해주며, 뷰 계층을 좀 더 간단하고 유연하게 디자인하게 해준다. 즉, 모델과 뷰의 동기화 역할을 한다.</p>
+<p><br></p>
+<h1 id="MVVM-Pattern"><a href="#MVVM-Pattern" class="headerlink" title="MVVM Pattern"></a>MVVM Pattern</h1><hr>
+<p><strong>MVVM 패턴</strong>이란, Mode - View - ViewModel의 줄임말로, 로직과 UI의 분리를 위해 설계된 패턴이다. 웹페이지는 돔과 자바스크립트로 만들어지게 되는데 돔이 View 역할을 하고, 자바스크립트가 Model 역할을 한다. 뷰모델이 없는 경우에는 직접 모델과 뷰를 연결해야 한다. 그러나 뷰모델이 중간에서 연결해 주는 것이 MVVM 모델이다.</p>
+<p><img src="/images/mvvm.png" alt="MVVM Pattern"><br>출처: <a href="https://meetup.toast.com/posts/99" target="_blank" rel="noopener">MVVM Pattern</a></p>
+<p>사용자 인터페이스에 해당하는 뷰(View)와 뷰에 표시되는 데이터(Model) 그리고 뷰(View)와 모델(Model) 사이에서 여러 비즈니스 로직을 처리하는 뷰-모델(View-Model)로 분리하여, 유지보수를 쉽게하고 뷰(View) 처리에 다양한 기능을 사용할 수 있게 되었다.</p>
+<p>MVVM Pattern을 총 3개로 나눌 수 있다.</p>
+<ul>
+<li>Model (비즈니스 규칙, 데이터 접근, 모델 클래스)</li>
+<li>View (사용자 인터페이스)</li>
+<li>ViewModel (모델과 뷰 사이의 인터페이스)</li>
+</ul>
+<p>뷰모델(ViewModel)은 모델(Model)과 뷰(View)사이에 인터페이스 역할을 한다.<br>뷰모델은 모델의 데이터를 뷰에 바인딩하고, 명령어를 사용하여 모든 UI의 동작들을 다룬다.<br>뷰는 뷰모델의 프로퍼티에 제어값을 바인딩하며 차례대로 모델 객체에 있는 데이터를 노출시킨다.</p>
+<p>예를 들어 사용자가 뷰에 있는 계산기 프로그램을 사용하여 결과값을 요청하는 버튼을 클릭했을 때, 뷰모델이 요청받은 동작을 수행한다. 뷰모델의 연산 기능을 담당하는 명령어는 연산 후 모델의 데이터 값을 변경시킨다. 만약 뷰모델의 속성값이 변경되면(모델의 데이터 값이 변경되면) 새로운 속성 값들은 데이터 바인딩(data binding)과 알림(notification)을 통해 자동적으로 뷰에 적용된다.</p>
+<p>간단한 코드로 보면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">// View</span><br><span class="line">&lt;div id = “app”</span><br><span class="line">    &#123;&#123;message&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// Model</span><br><span class="line">var model = &#123;</span><br><span class="line">    message : “뷰 생성&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line"> new Vue(&#123;</span><br><span class="line">    el : ‘#app’,</span><br><span class="line">    data : model</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/mvvm_p.JPG" alt="MVVM Pattern"><br>출처: <a href="https://wikidocs.net/17701" target="_blank" rel="noopener">MVVM Pattern</a></p>
+<p><br></p>
+<h1 id="Todo-앱으로-MVVM-Pattern으로-개발하기"><a href="#Todo-앱으로-MVVM-Pattern으로-개발하기" class="headerlink" title="Todo 앱으로 MVVM Pattern으로 개발하기"></a>Todo 앱으로 MVVM Pattern으로 개발하기</h1><hr>
+<p>먼저, 부모 역할을 하는 Todolist.vue가 있는데, 여기서 Todo List App을 클릭하면, 라우터를 통해 홈(‘/‘)으로 이동한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div id=&quot;todolistapp&quot;&gt;</span><br><span class="line">        &lt;div id=&quot;header&quot; class=&quot;header&quot;&gt;</span><br><span class="line">            &lt;router-link to=&apos;/&apos;&gt;&lt;h2&gt;Todo List App&lt;/h2&gt;&lt;/router-link&gt;</span><br><span class="line">            &lt;router-link to=&apos;/note&apos;&gt;&lt;p&gt;Note&lt;/p&gt;&lt;/router-link&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;br&gt;</span><br><span class="line"></span><br><span class="line">        &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;todo-list&apos;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>아래는, Todo를 추가할 수 있는 Todo.vue인데, 여기서는 InputTodo.vue와 List.vue를 보여준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;input-todo /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;br&gt;</span><br><span class="line">        &lt;br&gt;</span><br><span class="line"></span><br><span class="line">        &lt;list&gt;&lt;/list&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import InputTodo from &apos;./InputTodo&apos;;</span><br><span class="line">import List from &apos;./List&apos;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;todo&apos;,</span><br><span class="line">    components : &#123; InputTodo, List &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>아래는, InputTodo.vue이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    // View</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;input class=&quot;input&quot; type=&quot;text&quot; id=&quot;task&quot; v-model=&quot;todo&quot;</span><br><span class="line">            placeholder=&quot;입력 후 엔터!&quot; v-on:keyup.enter=&quot;addTodo&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;addbutton&quot; v-on:click=&quot;addTodo&quot;&gt;추 가&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">import eventBus from &apos;../EventBus&apos;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line">export default &#123;</span><br><span class="line">    name : &apos;input-todo&apos;,</span><br><span class="line">    // Model</span><br><span class="line">    data : function() &#123;</span><br><span class="line">        return &#123; todo : &quot;&quot; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods : &#123;</span><br><span class="line">        addTodo : function() &#123;</span><br><span class="line">            console.log(this.todo);</span><br><span class="line">            eventBus.$emit(&apos;add-todo&apos;, this.todo);</span><br><span class="line">            this.todo = &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>아래는, List.vue이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    // View</span><br><span class="line">    &lt;ul id=&quot;todolist&quot;&gt;</span><br><span class="line">        &lt;li v-for=&quot;a in todolist&quot; :key=&quot;a.id&quot; :class=&quot;checked(a.done)&quot;</span><br><span class="line">            @click=&quot;doneToggle(a.id)&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; a.todo &#125;&#125;&lt;/span&gt;</span><br><span class="line">            &lt;span v-if=&quot;a.done&quot;&gt; (완료)&lt;/span&gt;</span><br><span class="line">            &lt;span class=&quot;close&quot; v-on:click.stop=&quot;deleteTodo(a.id)&quot;&gt;&amp;#x00D7;&lt;/span&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">import eventBus from &apos;../EventBus&apos;</span><br><span class="line"></span><br><span class="line">// ViewModel</span><br><span class="line">export default &#123;</span><br><span class="line">    created : function() &#123;</span><br><span class="line">         eventBus.$on(&apos;add-todo&apos;, this.addTodo);</span><br><span class="line">    &#125;,</span><br><span class="line">    // Model</span><br><span class="line">    data : function() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            todolist : [</span><br><span class="line">                &#123; id:1, todo : &quot;vue&quot;, done:false &#125;,</span><br><span class="line">                &#123; id:2, todo : &quot;react&quot;, done:true &#125;,</span><br><span class="line">                &#123; id:3, todo : &quot;python&quot;, done:false &#125;,</span><br><span class="line">                &#123; id:4, todo : &quot;java&quot;, done:false &#125;,</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods : &#123;</span><br><span class="line">        checked : function(done) &#123;</span><br><span class="line">            if(done) return &#123; checked:true &#125;;</span><br><span class="line">            else return &#123; checked:false &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        addTodo : function(todo) &#123;</span><br><span class="line">            if (todo !== &quot;&quot;) &#123;</span><br><span class="line">                this.todolist.push(</span><br><span class="line">                    &#123; id:new Date().getTime(), todo : todo, done:false &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        doneToggle : function(id) &#123;</span><br><span class="line">            var index = this.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">            this.todolist[index].done = !this.todolist[index].done;</span><br><span class="line">        &#125;,</span><br><span class="line">        deleteTodo : function(id) &#123;</span><br><span class="line">            var index = this.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">            this.todolist.splice(index,1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVVM/">MVVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-what-is-stablecoin"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -943,95 +1022,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-tree"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/06/what-is-tree/">트리(Tree)란 무엇인가?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/06/what-is-tree/" class="article-date">
-	  <time datetime="2018-11-06T01:50:51.000Z" itemprop="datePublished">November 6, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="트리-Tree"><a href="#트리-Tree" class="headerlink" title="트리(Tree)"></a>트리(Tree)</h1><hr>
-<p><strong>트리(Tree)</strong>란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.</p>
-<p><br></p>
-<h1 id="트리-Tree-의-용어"><a href="#트리-Tree-의-용어" class="headerlink" title="트리(Tree)의 용어"></a>트리(Tree)의 용어</h1><hr>
-<p><img src="/images/tree-terms.png" alt="Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html" target="_blank" rel="noopener">Tree</a></p>
-<ul>
-<li><strong>루트 노드(root node)</strong>: 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐.</li>
-<li><strong>단말 노드(leaf node)</strong>: 자식이 없는 노드로, ‘말단 노드’ 또는 ‘잎 노드’라고도 함.</li>
-<li><strong>내부(internal) 노드</strong>: 단말 노드가 아닌 노드가 아닌 노드</li>
-<li><strong>간선(edge)</strong>: 노드를 연결하는 선 (link, branch 라고도 부름)</li>
-<li><strong>형제(sibling)</strong>: 같은 부모를 가지는 노드</li>
-<li><strong>노드의 크기(size)</strong>: 자신을 포함한 모든 자손 노드의 개수</li>
-<li><strong>노드의 깊이(depth)</strong>: 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수</li>
-<li><strong>노드의 레벨(level)</strong>: 트리의 특정 깊이를 가지는 노드의 집합</li>
-<li><strong>노드의 차수(degree)</strong>: 하위 트리 개수 / 간선 수 (degree) = 각 노드가 지닌 가지의 수</li>
-<li><strong>트리의 차수(degree of tree)</strong>: 트리의 최대 차수</li>
-<li><strong>트리의 높이(height)</strong>: 루트 노드에서 가장 깊숙히 있는 노드의 깊이</li>
-</ul>
-<p><br></p>
-<h1 id="트리-Tree-의-특징"><a href="#트리-Tree-의-특징" class="headerlink" title="트리(Tree)의 특징"></a>트리(Tree)의 특징</h1><hr>
-<ul>
-<li>트리는 그래프의 한 형태이다. 즉, 그래프 안에 여러 종류 중 트리가 있다.</li>
-<li>트리는 방향이 위에서 아래로만 향하는 방향 그래프이다. 즉, 노드들 사이의 선을 간선(edge)라고 하는데, 트리는 간선의 방향이 위에서 아래이다.</li>
-<li>트리는 DAG(Directed Acyclic Graphs, 방향성이 있는 비순환 그래프)의 한 종류이다. 즉, loop나 circuit이 없고, self-loop도 없다. 즉, 사이클이 없다.</li>
-<li>한 개의 루트 노드만이 존재하며 모든 자식 노드는 한 개의 부모 노드만을 가진다.</li>
-</ul>
-<p><br></p>
-<h1 id="트리-Tree-의-종류"><a href="#트리-Tree-의-종류" class="headerlink" title="트리(Tree)의 종류"></a>트리(Tree)의 종류</h1><hr>
-<ul>
-<li><strong>서브 트리(Sub Tree)</strong>: 전체 트리는 작은 트리로 구성되어 있는데, 이 작은 트리를 서브 트리(Sub Tree)라고 한다.</li>
-</ul>
-<ul>
-<li><strong>이진 트리(Binary Tree)</strong>: 자식 노드가 최대 2개까지만 붙는 트리를 이진 트리(Binary Tree)라고 한다. 즉, 자식 노드가 1개이거나, 2개일 경우 모두 이진 트리이다.</li>
-</ul>
-<p><img src="/images/binary_tree.png" alt="Binary Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_tree" target="_blank" rel="noopener">Binary Tree</a></p>
-<ul>
-<li><strong>이진 검색 트리(Binary Search Tree)</strong>: 노드안에 데이터가 왼쪽 노드와 그 이하 자식 노드들은 현재 노드보다 작아야 하고, 오른쪽 노드와 그 이하 노드들은 현재 노드보다 커야 한다. 이 조건을 만족하는 트리를 이진 검색 트리(Binary Search Tree)라고 한다. 노드를 보고, 해당 노드보다 큰 값을 찾고 싶으면, 오른쪽에서 찾으면 되고, 해당 노드보다 작은 값을 찾고 싶으면, 왼쪽에서 찾으면 된다. 따라서, 어떤 값을 찾을 때, 두 갈래 길을 선택해서 가다보면, 그 값을 찾을 수 있다.</li>
-</ul>
-<p><img src="/images/binary_search_tree.png" alt="Binary Search Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="noopener">Binary Search Tree</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1142,6 +1132,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/01/02/modules/">Modules</a></h6>
+              <span>January 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/01/01/arrow-function/">Arrow Function</a></h6>
               <span>January 1, 2019</span>
             </div>
@@ -1196,18 +1198,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2018/12/26/what-is-vuex/">Vuex란 무엇인가?</a></h6>
-              <span>December 26, 2018</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1217,7 +1207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

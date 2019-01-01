@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Modules | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Modules" />
+  
+  
+  
+  
+  <meta name="description" content="Module이란 무엇인가? 모듈이란, 애플리케이션을 구성하는 개별적 요소로서, 재사용이 가능한 코드 조각을 말한다. 모듈은 세부 사항을 캡슐화하고, 공개가 필요한 API만을 외부에 노출한다. 일반적으로, 각 모듈은 파일 단위로 분리되어 있고, 애플리케이션은 필요에 따라 모듈을 로드하여 재사용한다. 즉, 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 애">
+<meta name="keywords" content="Modules">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modules">
+<meta property="og:url" content="https://cheonmro.github.io/2019/01/02/modules/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Module이란 무엇인가? 모듈이란, 애플리케이션을 구성하는 개별적 요소로서, 재사용이 가능한 코드 조각을 말한다. 모듈은 세부 사항을 캡슐화하고, 공개가 필요한 API만을 외부에 노출한다. 일반적으로, 각 모듈은 파일 단위로 분리되어 있고, 애플리케이션은 필요에 따라 모듈을 로드하여 재사용한다. 즉, 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 애">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-01T15:05:11.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modules">
+<meta name="twitter:description" content="Module이란 무엇인가? 모듈이란, 애플리케이션을 구성하는 개별적 요소로서, 재사용이 가능한 코드 조각을 말한다. 모듈은 세부 사항을 캡슐화하고, 공개가 필요한 API만을 외부에 노출한다. 일반적으로, 각 모듈은 파일 단위로 분리되어 있고, 애플리케이션은 필요에 따라 모듈을 로드하여 재사용한다. 즉, 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 애">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-modules" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Modules
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/01/02/modules/" class="article-date">
+	  <time datetime="2019-01-01T15:05:11.000Z" itemprop="datePublished">January 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Module이란-무엇인가"><a href="#Module이란-무엇인가" class="headerlink" title="Module이란 무엇인가?"></a>Module이란 무엇인가?</h1><hr>
+<p>모듈이란, 애플리케이션을 구성하는 개별적 요소로서, 재사용이 가능한 코드 조각을 말한다.</p>
+<p>모듈은 세부 사항을 캡슐화하고, 공개가 필요한 API만을 외부에 노출한다. 일반적으로, 각 모듈은 파일 단위로 분리되어 있고, 애플리케이션은 필요에 따라 모듈을 로드하여 재사용한다. 즉, 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 애플리케이션의 로드에 의해 비로소 애플리케이션의 로드에 의해 비로소 애플리케이션의 일원이 된다.</p>
+<p>모듈은 기능별로 분리되어 작성되므로, 코드의 단위를 명확히 분리하여 애플리케이션을 구성할 수 있고, 재사용에 좋기 때문에, 개발을 효율적으로 할 수 있고, 유지보수 또한 좋다.</p>
+<p>ES6에서 모듈을 사용할 때, export와 import 두 개의 키워드를 사용한다.</p>
+<p><br></p>
+<h1 id="Module-사용의-이점"><a href="#Module-사용의-이점" class="headerlink" title="Module 사용의 이점"></a>Module 사용의 이점</h1><hr>
+<ul>
+<li>Javascript 애플리케이션을 여러 개의 파일로 분할하여 작성할 수 있다.</li>
+<li>재사용이 가능한 코드를 작성하기 때문에, 개발 효율과 유지보수에 좋다.</li>
+</ul>
+<p><br></p>
+<h1 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h1><hr>
+<p>모듈은 기본적으로 독립적인 스코프를 가지고 있어서, 모듈안에 선언된 모든 것들은 해당 모듈 내에서만 참조 할 수 있다.</p>
+<p>어떤 모듈안에서 선언한 항목(변수/함수/클래스 등)을 외부에 공개하여 다른 모듈들이 사용할 수 있게 하려면, export를 해야한다. 이때, 선언된 변수, 함수, 그리고 클래스 모두를 export 할 수 있고, 키워드는 export를 사용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">// 변수의 공개</span><br><span class="line">export const num = 10;</span><br><span class="line"></span><br><span class="line">// 함수의 공개</span><br><span class="line">export function square(x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 클래스의 공개</span><br><span class="line">export class Person &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>각 선언문(변수/함수/클래스) 앞에 export를 붙이는 대신, export 대상을 하나의 객체로 구성하여, 한번에 export를 할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">const num = 10;</span><br><span class="line"></span><br><span class="line">function square(x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 변수, 함수 클래스를 하나의 객체로 구성하여 공개</span><br><span class="line">export &#123; num, square, Person &#125;;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h1><hr>
+<p>다른 모듈에서 어떤 export된 모듈을 가져와 사용하려면, 키워드 import를 사용해 로드하여 사용할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// 같은 폴더 내의 module.js 모듈을 로드. 확장자 js는 생략 가능.</span><br><span class="line">import &#123; num, square, Person &#125; from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(num);         // 10</span><br><span class="line">console.log(square(10)); // 100</span><br><span class="line">console.log(new Person(&apos;Lee&apos;)); // Person &#123; name: &apos;Lee&apos; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>각각의 이름을 지정하지 않고 하나의 이름으로 한꺼번에 import할 수도 있다. 이때 import되는 항목은 as 뒤에 지정한 이름의 변수에 할당된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// lib라는 이름으로 임포트</span><br><span class="line">import * as lib from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(module.num);         // 10</span><br><span class="line">console.log(module.square(10)); // 100</span><br><span class="line">console.log(new module.Person(&apos;Lee&apos;)); // Person &#123; name: &apos;Lee&apos; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>이름을 변경하여 import할 수도 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import &#123; num as n, square as sq, Person as P &#125; from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(n);    // 10</span><br><span class="line">console.log(sq(2)); // 4</span><br><span class="line">console.log(new P(&apos;Kim&apos;)); // Person &#123; name: &apos;Kim&apos; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>모듈에서 하나만을 export할 때는 default 키워드를 사용할 수 있다. 다만, default를 사용하는 경우, var, let, const는 사용할 수 없다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// lib.js</span><br><span class="line">function (x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default;</span><br></pre></td></tr></table></figure></p>
+<p>위 코드를 아래와 같이 축약 표현할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">export default function (x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>default 키워드와 함께 export한 모듈은 {} 없이 임의의 이름으로 import한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import square from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(square(3)); // 9</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Vue에서의-Modules-사용하는-방법"><a href="#Vue에서의-Modules-사용하는-방법" class="headerlink" title="Vue에서의 Modules 사용하는 방법"></a>Vue에서의 Modules 사용하는 방법</h1><hr>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Modules/">Modules</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/01/arrow-function/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Arrow Function</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Module이란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Module이란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Module-사용의-이점"><span class="nav-number">2.</span> <span class="nav-text">Module 사용의 이점</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Export"><span class="nav-number">3.</span> <span class="nav-text">Export</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Import"><span class="nav-number">4.</span> <span class="nav-text">Import</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue에서의-Modules-사용하는-방법"><span class="nav-number">5.</span> <span class="nav-text">Vue에서의 Modules 사용하는 방법</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
