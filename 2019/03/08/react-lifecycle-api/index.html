@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Lifecycle API | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ReactLifecycle API" />
+  
+  
+  
+  
+  <meta name="description" content="Lifecycle API란 무엇인가? Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다. React 컴포넌트의 lifecycle은 다음과 같다. 출처: React 컴포넌트의 lifecycle  React lifecycle API 3단계 Mounting: React 컴포넌트의 인스턴스가 생성되고,">
+<meta name="keywords" content="React,Lifecycle API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lifecycle API">
+<meta property="og:url" content="https://cheonmro.github.io/2019/03/08/react-lifecycle-api/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Lifecycle API란 무엇인가? Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다. React 컴포넌트의 lifecycle은 다음과 같다. 출처: React 컴포넌트의 lifecycle  React lifecycle API 3단계 Mounting: React 컴포넌트의 인스턴스가 생성되고,">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/lifecycle.png">
+<meta property="og:updated_time" content="2019-03-08T14:49:53.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lifecycle API">
+<meta name="twitter:description" content="Lifecycle API란 무엇인가? Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다. React 컴포넌트의 lifecycle은 다음과 같다. 출처: React 컴포넌트의 lifecycle  React lifecycle API 3단계 Mounting: React 컴포넌트의 인스턴스가 생성되고,">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/lifecycle.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-react-lifecycle-api" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Lifecycle API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/08/react-lifecycle-api/" class="article-date">
+	  <time datetime="2019-03-08T14:49:53.000Z" itemprop="datePublished">March 8, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Lifecycle-API란-무엇인가"><a href="#Lifecycle-API란-무엇인가" class="headerlink" title="Lifecycle API란 무엇인가?"></a>Lifecycle API란 무엇인가?</h1><hr>
+<p><strong>Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다.</strong></p>
+<p>React 컴포넌트의 lifecycle은 다음과 같다.</p>
+<p><img src="/images/lifecycle.png" alt="React 컴포넌트의 lifecycle"><br>출처: <a href="https://velopert.com/1130" target="_blank" rel="noopener">React 컴포넌트의 lifecycle</a></p>
+<p><br></p>
+<h1 id="React-lifecycle-API-3단계"><a href="#React-lifecycle-API-3단계" class="headerlink" title="React lifecycle API 3단계"></a>React lifecycle API 3단계</h1><hr>
+<p><strong>Mounting: React 컴포넌트의 인스턴스가 생성되고, DOM에 삽입되는 과정의 lifecycle</strong></p>
+<ul>
+<li>constructor</li>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+<p><strong>Updating: prop 또는 state의 변경으로 해당 컴포넌트가 re-rendering 되는 경우의 lifecycle</strong></p>
+<ul>
+<li>componentWillReceiveProps(props가 변경될 때만)</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ul>
+<p><strong>Unmounting: 컴포넌트가 제거되는 과정의 lifecycle</strong></p>
+<ul>
+<li>componentWillUnmount</li>
+</ul>
+<p><br></p>
+<h1 id="Mounting"><a href="#Mounting" class="headerlink" title="Mounting"></a>Mounting</h1><hr>
+<p><strong>React 컴포넌트의 인스턴스가 생성되고, DOM에 삽입되는 과정의 lifecycle</strong></p>
+<p><br></p>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><hr>
+<p><strong>우선, lifecycle API 전에 컴포넌트가 새로 만들어질 때마다 제일 먼저 호출되는 것이 바로, constructor(컴포넌트 생성자 함수)이다.</strong></p>
+<p>참고로, 컴포넌트에서 state를 정의할 때는 2가지 방법 중 하나를 사용하면 된다.</p>
+<ul>
+<li>Class fields 문법</li>
+<li>Constructor 사용</li>
+</ul>
+<h3 id="Class-fields-문법"><a href="#Class-fields-문법" class="headerlink" title="Class fields 문법"></a>Class fields 문법</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class InvestContainer extends Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    number: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Constructor-사용"><a href="#Constructor-사용" class="headerlink" title="Constructor 사용"></a>Constructor 사용</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class InvestContainer extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      number: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>super(props)를 호출한 이유:</strong></p>
+<p>ES6 class의 constructor에서 super 메소드를 사용하는 이유는, 자식 클래스에서 super 메소드를 사용함으로써 자식 class의 constructor 내부에서 부모 클래스의 constructor를 호출한다. 즉, 부모 클래스의 인스턴스를 생성해서, this를 사용할 수 있게 된다. 만약 super 키워드를 사용하지 않으면, this에 대한 참조 에러가 발생한다. 다시 말하면, super 메소드를 호출하기 이전에는 this를 참조할 수 없다는 것을 의미한다.</p>
+<p>리액트에서 컴포넌트를 class형으로 만들때는, 모두 기본적으로 리액트에 있는 ‘Component’라는 부모 클래스로부터 상속받아 자식 클래스로 시작하게 된다. 그래서 자식 클래스에서는 super 메소드를 사용해서 , 부모 클래스(Component)의 constructor를 호출, 즉 Component 클래스의 인스턴스를 생성해서 this를 사용할 수 있게 되는 것이다. 그 다음에, this를 이용해 프로퍼티를 초기화할 수 있다.</p>
+<p>이 방법이 더 복잡하므로, class fields 문법으로 주로 사용하는 것이 더 편리!</p>
+<p><br></p>
+<h2 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount"></a>componentWillMount</h2><hr>
+<p><strong>컴포넌트가 브라우저에 나타나기 전(화면에 나가기 전)에 호출되는 API이다.</strong></p>
+<p>사용 이유</p>
+<ul>
+<li>mount 직전에 하고 싶은 것들(i.e. 방문자가 어떤 페이지를 방문했는지 Google Anlaytics에 신호할 때)이 있을 경우 사용</li>
+<li>루트 컴포넌트에서 APP과 관련된 외부 API를 설정할 때 사용</li>
+</ul>
+<p>React v16.3 이후부터는 해당 API가 deprecated 되어서, 사용하면 안된다.<br>기존에 이 API에서 하던 것들을 constructor와 componentDidMount에서 처리 가능하다.</p>
+<p><br></p>
+<h2 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount"></a>componentDidMount</h2><hr>
+<p><strong>컴포넌트가 화면에 나타나게 됐을 때, 호출되는 API이다. 즉, 컴포넌트가 생성되어 DOM까지 render가 다 된 후, 실행된다.</strong></p>
+<p>사용 이유</p>
+<ul>
+<li>DOM에 대한 접근이 필요한 모든 설정을 수행할 때 사용(DOM의 속성을 읽거나 직접 변경하는 작업 등)</li>
+<li>해당 컴포넌트에서 필요로하는 데이터를 요청하기 위해 사용(axios, fetch 등을 통한 ajax 요청)</li>
+<li>외부 라이브러리 연동</li>
+</ul>
+<p><br></p>
+<h1 id="Updating"><a href="#Updating" class="headerlink" title="Updating"></a>Updating</h1><hr>
+<p><strong>컴포넌트의 업데이트는 props 또는 state의 변화에 따라 결정된다.</strong></p>
+<p><br></p>
+<h2 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps"></a>componentWillReceiveProps</h2><hr>
+<p><strong>컴포넌트가 새로운 props를 받게됐을 때 호출되는 API이다. 즉, 새로운 props로 어떠한 작업을 수행하기 전에, 이 새로운 props를 인자로하여 이 API가 호출된다. 새로 받게될 props는 nextProps로 조회 가능하고, this.props는 현재의 props를 말한다.</strong></p>
+<p>사용 이유</p>
+<ul>
+<li>props를 받아서 state를 변경해야 하는 경우 유용하다.</li>
+</ul>
+<p>다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">  if (this.props.percent !== nextProps.percent) &#123;</span><br><span class="line">    this.setUpPercent(nextProps.percent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>이 API는 초기 렌더링시에는 호출되지 않는다.</p>
+<p><br></p>
+<h2 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h2><hr>
+<p><strong>컴포넌트 업데이트 직전에 호출되는 API이다.</strong></p>
+<p>사용 이유</p>
+<ul>
+<li>컴포넌트를 최적화하는 작업에 사용<ul>
+<li>즉, 해당 컴포넌트의 re-rendering를 제어할 때 사용</li>
+</ul>
+</li>
+</ul>
+<p>이 API는 항상 boolean(true 또는 false)을 반환한다. 즉, 해당 컴포넌트를 re-rending할지 말지를 결정하는 API이다.</p>
+<p>컴포넌트를 최적화하기 위해서는, 필요없는 re-rending을 막아야 하고, 그러기 위해서는 props 또는 state가 변경되었을 때만, re-rendering 하게끔 이 API안에서 코드를 작성하면 된다.</p>
+<p>예를 들어, 다음과 같이 작성하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextProps, nextState) &#123;</span><br><span class="line">  return this.props.engagement !== nextProps.engagement</span><br><span class="line">    || nextState.input !== this.state.input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="componentWillUpdate"><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate"></a>componentWillUpdate</h2><hr>
+<p><strong>이 API는 update가 발생하기 전 어떤 작업이 필요한 경우 사용하는 API로써, shouldComponentUpdate에서 true를 반환했을 때만, 호출되는 API이다.</strong> shouldComponentUpdate가 이미 사용되고 있는 컴포넌트에서 componentWillReceiveProps를 대신 사용한다. 이 API가 호출되고 난 다음에는 render() 함수가 호출된다.</p>
+<p>사용 이유</p>
+<ul>
+<li>애니메이션 효과르 초기화할 때 사용</li>
+<li>이벤트 리스너를 없앨 때 사용</li>
+</ul>
+<p>이 API에서는 this.setState()를 사용하면 무한 루프가 일어나게 되므로 사용하면 안된다.</p>
+<p><br></p>
+<h2 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a>componentDidUpdate</h2><hr>
+<p><strong>componentWillUpdate 이후, render() 함수가 호출된 뒤에 호출되는 API이다.</strong><br>이 시점에서는 this.props와 this.state가 새로 변경되었고, 대신에 이전 값들인 prevProps와 prevState를 조회할 수 있다.</p>
+<p>사용 이유</p>
+<ul>
+<li>props 또는 state에 따라서 DOM을 업데이트 할 때 사용</li>
+</ul>
+<p><br></p>
+<h1 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h1><hr>
+<p><br></p>
+<h2 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a>componentWillUnmount</h2><hr>
+<p><strong>컴포넌트가 소멸된 시점에(DOM에서 삭제된 후) 실행되는 API이다.</strong><br>컴포넌트 내부에서 타이머나 비동기 API를 사용하고 있을 때, 이를 제거하기에 유용하다.</p>
+<p>사용 이유</p>
+<ul>
+<li>등록했었던 이벤트 제거</li>
+<li>컴포넌트 내부에서 타이머나 비동기 API를 사용하고 있을 때, 이를 제거하기에 유용하다.</li>
+<li>setTimeout 함수를 사용했다면, clearTimeout을 통하여 제거</li>
+</ul>
+<p><br></p>
+<h1 id="React-v16-3-이후에-변경된-부분"><a href="#React-v16-3-이후에-변경된-부분" class="headerlink" title="React v16.3 이후에 변경된 부분"></a>React v16.3 이후에 변경된 부분</h1><hr>
+<p>몇개 lifecycle API가 변경된 부분이 있다. 아래의 링크에서 확인해보자.</p>
+<p>출처: <a href="https://velog.io/@kyusung/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B5%90%EA%B3%BC%EC%84%9C-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%99%80-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%EC%9D%B4%EB%B2%A4%ED%8A%B8" target="_blank" rel="noopener">React v16.3 이후의 lifecycle</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lifecycle-API/">Lifecycle API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/02/modules/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Modules</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lifecycle-API란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Lifecycle API란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-lifecycle-API-3단계"><span class="nav-number">2.</span> <span class="nav-text">React lifecycle API 3단계</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mounting"><span class="nav-number">3.</span> <span class="nav-text">Mounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">3.1.</span> <span class="nav-text">constructor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-fields-문법"><span class="nav-number">3.1.1.</span> <span class="nav-text">Class fields 문법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructor-사용"><span class="nav-number">3.1.2.</span> <span class="nav-text">Constructor 사용</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillMount"><span class="nav-number">3.2.</span> <span class="nav-text">componentWillMount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidMount"><span class="nav-number">3.3.</span> <span class="nav-text">componentDidMount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updating"><span class="nav-number">4.</span> <span class="nav-text">Updating</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillReceiveProps"><span class="nav-number">4.1.</span> <span class="nav-text">componentWillReceiveProps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">4.2.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUpdate"><span class="nav-number">4.3.</span> <span class="nav-text">componentWillUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">4.4.</span> <span class="nav-text">componentDidUpdate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unmounting"><span class="nav-number">5.</span> <span class="nav-text">Unmounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">5.1.</span> <span class="nav-text">componentWillUnmount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-v16-3-이후에-변경된-부분"><span class="nav-number">6.</span> <span class="nav-text">React v16.3 이후에 변경된 부분</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
