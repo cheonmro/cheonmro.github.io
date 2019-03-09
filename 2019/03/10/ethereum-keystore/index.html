@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="EthereumKeystore" />
+  
+  
+  
+  
+  <meta name="description" content="지갑이 생성되는 과정, 그리고 Keystore 파일 지갑을 생성하게 되면, 지갑의 비밀번호(pw), private key(pk), 그리고 지갑을 백업할 수 있는 keystore 파일을 받게된다. 지갑을 import 하는 등 지갑에 대한 본인 인증을 할 때는 2가지 방법 중 하나로 한다.  pk를 이용하여 지갑에 대한 본인 인증을 한다.  문제는 pk(64">
+<meta name="keywords" content="Ethereum,Keystore">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리">
+<meta property="og:url" content="https://cheonmro.github.io/2019/03/10/ethereum-keystore/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="지갑이 생성되는 과정, 그리고 Keystore 파일 지갑을 생성하게 되면, 지갑의 비밀번호(pw), private key(pk), 그리고 지갑을 백업할 수 있는 keystore 파일을 받게된다. 지갑을 import 하는 등 지갑에 대한 본인 인증을 할 때는 2가지 방법 중 하나로 한다.  pk를 이용하여 지갑에 대한 본인 인증을 한다.  문제는 pk(64">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/pw_encrypt.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/pk_encrypt.png">
+<meta property="og:updated_time" content="2019-03-09T16:03:55.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리">
+<meta name="twitter:description" content="지갑이 생성되는 과정, 그리고 Keystore 파일 지갑을 생성하게 되면, 지갑의 비밀번호(pw), private key(pk), 그리고 지갑을 백업할 수 있는 keystore 파일을 받게된다. 지갑을 import 하는 등 지갑에 대한 본인 인증을 할 때는 2가지 방법 중 하나로 한다.  pk를 이용하여 지갑에 대한 본인 인증을 한다.  문제는 pk(64">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/pw_encrypt.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-ethereum-keystore" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/10/ethereum-keystore/" class="article-date">
+	  <time datetime="2019-03-09T16:03:55.000Z" itemprop="datePublished">March 10, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="지갑이-생성되는-과정-그리고-Keystore-파일"><a href="#지갑이-생성되는-과정-그리고-Keystore-파일" class="headerlink" title="지갑이 생성되는 과정, 그리고 Keystore 파일"></a>지갑이 생성되는 과정, 그리고 Keystore 파일</h1><hr>
+<p><strong>지갑을 생성하게 되면, 지갑의 비밀번호(pw), private key(pk), 그리고 지갑을 백업할 수 있는 keystore 파일을 받게된다.</strong></p>
+<p>지갑을 import 하는 등 지갑에 대한 본인 인증을 할 때는 2가지 방법 중 하나로 한다.</p>
+<ul>
+<li><p><strong>pk를 이용하여 지갑에 대한 본인 인증을 한다.</strong></p>
+<ul>
+<li>문제는 pk(64 hex 문자열)를 기억하기 쉽지 않고, 관리 이슈도 있다.</li>
+</ul>
+</li>
+<li><p><strong>Keystore 파일과 pw를 이용하여 지갑에 대한 본인 인증을 한다.</strong></p>
+<ul>
+<li>Keystore 파일은 pk의 암호화된 버전이다.</li>
+<li>pk를 pw와 암호화 알고리즘을 이용해 암호화하여 keystore 파일로 만드는 것이다.</li>
+</ul>
+</li>
+</ul>
+<p>이 방법이 더 좋은 2가지 이유가 있다.</p>
+<ul>
+<li><strong>안전성:</strong><ul>
+<li>만약 사용자가 pk만 사용할 경우, 해커는 그 pk만 알아내면 사용자의 지갑은 해킹당하게 된다.</li>
+<li>그런데, keystore 파일을 사용하면 해커는 추가로 pw까지 알아야 하므로 더 안전하다.</li>
+</ul>
+</li>
+<li><strong>사용성:</strong><ul>
+<li>복잡한 pk 대신 사용자들에게 익숙한 pw와 파일로 쉽게 지갑을 사용할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h1 id="keystore-파일-데이터-구조"><a href="#keystore-파일-데이터-구조" class="headerlink" title="keystore 파일 데이터 구조"></a>keystore 파일 데이터 구조</h1><hr>
+<p>keystore 파일의 데이터 구조는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: 3,</span><br><span class="line">    &quot;id&quot;: &quot;4c07993f-ded2-405a-b83d-3b627eebe5cd&quot;,</span><br><span class="line">    &quot;address&quot;: &quot;e449efddf8c9b174bbd40a0e0e1902d6eee72068&quot;,</span><br><span class="line">    &quot;Crypto&quot;: &#123;</span><br><span class="line">        &quot;cipher&quot;: &quot;aes-128-ctr&quot;,</span><br><span class="line">        &quot;cipherparams&quot;: &#123;</span><br><span class="line">          &quot;iv&quot;: &quot;7d416faf14c88bb124486f6cd851fa88&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ciphertext&quot;:&quot;e99f6d0e37f33124ee3020fad01363d9d7500efce</span><br><span class="line">                      913aede8a8119229b7a5f2e&quot;,</span><br><span class="line">        &quot;kdf&quot;: &quot;scrypt&quot;,</span><br><span class="line">        &quot;kdfparams&quot;: &#123;</span><br><span class="line">            &quot;dklen&quot;: 32,</span><br><span class="line">            &quot;salt&quot;: &quot;c47f395c9031233453168f01b5a9999a06ec97c829</span><br><span class="line">                     a395ecd16e1ad37102ec7f&quot;,</span><br><span class="line">            &quot;n&quot;: 8192,</span><br><span class="line">            &quot;r&quot;: 8,</span><br><span class="line">            &quot;p&quot;: 1</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;mac&quot;: &quot;82078437ee94331c69125eef4001ff4b78b481e909a6</span><br><span class="line">                2a9ac25aa916237b70be&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 구조 중, Crypto 객체가 keystore 파일 암호화에 대한 정보이다.</p>
+<p><br></p>
+<h1 id="pw를-이용해-pk를-암호화-복호화하여-keystore-파일을-생성하는-원리"><a href="#pw를-이용해-pk를-암호화-복호화하여-keystore-파일을-생성하는-원리" class="headerlink" title="pw를 이용해 pk를 암호화/복호화하여 keystore 파일을 생성하는 원리"></a>pw를 이용해 pk를 암호화/복호화하여 keystore 파일을 생성하는 원리</h1><hr>
+<h2 id="pw-암호화"><a href="#pw-암호화" class="headerlink" title="pw 암호화"></a>pw 암호화</h2><hr>
+<p><img src="/images/pw_encrypt.png" alt="pw 암호화 과정"><br>출처: <a href="https://medium.com/hexlant/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-keystore-%ED%8C%8C%EC%9D%BC-utc-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%95%94%ED%98%B8%ED%99%94-%EB%B3%B5%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-1-2-d417cb605bf" target="_blank" rel="noopener">pw 암호화 과정</a></p>
+<p>Pk를 암호화하기 위해 pw를 사용하는데, 이 pw를 직접 암호화키로 사용하지 않고, 이 pw를 암호화하여 암호화한 값을 암호화 키로 사용해서 pk를 암호화한다. 이때, pw를 암호화하는 알고리즘은 Scrypt인데, 비밀번호는 특성상 복호화할 필요가 없기 때문에 단반향 알고리즘 중 하나인 Scrypt를 사용한다.</p>
+<p>Keystore 파일에 들어갈 때는, kdf: ‘Scrypt’ 이런식으로 들어가는데, kdf는 암호화 알고리즘 이름을 말하고, Scrypt 알고리즘을 사용한다는 뜻이다.</p>
+<p>참고로, kdfparams 들어가는 것 중, n은 CPU/memory 비용을 말한다. 즉, 값이 클수록 암호화 파워가 증가한다.</p>
+<p><br></p>
+<h2 id="pk-암호화"><a href="#pk-암호화" class="headerlink" title="pk 암호화"></a>pk 암호화</h2><hr>
+<p><img src="/images/pk_encrypt.png" alt="pk 암호화 과정"><br>출처: <a href="https://medium.com/hexlant/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-keystore-%ED%8C%8C%EC%9D%BC-utc-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%95%94%ED%98%B8%ED%99%94-%EB%B3%B5%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-1-2-d417cb605bf" target="_blank" rel="noopener">pk 암호화 과정</a></p>
+<p>Pk를 암호화하기 위해서는 좀 전에 pw를 암호화한 값을 암호화키로 사용하고, AES 알고리즘을 사용해서 pk를 암호화한다. pk는 복호화할 필요가 있으므로(pk는 거래를 할 때, 사용되므로) 양방향 알고리즘인 AES를 사용한다.</p>
+<p>Keystore 파일에 들어갈 때는, cipher: ‘aes-128-ctr’ 이런식으로 들어가는데, cipher는 암호화 알고리즘의 이름이고 aes-128-ctr 알고리즘을 사용한다는 뜻이다.</p>
+<p><br></p>
+<h2 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h2><hr>
+<p>Mac은 keystone 파일을 사용할 때, 사용자가 입력한 pw의 일치여부를 확인하고, pk를 복호화해도 되는지 확인 용도로 사용한다.</p>
+<p>*참고로, 이더리움 wallet 만들어지는 순서</p>
+<ul>
+<li>Pk로 public key 생성</li>
+<li>Public key로 address 생성</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keystore/">Keystore</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/08/react-lifecycle-api/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Lifecycle API</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#지갑이-생성되는-과정-그리고-Keystore-파일"><span class="nav-number">1.</span> <span class="nav-text">지갑이 생성되는 과정, 그리고 Keystore 파일</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#keystore-파일-데이터-구조"><span class="nav-number">2.</span> <span class="nav-text">keystore 파일 데이터 구조</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pw를-이용해-pk를-암호화-복호화하여-keystore-파일을-생성하는-원리"><span class="nav-number">3.</span> <span class="nav-text">pw를 이용해 pk를 암호화/복호화하여 keystore 파일을 생성하는 원리</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pw-암호화"><span class="nav-number">3.1.</span> <span class="nav-text">pw 암호화</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pk-암호화"><span class="nav-number">3.2.</span> <span class="nav-text">pk 암호화</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac"><span class="nav-number">3.3.</span> <span class="nav-text">Mac</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
