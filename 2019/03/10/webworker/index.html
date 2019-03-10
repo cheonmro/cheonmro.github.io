@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Web Worker | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Web Worker" />
+  
+  
+  
+  
+  <meta name="description" content="Web Worker란 무엇인가? Web Worker란, script 실행을 main thread(UI thread)가 아니라 background thread에서 실행할 수 있도록 해주는 API이다. *thread란, 어떤 프로그램 내에서 실행되는 흐름의 단위로, 보통 한 프로그램이 하나의 thread를 가지고 있다. 하나의 thread를 갖는다는 의미는,">
+<meta name="keywords" content="Web Worker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Worker">
+<meta property="og:url" content="https://cheonmro.github.io/2019/03/10/webworker/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Web Worker란 무엇인가? Web Worker란, script 실행을 main thread(UI thread)가 아니라 background thread에서 실행할 수 있도록 해주는 API이다. *thread란, 어떤 프로그램 내에서 실행되는 흐름의 단위로, 보통 한 프로그램이 하나의 thread를 가지고 있다. 하나의 thread를 갖는다는 의미는,">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/how_webworker_works.png">
+<meta property="og:updated_time" content="2019-03-10T13:08:23.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Worker">
+<meta name="twitter:description" content="Web Worker란 무엇인가? Web Worker란, script 실행을 main thread(UI thread)가 아니라 background thread에서 실행할 수 있도록 해주는 API이다. *thread란, 어떤 프로그램 내에서 실행되는 흐름의 단위로, 보통 한 프로그램이 하나의 thread를 가지고 있다. 하나의 thread를 갖는다는 의미는,">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/how_webworker_works.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-webworker" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Web Worker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/10/webworker/" class="article-date">
+	  <time datetime="2019-03-10T13:08:23.000Z" itemprop="datePublished">March 10, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Web-Worker란-무엇인가"><a href="#Web-Worker란-무엇인가" class="headerlink" title="Web Worker란 무엇인가?"></a>Web Worker란 무엇인가?</h1><hr>
+<p><strong>Web Worker란, script 실행을 main thread(UI thread)가 아니라 background thread에서 실행할 수 있도록 해주는 API이다.</strong></p>
+<p>*thread란, 어떤 프로그램 내에서 실행되는 흐름의 단위로, 보통 한 프로그램이 하나의 thread를 가지고 있다. 하나의 thread를 갖는다는 의미는, 어떤 이벤트(행위)가 발생했을 때, 그 하나의 이벤트를 처리할 때까지 다른 일은 못하게 된다는 뜻이다. 즉, 한번에 하나씩 처리한다는 뜻이다.</p>
+<p>둘 이상의 thread를 동시에 실행하는 방식을 multi thread라고 한다. 웹 브라우저상의 javascript는 싱글 thread이기 때문에, 한번에 하나의 일 밖에 처리를 못한다. 그래서, 웹페이지에서 script가 실행되면, 해당 웹 페이지는 실행 중인 script가 종료될 때까지 응답 불가 상태, 즉 다른 일을 처리할 수가 없다.</p>
+<p>이때, Web Worker를 사용하면, 시간이 오래 걸리는 javascript 작업 등을 background에서 처리하게 하여, 사용자의 UI를 방해하지 않고, 작업을 수행할 수 있다. 즉, script의 multi thread가 가능하게 된다.</p>
+<p><br></p>
+<h1 id="Web-Worker를-왜-사용하는가"><a href="#Web-Worker를-왜-사용하는가" class="headerlink" title="Web Worker를 왜 사용하는가?"></a>Web Worker를 왜 사용하는가?</h1><hr>
+<p>Web Worker를 사용하는 이유는, script 작업이 복잡하여 시간이 오래 걸리는 경우에도, 사용자의 다른 UI 작업에 방해를 주지 않기 위한 multi thread가 가능하기 때문이다.</p>
+<p><strong>Web Worker의 활용</strong></p>
+<ul>
+<li>사용자의 UI 작업(UI thread)에 방해 없이 계속 수행해야하는 작업이 있을 경우</li>
+<li>background에서 오랜시간 동안 작업해야 하는 경우</li>
+<li>원격에 있는 리소스에 대한 액세스 작업(localstorage를 액세스 하는 경우)이 있을 경우</li>
+<li>복잡한 수학적 계산 작업이 있을 경우</li>
+</ul>
+<p>Web Worker를 사용하기 예전 상황</p>
+<ul>
+<li>스크립트가 수행을 하는데 오랜 시간이 걸릴 때, 브라우저는 무반응 스크립트에 대한 경고를 보여줌</li>
+<li>webworker를 이용한 이후에는 이 문제 해결</li>
+</ul>
+<p><br></p>
+<h1 id="Web-Worker를-어떻게-사용하는가"><a href="#Web-Worker를-어떻게-사용하는가" class="headerlink" title="Web Worker를 어떻게 사용하는가?"></a>Web Worker를 어떻게 사용하는가?</h1><hr>
+<ul>
+<li>How Web Worker works</li>
+<li>기본적인 사용방법</li>
+</ul>
+<p><br></p>
+<h2 id="How-Web-Worker-Works"><a href="#How-Web-Worker-Works" class="headerlink" title="How Web Worker Works"></a>How Web Worker Works</h2><hr>
+<p><img src="/images/how_webworker_works.png" alt="How Web Worker Works"><br>출처: <a href="https://medium.com/@siobhanpmahoney/a-brief-introduction-to-web-workers-e5d6e39d9d28" target="_blank" rel="noopener">How Web Worker Works</a></p>
+<p>Main script가 실행되는 HTML 파일(웹페이지)과 background script가 실행되는 Worker가 있다. HTML 파일(웹페이지)과 Worker간의 데이터를 서로 주고 받으면서, script가 실행되는 방식이다.</p>
+<p>이때, 데이터를 송신할 때는 postMessage 메서드를 사용하고, 데이터를 수신할 때는 onmessage 이벤트 핸들러를 사용한다. HTML 파일(웹페이지)에서 데이터를 송신하거나 수신할 수 있고, Worker에서도 데이터를 송신하거나 수신할 수 있다.</p>
+<p>postMessage는 다수의 window 창간의 정보교환을 목적으로 사용한다. workers는 DOM에 대한 접근 권한이 없어서 직접 웹페이지를 조작이 불가능하다.</p>
+<p><br></p>
+<h2 id="Web-Worker의-기본적인-사용방법"><a href="#Web-Worker의-기본적인-사용방법" class="headerlink" title="Web Worker의 기본적인 사용방법"></a>Web Worker의 기본적인 사용방법</h2><hr>
+<p>코드상으로 Web Worker를 사용하기 위해서는 다음과 같이 해야한다.</p>
+<ul>
+<li>Worker 실행 파일(worker.js) 작성</li>
+<li>Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출</li>
+<li>Worker 종료</li>
+</ul>
+<p><br></p>
+<h3 id="Worker-실행-파일-worker-js-작성"><a href="#Worker-실행-파일-worker-js-작성" class="headerlink" title="Worker 실행 파일(worker.js) 작성"></a>Worker 실행 파일(worker.js) 작성</h3><hr>
+<p>Worker가 실행할 script, 즉 javascript(worker.js) 파일을 만들고 작성한다. 이때, on message 이벤트 핸들러와 postMessage 메서드를 같이 작성한다. 왜냐하면, HTML 페이지로부터 전달 받을 데이터를 onmessage 이벤트 핸들러로 수신받아 처리한 후, postMessage 메서드로 다시 HTML 페이지에 전달해줘야 하기 때문이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// worker.js</span><br><span class="line"></span><br><span class="line">//웹페이지로부터 메세지를 수신하여 시간이 오래 걸리는 작업 등을 처리</span><br><span class="line">onmessage = function(e)&#123;</span><br><span class="line">  var receiveData = e.data;</span><br><span class="line"></span><br><span class="line">  //워커를 호출한 곳(웹페이지)으로 결과 메시지를 전송</span><br><span class="line">  if(receiveData) &#123;</span><br><span class="line">    var sendData = &quot;I&apos;m working for you&quot;</span><br><span class="line">    postMessage(sendData)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Worker를-호출할-HTML-파일-웹페이지-에서-Worker를-호출"><a href="#Worker를-호출할-HTML-파일-웹페이지-에서-Worker를-호출" class="headerlink" title="Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출"></a>Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출</h3><hr>
+<p>New 연산자와 Worker 생성자 함수를 이용해 worker 인스턴스를 생성한다. 생성한 worker 인스턴스를 사용해서, Worker(worker.js)에 보낼 데이터를 postMessage 메서드를 이용해 작성하고, 후에, Worker(worker.js)에서 처리된 후 받을 데이터를 on message 이벤트 핸들러를 이용해 작성한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      var worker;</span><br><span class="line">      function callWorker()&#123;</span><br><span class="line">        if(!!window.Worker)&#123; //브라우저가 웹 워커를 지원하는지 확인</span><br><span class="line"></span><br><span class="line">          if(worker) worker.terminate();      //워커가 이미 존재하면 종료시킴</span><br><span class="line">          worker = new Worker(&quot;worker.js&quot;);  //새로운 워커(객체)를 생성</span><br><span class="line"></span><br><span class="line">          //워커로부터 전달되는 메시지를 받음</span><br><span class="line">          worker.onmessage = function(e)&#123;</span><br><span class="line">            alert(e.data);</span><br><span class="line">          &#125;;</span><br><span class="line"></span><br><span class="line">          //워커에게 메시지를 전달</span><br><span class="line">          worker.postMessage(&quot;What does Worker do?&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">          alert(&quot;The current browser does not support web worker api&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      function stopWorker()&#123;</span><br><span class="line">        if(worker)&#123;</span><br><span class="line">          worker.terminate();</span><br><span class="line">          alert(&quot;web worker has terminated&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;button onclick=&quot;callWorker()&quot;&gt;Call web worker&lt;/button&gt;</span><br><span class="line">    &lt;button onclick=&quot;stopWorker()&quot;&gt;Stop web worker&lt;/button&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Worker-종료"><a href="#Worker-종료" class="headerlink" title="Worker 종료"></a>Worker 종료</h3><hr>
+<p>Worker 인스턴스는 생성되고 종료될 때까지 계속해서 데이터를 받을 준비를 한다. 그래서, 브라우저나 컴퓨터의 자원을 돌려주기 위해 terminate() 메서드를 사용하여, worker를 반드시 종료해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker.terminate();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-Worker/">Web Worker</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/10/ethereum-keystore/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Worker란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Web Worker란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Worker를-왜-사용하는가"><span class="nav-number">2.</span> <span class="nav-text">Web Worker를 왜 사용하는가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-Worker를-어떻게-사용하는가"><span class="nav-number">3.</span> <span class="nav-text">Web Worker를 어떻게 사용하는가?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-Web-Worker-Works"><span class="nav-number">3.1.</span> <span class="nav-text">How Web Worker Works</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Worker의-기본적인-사용방법"><span class="nav-number">3.2.</span> <span class="nav-text">Web Worker의 기본적인 사용방법</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker-실행-파일-worker-js-작성"><span class="nav-number">3.2.1.</span> <span class="nav-text">Worker 실행 파일(worker.js) 작성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker를-호출할-HTML-파일-웹페이지-에서-Worker를-호출"><span class="nav-number">3.2.2.</span> <span class="nav-text">Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker-종료"><span class="nav-number">3.2.3.</span> <span class="nav-text">Worker 종료</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
