@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ICON Unit | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ICON Unit" />
+  
+  
+  
+  
+  <meta name="description" content="Ether의 기본단위 이더리움의 가장 작은 단위는 wei 이다.    Name Description     1 ether 110^18 wei(=== 1e^18 wei)   1 ether 110^9 Gwei(=== 1e^9 Gwei)   1 Gwei 110^9 wei(=== 1e^9 wei)    참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용">
+<meta name="keywords" content="ICON Unit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICON Unit">
+<meta property="og:url" content="https://cheonmro.github.io/2019/03/22/icon-unit/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ether의 기본단위 이더리움의 가장 작은 단위는 wei 이다.    Name Description     1 ether 110^18 wei(=== 1e^18 wei)   1 ether 110^9 Gwei(=== 1e^9 Gwei)   1 Gwei 110^9 wei(=== 1e^9 wei)    참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/ether-gas.png">
+<meta property="og:updated_time" content="2019-03-22T14:42:15.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ICON Unit">
+<meta name="twitter:description" content="Ether의 기본단위 이더리움의 가장 작은 단위는 wei 이다.    Name Description     1 ether 110^18 wei(=== 1e^18 wei)   1 ether 110^9 Gwei(=== 1e^9 Gwei)   1 Gwei 110^9 wei(=== 1e^9 wei)    참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/ether-gas.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-icon-unit" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      ICON Unit
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/22/icon-unit/" class="article-date">
+	  <time datetime="2019-03-22T14:42:15.000Z" itemprop="datePublished">March 22, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ether의-기본단위"><a href="#Ether의-기본단위" class="headerlink" title="Ether의 기본단위"></a>Ether의 기본단위</h1><hr>
+<p>이더리움의 가장 작은 단위는 <code>wei</code> 이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 ether</td>
+<td style="text-align:center">1<em>10^18 wei(=== 1</em>e^18 wei)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 ether</td>
+<td style="text-align:center">1<em>10^9 Gwei(=== 1</em>e^9 Gwei)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 Gwei</td>
+<td style="text-align:center">1<em>10^9 wei(=== 1</em>e^9 wei)</td>
+</tr>
+</tbody>
+</table>
+<p>참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
+<p><br></p>
+<h1 id="ICX의-기본단위"><a href="#ICX의-기본단위" class="headerlink" title="ICX의 기본단위"></a>ICX의 기본단위</h1><hr>
+<p>ICON도 이더리움과 비슷한 개념을 사용한다.</p>
+<p>ICON의 가장 작은 단위는 <code>loop</code> 이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 icx</td>
+<td style="text-align:center">1<em>10^18 loop(=== 1</em>e^18 loop)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 icx</td>
+<td style="text-align:center">1<em>10^9 Gloop(=== 1</em>e^9 Gloop)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 Gloop</td>
+<td style="text-align:center">1<em>10^9 loop(=== 1</em>e^9 loop)</td>
+</tr>
+</tbody>
+</table>
+<p>참고로, Gloop는 step(ICON 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
+<p><br></p>
+<h1 id="Ethereum-Fee-System"><a href="#Ethereum-Fee-System" class="headerlink" title="Ethereum Fee System"></a>Ethereum Fee System</h1><hr>
+<p>이더리움에서 어떤 1개의 트랜잭션을 실행하는 데 사용자가 지불해야하는 수수료를 최대 트랜잭션 실행 비용(Max Transaction Fee)이라고 한다.</p>
+<p><strong>Max Transaction Fee(최대 트랜잭션 실행 비용) = Gas Limit(가스 총량) * Gas Price(가스 가격)</strong></p>
+<p><strong>Gas Limit(가스 총량)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 가스량을 말한다.</strong></p>
+<p><strong>Gas Price(가스 가격)이란, 1 가스당 가격을 말한다.</strong></p>
+<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Gas Limit(가스 총량) * Gas Price(가스 가격)으로 계산되어진다.</p>
+<p>이때, Gas Limit(가스 총량)은 각 트랜잭션에 필요한 총 가스량을 추정(estimated)해서 계산된 값이 나오고, Gas Price(가스 가격)은 1 가스당 가격으로 이 가격이 높을수록 마이너들이 보상을 많이 받기 때문에, 트랜잭션이 빨리 처리가 된다. 즉, 트랜잭션 실행 속도가 빠르게 된다.</p>
+<p><br></p>
+<p><img src="/images/ether-gas.png" alt="How Gas works"><br>출처: <a href="https://steemit.com/kr-dev/@modolee/q6hpz" target="_blank" rel="noopener">How Gas works</a></p>
+<p><br></p>
+<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 ether 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
+<ul>
+<li>만약 적거나, 트랜잭션 실행 도중에 가스를 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 가스는 발신자에게 반환되지 않는다.</li>
+<li>만약 ether 잔액이 충분하고, 트랜잭션이 성공적으로 실행이 되었는데, 가스가 남았다면 이 가스는 사용자에게 반납된다.</li>
+</ul>
+<p><br></p>
+<h1 id="ICON-Fee-System"><a href="#ICON-Fee-System" class="headerlink" title="ICON Fee System"></a>ICON Fee System</h1><hr>
+<p>ICON의 step limit과 step price는 이더리움의 gas limit과 gas price 개념과 동일하다.</p>
+<p><strong>Estimated Transaction Fee(최대 트랜잭션 실행 비용) = Step Limit(스텝 한도) * Step Price(스텝 가격)</strong></p>
+<p><strong>Step Limit(스텝 한도)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 스텝양을 말한다.</strong></p>
+<p><strong>Step Price(스텝 가격)이란, 1 스텝당 가격을 말한다.</strong></p>
+<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Step Limit(스텝 한도) * Step Price(스텝 가격)으로 계산되어진다.</p>
+<p>ICON에서 송금 등의 트랜잭션 실행을 할 때, 기본적으로 Step Limit이 100000이다. 이 값은 default로 사용자가 Step Limit의 값을 변경할 수 있다. 그러나, Step Limit의 최대값과 최소값은 정해져 있어서 그 범위안에서만 변경이 가능하다.</p>
+<p>Step Price는 0.00000001 ICX (10 Gloop)로 고정되어있다.</p>
+<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 icx 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
+<ul>
+<li>만약 적거나, 트랜잭션 실행 도중에 step을 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 step은 발신자에게 반환되지 않는다.</li>
+<li>만약 step 잔액이 충분하고, 트랜잭션이 성공적으로 실행이 되었는데, step이 남았다면 이 step은 사용자에게 반납된다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ICON-Unit/">ICON Unit</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/17/redux-saga/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redux-Saga</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ether의-기본단위"><span class="nav-number">1.</span> <span class="nav-text">Ether의 기본단위</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ICX의-기본단위"><span class="nav-number">2.</span> <span class="nav-text">ICX의 기본단위</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethereum-Fee-System"><span class="nav-number">3.</span> <span class="nav-text">Ethereum Fee System</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ICON-Fee-System"><span class="nav-number">4.</span> <span class="nav-text">ICON Fee System</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -98,6 +98,65 @@
         
           <section id="main">
   
+    <article id="post-k-number"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/05/k-number/">10. K번째 수(정렬)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/k-number/" class="article-date">
+	  <time datetime="2018-11-05T11:05:03.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다. 예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면,</p>
+<ol>
+<li>array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.</li>
+<li>1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.</li>
+<li>2에서 나온 배열의 3번째 숫자는 5입니다.</li>
+</ol>
+<p>배열 array, [i, j, k]를 원소로 가진 2차원 배열 commands가 매개변수로 주어질 때, commands의 모든 원소에 대해 앞서 설명한 연산을 적용했을 때 나온 결과를 배열에 담아 return 하도록 solution 함수를 작성하시오.</p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function solution(array, commands) &#123;</span><br><span class="line">  let answer = [];</span><br><span class="line">  for(let i = 0; i &lt; commands.length; i++) &#123;</span><br><span class="line">    const sliceArray = array.slice(commands[i][0] - 1, commands[i][1]); // [ 5, 2, 6, 3 ]</span><br><span class="line">    const sortedArray = sliceArray.sort((a, b) =&gt; &#123; return a - b &#125;); // [ 2, 3, 5, 6 ]</span><br><span class="line">    const value = sortedArray[commands[i][2] - 1]; // 5</span><br><span class="line">    answer.push(value);</span><br><span class="line">  &#125;</span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]])); // [ 5, 6, 3 ]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sort-algorithms/">sort algorithms</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-gcd-lcm"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -673,92 +732,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-array-method-basic"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/05/array-method-basic/">Array Method for Basic</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/05/array-method-basic/" class="article-date">
-	  <time datetime="2018-11-05T02:37:57.000Z" itemprop="datePublished">November 5, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Array-prototype-indexOf"><a href="#1-Array-prototype-indexOf" class="headerlink" title="1. Array.prototype.indexOf()"></a>1. Array.prototype.indexOf()</h1><hr>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener">arr.indexOf(searchElement, fromIndex)</a>: arr에서 찾아야할 값(searchElement)이 몇번째 인덱스부터(fromIndex) 시작해서 그 찾아야할 값에 대한 index를 찾을 때 사용</p>
-<p>indexOf 메소드의 인자로 지정된 요소를 배열에서 검색하여 인덱스를 반환한다. 중복되는 요소가 있는 경우 첫번째 인덱스만 반환된다. 만일 해당하는 요소가 없는 경우, -1을 반환한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 2, 3];</span><br><span class="line">console.log(arr.indexOf(2));    // 1</span><br><span class="line">console.log(arr.indexOf(4));    // -1</span><br><span class="line">console.log(arr.indexOf(2, 2)); // 1</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="2-Array-prototype-concat"><a href="#2-Array-prototype-concat" class="headerlink" title="2. Array.prototype.concat()"></a>2. Array.prototype.concat()</h1><hr>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">concat</a> 메소드의 인수로 넘어온 값들(배열 또는 값)을 자신의 복사본에 요소로 추가하고 반환한다. 이때 원본 배열은 변경되지 않는다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = [&apos;x&apos;, &apos;y&apos;, &apos;z&apos;];</span><br><span class="line"></span><br><span class="line">const c = arr1.concat(arr2);</span><br><span class="line">console.log(c); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;]</span><br><span class="line"></span><br><span class="line">const d = arr1.concat(&apos;hello&apos;);</span><br><span class="line">console.log(d); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;]</span><br><span class="line"></span><br><span class="line">// 원본 배열은 변하지 않는다.</span><br><span class="line">console.log(arr1); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos; ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="3-Array-prototype-join"><a href="#3-Array-prototype-join" class="headerlink" title="3. Array.prototype.join()"></a>3. Array.prototype.join()</h1><hr>
-<p>배열 요소 전체를 연결하여 생성한 문자열을 반환한다. 구분자(separator)는 생략 가능하며 기본 구분자는 ,이다. 이때, 원본 배열은 유지된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</span><br><span class="line"></span><br><span class="line">const x = arr.join();</span><br><span class="line">console.log(x);  // &apos;a,b,c,d&apos;;</span><br><span class="line"></span><br><span class="line">const y = arr.join(&apos;&apos;);</span><br><span class="line">console.log(y);  // &apos;abcd&apos;</span><br><span class="line"></span><br><span class="line">const z = arr.join(&apos;:&apos;);</span><br><span class="line">console.log(z);  // &apos;a:b:c:d&apos;</span><br><span class="line"></span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos; ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="4-Array-prototype-reverse"><a href="#4-Array-prototype-reverse" class="headerlink" title="4. Array.prototype.reverse()"></a>4. Array.prototype.reverse()</h1><hr>
-<p>배열 요소의 순서를 반대로 변경한다. 이때 원본 배열이 변경된다. 반환값은 변경된 배열이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line">const arr2 = arr1.reverse();</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다</span><br><span class="line">console.log(arr1); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br><span class="line">console.log(arr2); // [ &apos;c&apos;, &apos;b&apos;, &apos;a&apos; ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="5-Array-prototype-slice-start-end"><a href="#5-Array-prototype-slice-start-end" class="headerlink" title="5. Array.prototype.slice(start, end)"></a>5. Array.prototype.slice(start, end)</h1><hr>
-<p>인자로 지정된 배열의 부분을 복사하여 반환한다. 원본 배열은 변경되지 않는다. 첫번째 매개변수 start에 해당하는 인덱스를 갖는 요소부터 매개변수 end에 해당하는 인덱스를 가진 요소 전까지 복사된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];</span><br><span class="line"></span><br><span class="line">// items[1]부터 items[2] 이전(items[2] 미포함)까지 반환</span><br><span class="line">const res2 = arr.slice(1, 2);</span><br><span class="line">console.log(res2);  // [ &apos;b&apos; ]</span><br><span class="line"></span><br><span class="line">// items[1]부터 이후의 모든 요소 반환</span><br><span class="line">const res3 = arr.slice(1);</span><br><span class="line">console.log(res3);  // [ &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 인자가 음수인 경우 배열의 끝에서 2개의 요소를 반환</span><br><span class="line">const res4 = arr.slice(-2);</span><br><span class="line">console.log(res4);  // [ &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 모든 요소를 반환 (= 복사본 생성)</span><br><span class="line">const res5 = arr.slice();</span><br><span class="line">console.log(res5);  // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br><span class="line"></span><br><span class="line">// 원본은 변경되지 않는다.</span><br><span class="line">console.log(arr); // [ &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos; ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="6-Array-prototype-splice-start-end"><a href="#6-Array-prototype-splice-start-end" class="headerlink" title="6. Array.prototype.splice(start, end)"></a>6. Array.prototype.splice(start, end)</h1><hr>
-<p>기존의 배열의 요소를 제거하고 그 위치에 새로운 요소를 추가한다. 배열 중간에 새로운 요소를 추가할 때도 사용되고, 삭제만 할 때도 사용된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 2, 3, 4, 5, 6];</span><br><span class="line"></span><br><span class="line">// items[1]부터 2개의 요소를 제거하고 제거된 요소를 배열로 반환</span><br><span class="line">const res = arr.splice(1, 2);</span><br><span class="line"></span><br><span class="line">// 원본 배열이 변경된다.</span><br><span class="line">console.log(arr); // [ 1, 4, 5, 6 ]</span><br><span class="line">// 제거한 요소가 배열로 반환된다.</span><br><span class="line">console.log(res);   // [ 2, 3 ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="7-Array-prototype-push-pop-shift-unshift"><a href="#7-Array-prototype-push-pop-shift-unshift" class="headerlink" title="7. Array.prototype.push()/pop()/shift()/unshift()"></a>7. Array.prototype.push()/pop()/shift()/unshift()</h1><hr>
-<p>4가지 메소드는 모두 원본을 변경한다.</p>
-<p><img src="/images/push_pop.png" alt="Array push/pop/shift/unshift"><br>출처: <a href="https://poiemaweb.com/js-array" target="_blank" rel="noopener">Array push/pop/shift/unshift</a></p>
-<p><br></p>
-<h1 id="8-Array-prototype-includes"><a href="#8-Array-prototype-includes" class="headerlink" title="8. Array.prototype.includes()"></a>8. Array.prototype.includes()</h1><hr>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.includes(searchElement, fromIndex)</a>: 배열에 특정 요소가 포함되어 있는지 여부를 확인할 때 사용</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3,4];</span><br><span class="line">const result1 = arr.includes(3);</span><br><span class="line">const result2 = arr.includes(1, 1);</span><br><span class="line">console.log(result1); // true</span><br><span class="line">console.log(result2); // false</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3,4]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="9-Array-prototype-toString"><a href="#9-Array-prototype-toString" class="headerlink" title="9. Array.prototype.toString()"></a>9. Array.prototype.toString()</h1><hr>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" target="_blank" rel="noopener">arr.toString()</a>: 배열에 있는 원소를 문자열로 반환할 때 사용</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,2,3];</span><br><span class="line">const result = arr.toString();</span><br><span class="line">console.log(result); // &quot;1,2,3&quot;</span><br><span class="line">// 원본 배열이 유지된다.</span><br><span class="line">console.log(arr); // [1,2,3]</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array-Method/">Array Method</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -869,6 +842,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/03/22/icon-unit/">ICON Unit</a></h6>
+              <span>March 22, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/03/17/redux-saga/">Redux-Saga</a></h6>
               <span>March 17, 2019</span>
             </div>
@@ -923,18 +908,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/01/02/modules/">Modules</a></h6>
-              <span>January 2, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -944,7 +917,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
