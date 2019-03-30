@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ICON Data | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ICON Data" />
+  
+  
+  
+  
+  <meta name="description" content="ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입 ICONex에서 송금할 때, data를 입력할 수 있다. 여기서 말하는 data는 message를 말하는데, 전달할 message가 있다면 작성할 수 있고, 기본적으로 optional이다. 입력하는 data의 타입은 UTF-8과 HEX 2가지다.  UTF-8  UTF-8이란, 어떤 언어">
+<meta name="keywords" content="ICON Data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICON Data">
+<meta property="og:url" content="https://cheonmro.github.io/2019/03/30/icon-data/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입 ICONex에서 송금할 때, data를 입력할 수 있다. 여기서 말하는 data는 message를 말하는데, 전달할 message가 있다면 작성할 수 있고, 기본적으로 optional이다. 입력하는 data의 타입은 UTF-8과 HEX 2가지다.  UTF-8  UTF-8이란, 어떤 언어">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-30T09:04:44.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ICON Data">
+<meta name="twitter:description" content="ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입 ICONex에서 송금할 때, data를 입력할 수 있다. 여기서 말하는 data는 message를 말하는데, 전달할 message가 있다면 작성할 수 있고, 기본적으로 optional이다. 입력하는 data의 타입은 UTF-8과 HEX 2가지다.  UTF-8  UTF-8이란, 어떤 언어">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-icon-data" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      ICON Data
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/30/icon-data/" class="article-date">
+	  <time datetime="2019-03-30T09:04:44.000Z" itemprop="datePublished">March 30, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ICONex에서-Transfer-할-때-입력할-수-있는-Data-타입"><a href="#ICONex에서-Transfer-할-때-입력할-수-있는-Data-타입" class="headerlink" title="ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입"></a>ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입</h1><hr>
+<p>ICONex에서 송금할 때, data를 입력할 수 있다. 여기서 말하는 data는 message를 말하는데, 전달할 message가 있다면 작성할 수 있고, 기본적으로 optional이다.</p>
+<p>입력하는 data의 타입은 <code>UTF-8</code>과 <code>HEX</code> 2가지다.</p>
+<p><br></p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><hr>
+<ul>
+<li><code>UTF-8</code>이란, <strong>어떤 언어의 문자든 유니코드(unicode)로 인코딩하는 방식으로, 여러 방식이 있으나 이 방식을 가장 많이 사용한다.</strong><ul>
+<li><strong>유니코드(unicode)란, 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하는 표준 코드를 말한다.</strong></li>
+<li><strong>인코딩이란, ‘부호화하다’라는 의미로, 이를 컴퓨터 공학에서 정의하면, 입력 데이터를 컴퓨터속에서 사용하는 코드로 변환하는 것을 말한다.<ul>
+<li>즉, 문자나 기호들의 집합을 컴퓨터에 저장하거나 통신에 사용할 목적으로 부호화하는 방법이다.</li></ul></strong></li>
+</ul>
+</li>
+<li><strong>디코딩이란, ‘복호화하다’라는 의미로, 부호화(Encoding)된 정보를 부호화되기 전으로 되돌리는 처리 방식을 말한다.</strong></li>
+</ul>
+
+
+<p><br></p>
+<p>정보를 표현하기 위한 글자들의 집합을 문자집합(Character Set)이라고 하고, 다음의 2가지 종류가 대표적인 표준코드이다.</p>
+<ul>
+<li>ASCII코드</li>
+<li>유니코드</li>
+</ul>
+<p>ASCII코드는 영문 알파벳을 사용하는 대표적인 문자 인코딩된 표준 코드이다. 그러나, 한글 등 다른 모든 언어를 사용하기 위해서는 이 방식보다 다른 방식을 더 사용한다. 그것은 바로, 유니코드이다.</p>
+<p>유니코드란, 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 표준코드이다.</p>
+<p>내가 제작하려고 하는 웹애플리케이션 또는 웹페이지에서 다국어를 지원하기 위해서는 사용된 문자를 유니코드로 인코딩 해야하고, 이때 인코딩하는 방식 중 <code>UTF-8</code>를 주로 사용한다. <code>UTF-8</code>를 사용하면, 전 세계 모든 문자를 표현할 수 있고, 한 문자를 표현하기 위해 1바이트에서 4바이트까지 사용한다.</p>
+<p>웹 개발을 할 때, html에서 다음과 같이 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=UTF-8&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure></p>
+<p>위와 같이 작성하면, html 문서의 문자는 <code>UTF-8</code> 방식으로 인코딩하여 유니코드로 변환한다는 뜻이다. 만약, 위와 같이 작성하지 않으면, html 문서를 브라우저에서 구현할 때 한글 등 다른 언어들이 깨져 보일 수가 있다.</p>
+<p>참고:</p>
+<ul>
+<li><a href="(https://freestrokes.tistory.com/25">Encoding vs Decoding</a>)</li>
+<li><a href="https://wiki.debianusers.or.kr/index.php?title=Unicode" target="_blank" rel="noopener">Unicode</a></li>
+<li><a href="https://codelib.tistory.com/20" target="_blank" rel="noopener">How UTF-8 Works</a></li>
+</ul>
+<p><br></p>
+<h2 id="HEX"><a href="#HEX" class="headerlink" title="HEX"></a>HEX</h2><hr>
+<p><strong>HEX란, <code>0x</code>를 접두어(prefix)로 사용한 16진수를 표현하는 방식으로, Hexadecimal의 줄임말이다.</strong></p>
+<p>예를 들어, <code>0x547261636b65722063656c6c20ed858cec8aa</code> 와 같이 표현한다.</p>
+<p><br></p>
+<h1 id="Data-입력시-수수료-부과"><a href="#Data-입력시-수수료-부과" class="headerlink" title="Data 입력시 수수료 부과"></a>Data 입력시 수수료 부과</h1><hr>
+<p>ICONex에서 송금시에 트랜잭션에 사용될 기본적인 Step Limit이 default로 있고, Step Price는 고정되어 있다. 이 둘을 곱한 값이 총 수수료이다.</p>
+<p>그런데, 만약 Data를 입력하게 되면, 입력한 Data의 양만큼의 추가 수수료가 부과된다. 이는 Data를 입력하는 양에 따른 Step Limit이 변경되어 최종 수수료가 변경되기 때문이다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ICON-Data/">ICON Data</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/22/icon-unit/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ICON Unit</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ICONex에서-Transfer-할-때-입력할-수-있는-Data-타입"><span class="nav-number">1.</span> <span class="nav-text">ICONex에서 Transfer 할 때, 입력할 수 있는 Data 타입</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UTF-8"><span class="nav-number">1.1.</span> <span class="nav-text">UTF-8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HEX"><span class="nav-number">1.2.</span> <span class="nav-text">HEX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-입력시-수수료-부과"><span class="nav-number">2.</span> <span class="nav-text">Data 입력시 수수료 부과</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
