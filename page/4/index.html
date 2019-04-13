@@ -98,6 +98,92 @@
         
           <section id="main">
   
+    <article id="post-what-is-graph"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/06/what-is-graph/">그래프(Graph)란 무엇인가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/06/what-is-graph/" class="article-date">
+	  <time datetime="2018-11-06T02:37:39.000Z" itemprop="datePublished">November 6, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="그래프-Graph"><a href="#그래프-Graph" class="headerlink" title="그래프(Graph)"></a>그래프(Graph)</h1><hr>
+<p><strong>그래프(Graph)</strong>란, 노드(node)와 그 노드를 연결하는 간선(edge)을 하나로 모아 놓은 자료 구조이다.</p>
+<p><br></p>
+<h1 id="그래프-Graph-의-용어"><a href="#그래프-Graph-의-용어" class="headerlink" title="그래프(Graph)의 용어"></a>그래프(Graph)의 용어</h1><hr>
+<p><img src="/images/graph.png" alt="Graph"><br>출처: <a href="https://librewiki.net/wiki/%EC%8B%9C%EB%A6%AC%EC%A6%88:%EC%88%98%ED%95%99%EC%9D%B8%EB%93%AF_%EA%B3%BC%ED%95%99%EC%95%84%EB%8B%8C_%EA%B3%B5%ED%95%99%EA%B0%99%EC%9D%80_%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98_%EA%B8%B0%EC%B4%88" target="_blank" rel="noopener">Graph</a></p>
+<ul>
+<li><strong>정점(vertex)</strong>: 위치라는 개념인데, 노드라고도 함.</li>
+<li><strong>간선(edge)</strong>: 위치 간의 관계. 즉, 노드를 연결하는 선 (link, branch 라고도 부름)</li>
+<li><strong>인접 정점(adjacent vertex)</strong>: 간선에 의해 직접 연결된 정점</li>
+<li><strong>정점의 차수(degree)</strong>: 무방향 그래프에서 하나의 정점에 인접한 정점의 수</li>
+<li><strong>무방향 그래프에 존재하는 정점의 모든 차수의 합 = 그래프의 간선 수의 2배</strong></li>
+<li><strong>진입 차수(in-degree)</strong>: 방향 그래프에서 외부에서 오는 간선의 수 (내차수 라고도 부름)</li>
+<li><strong>진출 차수(out-degree)</strong>: 방향 그래픙에서 외부로 향하는 간선의 수 (외차수 라고도 부름)</li>
+<li><strong>방향 그래프에 있는 정점의 진입 차수 또는 진출 차수의 합 = 방향 그래프의 간선의 수(내차수 + 외차수)</strong></li>
+<li><strong>경로 길이(path length)</strong>: 경로를 구성하는 데 사용된 간선의 수</li>
+<li><strong>단순 경로(simple path)</strong>: 경로 중에서 반복되는 정점이 없는 경우</li>
+<li><strong>사이클(cycle)</strong>: 단순 경로의 시작 정점과 종료 정점이 동일한 경우</li>
+</ul>
+<p><br></p>
+<h1 id="그래프-Graph-의-특징"><a href="#그래프-Graph-의-특징" class="headerlink" title="그래프(Graph)의 특징"></a>그래프(Graph)의 특징</h1><hr>
+<ul>
+<li>그래프는 네트워크 모델이다.</li>
+<li>그래프는 크게 방향 그래프와 무방향 그래프 2가지 종류가 있다.(노드들 사이에서 무방향 경로를 가질 수 있고, 단방향/양방향 경로를 가질 수 있다.)</li>
+<li>루트노드라는 개념과, 부모/자식관계라는 개념이 없다.</li>
+<li>그래프는 순환(Cyclic)/비순환(Acyclic)이 있다.(loop/circuit, self-loop 모두 가능하다.)</li>
+<li>순회는 DFS/BFS로 이루어진다.</li>
+</ul>
+<p><br></p>
+<h1 id="그래프-Graph-의-종류"><a href="#그래프-Graph-의-종류" class="headerlink" title="그래프(Graph)의 종류"></a>그래프(Graph)의 종류</h1><hr>
+<ul>
+<li><strong>무방향 그래프(Undirected Graph)</strong>: 연결 관계에 있어서 방향성이 없는 그래프이다.</li>
+</ul>
+<ul>
+<li><strong>방향 그래프(Directed Graph)</strong>: 간선에 방향성이 존재하는 그래프이다.</li>
+</ul>
+<p><img src="/images/graph_types.gif" alt="Graph Types"><br>출처: <a href="https://www.way2net.co.il/javascript-data-structures-graph/" target="_blank" rel="noopener">Graph Types</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-what-is-tree"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -666,71 +752,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-ransom-note"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/05/ransom-note/">5. Harmless Ransom Note</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/05/ransom-note/" class="article-date">
-	  <time datetime="2018-11-05T06:49:03.000Z" itemprop="datePublished">November 5, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="What-is-Harmless-Ransom-Note"><a href="#What-is-Harmless-Ransom-Note" class="headerlink" title="What is Harmless Ransom Note?"></a><h3>What is Harmless Ransom Note?</h3></h2><p>FacHarmless Ransom Note란, 중복되는 문자열의 유무를 파악해서 true/false로 확인하는 것을 말한다.</p>
-<p><br></p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>2개의 문자열 중, 중복되는 문자열의 유무를 파악해서 true/false로 반환하는 함수를 작성하시오. 즉, 왼쪽 문자열의 각 단어들이 오른쪽 문자열에 1개라도 포함이 안되거나, 오른쪽 문자열의 각 동일한 단어보다 더 많을 경우, false를 반환한다.</p>
-<ul>
-<li>예를 들어, 왼쪽 문자열이 ‘this is my my note’ 이고, 오른쪽 문자열이 ‘this is is my note’일 때, 왼쪽 문자열의 각 단어 중 my는 왼쪽 문자열에서 2번있는데, 오른쪽에서는 1번 밖에 없으면 false를 반환해야 한다.</li>
-<li>또한, 왼쪽 문자열이 ‘this is my special note’ 이고, 오른쪽 문자열이 ‘this is is my note’일 때, 왼쪽 문자열의 special 단어는 오른쪽 문자열에 없어도, false를 반환해야 한다.</li>
-</ul>
-<p><br></p>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">const harmlessRansomeNote = (noteText, magazineText) =&gt; &#123;</span><br><span class="line">  //split both string parameters into arrays</span><br><span class="line">  let noteArr = noteText.split(&apos; &apos;);</span><br><span class="line">  let magArr = magazineText.split(&apos; &apos;);</span><br><span class="line"></span><br><span class="line">  //create an object to use as a hash table it also avoids exponential time complexity of nested loops</span><br><span class="line">  let magObj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  //forEach to check if word is an word is an object on our property</span><br><span class="line">  magArr.forEach(word =&gt; &#123;</span><br><span class="line">    //if not we add it to our object</span><br><span class="line">      //increment the value</span><br><span class="line">    if (!magObj[word]) &#123;</span><br><span class="line">      magObj[word] = 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    //otherwise, if it is there</span><br><span class="line">      //we just increment the value</span><br><span class="line">      magObj[word]++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;); // &#123; this: 1, is: 2, my: 1, note: 1 &#125;</span><br><span class="line"></span><br><span class="line">  //Boolean variable to be return from function</span><br><span class="line">  let noteIsPossible = true;</span><br><span class="line"></span><br><span class="line">  //use forEach to iterate through each word</span><br><span class="line">  noteArr.forEach(word =&gt; &#123;</span><br><span class="line">    //if word is found on the object decrement it</span><br><span class="line">    if (magObj[word]) &#123;</span><br><span class="line">      magObj[word]--;</span><br><span class="line">      //if word value &lt; 0 we can&apos;t make our word so note is NOT possible.</span><br><span class="line">      if (magObj[word] &lt; 0) &#123;</span><br><span class="line">        noteIsPossible = false;</span><br><span class="line">      &#125;</span><br><span class="line">      //if word is not found then the note is NOT possible.</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      noteIsPossible = false;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  return noteIsPossible;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(harmlessRansomeNote(&apos;this is my note&apos;, &apos;this is is my note&apos;)); // true</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Harmless-Ransom-Note/">Harmless Ransom Note</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -836,6 +862,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/13/merge-branches/">여러 사람이 작업한 branch를 merge하는 방법</a></h6>
+              <span>April 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a></h6>
               <span>April 13, 2019</span>
             </div>
@@ -890,18 +928,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/03/17/redux-saga/">Redux-Saga</a></h6>
-              <span>March 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -911,7 +937,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
