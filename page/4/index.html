@@ -98,6 +98,95 @@
         
           <section id="main">
   
+    <article id="post-what-is-tree"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/06/what-is-tree/">트리(Tree)란 무엇인가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/06/what-is-tree/" class="article-date">
+	  <time datetime="2018-11-06T01:50:51.000Z" itemprop="datePublished">November 6, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="트리-Tree"><a href="#트리-Tree" class="headerlink" title="트리(Tree)"></a>트리(Tree)</h1><hr>
+<p><strong>트리(Tree)</strong>란, 부모/자식관계를 가지는 구조로, 계층적 관계(Hierarchical Relationship)를 표현하는 자료구조이다.</p>
+<p><br></p>
+<h1 id="트리-Tree-의-용어"><a href="#트리-Tree-의-용어" class="headerlink" title="트리(Tree)의 용어"></a>트리(Tree)의 용어</h1><hr>
+<p><img src="/images/tree-terms.png" alt="Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html" target="_blank" rel="noopener">Tree</a></p>
+<ul>
+<li><strong>루트 노드(root node)</strong>: 트리의 최상단 노드로, 트리는 하나의 루트 노드만을 가짐.</li>
+<li><strong>단말 노드(leaf node)</strong>: 자식이 없는 노드로, ‘말단 노드’ 또는 ‘잎 노드’라고도 함.</li>
+<li><strong>내부(internal) 노드</strong>: 단말 노드가 아닌 노드가 아닌 노드</li>
+<li><strong>간선(edge)</strong>: 노드를 연결하는 선 (link, branch 라고도 부름)</li>
+<li><strong>형제(sibling)</strong>: 같은 부모를 가지는 노드</li>
+<li><strong>노드의 크기(size)</strong>: 자신을 포함한 모든 자손 노드의 개수</li>
+<li><strong>노드의 깊이(depth)</strong>: 루트에서 어떤 노드에 도달하기 위해 거쳐야 하는 간선의 수</li>
+<li><strong>노드의 레벨(level)</strong>: 트리의 특정 깊이를 가지는 노드의 집합</li>
+<li><strong>노드의 차수(degree)</strong>: 하위 트리 개수 / 간선 수 (degree) = 각 노드가 지닌 가지의 수</li>
+<li><strong>트리의 차수(degree of tree)</strong>: 트리의 최대 차수</li>
+<li><strong>트리의 높이(height)</strong>: 루트 노드에서 가장 깊숙히 있는 노드의 깊이</li>
+</ul>
+<p><br></p>
+<h1 id="트리-Tree-의-특징"><a href="#트리-Tree-의-특징" class="headerlink" title="트리(Tree)의 특징"></a>트리(Tree)의 특징</h1><hr>
+<ul>
+<li>트리는 그래프의 한 형태이다. 즉, 그래프 안에 여러 종류 중 트리가 있다.</li>
+<li>트리는 방향이 위에서 아래로만 향하는 방향 그래프이다. 즉, 노드들 사이의 선을 간선(edge)라고 하는데, 트리는 간선의 방향이 위에서 아래이다.</li>
+<li>트리는 DAG(Directed Acyclic Graphs, 방향성이 있는 비순환 그래프)의 한 종류이다. 즉, loop나 circuit이 없고, self-loop도 없다. 즉, 사이클이 없다.</li>
+<li>한 개의 루트 노드만이 존재하며 모든 자식 노드는 한 개의 부모 노드만을 가진다.</li>
+</ul>
+<p><br></p>
+<h1 id="트리-Tree-의-종류"><a href="#트리-Tree-의-종류" class="headerlink" title="트리(Tree)의 종류"></a>트리(Tree)의 종류</h1><hr>
+<ul>
+<li><strong>서브 트리(Sub Tree)</strong>: 전체 트리는 작은 트리로 구성되어 있는데, 이 작은 트리를 서브 트리(Sub Tree)라고 한다.</li>
+</ul>
+<ul>
+<li><strong>이진 트리(Binary Tree)</strong>: 자식 노드가 최대 2개까지만 붙는 트리를 이진 트리(Binary Tree)라고 한다. 즉, 자식 노드가 1개이거나, 2개일 경우 모두 이진 트리이다.</li>
+</ul>
+<p><img src="/images/binary_tree.png" alt="Binary Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_tree" target="_blank" rel="noopener">Binary Tree</a></p>
+<ul>
+<li><strong>이진 검색 트리(Binary Search Tree)</strong>: 노드안에 데이터가 왼쪽 노드와 그 이하 자식 노드들은 현재 노드보다 작아야 하고, 오른쪽 노드와 그 이하 노드들은 현재 노드보다 커야 한다. 이 조건을 만족하는 트리를 이진 검색 트리(Binary Search Tree)라고 한다. 노드를 보고, 해당 노드보다 큰 값을 찾고 싶으면, 오른쪽에서 찾으면 되고, 해당 노드보다 작은 값을 찾고 싶으면, 왼쪽에서 찾으면 된다. 따라서, 어떤 값을 찾을 때, 두 갈래 길을 선택해서 가다보면, 그 값을 찾을 수 있다.</li>
+</ul>
+<p><img src="/images/binary_search_tree.png" alt="Binary Search Tree"><br>출처: <a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="noopener">Binary Search Tree</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-printer"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -637,69 +726,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-factorial"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/05/factorial/">4. Factorial</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/05/factorial/" class="article-date">
-	  <time datetime="2018-11-05T06:04:00.000Z" itemprop="datePublished">November 5, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="What-is-Factorial"><a href="#What-is-Factorial" class="headerlink" title="What is Factorial?"></a><h3>What is Factorial?</h3></h2><p>Factorial이란, 해당하는 수부터 그 이하로 1까지를 모두 곱하는 수를 말한다.<br>예를 들어, 3!이면 3 x 2 x 1 = 6을 말한다.</p>
-<p><br></p>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>Factorial을 구현하는 함수를 작성하시오.</p>
-<p><br></p>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ol>
-<li>number가 1일 경우, number를 반환한다.</li>
-<li>number가 2이상이면 number부터 1씩 값을 줄여가면서, 모두 곱한다.</li>
-<li>곱한 최종 값을 반환한다.</li>
-</ol>
-<p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function factorial(number) &#123;</span><br><span class="line">  if(number === 1) return number;</span><br><span class="line">  let result = 1;</span><br><span class="line">  for (var i = number; i &gt;= 1 ; --i ) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(factorial(5)); // 120</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="Better-Practice"><a href="#Better-Practice" class="headerlink" title="[Better Practice]"></a><h3>[Better Practice]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function factorial(number) &#123;</span><br><span class="line">  if(number === 1) &#123;</span><br><span class="line">      return number;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      return number * factorial(number-1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(factorial(5)); // 120</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Factorial/">Factorial</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -810,6 +836,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a></h6>
+              <span>April 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/06/how-ethereum-transaction-works/">How Ethereum Transaction Works</a></h6>
               <span>April 6, 2019</span>
             </div>
@@ -864,18 +902,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/03/16/what-is-redux/">Redux</a></h6>
-              <span>March 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -885,7 +911,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

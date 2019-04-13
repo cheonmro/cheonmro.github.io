@@ -98,6 +98,88 @@
         
           <section id="main">
   
+    <article id="post-create-git-project"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/13/create-git-project/" class="article-date">
+	  <time datetime="2019-04-13T07:32:42.000Z" itemprop="datePublished">April 13, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git으로-프로젝트-생성하여-다른-사람이-작업을-시작할-수-있게-하기-위한-초기-세팅-과정"><a href="#Git으로-프로젝트-생성하여-다른-사람이-작업을-시작할-수-있게-하기-위한-초기-세팅-과정" class="headerlink" title="Git으로 프로젝트 생성하여 다른 사람이 작업을 시작할 수 있게 하기 위한 초기 세팅 과정"></a>Git으로 프로젝트 생성하여 다른 사람이 작업을 시작할 수 있게 하기 위한 초기 세팅 과정</h1><hr>
+<h4 id="1-Github-Gitlab-등에서-Repository-생성"><a href="#1-Github-Gitlab-등에서-Repository-생성" class="headerlink" title="1. Github/Gitlab 등에서 Repository 생성"></a>1. Github/Gitlab 등에서 Repository 생성</h4><hr>
+<p>Github/Gitlab 등에서 README.md 파일을 포함하여 Repository를 생성한다.</p>
+<p><br></p>
+<h4 id="2-로컬에서-clone-하기"><a href="#2-로컬에서-clone-하기" class="headerlink" title="2. 로컬에서 clone 하기"></a>2. 로컬에서 clone 하기</h4><hr>
+<p>로컬에서 <code>git clone https://github.com/cheonmro/testgit.git</code> 명령어를 실행하여, 원격 저장소를 clone 한다.</p>
+<p><br></p>
+<h4 id="3-clone-한-폴더-안에서-프로젝트-폴더를-생성"><a href="#3-clone-한-폴더-안에서-프로젝트-폴더를-생성" class="headerlink" title="3. clone 한 폴더 안에서 프로젝트 폴더를 생성"></a>3. clone 한 폴더 안에서 프로젝트 폴더를 생성</h4><hr>
+<p>리액트 프로젝트의 경우, <code>create-react-app testgit</code> 와 같이 새로운 프로젝트 폴더를 생성한다.</p>
+<p><br></p>
+<h4 id="4-원격으로-push-하기-master-브랜치-셋업"><a href="#4-원격으로-push-하기-master-브랜치-셋업" class="headerlink" title="4. 원격으로 push 하기(master 브랜치 셋업)"></a>4. 원격으로 push 하기(master 브랜치 셋업)</h4><hr>
+<p>다음과 같이, 원격 저장소로 로컬에 새로 생성한 프로젝트 폴더를 push한다.</p>
+<p><code>git add .</code></p>
+<p><code>git commit -m &quot;add create-react-app</code></p>
+<p><code>git push origin master</code></p>
+<p>이렇게 하면, 원격 저장소와 로컬 저장소에 기본적인 리액트 프로젝트 폴더가 들어가게 세팅이 된다.</p>
+<p>그러나, 실제 프로젝트 개발시에는 dev 브랜치를 이용해서 하기 때문에, master 브랜치는 여기까지만 생성하고, dev 브랜치를 이용해야 한다.</p>
+<p><br></p>
+<h4 id="5-로컬에서-dev-브랜치-생성"><a href="#5-로컬에서-dev-브랜치-생성" class="headerlink" title="5. 로컬에서 dev 브랜치 생성"></a>5. 로컬에서 dev 브랜치 생성</h4><hr>
+<p>로컬에서 다음의 명령어로 dev 브랜치를 생성한다.</p>
+<p><code>git checkout -b dev</code></p>
+<p><code>checkout</code>과 <code>-b</code>를 같이 사용하면, dev 브랜치를 생성하면서 동시에 dev 브랜치로 이동하게 된다.</p>
+<p><br></p>
+<h4 id="6-생성한-dev-브랜치에서-프로젝트를-위한-전반적인-폴더-구조-셋업"><a href="#6-생성한-dev-브랜치에서-프로젝트를-위한-전반적인-폴더-구조-셋업" class="headerlink" title="6. 생성한 dev 브랜치에서 프로젝트를 위한 전반적인 폴더 구조 셋업"></a>6. 생성한 dev 브랜치에서 프로젝트를 위한 전반적인 폴더 구조 셋업</h4><hr>
+<p>현재는 <code>create-react-app</code>으로 만들어진 기본적인 구조밖에 없다. 여기서 우리가 만들 프로젝트에 대한 전반적인 구조를 만들어야 한다.</p>
+<p><br></p>
+<h4 id="7-새롭게-셋업된-로컬의-dev-브랜치를-push-하기"><a href="#7-새롭게-셋업된-로컬의-dev-브랜치를-push-하기" class="headerlink" title="7. 새롭게 셋업된 로컬의 dev 브랜치를 push 하기"></a>7. 새롭게 셋업된 로컬의 dev 브랜치를 push 하기</h4><hr>
+<p>새롭게 프로젝트를 만들었다면, 로컬의 dev 브랜치를 원격저장소에 push 해야한다.</p>
+<p><code>git add .</code></p>
+<p><code>git commit -m &quot;add project-structure</code></p>
+<p><code>git push origin dev</code></p>
+<p>이렇게 하여, 본격적인 프로젝트를 시작하기 위한 dev 브랜치가 완성되었다. 이제부터는 각 팀원이 git clone을 하여 각 컴퓨터 로컬에 내려받고, 거기서 각자가 맡은 기능별로 브랜치를 새로 생성하여 개발을 시작하면 된다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-how-ethereum-transaction-works"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1291,83 +1373,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-modules"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/02/modules/">Modules</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/01/02/modules/" class="article-date">
-	  <time datetime="2019-01-01T15:05:11.000Z" itemprop="datePublished">January 2, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Module이란-무엇인가"><a href="#Module이란-무엇인가" class="headerlink" title="Module이란 무엇인가?"></a>Module이란 무엇인가?</h1><hr>
-<p>모듈이란, 애플리케이션을 구성하는 개별적 요소로서, 재사용이 가능한 코드 조각을 말한다.</p>
-<p>모듈은 세부 사항을 캡슐화하고, 공개가 필요한 API만을 외부에 노출한다. 일반적으로, 각 모듈은 파일 단위로 분리되어 있고, 애플리케이션은 필요에 따라 모듈을 로드하여 재사용한다. 즉, 모듈은 애플리케이션에 분리되어 개별적으로 존재하다가 애플리케이션의 로드에 의해 비로소 애플리케이션의 로드에 의해 비로소 애플리케이션의 일원이 된다.</p>
-<p>모듈은 기능별로 분리되어 작성되므로, 코드의 단위를 명확히 분리하여 애플리케이션을 구성할 수 있고, 재사용에 좋기 때문에, 개발을 효율적으로 할 수 있고, 유지보수 또한 좋다.</p>
-<p>ES6에서 모듈을 사용할 때, export와 import 두 개의 키워드를 사용한다.</p>
-<p><br></p>
-<h1 id="Module-사용의-이점"><a href="#Module-사용의-이점" class="headerlink" title="Module 사용의 이점"></a>Module 사용의 이점</h1><hr>
-<ul>
-<li>Javascript 애플리케이션을 여러 개의 파일로 분할하여 작성할 수 있다.</li>
-<li>재사용이 가능한 코드를 작성하기 때문에, 개발 효율과 유지보수에 좋다.</li>
-</ul>
-<p><br></p>
-<h1 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h1><hr>
-<p>모듈은 기본적으로 독립적인 스코프를 가지고 있어서, 모듈안에 선언된 모든 것들은 해당 모듈 내에서만 참조 할 수 있다.</p>
-<p>어떤 모듈안에서 선언한 항목(변수/함수/클래스 등)을 외부에 공개하여 다른 모듈들이 사용할 수 있게 하려면, export를 해야한다. 이때, 선언된 변수, 함수, 그리고 클래스 모두를 export 할 수 있고, 키워드는 export를 사용한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">// 변수의 공개</span><br><span class="line">export const num = 10;</span><br><span class="line"></span><br><span class="line">// 함수의 공개</span><br><span class="line">export function square(x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 클래스의 공개</span><br><span class="line">export class Person &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>각 선언문(변수/함수/클래스) 앞에 export를 붙이는 대신, export 대상을 하나의 객체로 구성하여, 한번에 export를 할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">const num = 10;</span><br><span class="line"></span><br><span class="line">function square(x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 변수, 함수 클래스를 하나의 객체로 구성하여 공개</span><br><span class="line">export &#123; num, square, Person &#125;;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h1><hr>
-<p>다른 모듈에서 어떤 export된 모듈을 가져와 사용하려면, 키워드 import를 사용해 로드하여 사용할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// 같은 폴더 내의 module.js 모듈을 로드. 확장자 js는 생략 가능.</span><br><span class="line">import &#123; num, square, Person &#125; from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(num);         // 10</span><br><span class="line">console.log(square(10)); // 100</span><br><span class="line">console.log(new Person(&apos;Lee&apos;)); // Person &#123; name: &apos;Lee&apos; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>각각의 이름을 지정하지 않고 하나의 이름으로 한꺼번에 import할 수도 있다. 이때 import되는 항목은 as 뒤에 지정한 이름의 변수에 할당된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// lib라는 이름으로 임포트</span><br><span class="line">import * as lib from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(module.num);         // 10</span><br><span class="line">console.log(module.square(10)); // 100</span><br><span class="line">console.log(new module.Person(&apos;Lee&apos;)); // Person &#123; name: &apos;Lee&apos; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>이름을 변경하여 import할 수도 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import &#123; num as n, square as sq, Person as P &#125; from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(n);    // 10</span><br><span class="line">console.log(sq(2)); // 4</span><br><span class="line">console.log(new P(&apos;Kim&apos;)); // Person &#123; name: &apos;Kim&apos; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>모듈에서 하나만을 export할 때는 default 키워드를 사용할 수 있다. 다만, default를 사용하는 경우, var, let, const는 사용할 수 없다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// lib.js</span><br><span class="line">function (x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default;</span><br></pre></td></tr></table></figure></p>
-<p>위 코드를 아래와 같이 축약 표현할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// module.js</span><br><span class="line">export default function (x) &#123;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>default 키워드와 함께 export한 모듈은 {} 없이 임의의 이름으로 import한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import square from &apos;./module&apos;;</span><br><span class="line"></span><br><span class="line">console.log(square(3)); // 9</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="Vue에서의-Modules-사용하는-방법"><a href="#Vue에서의-Modules-사용하는-방법" class="headerlink" title="Vue에서의 Modules 사용하는 방법"></a>Vue에서의 Modules 사용하는 방법</h1><hr>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Modules/">Modules</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1478,6 +1483,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a></h6>
+              <span>April 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/06/how-ethereum-transaction-works/">How Ethereum Transaction Works</a></h6>
               <span>April 6, 2019</span>
             </div>
@@ -1532,18 +1549,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/03/16/what-is-redux/">Redux</a></h6>
-              <span>March 16, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1553,7 +1558,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
