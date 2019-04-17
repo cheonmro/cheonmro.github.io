@@ -98,6 +98,104 @@
         
           <section id="main">
   
+    <article id="post-kakao-share"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/17/kakao-share/">Kakao 공유하기 버튼 만드는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/17/kakao-share/" class="article-date">
+	  <time datetime="2019-04-17T13:15:55.000Z" itemprop="datePublished">April 17, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Kakao-공유하기-버튼-만들기"><a href="#Kakao-공유하기-버튼-만들기" class="headerlink" title="Kakao 공유하기 버튼 만들기"></a>Kakao 공유하기 버튼 만들기</h1><hr>
+<p>카카오(KakaoDevelopers)에서 제공하는 kakao API를 이용해 카카오톡 공유하기 버튼을 만들 수 있다.</p>
+<p>카카오 API를 사용하기 위한 기본 세팅 순서는 다음과 같다.</p>
+<ol>
+<li><a href="https://developers.kakao.com/" target="_blank" rel="noopener">KakaoDevelopers</a>에 들어가, 본인의 카카오 계정으로 로그인한다.</li>
+<li>내 애플리케이션 - 앱 만들기에서 앱의 이름, 회사 이름 및 로고를 추가한다.</li>
+<li>각 API에 맞는 키를 받게된다.</li>
+<li>설정 - 일반의 <code>플랫폼</code>에서 나의 웹사이트 주소를 추가한다.</li>
+<li><code>KakaoDevelopers</code> 사이트의 상단 탭 중 <code>개발가이드</code>를 클릭하면, 다양한 API를 활용하는 가이드가 나온다.</li>
+<li>웹 개발을 한다면, JavaScript 개발가이드에서 <code>카카오링크</code>를 클릭한다.</li>
+<li><code>카카오링크</code>에서 제공하는 방식에 따라 자유롭게 카카오 sdk를 활용하면 된다.</li>
+</ol>
+<p><br></p>
+<p>React에서 개발 순서는 다음과 같다.</p>
+<ol>
+<li><code>ìndex.html</code>에 카카오 sdk를 등록한다.</li>
+<li>사용할 앱의 JavaScript 키를 설정한다.</li>
+<li>카카오링크 버튼을 생성한다.</li>
+<li>화면에 보여주기 위해 HTML에 카카오링크 버튼을 추가한다.</li>
+</ol>
+<p><br></p>
+<ol>
+<li>React 폴더의 index.html에서 <body> 태그 제일 아래에 sdk 코드 태그를 등록한다.</body></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    &lt;title&gt;React App&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;</span><br><span class="line">    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    // 카카오 sdk 등록</span><br><span class="line">    &lt;script src=&quot;//developers.kakao.com/sdk/js/kakao.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<ol start="2">
+<li>사용할 앱의 JavaScript 키를 설정한다.</li>
+</ol>
+<p>카카오톡 API를 사용하기 위해서는 기본적으로 카카오로부터 받은 키를 사용해야 한다. 여기서는 JavaScript 키를 사용한다.</p>
+<p>React에서 사용할 때는, <code>componentDidMount</code>에서 사용할 앱의 JavaScript 키를 설정한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  window.Kakao.init(&apos;YOUR APP KEY&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>KakaoDevelopers 개발가이드에서는 Kakao.init이라고 나와있지만, React에서 사용할 때는 앞에 window를 사용해야 한다. 왜냐하면, 카카오 sdk를 index.html에 등록했기 때문에, JavaScript 키를 설정하는 컴포넌트에서는 전역 객체로 접근해야 하기 때문에, window.Kakao.init() 이렇게 사용한다.</p>
+<p><br></p>
+<ol start="3">
+<li>카카오링크 버튼을 생성한다.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    window.Kakao.Link.createDefaultButton(&#123;</span><br><span class="line">      container: &apos;#kakao-link-btn&apos;,</span><br><span class="line">      objectType: &apos;feed&apos;,</span><br><span class="line">      content: &#123;</span><br><span class="line">        title: &apos;딸기 치즈 케익&apos;,</span><br><span class="line">        description: &apos;#케익 #딸기 #삼평동 #카페 #분위기 #소개팅&apos;,</span><br><span class="line">        imageUrl: &apos;http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png&apos;,</span><br><span class="line">        link: &#123;</span><br><span class="line">          mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">          webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      social: &#123;</span><br><span class="line">        likeCount: 286,</span><br><span class="line">        commentCount: 45,</span><br><span class="line">        sharedCount: 845</span><br><span class="line">      &#125;,</span><br><span class="line">      buttons: [</span><br><span class="line">        &#123;</span><br><span class="line">          title: &apos;웹으로 보기&apos;,</span><br><span class="line">          link: &#123;</span><br><span class="line">            mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">            webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          title: &apos;앱으로 보기&apos;,</span><br><span class="line">          link: &#123;</span><br><span class="line">            mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">            webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;Kakao&quot;&gt;</span><br><span class="line">        &lt;h2&gt;kakao page&lt;/h2&gt;</span><br><span class="line">        &lt;a id=&quot;kakao-link-btn&quot; href=&quot;javascript:;&quot;&gt;</span><br><span class="line">          &lt;img src=&quot;//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png&quot;/&gt;</span><br><span class="line">        &lt;/a&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><code>container</code>의 <code>#kakao-link-btn</code>은 html의 버튼으로 사용할 id의 이름과 동일해야 한다.<br><code>imageUrl</code>의 위 주소는 카카오에서 기본적으로 제공하는 이미지이다. 만약, 내가 원하는 이미지를 사용하고 싶다면, 다른 이미지 주소로 바꿔주면 된다.</p>
+<p><br><br>*custom 이미지 적용하는 방법</p>
+<ul>
+<li>카카오톡 공유하기 템플릿 중, feed 타입에서 권장하는 사이즈는 800px*800px 이다.</li>
+<li>먼저 이미지를 이 사이즈로 만든다. 이미지의 사이즈를 원하는 대로 바꾸고 싶다면, <a href="https://www.iloveimg.com/ko/resize-image/resize-png" target="_blank" rel="noopener">png 크기 조절</a> 사이트에서 사이즈를 변경하면 된다. 이때, 가로/세로 비율 유지를 클릭하지 말고, 800px*800px으로 변경한다.</li>
+<li>변경한 이미지를 url 주소로 변경하고 싶다면, <a href="https://ifh.cc/i-K9gAO" target="_blank" rel="noopener">이미지 호스팅</a> 사이트에서 url 주소를 생성하면 된다. 여기서 생성한 Image URL을 위 코드의 <code>imageUrl</code>에 작성하면 된다.</li>
+</ul>
+<p>위에 작성한 모든 url들은 KakaoDevelopers에서 <code>플랫폼</code>에 등록한 도메인이어야 한다.</p>
+<p><br><br>*카카오톡 공유 버튼을 클릭시에 다음과 같은 에러가 나는 경우<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">요청 실패</span><br><span class="line">잘못된 요청입니다.</span><br></pre></td></tr></table></figure></p>
+<p>해결책: 설정 - 일반의 <code>플랫폼</code>에 공유할 도메인 뿐만 아니라, <code>http://localhost:3000</code> 또한 등록한다.</p>
+<p>위 코드를 기본으로 조금 응용해서, 내가 원하는 버튼 이미지로 카카오톡 공유하기를 사용할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import kakao from &apos;../../image/kakao.png&apos;;</span><br><span class="line"></span><br><span class="line">class Kakao extends Component &#123;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    window.Kakao.init(&apos;YOUR APP KEY&apos;);</span><br><span class="line"></span><br><span class="line">    window.Kakao.Link.createDefaultButton(&#123;</span><br><span class="line">      container: &apos;#kakao-link-btn&apos;,</span><br><span class="line">      objectType: &apos;feed&apos;,</span><br><span class="line">      content: &#123;</span><br><span class="line">        title: &apos;딸기 치즈 케익&apos;,</span><br><span class="line">        description: &apos;#케익 #딸기 #삼평동 #카페 #분위기 #소개팅&apos;,</span><br><span class="line">        imageUrl: &apos;http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png&apos;,</span><br><span class="line">        link: &#123;</span><br><span class="line">          mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">          webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      social: &#123;</span><br><span class="line">        likeCount: 286,</span><br><span class="line">        commentCount: 45,</span><br><span class="line">        sharedCount: 845</span><br><span class="line">      &#125;,</span><br><span class="line">      buttons: [</span><br><span class="line">        &#123;</span><br><span class="line">          title: &apos;웹으로 보기&apos;,</span><br><span class="line">          link: &#123;</span><br><span class="line">            mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">            webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          title: &apos;앱으로 보기&apos;,</span><br><span class="line">          link: &#123;</span><br><span class="line">            mobileWebUrl: &apos;https://cheonmro.github.io/&apos;,</span><br><span class="line">            webUrl: &apos;https://cheonmro.github.io/&apos;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  onClickKakao = () =&gt; &#123;</span><br><span class="line">    window.open(&apos;https://sharer.kakao.com/talk/friends/picker/link&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;Kakao&quot;&gt;</span><br><span class="line">        &lt;button id=&quot;kakao-link-btn&quot; onClick=&#123;this.onClickKakao&#125;&gt;&lt;img src=&#123;kakao&#125; alt=&quot;kakao&quot; /&gt;&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Kakao;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kakao-Share/">Kakao Share</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-merge-branches"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1189,109 +1287,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-ethereum-keystore"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/10/ethereum-keystore/">Ethereum Wallet 및 Keystore 파일 생성 및 암호화 원리</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/03/10/ethereum-keystore/" class="article-date">
-	  <time datetime="2019-03-09T16:03:55.000Z" itemprop="datePublished">March 10, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="지갑이-생성되는-과정-그리고-Keystore-파일"><a href="#지갑이-생성되는-과정-그리고-Keystore-파일" class="headerlink" title="지갑이 생성되는 과정, 그리고 Keystore 파일"></a>지갑이 생성되는 과정, 그리고 Keystore 파일</h1><hr>
-<p><strong>지갑을 생성하게 되면, 지갑의 비밀번호(pw), private key(pk), 그리고 지갑을 백업할 수 있는 keystore 파일을 받게된다.</strong></p>
-<p>지갑을 import 하는 등 지갑에 대한 본인 인증을 할 때는 2가지 방법 중 하나로 한다.</p>
-<ul>
-<li><p><strong>pk를 이용하여 지갑에 대한 본인 인증을 한다.</strong></p>
-<ul>
-<li>문제는 pk(64 hex 문자열)를 기억하기 쉽지 않고, 관리 이슈도 있다.</li>
-</ul>
-</li>
-<li><p><strong>Keystore 파일과 pw를 이용하여 지갑에 대한 본인 인증을 한다.</strong></p>
-<ul>
-<li>Keystore 파일은 pk의 암호화된 버전이다.</li>
-<li>pk를 pw와 암호화 알고리즘을 이용해 암호화하여 keystore 파일로 만드는 것이다.</li>
-</ul>
-</li>
-</ul>
-<p>이 방법이 더 좋은 2가지 이유가 있다.</p>
-<ul>
-<li><strong>안전성:</strong><ul>
-<li>만약 사용자가 pk만 사용할 경우, 해커는 그 pk만 알아내면 사용자의 지갑은 해킹당하게 된다.</li>
-<li>그런데, keystore 파일을 사용하면 해커는 추가로 pw까지 알아야 하므로 더 안전하다.</li>
-</ul>
-</li>
-<li><strong>사용성:</strong><ul>
-<li>복잡한 pk 대신 사용자들에게 익숙한 pw와 파일로 쉽게 지갑을 사용할 수 있다.</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<h1 id="keystore-파일-데이터-구조"><a href="#keystore-파일-데이터-구조" class="headerlink" title="keystore 파일 데이터 구조"></a>keystore 파일 데이터 구조</h1><hr>
-<p>keystore 파일의 데이터 구조는 다음과 같다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;version&quot;: 3,</span><br><span class="line">    &quot;id&quot;: &quot;4c07993f-ded2-405a-b83d-3b627eebe5cd&quot;,</span><br><span class="line">    &quot;address&quot;: &quot;e449efddf8c9b174bbd40a0e0e1902d6eee72068&quot;,</span><br><span class="line">    &quot;Crypto&quot;: &#123;</span><br><span class="line">        &quot;cipher&quot;: &quot;aes-128-ctr&quot;,</span><br><span class="line">        &quot;cipherparams&quot;: &#123;</span><br><span class="line">          &quot;iv&quot;: &quot;7d416faf14c88bb124486f6cd851fa88&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ciphertext&quot;:&quot;e99f6d0e37f33124ee3020fad01363d9d7500efce</span><br><span class="line">                      913aede8a8119229b7a5f2e&quot;,</span><br><span class="line">        &quot;kdf&quot;: &quot;scrypt&quot;,</span><br><span class="line">        &quot;kdfparams&quot;: &#123;</span><br><span class="line">            &quot;dklen&quot;: 32,</span><br><span class="line">            &quot;salt&quot;: &quot;c47f395c9031233453168f01b5a9999a06ec97c829</span><br><span class="line">                     a395ecd16e1ad37102ec7f&quot;,</span><br><span class="line">            &quot;n&quot;: 8192,</span><br><span class="line">            &quot;r&quot;: 8,</span><br><span class="line">            &quot;p&quot;: 1</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;mac&quot;: &quot;82078437ee94331c69125eef4001ff4b78b481e909a6</span><br><span class="line">                2a9ac25aa916237b70be&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>위 구조 중, Crypto 객체가 keystore 파일 암호화에 대한 정보이다.</p>
-<p><br></p>
-<h1 id="pw를-이용해-pk를-암호화-복호화하여-keystore-파일을-생성하는-원리"><a href="#pw를-이용해-pk를-암호화-복호화하여-keystore-파일을-생성하는-원리" class="headerlink" title="pw를 이용해 pk를 암호화/복호화하여 keystore 파일을 생성하는 원리"></a>pw를 이용해 pk를 암호화/복호화하여 keystore 파일을 생성하는 원리</h1><hr>
-<h2 id="pw-암호화"><a href="#pw-암호화" class="headerlink" title="pw 암호화"></a>pw 암호화</h2><hr>
-<p><img src="/images/pw_encrypt.png" alt="pw 암호화 과정"><br>출처: <a href="https://medium.com/hexlant/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-keystore-%ED%8C%8C%EC%9D%BC-utc-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%95%94%ED%98%B8%ED%99%94-%EB%B3%B5%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-1-2-d417cb605bf" target="_blank" rel="noopener">pw 암호화 과정</a></p>
-<p>Pk를 암호화하기 위해 pw를 사용하는데, 이 pw를 직접 암호화키로 사용하지 않고, 이 pw를 암호화하여 암호화한 값을 암호화 키로 사용해서 pk를 암호화한다. 이때, pw를 암호화하는 알고리즘은 Scrypt인데, 비밀번호는 특성상 복호화할 필요가 없기 때문에 단반향 알고리즘 중 하나인 Scrypt를 사용한다.</p>
-<p>Keystore 파일에 들어갈 때는, kdf: ‘Scrypt’ 이런식으로 들어가는데, kdf는 암호화 알고리즘 이름을 말하고, Scrypt 알고리즘을 사용한다는 뜻이다.</p>
-<p>참고로, kdfparams 들어가는 것 중, n은 CPU/memory 비용을 말한다. 즉, 값이 클수록 암호화 파워가 증가한다.</p>
-<p><br></p>
-<h2 id="pk-암호화"><a href="#pk-암호화" class="headerlink" title="pk 암호화"></a>pk 암호화</h2><hr>
-<p><img src="/images/pk_encrypt.png" alt="pk 암호화 과정"><br>출처: <a href="https://medium.com/hexlant/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-keystore-%ED%8C%8C%EC%9D%BC-utc-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EC%95%94%ED%98%B8%ED%99%94-%EB%B3%B5%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-1-2-d417cb605bf" target="_blank" rel="noopener">pk 암호화 과정</a></p>
-<p>Pk를 암호화하기 위해서는 좀 전에 pw를 암호화한 값을 암호화키로 사용하고, AES 알고리즘을 사용해서 pk를 암호화한다. pk는 복호화할 필요가 있으므로(pk는 거래를 할 때, 사용되므로) 양방향 알고리즘인 AES를 사용한다.</p>
-<p>Keystore 파일에 들어갈 때는, cipher: ‘aes-128-ctr’ 이런식으로 들어가는데, cipher는 암호화 알고리즘의 이름이고 aes-128-ctr 알고리즘을 사용한다는 뜻이다.</p>
-<p><br></p>
-<h2 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h2><hr>
-<p>Mac은 keystone 파일을 사용할 때, 사용자가 입력한 pw의 일치여부를 확인하고, pk를 복호화해도 되는지 확인 용도로 사용한다.</p>
-<p>*참고로, 이더리움 wallet 만들어지는 순서</p>
-<ul>
-<li>Pk로 public key 생성</li>
-<li>Public key로 address 생성</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Keystore/">Keystore</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1402,6 +1397,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/17/kakao-share/">Kakao 공유하기 버튼 만드는 방법</a></h6>
+              <span>April 17, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/13/merge-branches/">여러 사람이 작업한 branch를 merge하는 방법</a></h6>
               <span>April 13, 2019</span>
             </div>
@@ -1456,18 +1463,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/03/22/icon-unit/">ICON Unit</a></h6>
-              <span>March 22, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1477,7 +1472,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
