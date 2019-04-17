@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Computed vs. Methods vs. Watch | Hexo</title>
+  <title>Facebook 공유하기 버튼 만드는 방법 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="VueComputedMethods" />
+  <meta name="keywords" content="APIFacebook Share" />
   
   
   
   
-  <meta name="description" content="Computed vs. Methods 핵심은 캐싱(값의 저장)이 있냐 없냐에 차이다. 공통점: 둘 다 인스턴내에서 함수를 정의하는 부분이고, 데이터가 변동됨에 따라 안에 있는 함수를 재호출하게 된다.차이점: 데이터가 변동되지 않는다고 가정했을 때이다.  Computed: 종속 대상의 값이 저장(캐싱) 되어, 이미 계산되어진 값을 가져온다. 종속된 대상이 변">
-<meta name="keywords" content="Vue,Computed,Methods">
+  <meta name="description" content="Facebook 공유하기 버튼 만들기 Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자. React에서 코드를 작성하면 다음과 같다.1234567891011121314151617import React, &amp;#123; Compone">
+<meta name="keywords" content="API,Facebook Share">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Computed vs. Methods vs. Watch">
-<meta property="og:url" content="https://cheonmro.github.io/2019/01/01/computed-methods/index.html">
+<meta property="og:title" content="Facebook 공유하기 버튼 만드는 방법">
+<meta property="og:url" content="https://cheonmro.github.io/2019/04/17/facebook-share/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Computed vs. Methods 핵심은 캐싱(값의 저장)이 있냐 없냐에 차이다. 공통점: 둘 다 인스턴내에서 함수를 정의하는 부분이고, 데이터가 변동됨에 따라 안에 있는 함수를 재호출하게 된다.차이점: 데이터가 변동되지 않는다고 가정했을 때이다.  Computed: 종속 대상의 값이 저장(캐싱) 되어, 이미 계산되어진 값을 가져온다. 종속된 대상이 변">
+<meta property="og:description" content="Facebook 공유하기 버튼 만들기 Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자. React에서 코드를 작성하면 다음과 같다.1234567891011121314151617import React, &amp;#123; Compone">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-01T11:26:03.785Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/facebook-share.png">
+<meta property="og:updated_time" content="2019-04-17T14:59:09.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Computed vs. Methods vs. Watch">
-<meta name="twitter:description" content="Computed vs. Methods 핵심은 캐싱(값의 저장)이 있냐 없냐에 차이다. 공통점: 둘 다 인스턴내에서 함수를 정의하는 부분이고, 데이터가 변동됨에 따라 안에 있는 함수를 재호출하게 된다.차이점: 데이터가 변동되지 않는다고 가정했을 때이다.  Computed: 종속 대상의 값이 저장(캐싱) 되어, 이미 계산되어진 값을 가져온다. 종속된 대상이 변">
+<meta name="twitter:title" content="Facebook 공유하기 버튼 만드는 방법">
+<meta name="twitter:description" content="Facebook 공유하기 버튼 만들기 Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자. React에서 코드를 작성하면 다음과 같다.1234567891011121314151617import React, &amp;#123; Compone">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/facebook-share.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -103,7 +105,7 @@
 
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-computed-methods" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-facebook-share" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -111,7 +113,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Computed vs. Methods vs. Watch
+      Facebook 공유하기 버튼 만드는 방법
     </h1>
   
 
@@ -119,13 +121,13 @@
     
     <div class="article-meta">
       
-	<a href="/2019/01/01/computed-methods/" class="article-date">
-	  <time datetime="2019-01-01T11:26:03.000Z" itemprop="datePublished">January 1, 2019</time>
+	<a href="/2019/04/17/facebook-share/" class="article-date">
+	  <time datetime="2019-04-17T14:59:09.000Z" itemprop="datePublished">April 17, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/categories/API/">API</a>
 
       
 	<!-- <span id="busuanzi_container_page_pv">
@@ -135,53 +137,32 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Computed-vs-Methods"><a href="#Computed-vs-Methods" class="headerlink" title="Computed vs. Methods"></a>Computed vs. Methods</h1><hr>
-<p><strong>핵심은 캐싱(값의 저장)이 있냐 없냐에 차이다.</strong></p>
-<p><strong>공통점</strong>: <strong>둘 다 인스턴내에서 함수를 정의하는 부분이고, 데이터가 변동됨에 따라 안에 있는 함수를 재호출하게 된다.</strong><br><strong>차이점</strong>: <strong>데이터가 변동되지 않는다고 가정했을 때이다.</strong></p>
-<ul>
-<li><strong>Computed: 종속 대상의 값이 저장(캐싱) 되어, 이미 계산되어진 값을 가져온다.</strong><ul>
-<li>종속된 대상이 변경될 때만, 함수를 실행하고, 종속 대상이 변경되지 않으면, computed를 여러번 요청해도 계산을 다시 하지 않고, 계산되어 있는(computed) 결과를 즉시 반환한다.</li>
-<li>데이터 변동이 없는 상태에서, 이전의 계산된 값을 캐시해 두었다가 함수 호출시 재사용한다.</li>
-</ul>
-</li>
-<li><strong>methods: 렌더링을 다시 할때마다, 항상 함수를 실행하여 함수의 로직에 결과물을 반환한다.</strong><ul>
-<li>사용할때마다, 함수의 계산을 다시 한다.</li>
-</ul>
-</li>
-</ul>
+        <h1 id="Facebook-공유하기-버튼-만들기"><a href="#Facebook-공유하기-버튼-만들기" class="headerlink" title="Facebook 공유하기 버튼 만들기"></a>Facebook 공유하기 버튼 만들기</h1><hr>
+<p>Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자.</p>
+<p>React에서 코드를 작성하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import facebook from &apos;../../image/facebook.png&apos;;</span><br><span class="line"></span><br><span class="line">class Facebook extends Component &#123;</span><br><span class="line">  onClicFacebook = () =&gt; &#123;</span><br><span class="line">    window.open(&apos;https://www.facebook.com/sharer/sharer.php?u=https://naver.com/&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;Facebook&quot;&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.onClickFacebook&#125;&gt;&lt;img src=&#123;facebook&#125; alt=&quot;facebook&quot;&gt;&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Facebook;</span><br></pre></td></tr></table></figure></p>
+<p>위 코드 중, naver.com 대신 공유할 도메인 주소로 변경하면 된다.</p>
 <p><br></p>
-<h2 id="캐싱이-왜-필요할까"><a href="#캐싱이-왜-필요할까" class="headerlink" title="캐싱이 왜 필요할까?"></a>캐싱이 왜 필요할까?</h2><hr>
-<p>computed의 속성이 계산이 많이 걸리는 함수라고 하자. 만약, 캐싱을 하지 않으면, computed의 속성의 getter 함수를 꼭 필요한 것보다 더 많이 실행하게 된다. 그래서, 캐싱을 원하지 않으면, methods를 사용한다.</p>
-<p><br></p>
-<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><hr>
+<p>공유하기 버튼을 클릭하면, 다음과 같이 나온다.</p>
+<p><img src="/images/facebook-share.png" alt="페이스북 공유 페이지"></p>
+<p>위 그림에서 공유할 페이지의 이미지, title, description 등은 원하는 대로 변경할 수 있다.</p>
+<p>React 폴더 중, index.html에 meta 태그로 추가하면, 공유할 썸네일을 원하는대로 커스텀 할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta property=&quot;og:url&quot; content=&quot;https://www.your-domain.com/your-page.html&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:title&quot; content=&quot;Your Website Title&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:description&quot; content=&quot;Your description&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:image&quot; content=&quot;https://www.your-domain.com/path/image.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><br><br>*페이스북 공유 관련 참고 사이트</p>
 <ul>
-<li><strong>데이터가 자주 변동되지 않으면, 비용적인 면에서는 computed가 좋다.</strong></li>
-<li><strong>데이터가 수시로 없데이트 되면, 계속해서 캐시를 저장하는 computed보다 methods가 더 좋다.</strong></li>
+<li><a href="https://developers.facebook.com/docs/plugins/share-button" target="_blank" rel="noopener">Facebook Developers 1</a></li>
+<li><a href="https://developers.facebook.com/tools/debug/sharing/?q=https%3A%2F%2Fprayforgangwon.icon.foundation%2F" target="_blank" rel="noopener">Facebook Developers 2</a></li>
+<li><a href="https://developers.facebook.com/docs/sharing/webmasters#markup" target="_blank" rel="noopener">Facebook Developers 3</a></li>
 </ul>
-<p>그래서, html에서는 computed는 변수처럼 쓰이고, methods는 함수처럼 쓰인다.<br>예) parse 함수</p>
-<ul>
-<li>Computed: parse를 그대로 사용한다.</li>
-<li>Methods: parse() 이런식으로 사용한다.</li>
-</ul>
-<p><br></p>
-<h1 id="Computed-vs-Watch"><a href="#Computed-vs-Watch" class="headerlink" title="Computed vs. Watch"></a>Computed vs. Watch</h1><hr>
-<ul>
-<li>Watch: 감시할 데이터를 지정하고 그 데이터가 바뀌면 이런 함수를 실행하라는 방식으로 소프트웨어 공학에서 이야기하는 ‘명령형 프로그래밍’ 방식</li>
-<li>Computed: 계산해야 하는 목표 데이터를 정의하는 방식으로 소프트웨어 공학에서 이야기하는 ‘선언형 프로그래밍’ 방식</li>
-</ul>
-<p><br></p>
-<h1 id="Computed-Watch는-언제-왜-사용해야-할까"><a href="#Computed-Watch는-언제-왜-사용해야-할까" class="headerlink" title="Computed/Watch는 언제, 왜 사용해야 할까?"></a>Computed/Watch는 언제, 왜 사용해야 할까?</h1><hr>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
+    <a class="article-category-link" href="/categories/API/">API</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computed/">Computed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Methods/">Methods</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Facebook-Share/">Facebook Share</a></li></ul>
 
       
     </footer>
@@ -191,19 +172,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/01/arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Arrow Function
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/01/01/vue-routing/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/04/17/kakao-share/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Vue에서 Routing 사용하는 방법</div>
+      <div class="article-nav-title">Kakao 공유하기 버튼 만드는 방법</div>
     </a>
   
 </nav>
@@ -217,7 +189,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Computed-vs-Methods"><span class="nav-number">1.</span> <span class="nav-text">Computed vs. Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#캐싱이-왜-필요할까"><span class="nav-number">1.1.</span> <span class="nav-text">캐싱이 왜 필요할까?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#결론"><span class="nav-number">2.</span> <span class="nav-text">결론</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Computed-vs-Watch"><span class="nav-number">3.</span> <span class="nav-text">Computed vs. Watch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Computed-Watch는-언제-왜-사용해야-할까"><span class="nav-number">4.</span> <span class="nav-text">Computed/Watch는 언제, 왜 사용해야 할까?</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Facebook-공유하기-버튼-만들기"><span class="nav-number">1.</span> <span class="nav-text">Facebook 공유하기 버튼 만들기</span></a></li></ol>
     
     </div>
   </aside>
