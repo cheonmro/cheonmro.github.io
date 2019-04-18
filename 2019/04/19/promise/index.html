@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Promise | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ES6Promise" />
+  
+  
+  
+  
+  <meta name="description" content="Promise란 무엇인가 Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.  Promise를 사용하는 이유 자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함">
+<meta name="keywords" content="ES6,Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="https://cheonmro.github.io/2019/04/19/promise/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Promise란 무엇인가 Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.  Promise를 사용하는 이유 자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/how-promise-works.png">
+<meta property="og:updated_time" content="2019-04-18T16:28:52.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise">
+<meta name="twitter:description" content="Promise란 무엇인가 Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.  Promise를 사용하는 이유 자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/how-promise-works.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-promise" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Promise
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/19/promise/" class="article-date">
+	  <time datetime="2019-04-18T16:28:52.000Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Promise란-무엇인가"><a href="#Promise란-무엇인가" class="headerlink" title="Promise란 무엇인가"></a>Promise란 무엇인가</h1><hr>
+<p>Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.</p>
+<p><br></p>
+<h1 id="Promise를-사용하는-이유"><a href="#Promise를-사용하는-이유" class="headerlink" title="Promise를 사용하는 이유"></a>Promise를 사용하는 이유</h1><hr>
+<p>자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함수가 계속해서 중첩(nesting)되어 복잡도가 높아지는 콜백 헬이 발생하는 문제가 있다. 즉, 가독성이 좋지가 않게 된다. 이 문제를 해결하기 위해 ES6에서는 Promise를 사용한다.</p>
+<p><br></p>
+<h1 id="Promise-사용-방법"><a href="#Promise-사용-방법" class="headerlink" title="Promise 사용 방법"></a>Promise 사용 방법</h1><hr>
+<p>Promise 사용은 크게 두 가지가 있다.</p>
+<ul>
+<li>Promise 생성</li>
+<li>Promise 실행</li>
+</ul>
+<p><br></p>
+<h3 id="Promise-생성"><a href="#Promise-생성" class="headerlink" title="Promise 생성"></a>Promise 생성</h3><p>Promise는 Promise 생성자 함수를 이용해 인스턴스, 즉 Promise 객체를 반환한다. Promise 생성자 함수는 비동기 작업을 수행할 콜백 함수를 인자로 전달 받는다. 이 콜백 함수는 resolve 함수와 reject 함수이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 비동기 작업을 수행</span><br><span class="line"></span><br><span class="line">  if (/* 비동기 작업 수행 성공 */) &#123;</span><br><span class="line">    resolve(&apos;result&apos;); // resolve 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123; /* 비동기 작업 수행 실패 */</span><br><span class="line">    reject(&apos;failure&apos;); // reject 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Promise-실행"><a href="#Promise-실행" class="headerlink" title="Promise 실행"></a>Promise 실행</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error -&gt; console.log(error))</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Promise-상태"><a href="#Promise-상태" class="headerlink" title="Promise 상태"></a>Promise 상태</h3><ul>
+<li>pending: 비동기 처리가 아직 수행되지 않은 상태(resolve 또는 reject 함수가 아직 호출되지 않은 상태)</li>
+<li>fulfilled: 비동기 처리가 성공적으로 수행된 상태(resolve 함수가 호출된 상태)</li>
+<li>rejected: 비동기 처리가 실패된 상태(reject 함수가 호출된 상태)</li>
+</ul>
+<p><br></p>
+<h3 id="Promise-기본-코드"><a href="#Promise-기본-코드" class="headerlink" title="Promise 기본 코드"></a>Promise 기본 코드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const promise1 = function(param) &#123;</span><br><span class="line">      return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        if(param) &#123;</span><br><span class="line">          resolve(&quot;success&quot;) // &quot;success&quot;가 then 메소드의 result의 값으로 전달됨</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(&quot;fail&quot;) // &quot;fail&quot;이 catch 메소드의 error의 값으로 전달됨</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">promise1(true)</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error =&gt; console.log(error))</span><br></pre></td></tr></table></figure>
+<p>비동기 처리에 성공하면, resolve 함수가 호출되고, 이때 resolve 함수의 인자로 비동기 처리 결과를 전달한다. 이 처리 결과는 Promise 객체의 후속 처리 메소드로 전달된다.<br>비동기 처리에 실패하면, reject 함수가 호출되고, 이때 reject 함수의 인자로 에러 메시지를 전달한다. 이 에러 메시지는 Promise 객체의 후속 처리 메소드로 전달된다.</p>
+<p><br></p>
+<h1 id="Promise-처리-흐름"><a href="#Promise-처리-흐름" class="headerlink" title="Promise 처리 흐름"></a>Promise 처리 흐름</h1><hr>
+<p><img src="/images/how-promise-works.png" alt="How Promise Works"></p>
+<p>출처: <a href="https://3dmpengines.tistory.com/1992" target="_blank" rel="noopener">Promise 처리 흐름</a></p>
+<p><br></p>
+<h1 id="Promise-코드-예제"><a href="#Promise-코드-예제" class="headerlink" title="Promise 코드 예제"></a>Promise 코드 예제</h1><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    api.get(&apos;https://naver.com/users/1&apos;, function (response) &#123;</span><br><span class="line">      if (response) &#123;</span><br><span class="line">        resolve(response);</span><br><span class="line">      &#125;</span><br><span class="line">      reject(new Error(&quot;Request failure&quot;));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData().then(function (data) &#123;</span><br><span class="line">  console.log(data); // response 값 출력(resolve 함수의 인자로 받아온 response가 data로 받아옴)</span><br><span class="line">&#125;).catch(function (err) &#123;</span><br><span class="line">  console.error(err); // Error 출력</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="Promise-체이닝-Chainning"><a href="#Promise-체이닝-Chainning" class="headerlink" title="Promise 체이닝(Chainning)"></a>Promise 체이닝(Chainning)</h1><hr>
+<p>Promise는 후속 처리 메소드를 체이닝(chainning)하여 여러 개의 프로미스를 연결하여 사용할 수 있기 때문에, 콜백 헬을 해결한다. Promise 객체를 반환한 비동기 함수는 프로미스 후속 처리 메소드인 then이나 catch 메소드를 사용할 수 있다. 따라서 then 메소드가 Promise 객체를 반환하도록 하면 여러 개의 프로미스를 연결하여 사용할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get(`$&#123;url&#125;/1`)</span><br><span class="line">  .then(result1 =&gt; document.getElementById(&apos;app&apos;).innerHTML = result1)</span><br><span class="line">  .then(result2 =&gt; document.getElementById(&apos;result&apos;).innerHTML = result2)</span><br><span class="line">  .catch(error =&gt; console.log(error));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/18/twitter-share/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Twitter 공유하기 버튼 만드는 방법</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Promise란 무엇인가</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise를-사용하는-이유"><span class="nav-number">2.</span> <span class="nav-text">Promise를 사용하는 이유</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-사용-방법"><span class="nav-number">3.</span> <span class="nav-text">Promise 사용 방법</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-생성"><span class="nav-number">3.0.1.</span> <span class="nav-text">Promise 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-실행"><span class="nav-number">3.0.2.</span> <span class="nav-text">Promise 실행</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-상태"><span class="nav-number">3.0.3.</span> <span class="nav-text">Promise 상태</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-기본-코드"><span class="nav-number">3.0.4.</span> <span class="nav-text">Promise 기본 코드</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-처리-흐름"><span class="nav-number">4.</span> <span class="nav-text">Promise 처리 흐름</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-코드-예제"><span class="nav-number">5.</span> <span class="nav-text">Promise 코드 예제</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-체이닝-Chainning"><span class="nav-number">6.</span> <span class="nav-text">Promise 체이닝(Chainning)</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

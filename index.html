@@ -98,6 +98,92 @@
         
           <section id="main">
   
+    <article id="post-promise"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/19/promise/">Promise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/19/promise/" class="article-date">
+	  <time datetime="2019-04-18T16:28:52.000Z" itemprop="datePublished">April 19, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Promise란-무엇인가"><a href="#Promise란-무엇인가" class="headerlink" title="Promise란 무엇인가"></a>Promise란 무엇인가</h1><hr>
+<p>Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.</p>
+<p><br></p>
+<h1 id="Promise를-사용하는-이유"><a href="#Promise를-사용하는-이유" class="headerlink" title="Promise를 사용하는 이유"></a>Promise를 사용하는 이유</h1><hr>
+<p>자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함수가 계속해서 중첩(nesting)되어 복잡도가 높아지는 콜백 헬이 발생하는 문제가 있다. 즉, 가독성이 좋지가 않게 된다. 이 문제를 해결하기 위해 ES6에서는 Promise를 사용한다.</p>
+<p><br></p>
+<h1 id="Promise-사용-방법"><a href="#Promise-사용-방법" class="headerlink" title="Promise 사용 방법"></a>Promise 사용 방법</h1><hr>
+<p>Promise 사용은 크게 두 가지가 있다.</p>
+<ul>
+<li>Promise 생성</li>
+<li>Promise 실행</li>
+</ul>
+<p><br></p>
+<h3 id="Promise-생성"><a href="#Promise-생성" class="headerlink" title="Promise 생성"></a>Promise 생성</h3><p>Promise는 Promise 생성자 함수를 이용해 인스턴스, 즉 Promise 객체를 반환한다. Promise 생성자 함수는 비동기 작업을 수행할 콜백 함수를 인자로 전달 받는다. 이 콜백 함수는 resolve 함수와 reject 함수이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 비동기 작업을 수행</span><br><span class="line"></span><br><span class="line">  if (/* 비동기 작업 수행 성공 */) &#123;</span><br><span class="line">    resolve(&apos;result&apos;); // resolve 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123; /* 비동기 작업 수행 실패 */</span><br><span class="line">    reject(&apos;failure&apos;); // reject 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Promise-실행"><a href="#Promise-실행" class="headerlink" title="Promise 실행"></a>Promise 실행</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error -&gt; console.log(error))</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Promise-상태"><a href="#Promise-상태" class="headerlink" title="Promise 상태"></a>Promise 상태</h3><ul>
+<li>pending: 비동기 처리가 아직 수행되지 않은 상태(resolve 또는 reject 함수가 아직 호출되지 않은 상태)</li>
+<li>fulfilled: 비동기 처리가 성공적으로 수행된 상태(resolve 함수가 호출된 상태)</li>
+<li>rejected: 비동기 처리가 실패된 상태(reject 함수가 호출된 상태)</li>
+</ul>
+<p><br></p>
+<h3 id="Promise-기본-코드"><a href="#Promise-기본-코드" class="headerlink" title="Promise 기본 코드"></a>Promise 기본 코드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const promise1 = function(param) &#123;</span><br><span class="line">      return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        if(param) &#123;</span><br><span class="line">          resolve(&quot;success&quot;) // &quot;success&quot;가 then 메소드의 result의 값으로 전달됨</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(&quot;fail&quot;) // &quot;fail&quot;이 catch 메소드의 error의 값으로 전달됨</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">promise1(true)</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error =&gt; console.log(error))</span><br></pre></td></tr></table></figure>
+<p>비동기 처리에 성공하면, resolve 함수가 호출되고, 이때 resolve 함수의 인자로 비동기 처리 결과를 전달한다. 이 처리 결과는 Promise 객체의 후속 처리 메소드로 전달된다.<br>비동기 처리에 실패하면, reject 함수가 호출되고, 이때 reject 함수의 인자로 에러 메시지를 전달한다. 이 에러 메시지는 Promise 객체의 후속 처리 메소드로 전달된다.</p>
+<p><br></p>
+<h1 id="Promise-처리-흐름"><a href="#Promise-처리-흐름" class="headerlink" title="Promise 처리 흐름"></a>Promise 처리 흐름</h1><hr>
+<p><img src="/images/how-promise-works.png" alt="How Promise Works"></p>
+<p>출처: <a href="https://3dmpengines.tistory.com/1992" target="_blank" rel="noopener">Promise 처리 흐름</a></p>
+<p><br></p>
+<h1 id="Promise-코드-예제"><a href="#Promise-코드-예제" class="headerlink" title="Promise 코드 예제"></a>Promise 코드 예제</h1><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    api.get(&apos;https://naver.com/users/1&apos;, function (response) &#123;</span><br><span class="line">      if (response) &#123;</span><br><span class="line">        resolve(response);</span><br><span class="line">      &#125;</span><br><span class="line">      reject(new Error(&quot;Request failure&quot;));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData().then(function (data) &#123;</span><br><span class="line">  console.log(data); // response 값 출력(resolve 함수의 인자로 받아온 response가 data로 받아옴)</span><br><span class="line">&#125;).catch(function (err) &#123;</span><br><span class="line">  console.error(err); // Error 출력</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="Promise-체이닝-Chainning"><a href="#Promise-체이닝-Chainning" class="headerlink" title="Promise 체이닝(Chainning)"></a>Promise 체이닝(Chainning)</h1><hr>
+<p>Promise는 후속 처리 메소드를 체이닝(chainning)하여 여러 개의 프로미스를 연결하여 사용할 수 있기 때문에, 콜백 헬을 해결한다. Promise 객체를 반환한 비동기 함수는 프로미스 후속 처리 메소드인 then이나 catch 메소드를 사용할 수 있다. 따라서 then 메소드가 Promise 객체를 반환하도록 하면 여러 개의 프로미스를 연결하여 사용할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get(`$&#123;url&#125;/1`)</span><br><span class="line">  .then(result1 =&gt; document.getElementById(&apos;app&apos;).innerHTML = result1)</span><br><span class="line">  .then(result2 =&gt; document.getElementById(&apos;result&apos;).innerHTML = result2)</span><br><span class="line">  .catch(error =&gt; console.log(error));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-twitter-share"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1001,129 +1087,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-redux-saga"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/17/redux-saga/">Redux-Saga</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/03/17/redux-saga/" class="article-date">
-	  <time datetime="2019-03-17T12:35:33.000Z" itemprop="datePublished">March 17, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/React/">React</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Redux-Saga란-무엇인가"><a href="#Redux-Saga란-무엇인가" class="headerlink" title="Redux-Saga란 무엇인가?"></a>Redux-Saga란 무엇인가?</h1><hr>
-<p><strong>Redux-saga란, side effect를 관리하기 위한 middleware이다.</strong></p>
-<p>Side effect란, 애플리케이션의 부작용들(데이터 요청 등의 비동기 작업/브라우저 캐시 같은 순수하지 않은 것들)을 말한다.</p>
-<p>middleware란, 액션이 dispatch 되어서 리듀서에서 이를 처리하기 전에 그 사이에서 중간자로써 지정된 특정 작업을 하는 것을 말한다.</p>
-<p><br></p>
-<h1 id="Redux-Saga를-왜-사용하는가"><a href="#Redux-Saga를-왜-사용하는가" class="headerlink" title="Redux-Saga를 왜 사용하는가?"></a>Redux-Saga를 왜 사용하는가?</h1><hr>
-<p>비동기 처리 등 순수하게 액션만을 전달하는 것 이상으로 발생하는 상황들(side effects)을 다룰 때, 이 미들웨어를 사용한다.</p>
-<p><br></p>
-<h1 id="Redux-Thunk-대신에-Redux-Saga를-사용하는-이유는-무엇인가"><a href="#Redux-Thunk-대신에-Redux-Saga를-사용하는-이유는-무엇인가" class="headerlink" title="Redux-Thunk 대신에 Redux-Saga를 사용하는 이유는 무엇인가?"></a>Redux-Thunk 대신에 Redux-Saga를 사용하는 이유는 무엇인가?</h1><hr>
-<p>redux-thunk를 사용하면, 비동기 처리를 Action Creator(액션 생성자 함수)에서 작성하게 되어, 로직이 복잡해진다. 기본적으로 Redux에서 Action Creator에서는 액션을 객체형태로 생성하여 dispatch 하는데, redux-thunk에서는 액션을 함수형태로 생성하여 dispatch 하여, Action Creator에 비동기처리 코드나 관련된 로직이 들어가게 된다.</p>
-<p>그런데, Redux-saga는 비동기 처리를 기술하는 전용의 방식인 task로 쓰여있다. 즉, 비동기 처리를 각 saga(task)에서 명령을 내리고, 동작을 미들웨어에서 처리한다. 그래서, redux에서의 action creator에서 기존과 그대로 액션을 객체형태로 생성하여 dispatch 할 수가 있고, saga에서의 코드도 더 간단해진다. 결국, Action Creator는 본래의 모습을 되찾아, action 객체를 생성하여 돌려주는 순수한 상태로 돌아가게 된다.</p>
-<p>결론적으로, Redux-Saga를 사용하게 되면, 비동기 처리를 액션 생성자로부터 분리하여 작성하기 때문에, 가독성도 좋고 콜백 처리 등에 더 수월하다.</p>
-<p><br></p>
-<h1 id="Redux-Saga-Architecture"><a href="#Redux-Saga-Architecture" class="headerlink" title="Redux-Saga Architecture"></a>Redux-Saga Architecture</h1><hr>
-<p><img src="/images/redux-saga.webp" alt="Redux-Saga Architecture"><br>출처: <a href="https://scotch.io/tutorials/build-a-media-library-with-react-redux-and-redux-saga-part-1" target="_blank" rel="noopener">Redux-Saga Architecture</a></p>
-<p><br></p>
-<h1 id="Redux-Saga-Flow"><a href="#Redux-Saga-Flow" class="headerlink" title="Redux-Saga Flow"></a>Redux-Saga Flow</h1><hr>
-<p><img src="/images/redux-saga-flow.png" alt="Redux-Saga Architecture"><br>출처: <a href="(https://meetup.toast.com/posts/136">Redux-Saga Architecture</a>)</p>
-<p>위 Flow를 정리하면 다음과 같다.</p>
-<ol>
-<li>어떤 비동기 액션이 dispatch 되면, Reducer에 먼저 도달한다. 정확하게는 액션이 Reducer로 지나가는 것을 본 후, Redux-Saga에 액션을 처리한다. Reducer는 순수 함수라는 규칙이 있기 때문에, 비동기 액션을 처리하지 못한다.</li>
-</ol>
-<ol start="2">
-<li>이 비동기 액션을 Redux-Saga에 있는 watcher saga가 보고 있다가, watcher saga에 등록되어 있는 task를 수행한다. 이 watcher saga의 역할은 어떤 비동기 액션이 dispatch 되면, 어떤 task를 수행하도록 등록하는 것이다. 이때, takeEvery라는 헬퍼 이펙트를 사용하는데, 이 이펙트는 여러개의 task를 동시에 시작할 수 있다. 즉, 1개 혹은 아직 종료되지 않은 task가 있더라도 새로운 task를 시작할 수 있다.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// INCREMENT_ASYNC 액션이 Dispatch 되면 `incrementAsync`를 수행하도록 등록한다.</span><br><span class="line">export function* watchIncrementAsync() &#123;</span><br><span class="line">  yield takeEvery(INCREMENT_ASYNC, incrementAsync)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><code>incrementAsync</code>를 수행하는데, 만약 task가 2초 마다 +1씩 증가하는 함수라고 한다면, 다음과 같이 작성한다.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function* incrementAsync(action) &#123;</span><br><span class="line">  yield delay(2000)                 // 2초를 기다리고</span><br><span class="line">  yield put(&#123; type: INCREMENT &#125;)    // INCREMENT 액션을 Dispatch한다.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>위 task가 수행될 때, 먼저 첫번째 줄에 있는 delay(2000)이 yield 된다. delay는 설정된 시간 이후에 resolve를 하는 Promise 객체를 리턴하는 함수이다. 이 Promise가 미들웨어에 yield 될때, 미들웨어는 Promise가 끝날때까지 Saga를 일시정지 시킨다.(generator 함수의 특징) 즉, 이 부분은 동기적으로 동작한다.</li>
-</ol>
-<ol start="5">
-<li>2초후, Promise가 한번 resolve 되면, 미들웨어는 saga(task)를 다시 작동시키면서, 다음 yield까지 코드를 실행한다. 이런 방식으로 saga(task)에서 1개씩 yield되고, 그 yield 된 것이 미들웨어에 의해 동작이 완료되면, 그때 그 다음줄에 있는 객체가 yield된다.</li>
-</ol>
-<ol start="6">
-<li>어떤 객체를 yield할때, 앞에 오는 것들(put, call 등)을 이펙트라고 한다. 이펙트란, 미들웨어에 의해 수행되는 명령을 담고있는 간단한 자바스크립트 객체를 말한다. 미들웨어가 saga에 의해 yield 된 이펙트를 받을때, saga는 이펙트가 수행될때까지 정지되어 있다.</li>
-</ol>
-<ol start="7">
-<li>saga에서 put을 통해 객체를 dispatch하면, 이 객체는 reducer로 가게된다.</li>
-</ol>
-<ol start="8">
-<li>두 saga를 모두 한번에 실행하게 해주기 위해, rootSaga를 이용해 사용한다.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 모든 Saga들을 한번에 시작하기 위한 단일 entry point 이다.</span><br><span class="line">export default function* rootSaga() &#123;</span><br><span class="line">  yield all([</span><br><span class="line">    incrementAsync(),</span><br><span class="line">    watchIncrementAsync()</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="Redux-Saga-사용방법"><a href="#Redux-Saga-사용방법" class="headerlink" title="Redux-Saga 사용방법"></a>Redux-Saga 사용방법</h1><hr>
-<p>Redux-Saga를 사용하는 방법은 다음과 같다.</p>
-<ul>
-<li>saga 미들웨어 작성(sagas.js)<ul>
-<li>비동기 처리를 위한 task 작성(제너레이터 함수) - worker saga</li>
-<li>각각의 어떤 비동기 액션을 처리하기 위해 watch 함수를 작성하고, 그 안에 takeEvery 이펙트 펠어 함수를 사용 - watcher saga</li>
-<li>모든 saga들을 한번에 실행하기 entry point 작성 - rootSaga 작성<ul>
-<li>rootSaga에 들어있는 두 saga가 호출된 결과의 배열을 yield 한다. 이것은 생성된 두 제너레이터가 병렬로 시작된다는 것을 의미.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Saga 미들웨어를 Redux 스토어에 연결(main.js)<ul>
-<li>applyMiddleware</li>
-<li>sagaMiddleware.run 등 작성</li>
-</ul>
-</li>
-<li>비동기 호출을 위한 이벤트 등록(Counter.js)</li>
-</ul>
-<p>saga 미들웨어 작성(sagas.js)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// sagas.js</span><br><span class="line"></span><br><span class="line">import &#123; delay &#125; from &apos;redux-saga&apos;</span><br><span class="line">import &#123; put, takeEvery &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"></span><br><span class="line">// watcher saga</span><br><span class="line">export function* watchIncrementAsync() &#123;</span><br><span class="line">  yield takeEvery(INCREMENT_ASYNC, incrementAsync)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// worker saga</span><br><span class="line">function* incrementAsync(action) &#123;</span><br><span class="line">  yield delay(2000)</span><br><span class="line">  yield put(&#123; type: INCREMENT &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// rootSaga</span><br><span class="line">export default function* rootSaga() &#123;</span><br><span class="line">  yield all([</span><br><span class="line">    incrementAsync(),</span><br><span class="line">    watchIncrementAsync()</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Saga 미들웨어를 Redux 스토어에 연결(main.js)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">import &#123; createStore, applyMiddleware &#125; from &apos;redux&apos;</span><br><span class="line">import createSagaMiddleware from &apos;redux-saga&apos;</span><br><span class="line"></span><br><span class="line">import rootSaga from &apos;./sagas&apos;</span><br><span class="line"></span><br><span class="line">const sagaMiddleware = createSagaMiddleware()</span><br><span class="line">const store = ...</span><br><span class="line">sagaMiddleware.run(rootSaga)</span><br></pre></td></tr></table></figure>
-<p>비동기 호출을 위한 이벤트 등록(Counter.js)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Counter.js</span><br><span class="line">const Counter = (&#123; value, onIncrementAsync &#125;) =&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;button onClick=&#123;onIncrementAsync&#125;&gt;</span><br><span class="line">      Increment after 2 second</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">    &lt;hr /&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      Counter: &#123;value&#125; times</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>비동기 호출을 처리하기 위해 Redux와 연결해주는 컨테이너 컴포넌트(CounterContainer.js)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function render() &#123;</span><br><span class="line">  ReactDOM.render(</span><br><span class="line">    &lt;Counter</span><br><span class="line">      value=&#123;store.getState()&#125;</span><br><span class="line">      onIncrementAsync=&#123;() =&gt; action(&apos;INCREMENT_ASYNC&apos;)&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/React/">React</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redux-Saga/">Redux-Saga</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1234,6 +1197,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/19/promise/">Promise</a></h6>
+              <span>April 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/18/twitter-share/">Twitter 공유하기 버튼 만드는 방법</a></h6>
               <span>April 18, 2019</span>
             </div>
@@ -1288,18 +1263,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/06/how-ethereum-transaction-works/">How Ethereum Transaction Works</a></h6>
-              <span>April 6, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1309,7 +1272,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
