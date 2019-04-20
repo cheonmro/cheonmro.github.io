@@ -98,6 +98,147 @@
         
           <section id="main">
   
+    <article id="post-rest-api"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/08/30/rest-api/">REST API란 무엇인가?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/08/30/rest-api/" class="article-date">
+	  <time datetime="2018-08-30T04:06:44.000Z" itemprop="datePublished">August 30, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="REST-API란"><a href="#REST-API란" class="headerlink" title="REST API란?"></a>REST API란?</h1><hr>
+<p>REpresentational State Transfer의 약자로, 서버의 자원을 정의하고, 자원에 대한 주소를 지정하는 방법(표기법)을 말한다. 2000년, 아파치 HTTP 서버 프로젝트의 공동설립자인 Roy fielding(로이 필딩)에 의해 처음 소개가 되었는데, 이 분은 HTTP/1.0,1.1 스펙 작성에 참여하신 분이다.</p>
+<p>그는 웹의 장점을 최대한 활용할 수 있는 Architecture로써 REST를 소개하면서, REST API 규칙을 만들었다. 이런 REST API 규칙을 잘 지킨 서비스 디자인을 “RESTful”하다고 표현한다. REST API는 HTPP 프로토콜을 정확히 의도에 맞게 활용하여 디자인하게 유도하기 때문에, 디자인 기준이 명확해지고, 의미적인 범용성을 지닌다. 즉, 서버가 이해하기 쉽게 자원에 대한 주소를 지정하는 표기법이 REST API이다.</p>
+<p><br></p>
+<h1 id="REST-API-구성-요소"><a href="#REST-API-구성-요소" class="headerlink" title="REST API 구성 요소"></a>REST API 구성 요소</h1><hr>
+<p>REST API를 구성하는 것은 다음과 같이 3가지가 있다.</p>
+<ul>
+<li>자원(Resource)</li>
+<li>행위(Verb)</li>
+<li>표현(Representation)</li>
+</ul>
+<p><br></p>
+<h2 id="자원-Resource"><a href="#자원-Resource" class="headerlink" title="자원(Resource)"></a>자원(Resource)</h2><hr>
+<p>자원(Resource)이란, 해당 소프트웨어가 관리하는 모든 것이 될 수 있다.<br>JSON, XML 등의 문서가 될 수 있고, 그림파일이 될 수도 있다.<br>즉, 어떤 데이터(문서, 파일, 비디오 등)를 말한다.</p>
+<p>예를 들어, 서버 데이터베이스에 사용자들에 대한 정보가 들어가 있다면, 이 사용자들의 정보가 데이터이기 때문에, 자원(Resource)이 된다. 이때, 이 사용자들에 대한 데이터를 대표하는 이름을 users라고 해보자. 만약, 이 사용자들 중에서 어떤 한 명의 사용자에 대한 자원을 얻고자 한다면 어떻게 해야할까? 그럴때는, users/id 처럼, 사용자들 중 특정 id로 사용자를 구분해서 사용할 수 있다.</p>
+<p>자원(Resource)은 HTTP URI로 표현한다. 예를 들어, <a href="http://localhost:4000/users/1" target="_blank" rel="noopener">http://localhost:4000/users/1</a> 이런식으로 작성하며, 이 URI를 이용하여 원하는 자원(Resource)에 접근할 수 있다.</p>
+<p><br></p>
+<h2 id="행위-Verb"><a href="#행위-Verb" class="headerlink" title="행위(Verb)"></a>행위(Verb)</h2><hr>
+<p>REST API에서 말하는 행위(Verb)는 자원에 대한 행위를 말한다. 즉, HTTP Method를 사용해서 자원을 얻거나, 만들거나, 변경하거나, 삭제하는 등의 행위를 할 수 있다.</p>
+<p>HTTP Method 중 대표적으로 자주 사용되는 메서드는 다음과 같다.</p>
+<ul>
+<li>GET : 서버 자원을 가져오고자 할 때 사용한다.(Retrieve: 모든/특정 자원을 조회)</li>
+<li>POST : 서버에 자원을 새로 등록하고자 할 때 사용한다.(Create: 자원을 생성)</li>
+<li>PUT : 서버의 자원을 새로 요청한 자원으로 변경하고자 할 때 사용한다.(Update: 자원을 갱신)</li>
+<li>PATCH : 서버 자원의 일부만 수정하고자 할 때 사용한다.</li>
+<li>DELETE : 서버의 자원을 삭제하고자 할 때 사용한다.(Delete: 자원을 삭제)</li>
+</ul>
+<p>위 4가지(GET/POST/PUT/DELETE)를 이용해서 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank" rel="noopener">CRUD</a>를 구현할 수 있다.</p>
+<p><br></p>
+<h2 id="표현-Representation"><a href="#표현-Representation" class="headerlink" title="표현(Representation)"></a>표현(Representation)</h2><hr>
+<p>표현(Representation)은 자원에 대한 행위의 내용을 말하는데, 이때 내용은 서버에 요청할 때 무엇인가를 새로 생성하거나, 변경할 때 필요한 내용을 말한다. 이때, HTTP Message인 payload를 사용한다.</p>
+<p>서버 자원에 무언가 새로운 것을 생성할 때, HTTP Method 중 POST와 함께 payload를 같이 요청한다. 예를 들어, 사용자들에 대한 정보가 있는 users에 새로운 사용자 정보를 생성하고 싶다면, 이 새로운 사용자에 대한 정보를 새로 만들어서 추가해줘야 하는데, 이것을 payload라고 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST http://localhost:4000/users/</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: 1,</span><br><span class="line">  &quot;name: &quot;Ro&quot;,</span><br><span class="line">  &quot;country&quot;: &quot;Korea&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 객체를 payload라고 하는데, 위 자원(<a href="http://localhost:4000/users/" target="_blank" rel="noopener">http://localhost:4000/users/</a>) 에 POST 방식으로 위 payload(객체)와 함께 서버에 요청을 해야한다.</p>
+<p><br></p>
+<h1 id="REST-API-중심-규칙"><a href="#REST-API-중심-규칙" class="headerlink" title="REST API 중심 규칙"></a>REST API 중심 규칙</h1><hr>
+<p>위와 같은 내용을 잘 정리한 것이 REST API 중심 규칙이다.<br>REST한 API를 설계하기 위한 중심 규칙은 대표적으로 2가지이다.</p>
+<p><br></p>
+<h2 id="1-URI는-정보의-자원을-표현해야-한다"><a href="#1-URI는-정보의-자원을-표현해야-한다" class="headerlink" title="1. URI는 정보의 자원을 표현해야 한다."></a>1. URI는 정보의 자원을 표현해야 한다.</h2><hr>
+<p>URI는 정보의 자원을 표현하는데 중점을 두어야 하기 때문에, 어떤 행위를 나타내는 동사보다는 자원의 의미를 명확히 전달하기 위해 명사를 사용해야 한다.</p>
+<p>id가 1인 사용자에 대한 자원을 얻고 싶다면, 다음과 같이 작성해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /users/1</span><br></pre></td></tr></table></figure>
+<p>행위를 나타내는 다음과 같은 URI는 잘못된 방법이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /getUsers/1</span><br><span class="line">GET /users/show/1</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="2-자원에-대한-행위는-HTTP-Method로-표현한다"><a href="#2-자원에-대한-행위는-HTTP-Method로-표현한다" class="headerlink" title="2. 자원에 대한 행위는 HTTP Method로 표현한다."></a>2. 자원에 대한 행위는 HTTP Method로 표현한다.</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE /users/1</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="REST-API-Architecture"><a href="#REST-API-Architecture" class="headerlink" title="REST API Architecture"></a>REST API Architecture</h1><hr>
+<p>REST API는 자원과 메서드만 보고 요청의 내용을 명확하게 알 수 있다는 것이 장점이다.</p>
+<p>이런 REST API의 Architecture를 보면 다음과 같다.</p>
+<p><img src="/images/rest-api.jpg" alt="REST API Architecture"><br>출처: <a href="https://shareurcodes.com/blog/creating%20a%20simple%20rest%20api%20in%20php" target="_blank" rel="noopener">REST API Architecture</a></p>
+<p>어떤 클라이언트(웹브라우저/안드로이드 앱/ios 앱)에서 서버에 요청을 할 때 HTTP 통신을 하고, HTTP Method를 사용하여 원하는 행위를 하여 서버로부터 응답을 받는다.</p>
+<p><br></p>
+<h1 id="REST-API-사용-예제"><a href="#REST-API-사용-예제" class="headerlink" title="REST API 사용 예제"></a>REST API 사용 예제</h1><hr>
+<p>Ajax를 사용하여 REST API를 어떻게 사용하는지 알아보자.</p>
+<p>사용자에 대한 정보인 users 데이터는 다음과 같다고 해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;users&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;name&quot;: &quot;Ro&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Korea&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 2,</span><br><span class="line">      &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Canada&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 3,</span><br><span class="line">      &quot;name&quot;: &quot;Doh&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;China&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 4,</span><br><span class="line">      &quot;name&quot;: &quot;Hitaro&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Japan&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="1-GET"><a href="#1-GET" class="headerlink" title="1. GET"></a>1. GET</h2><hr>
+<h3 id="1-1-users-자원에서-모든-사용자의-정보를-가져온다-모든-사용자"><a href="#1-1-users-자원에서-모든-사용자의-정보를-가져온다-모든-사용자" class="headerlink" title="1-1. users 자원에서 모든 사용자의 정보를 가져온다.(모든 사용자)"></a>1-1. users 자원에서 모든 사용자의 정보를 가져온다.(모든 사용자)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:4000/users</span><br></pre></td></tr></table></figure>
+<p>위와 같이 users에 대한 자원을 GET하게 되면 다음과 같이 모든 users에 대한 정보를 가져올 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 1,</span><br><span class="line">      &quot;name&quot;: &quot;Ro&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Korea&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 2,</span><br><span class="line">      &quot;name&quot;: &quot;John&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Canada&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 3,</span><br><span class="line">      &quot;name&quot;: &quot;Doh&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;China&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;id&quot;: 4,</span><br><span class="line">      &quot;name&quot;: &quot;Hitaro&quot;,</span><br><span class="line">      &quot;country&quot;: &quot;Japan&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+<p>이것을 코드로 작성하면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">req.open(&apos;GET&apos;, &apos;http://localhost:4000/users&apos;);</span><br><span class="line">req.send();</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (req.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(req.status === 200) &#123;</span><br><span class="line">      console.log(req.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&quot;Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="1-2-users-자원에서-id가-1인-사용자의-정보를-가져온다-특정-사용자"><a href="#1-2-users-자원에서-id가-1인-사용자의-정보를-가져온다-특정-사용자" class="headerlink" title="1-2. users 자원에서 id가 1인 사용자의 정보를 가져온다.(특정 사용자)"></a>1-2. users 자원에서 id가 1인 사용자의 정보를 가져온다.(특정 사용자)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:4000/users/1</span><br></pre></td></tr></table></figure>
+<p>위와 같이 users 자원에서 id가 1인 사용자에 대한 자원을 GET하게 되면 다음과 같이 id가 1인 사용자에 대한 정보를 가져올 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;id&quot;: 1,</span><br><span class="line">  &quot;name&quot;: &quot;Ro&quot;,</span><br><span class="line">  &quot;country&quot;: &quot;Korea&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이것을 코드로 작성하면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">req.open(&apos;GET&apos;, &apos;http://localhost:4000/users/1&apos;);</span><br><span class="line">req.send();</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (req.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(req.status === 200) &#123;</span><br><span class="line">      console.log(req.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&quot;Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="2-POST"><a href="#2-POST" class="headerlink" title="2. POST"></a>2. POST</h2><h3 id="users-자원에-새로운-사용자의-정보를-생성한다"><a href="#users-자원에-새로운-사용자의-정보를-생성한다" class="headerlink" title="users 자원에 새로운 사용자의 정보를 생성한다."></a>users 자원에 새로운 사용자의 정보를 생성한다.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST http://localhost:4000/users</span><br><span class="line">&quot;Content-Type: application/json&quot;</span><br><span class="line">&apos;&#123;&quot;name&quot;: &quot;donald&quot;, &quot;country&quot;: &quot;United States&quot;&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>새로운 사용자의 정보를 생성하기 위해서는 payload가 필요하며, 위와 같이 Content-Type 등을 추가로 작성해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;donald&quot;,</span><br><span class="line">  &quot;country&quot;: &quot;United States&quot;,</span><br><span class="line">  &quot;id&quot;: 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이것을 코드로 작성하면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">req.open(&apos;POST&apos;, &apos;http://localhost:4000/users&apos;);</span><br><span class="line">req.setRequestHeader(&apos;Content-type&apos;, &apos;application/json&apos;);</span><br><span class="line">req.send(JSON.stringify(&#123;</span><br><span class="line">  name: &quot;donald&quot;,</span><br><span class="line">  country: &quot;United States&quot;</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (req.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(req.status === 201) &#123;</span><br><span class="line">      console.log(req.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&quot;Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="3-PUT"><a href="#3-PUT" class="headerlink" title="3. PUT"></a>3. PUT</h2><h3 id="users-자원에서-새로-추가된-name을-jack으로-변경한다"><a href="#users-자원에서-새로-추가된-name을-jack으로-변경한다" class="headerlink" title="users 자원에서 새로 추가된 name을 jack으로 변경한다."></a>users 자원에서 새로 추가된 name을 jack으로 변경한다.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PUT http://localhost:4000/users/5</span><br><span class="line">&quot;Content-Type: application/json&quot;</span><br><span class="line">&apos;&#123;&quot;name&quot;: &quot;jack&quot;, &quot;country&quot;: &quot;United States&quot;&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>PUT은 특정 id에 대한 어떤 정보를 변경할 때, payload에 모든 정보를 포함해서 보내준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;jack&quot;,</span><br><span class="line">  &quot;country&quot;: &quot;United States&quot;,</span><br><span class="line">  &quot;id&quot;: 5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이것을 코드로 작성하면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">req.open(&apos;PUT&apos;, &apos;http://localhost:4000/users/5&apos;);</span><br><span class="line">req.setRequestHeader(&apos;Content-type&apos;, &apos;application/json&apos;);</span><br><span class="line">req.send(JSON.stringify(&#123;</span><br><span class="line">  name: &apos;jack&apos;,</span><br><span class="line">  country: &quot;United States&quot;</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (req.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(req.status === 200) &#123;</span><br><span class="line">      console.log(req.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&quot;Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="4-DELETE"><a href="#4-DELETE" class="headerlink" title="4. DELETE"></a>4. DELETE</h2><h3 id="users-자원에서-id가-5인-사용자를-삭제한다"><a href="#users-자원에서-id가-5인-사용자를-삭제한다" class="headerlink" title="users 자원에서 id가 5인 사용자를 삭제한다."></a>users 자원에서 id가 5인 사용자를 삭제한다.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE http://localhost:4000/users/5</span><br></pre></td></tr></table></figure>
+<p>사용자의 id까지 포함해서 DELETE 해야한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>이것을 코드로 작성하면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var req = new XMLHttpRequest();</span><br><span class="line">req.open(&apos;DELETE&apos;, &apos;http://localhost:4000/users/5&apos;);</span><br><span class="line">req.send();</span><br><span class="line"></span><br><span class="line">req.onreadystatechange = function (e) &#123;</span><br><span class="line">  if (req.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">    if(req.status === 200) &#123;</span><br><span class="line">      console.log(req.responseText);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&quot;Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<!-- <br> -->
+<!-- 위 코드는 자바스크립트 바닐라로 작성했기 때문에, 코드의 양이 많을 수 있다.
+HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://github.com/axios/axios)를 사용하면 보다 더 쉽게 작성할 수 있다. -->
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/REST-API/">REST API</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-typescript-compiler"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -575,6 +716,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/20/combo-box/">Combo Box</a></h6>
+              <span>April 20, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/promise/">Promise</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -629,18 +782,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a></h6>
-              <span>April 13, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -650,7 +791,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

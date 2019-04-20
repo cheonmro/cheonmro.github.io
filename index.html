@@ -98,6 +98,80 @@
         
           <section id="main">
   
+    <article id="post-combo-box"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/20/combo-box/">Combo Box</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/20/combo-box/" class="article-date">
+	  <time datetime="2019-04-20T08:08:33.000Z" itemprop="datePublished">April 20, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/UI/">UI</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UI-Combo-Box-Input-Dropdown"><a href="#UI-Combo-Box-Input-Dropdown" class="headerlink" title="UI: Combo Box(= Input + Dropdown)"></a>UI: Combo Box(= Input + Dropdown)</h1><hr>
+<p><strong>요구 사항:</strong></p>
+<ul>
+<li>input 박스에서 입력은 못하고, 오른쪽 끝에 클릭하면 list를 보여줄 수 있는 아이콘 추가</li>
+<li>아이콘을 클릭하면, 선택할 수 있는 list 나열</li>
+<li>list의 각 option을 클릭하면, 그 option은 input 박스에 bold 상태로 보임</li>
+<li>단, option 중 ‘직접 입력하기’를 클릭하면, input 박스에 focus가 되고, 값을 입력 가능</li>
+</ul>
+<p><br></p>
+<p><strong>개발 접근법:</strong></p>
+<ul>
+<li>input 박스에 아이콘 추가(css)</li>
+<li>list 중 선택한 option 값(e.target.innerText)를 input 박스의 value 값을 변경</li>
+<li>‘직접 입력하기’ option을 선택할 때는, input 박스에 focus를 적용(React의 ref 사용)</li>
+</ul>
+<p><br></p>
+<h2 id="Code-React"><a href="#Code-React" class="headerlink" title="Code: React"></a>Code: React</h2><hr>
+<h3 id="Container-js"><a href="#Container-js" class="headerlink" title="Container.js"></a>Container.js</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component, Fragment &#125; from &apos;react&apos;;</span><br><span class="line">import Combobox from &apos;./components/Combobox&apos;</span><br><span class="line"></span><br><span class="line">class Container extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.childRef = React.createRef();</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      message: &apos;&apos;,</span><br><span class="line">      placeholder: &apos;&apos;,</span><br><span class="line">      showMessageList: false,</span><br><span class="line">      isDisabled: true,</span><br><span class="line">      options: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      placeholder: &apos;응원하세요.&apos;,</span><br><span class="line">      options: [</span><br><span class="line">        &apos;직접 입력하기&apos;,</span><br><span class="line">        &apos;여러분 힘내세요.&apos;,</span><br><span class="line">        &apos;응원합니다.&apos;</span><br><span class="line">      ]</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate () &#123;</span><br><span class="line">    if(this.state.placeholder === &apos;직접 입력하기&apos;) &#123;</span><br><span class="line">      this.childRef.current.focus();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  onClick = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123; showMessageList: true &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  onClickMessage = (e) =&gt; &#123;</span><br><span class="line">    const messageSelected = e.target.innerText;</span><br><span class="line">    if(messageSelected === &apos;직접 입력하기&apos;) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        message: &apos;&apos;,</span><br><span class="line">        placeholder: messageSelected,</span><br><span class="line">        isDisabled: false,</span><br><span class="line">        showMessageList: false</span><br><span class="line">      &#125;)</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      message: e.target.innerText,</span><br><span class="line">      showMessageList: false,</span><br><span class="line">      placeholder: &apos;응원 메세지 작성 혹은 선택해주세요.&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  onChange = (e) =&gt; &#123;</span><br><span class="line">    if(this.state.placeholder === &apos;직접 입력하기&apos;) &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        message: e.target.value,</span><br><span class="line">        showMessageList: false</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  onBlur = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123; showMessageList: false &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; message, placeholder, showMessageList, isDisabled, options &#125; = this.state;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Fragment&gt;</span><br><span class="line">        &lt;Combobox</span><br><span class="line">          message=&#123;message&#125;</span><br><span class="line">          placeholder=&#123;placeholder&#125;</span><br><span class="line">          showMessageList=&#123;showMessageList&#125;</span><br><span class="line">          isDisabled=&#123;isDisabled&#125;</span><br><span class="line">          options=&#123;options&#125;</span><br><span class="line">          ref=&#123;this.childRef&#125;</span><br><span class="line">          onClick=&#123;this.onClick&#125;</span><br><span class="line">          onClickMessage=&#123;this.onClickMessage&#125;</span><br><span class="line">          onChange=&#123;this.onChange&#125;</span><br><span class="line">          onBlur=&#123;this.onBlur&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/Fragment&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Container;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="Combobox-js"><a href="#Combobox-js" class="headerlink" title="Combobox.js"></a>Combobox.js</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import React from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">const Combobox = React.forwardRef((props, ref) =&gt; &#123;</span><br><span class="line">  const inputStyle = props.message ? &#123; &apos;fontWeight&apos;: &apos;bold&apos; &#125; : &#123;&#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h2&gt;combo box...&lt;/h2&gt;</span><br><span class="line">      &lt;div className=&quot;dropdown&quot;&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          ref=&#123;ref&#125;</span><br><span class="line">          style=&#123;inputStyle&#125;</span><br><span class="line">          onChange=&#123;props.onChange&#125;</span><br><span class="line">          onBlur=&#123;props.onBlur&#125;</span><br><span class="line">          value=&#123;props.message&#125;</span><br><span class="line">          placeholder=&#123;props.placeholder&#125;</span><br><span class="line">          disabled=&#123;props.isDisabled&#125;</span><br><span class="line">          type=&quot;text&quot;</span><br><span class="line">          name=&quot;message&quot;</span><br><span class="line">          title=&quot;message input&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;span</span><br><span class="line">          className=&quot;arrow down&quot;</span><br><span class="line">          style=&#123;&#123;&quot;cursor&quot;:&quot;pointer&quot;&#125;&#125;</span><br><span class="line">          onClick=&#123;props.onClick&#125;</span><br><span class="line">        &gt;</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">        &#123;</span><br><span class="line">        props.showMessageList ?</span><br><span class="line">        &lt;ul className=&quot;showMessageList&quot;&gt;</span><br><span class="line">          &#123;</span><br><span class="line">            props.options.map((el, key) =&gt; &#123;</span><br><span class="line">              return &lt;li key=&#123;key&#125;&gt;&lt;span onMouseDown=&#123;props.onClickMessage&#125; style=&#123;&#123;&quot;cursor&quot;:&quot;pointer&quot;&#125;&#125;&gt;&#123;el&#125;&lt;/span&gt;&lt;/li&gt;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        :</span><br><span class="line">        null</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default Combobox;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="index-css"><a href="#index-css" class="headerlink" title="index.css"></a>index.css</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">.dropdown &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.dropdown input &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  width: 300px;</span><br><span class="line">  height: 30px;</span><br><span class="line">&#125;</span><br><span class="line">.dropdown .down &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 12px;</span><br><span class="line">  left: 290px;</span><br><span class="line">  border: solid black;</span><br><span class="line">  border-width: 0 3px 3px 0;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  padding: 3px;</span><br><span class="line">  transform: rotate(45deg);</span><br><span class="line">&#125;</span><br><span class="line">.dropdown ul &#123;</span><br><span class="line">  list-style-type: none;</span><br><span class="line">  /* border-collapse: collapse; */</span><br><span class="line">&#125;</span><br><span class="line">.dropdown li &#123;</span><br><span class="line">  margin: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/UI/">UI</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Combo-Box/">Combo Box</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-promise"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -959,138 +1033,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-icon-unit"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/22/icon-unit/">ICON Unit</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/03/22/icon-unit/" class="article-date">
-	  <time datetime="2019-03-22T14:42:15.000Z" itemprop="datePublished">March 22, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ICON/">ICON</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Ether의-기본단위"><a href="#Ether의-기본단위" class="headerlink" title="Ether의 기본단위"></a>Ether의 기본단위</h1><hr>
-<p>이더리움의 가장 작은 단위는 <code>wei</code> 이다.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Name</th>
-<th style="text-align:center">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1 ether</td>
-<td style="text-align:center">1<em>10^18 wei(=== 1</em>e^18 wei)</td>
-</tr>
-<tr>
-<td style="text-align:center">1 ether</td>
-<td style="text-align:center">1<em>10^9 Gwei(=== 1</em>e^9 Gwei)</td>
-</tr>
-<tr>
-<td style="text-align:center">1 Gwei</td>
-<td style="text-align:center">1<em>10^9 wei(=== 1</em>e^9 wei)</td>
-</tr>
-</tbody>
-</table>
-<p>참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
-<p><br></p>
-<h1 id="ICX의-기본단위"><a href="#ICX의-기본단위" class="headerlink" title="ICX의 기본단위"></a>ICX의 기본단위</h1><hr>
-<p>ICON도 이더리움과 비슷한 개념을 사용한다.</p>
-<p>ICON의 가장 작은 단위는 <code>loop</code> 이다.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Name</th>
-<th style="text-align:center">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1 icx</td>
-<td style="text-align:center">10^18 loop(=== 1*e^18 loop)</td>
-</tr>
-<tr>
-<td style="text-align:center">1 icx</td>
-<td style="text-align:center">10^9 Gloop(=== 1*e^9 Gloop)</td>
-</tr>
-<tr>
-<td style="text-align:center">1 Gloop</td>
-<td style="text-align:center">10^9 loop(=== 1*e^9 loop)</td>
-</tr>
-</tbody>
-</table>
-<p>참고로, Gloop는 step(ICON 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
-<p><br></p>
-<h1 id="Ethereum-Fee-System"><a href="#Ethereum-Fee-System" class="headerlink" title="Ethereum Fee System"></a>Ethereum Fee System</h1><hr>
-<p>이더리움에서 어떤 1개의 트랜잭션을 실행하는 데 사용자가 지불해야하는 수수료를 최대 트랜잭션 실행 비용(Max Transaction Fee)이라고 한다.</p>
-<p><strong>Max Transaction Fee(최대 트랜잭션 실행 비용) = Gas Limit(가스 총량) * Gas Price(가스 가격)</strong></p>
-<p><strong>Gas Limit(가스 총량)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 가스량을 말한다.</strong></p>
-<p><strong>Gas Price(가스 가격)이란, 1 가스당 가격을 말한다.</strong></p>
-<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Gas Limit(가스 총량) * Gas Price(가스 가격)으로 계산되어진다.</p>
-<p>이때, Gas Limit(가스 총량)은 각 트랜잭션에 필요한 총 가스량을 추정(estimated)해서 계산된 값이 나오고, Gas Price(가스 가격)은 1 가스당 가격으로 이 가격이 높을수록 마이너들이 보상을 많이 받기 때문에, 트랜잭션이 빨리 처리가 된다. 즉, 트랜잭션 실행 속도가 빠르게 된다.</p>
-<p><br></p>
-<p><img src="/images/ether-gas.png" alt="How Gas works"><br>출처: <a href="https://steemit.com/kr-dev/@modolee/q6hpz" target="_blank" rel="noopener">How Gas works</a></p>
-<p><br></p>
-<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 ether 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
-<ul>
-<li>만약 적거나, 트랜잭션 실행 도중에 가스를 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 가스는 발신자에게 반환되지 않는다.</li>
-<li>만약 ether 잔액이 충분하고, 트랜잭션이 성공적으로 실행이 되었는데, 가스가 남았다면 이 가스는 사용자에게 반납된다.</li>
-</ul>
-<p><br></p>
-<h1 id="ICON-Fee-System"><a href="#ICON-Fee-System" class="headerlink" title="ICON Fee System"></a>ICON Fee System</h1><hr>
-<p>ICON의 step limit과 step price는 이더리움의 gas limit과 gas price 개념과 동일하다.</p>
-<p><strong>Estimated Transaction Fee(최대 트랜잭션 실행 비용) = Step Limit(스텝 한도) * Step Price(스텝 가격)</strong></p>
-<p><strong>Step Limit(스텝 한도)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 스텝양을 말한다.</strong></p>
-<p><strong>Step Price(스텝 가격)이란, 1 스텝당 가격을 말한다.</strong></p>
-<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Step Limit(스텝 한도) * Step Price(스텝 가격)으로 계산되어진다.</p>
-<p>ICON에서 송금 등의 트랜잭션 실행을 할 때, 기본적으로 Step Limit이 100000이다. 이 값은 default로 사용자가 Step Limit의 값을 변경할 수 있다. 그러나, Step Limit의 최대값과 최소값은 정해져 있어서 그 범위안에서만 변경이 가능하다.</p>
-<p>Step Price는 0.00000001 ICX (10 Gloop)로 고정되어있다.</p>
-<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 icx 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
-<ul>
-<li>만약 적거나, 트랜잭션 실행 도중에 step을 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 step은 발신자에게 반환되지 않는다.</li>
-<li>만약 step limit을 잔액보다 높게 설정하더라도, 해당 트랜잭션에 필요한 step 만큼만 소진된다.</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ICON/">ICON</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ICON-Unit/">ICON Unit</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1201,6 +1143,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/20/combo-box/">Combo Box</a></h6>
+              <span>April 20, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/19/promise/">Promise</a></h6>
               <span>April 19, 2019</span>
             </div>
@@ -1255,18 +1209,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a></h6>
-              <span>April 13, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1276,7 +1218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
