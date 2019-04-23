@@ -98,6 +98,145 @@
         
           <section id="main">
   
+    <article id="post-ethereum-state-transition-model"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/02/ethereum-state-transition-model/">Ethereum State Transition Model(이더리움 상태 전이 모델)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/02/ethereum-state-transition-model/" class="article-date">
+	  <time datetime="2019-04-01T17:09:26.000Z" itemprop="datePublished">April 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h1><hr>
+<p>이더리움 네트워크에서는 트랜잭션이 발생할 때마다, 이에 대한 신뢰 여부를 채굴자들의 합의하에 블록을 생성하여 모든 트랜잭션을 처리한다. 이렇게 트랜잭션을 처리하게 되면, 관련된 Account의 상태가 변화하게 된다. 즉, 이더리움은 이와 같이 상태가 변화하는 상태 전이 과정을 기반으로 작동한다.</p>
+<p><strong>트랜잭션 발생 -&gt; 블록 생성 -&gt; 관련된 Account의 상태 변화</strong></p>
+<p>모든 Account의 상태 정보는 블록과 블록 내에 연결된 머클 패트리시아 트리로 저장되고 관리된다.</p>
+<p><br></p>
+<h1 id="상태-전이-State-Transition"><a href="#상태-전이-State-Transition" class="headerlink" title="상태 전이(State Transition)"></a>상태 전이(State Transition)</h1><hr>
+<p><strong>상태 전이란, 특정 시점의 현재 상태 S가 상태 전이 함수(APPLY())에 의해 다른 상태(S’)로 전이되거나 전이에 실패하고 이전 상태로 복귀되는 것을 말한다.</strong><br>Account의 상태는 상태 전이 함수에 의해 전이된다.</p>
+<p>APPLY(S, TX) -&gt; S’<br>[S: 현재 상태] -&gt; (APPLY: 상태 전이 함수) -&gt; [S’: 전이된 상태 또는 실패]</p>
+<p>상태 전이 함수</p>
+<ul>
+<li>개인 Account간의 송금 등에 의한 트랜잭션</li>
+<li>이더리움 가상 머신에서 실행되는 프로그램인 스마트 컨트랙트에 의한 트랜잭션</li>
+</ul>
+<p><img src="/images/state-transition.png" alt="State Transition"><br>출처: <a href="https://steemkr.com/kr/@brownbears/52kjic" target="_blank" rel="noopener">State Transition</a></p>
+<p><br></p>
+<h1 id="이더리움-단일-상태-전이"><a href="#이더리움-단일-상태-전이" class="headerlink" title="이더리움 단일 상태 전이"></a>이더리움 단일 상태 전이</h1><hr>
+<p><strong>이더리움의 상태(State)는 복수의 상태 변이를 갖지 못하고, 단 하나의 상태 변이만을 갖는다. 즉, Account의 특정 시점의 한 상태는 상태 전이 함수를 통해 단 하나의 상태(single state)로만 전이된다는 것이다. 만약, 하나의 상태가 여러 개의 상태로 전이된다면, 채굴자들은 어떤 상태가 맞는 것인지 판단하고 합의 할 수 없다.</strong></p>
+<p><img src="/images/single-state.png" alt="Ethereum Single State Transition"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">Ethereum Single State Transition</a></p>
+<p><br></p>
+<h1 id="상태-전이-프로세스"><a href="#상태-전이-프로세스" class="headerlink" title="상태 전이 프로세스"></a>상태 전이 프로세스</h1><hr>
+<ol>
+<li>기본 트랜잭션 형식 확인</li>
+<li>Gas 값 수수료 계산 및 잔고 확인</li>
+<li>기본 트랜잭션 형식 확인<ol>
+<li>트랜잭션의 형식이 맞는지 확인</li>
+<li>서명이 유효한지 확인</li>
+<li>Nonce가 발신처 Account의 Nonce와 일치하는지 확인</li>
+<li>트랜잭션이 유효하지 않을 경우, Error를 반환</li>
+</ol>
+</li>
+</ol>
+<p><img src="/images/transaction.png" alt="Transaction fields"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">Transaction fields</a></p>
+<ol start="2">
+<li>Gas 값 수수료 및 잔고 확인<ol>
+<li>트랜잭션 수수료(=gasLimit * gasPrice) 계산</li>
+<li>서명으로부터 발신처 주소를 결정</li>
+<li>발신처 Account의 balance에서 계산한 트랜잭션 수수료를 빼고, 발신자 Nonce를 증가</li>
+<li>발신처 balance가 충분하지 않으면, Error를 반환</li>
+<li>GAS = gasLimit으로 초기화 한 후, 트랜잭션에서 사용된 byte에 대한 값을 지불하기 위해 byte 당 gas의 특정 양을 차감(트랜잭션의 총 byte 길이 * byte 당 gas 수수료)</li>
+<li>발신처 Account에서 수신처 Account로 트랜잭션 값을 보냄</li>
+<li>이때, 수신처 Account가 존재하지 않으면 새로 생성</li>
+<li>만약, 수신처 Account가 컨트랙트면, 컨트랙트 코드를 끝까지 수행</li>
+<li>이때, GAS가 모두 소모되면, 소모될 때까지만 수행</li>
+<li>발신처의 balance가 전송할 값보다 적거나, 코드 수행시 GAS가 부족하면, 모든 상태 변경을 원상태로 돌려놓음</li>
+<li>이때, 코드를 수행한 만큼의 GAS는 채굴자 Account로 더해지고, 나머지 GAS는 발신처 Account에 다시 돌려짐</li>
+</ol>
+</li>
+</ol>
+<p>수수료</p>
+<ul>
+<li>트랜잭션 처리에 대한 수수료</li>
+<li>스마트 컨트랙트 코드 실행 처리에 대한 수수료</li>
+</ul>
+<p><br></p>
+<h1 id="상태-전이-예제"><a href="#상태-전이-예제" class="headerlink" title="상태 전이 예제"></a>상태 전이 예제</h1><hr>
+<p>&lt;예제&gt;</p>
+<ul>
+<li>트랜잭션은 다음과 같은 field를 가지고 전달된다고 가정<ul>
+<li>Value = 10 ether</li>
+<li>gasLimit = 2,000</li>
+<li>gasPrice = 0.001 ether</li>
+<li>Data = 64 bytes(스마트 컨트랙트 호출에 필요한 parameter 값)<ul>
+<li>0-31 bytes까지는 숫자 2로 나타내고, 32-63 bytes는 CHARLIE 문자열로 나타냄)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>트랜잭션의 총 길이 = 170 bytes, byte 당 GAS 수수료 = 5 gas (트랜잭션 처리에 대한 수수료 = 170 * 5 = 850 GAS)</li>
+<li>스마트 컨트랙트 코드 실행시 GAS 수수료 = 187 GAS</li>
+</ul>
+<p><br></p>
+<p>&lt;프로세스&gt;</p>
+<ol>
+<li>트랜잭션의 형식과 서명이 유효한지 확인(기본 트랜잭션 형식이 맞는지 확인)</li>
+<li>트랜잭션 발송처가 최소 2000 * 0.001 = 2 ether를 가지고 있는지 확인하고, 발송처의 Account에서 2 ether를 차감</li>
+<li>발신처 balance가 2 ether 보다 적으면, Error를 반환</li>
+<li>발신자 Nonce를 증가</li>
+<li>GAS = 2,000으로 초기화 한 후, 트랜잭션 처리에 대한 수수료 850 GAS를 차감하면, 1150 GAS가 남음</li>
+<li>발신처 Account에서 보내고자 하는 10 ether를 차감하고, 이것을 수신처 Account에 보냄</li>
+<li>이때, 수신처 Account가 스마트 컨트랙트면, 컨트랙트 Account에 더함</li>
+<li>스마트 컨트랙트의 코드를 실행하여 스마트 컨트랙트의 코드 실행 처리 수수료인 187 GAS를 차감하면, 963 GAS가 남음(1150 - 187 = 963)</li>
+<li>963 * 0.001 = 0.963 ether를 송신처의 Account에 되돌려주고, 상태를 반환</li>
+<li>만약, 코드 수행시에 GAS가 모두 소모되면, 소모될 때까지만 수행</li>
+<li>코드 수행시, GAS가 부족하면, 모든 상태 변경을 원상태로 돌려놓음</li>
+<li>이때, 코드를 수행한 만큼의 GAS는 채굴자 Account로 더해지고, 나머지 GAS는 발신처 Account에 다시 돌려짐</li>
+</ol>
+<p><img src="/images/state-transition-example.png" alt="State Transition Example"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">State Transition Example</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/State-Transition/">State Transition</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-icon-data"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1218,92 +1357,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-computed-methods"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/01/computed-methods/">Computed vs. Methods vs. Watch</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/01/01/computed-methods/" class="article-date">
-	  <time datetime="2019-01-01T11:26:03.000Z" itemprop="datePublished">January 1, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Computed-vs-Methods"><a href="#Computed-vs-Methods" class="headerlink" title="Computed vs. Methods"></a>Computed vs. Methods</h1><hr>
-<p><strong>핵심은 캐싱(값의 저장)이 있냐 없냐에 차이다.</strong></p>
-<p><strong>공통점</strong>: <strong>둘 다 인스턴내에서 함수를 정의하는 부분이고, 데이터가 변동됨에 따라 안에 있는 함수를 재호출하게 된다.</strong><br><strong>차이점</strong>: <strong>데이터가 변동되지 않는다고 가정했을 때이다.</strong></p>
-<ul>
-<li><strong>Computed: 종속 대상의 값이 저장(캐싱) 되어, 이미 계산되어진 값을 가져온다.</strong><ul>
-<li>종속된 대상이 변경될 때만, 함수를 실행하고, 종속 대상이 변경되지 않으면, computed를 여러번 요청해도 계산을 다시 하지 않고, 계산되어 있는(computed) 결과를 즉시 반환한다.</li>
-<li>데이터 변동이 없는 상태에서, 이전의 계산된 값을 캐시해 두었다가 함수 호출시 재사용한다.</li>
-</ul>
-</li>
-<li><strong>methods: 렌더링을 다시 할때마다, 항상 함수를 실행하여 함수의 로직에 결과물을 반환한다.</strong><ul>
-<li>사용할때마다, 함수의 계산을 다시 한다.</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<h2 id="캐싱이-왜-필요할까"><a href="#캐싱이-왜-필요할까" class="headerlink" title="캐싱이 왜 필요할까?"></a>캐싱이 왜 필요할까?</h2><hr>
-<p>computed의 속성이 계산이 많이 걸리는 함수라고 하자. 만약, 캐싱을 하지 않으면, computed의 속성의 getter 함수를 꼭 필요한 것보다 더 많이 실행하게 된다. 그래서, 캐싱을 원하지 않으면, methods를 사용한다.</p>
-<p><br></p>
-<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><hr>
-<ul>
-<li><strong>데이터가 자주 변동되지 않으면, 비용적인 면에서는 computed가 좋다.</strong></li>
-<li><strong>데이터가 수시로 없데이트 되면, 계속해서 캐시를 저장하는 computed보다 methods가 더 좋다.</strong></li>
-</ul>
-<p>그래서, html에서는 computed는 변수처럼 쓰이고, methods는 함수처럼 쓰인다.<br>예) parse 함수</p>
-<ul>
-<li>Computed: parse를 그대로 사용한다.</li>
-<li>Methods: parse() 이런식으로 사용한다.</li>
-</ul>
-<p><br></p>
-<h1 id="Computed-vs-Watch"><a href="#Computed-vs-Watch" class="headerlink" title="Computed vs. Watch"></a>Computed vs. Watch</h1><hr>
-<ul>
-<li>Watch: 감시할 데이터를 지정하고 그 데이터가 바뀌면 이런 함수를 실행하라는 방식으로 소프트웨어 공학에서 이야기하는 ‘명령형 프로그래밍’ 방식</li>
-<li>Computed: 계산해야 하는 목표 데이터를 정의하는 방식으로 소프트웨어 공학에서 이야기하는 ‘선언형 프로그래밍’ 방식</li>
-</ul>
-<p><br></p>
-<h1 id="Computed-Watch는-언제-왜-사용해야-할까"><a href="#Computed-Watch는-언제-왜-사용해야-할까" class="headerlink" title="Computed/Watch는 언제, 왜 사용해야 할까?"></a>Computed/Watch는 언제, 왜 사용해야 할까?</h1><hr>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computed/">Computed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Methods/">Methods</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1414,6 +1467,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a></h6>
+              <span>April 24, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/23/fetch-api-using-redux-saga/">Redux-Saga를 이용한 API 통신</a></h6>
               <span>April 23, 2019</span>
             </div>
@@ -1468,18 +1533,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/17/kakao-share/">Kakao 공유하기 버튼 만드는 방법</a></h6>
-              <span>April 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1489,7 +1542,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
