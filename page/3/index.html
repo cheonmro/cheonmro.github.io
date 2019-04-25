@@ -98,6 +98,143 @@
         
           <section id="main">
   
+    <article id="post-arrow-function"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/01/01/arrow-function/">Arrow Function</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/01/01/arrow-function/" class="article-date">
+	  <time datetime="2019-01-01T13:41:36.000Z" itemprop="datePublished">January 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="화살표-함수-Arrow-Function-란-무엇인가"><a href="#화살표-함수-Arrow-Function-란-무엇인가" class="headerlink" title="화살표 함수(Arrow Function)란 무엇인가?"></a>화살표 함수(Arrow Function)란 무엇인가?</h1><hr>
+<p>화살표 함수는 기존의 function 키워드 대신 화살표(=&gt;)를 사용하여, 보다 간단히 함수를 선언하는 방식이다. 문법은 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 매개변수 지정 방법</span><br><span class="line">    () =&gt; &#123; ... &#125; // 매개변수가 없을 경우</span><br><span class="line">     x =&gt; &#123; ... &#125; // 매개변수가 한 개인 경우, 소괄호를 생략할 수 있다.</span><br><span class="line">(x, y) =&gt; &#123; ... &#125; // 매개변수가 여러 개인 경우, 소괄호를 생략할 수 없다.</span><br><span class="line"></span><br><span class="line">// 함수 몸체 지정 방법</span><br><span class="line">x =&gt; &#123; return x * x &#125;  // single line block</span><br><span class="line">x =&gt; x * x             // 함수 몸체가 한줄의 구문이라면 중괄호를 생략할 수 있으며 암묵적으로 return된다. 위 표현과 동일하다.</span><br><span class="line"></span><br><span class="line">() =&gt; &#123; return &#123; a: 100 &#125;; &#125;</span><br><span class="line">() =&gt; (&#123; a: 100 &#125;)  // 위 표현과 동일하다. 객체는 반환할 때, 소괄호를 사용한다.</span><br><span class="line"></span><br><span class="line">() =&gt; &#123;           // multi line block.</span><br><span class="line">  const x = 100;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="화살표-함수의-호출"><a href="#화살표-함수의-호출" class="headerlink" title="화살표 함수의 호출"></a>화살표 함수의 호출</h1><hr>
+<p><strong>화살표 함수는 익명 함수로만 사용할 수 있기 때문에, 화살표 함수를 호출하기 위해서는 함수 표현식을 사용해야 한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// ES5</span><br><span class="line">var pow = function (x) &#123; return x * x; &#125;;</span><br><span class="line">console.log(pow(5)); // 25</span><br><span class="line"></span><br><span class="line">// ES6</span><br><span class="line">const pow = x =&gt; x * x;</span><br><span class="line">console.log(pow(5)); // 25</span><br></pre></td></tr></table></figure></p>
+<p>콜백함수에서도 화살표 함수를 사용할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// ES5</span><br><span class="line">var arr = [2, 4, 6];</span><br><span class="line">var pow = arr.map(function (x) &#123; // x는 요소값</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(pow); // [ 4, 16, 36 ]</span><br><span class="line"></span><br><span class="line">// ES6</span><br><span class="line">const arr = [2, 4, 6];</span><br><span class="line">const pow = arr.map(x =&gt; x * x);</span><br><span class="line"></span><br><span class="line">console.log(pow); // [ 4, 16, 36 ]</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="화살표-함수와-function으로-생성한-함수의-차이점"><a href="#화살표-함수와-function으로-생성한-함수의-차이점" class="headerlink" title="화살표 함수와 function으로 생성한 함수의 차이점"></a>화살표 함수와 function으로 생성한 함수의 차이점</h1><hr>
+<p><strong>두 방식의 가장 큰 차이점은 this 이다.</strong></p>
+<ul>
+<li><strong>function 함수</strong>: 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부 함수, 콜백 함수 포함) 내부의 this는 전역 객체를 가리킨다.</li>
+<li><strong>화살표 함수</strong>: 언제나 상위 스코프의 this를 가리킨다.</li>
+</ul>
+<p><br></p>
+<h2 id="function-키워드로-생성한-함수의-this"><a href="#function-키워드로-생성한-함수의-this" class="headerlink" title="function 키워드로 생성한 함수의 this"></a>function 키워드로 생성한 함수의 this</h2><hr>
+<p>Javascirpt에서의 this는 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다. <a href="https://cheonmro.github.io/2018/11/01/what-is-this/">Javascript에서의 this</a>를 참고한다.</p>
+<p><strong>생성자 함수와 객체의 메소드를 제외한 모든 함수(내부 함수, 콜백 함수 포함) 내부의 this는 전역 객체를 가리키기 때문이다. 즉, 콜백 함수 내부의 this는 전역 객체 window를 가리킨다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  // (1)</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x; // (2)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure></p>
+<p>위치에 따라 this의 값은 달라진다.</p>
+<ul>
+<li>(1): 여기서, this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.</li>
+<li>(2): 여기서, this는 전역 객체 window를 가리킨다.</li>
+</ul>
+<p>콜백 함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하는 3가지 방법이 있다.</p>
+<ol>
+<li>that = this</li>
+<li>map(func, this)</li>
+<li>bind(this)</li>
+</ol>
+<ol>
+<li><p>that = this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  var that = this;  // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return that.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Lee&apos;, &apos;Kim&apos;]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map(func, this)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;, this); // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Lee&apos;, &apos;Kim&apos;]));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bind(this)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;.bind(this)); // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><br></p>
+<h2 id="화살표-함수의-this"><a href="#화살표-함수의-this" class="headerlink" title="화살표 함수의 this"></a>화살표 함수의 this</h2><hr>
+<p><strong>화살표 함수의 this는 언제나 상위 스코프의 this를 가리킨다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  // this는 상위 스코프인 prefixArray 메소드 내의 this를 가리킨다.</span><br><span class="line">  return arr.map(x =&gt; `$&#123;this.prefix&#125;  $&#123;x&#125;`);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure></p>
+<p>화살표 함수는 call, applay, bind 메소드를 사용하여 this를 변경할 수 없다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.x = 1;</span><br><span class="line">const normal = function () &#123; return this.x; &#125;;</span><br><span class="line">const arrow = () =&gt; this.x;</span><br><span class="line"></span><br><span class="line">console.log(normal.call(&#123; x: 10 &#125;)); // 10</span><br><span class="line">console.log(arrow.call(&#123; x: 10 &#125;));  // 1</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="화살표-함수를-사용하면-안되는-경우"><a href="#화살표-함수를-사용하면-안되는-경우" class="headerlink" title="화살표 함수를 사용하면 안되는 경우"></a>화살표 함수를 사용하면 안되는 경우</h1><hr>
+<p>화살표 함수는 Lexical this를 지원하므로 콜백 함수로 사용하기 편리하지만, 화살표 함수를 사용하지 말아야 하는 경우도 있다.</p>
+<h2 id="메소드"><a href="#메소드" class="headerlink" title=" 메소드"></a><1> 메소드</1></h2><hr>
+<p>메소드를 정의할 때는, 화살표 함수를 사용하면 안된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">  sayHi: () =&gt; console.log(`Hi $&#123;this.name&#125;`)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi undefined</span><br></pre></td></tr></table></figure></p>
+<p>위와 같이, sayHi라는 메소드를 정의할 때 화살표 함수를 사용하게 되면, 화살표 함수 내부의 this는 상위 컨택스트인 전역 객체 window를 가리킨다.</p>
+<p>ES6의 축약 메소드 표현을 사용하면, 다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">  sayHi() &#123; // === sayHi: function() &#123;</span><br><span class="line">    console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi Ro</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="prototype"><a href="#prototype" class="headerlink" title=" prototype"></a><2> prototype</2></h2><hr>
+<p>prototype에 할당하기 위한 메소드를 정의할 때는, 화살표 함수를 사용하면 안된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.prototype.sayHi = () =&gt; console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi undefined</span><br></pre></td></tr></table></figure></p>
+<p>prototype에 메소드를 할당하는 경우, 일반 함수를 사용해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.prototype.sayHi = function() &#123;</span><br><span class="line">  console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi Ro</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title=" 생성자 함수"></a><3> 생성자 함수</3></h2><hr>
+<p>생성자 함수를 사용할 때는, 화살표 함수를 사용하면 안된다. 생성자 함수는 prototype 프로퍼티를 가지며 prototype 프로퍼티가 가리키는 프로토타입 객체의 constructor를 사용한다. 그러나, 화살표 함수는 prototype 프로퍼티를 가지고 있지 않다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const Foo = () =&gt; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 화살표 함수는 prototype 프로퍼티가 없다</span><br><span class="line">console.log(Foo.hasOwnProperty(&apos;prototype&apos;)); // false</span><br><span class="line"></span><br><span class="line">const foo = new Foo(); // TypeError: Foo is not a constructor</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="addEventListener-함수의-콜백-함수"><a href="#addEventListener-함수의-콜백-함수" class="headerlink" title=" addEventListener 함수의 콜백 함수"></a><4> addEventListener 함수의 콜백 함수</4></h2><hr>
+<p>addEventListener 함수의 콜백 함수를 사용할 때는, 화살표 함수를 사용하면 안된다.</p>
+<p>만약, addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면, 화살표 함수 내의 this는 상위 컨택스트인 전역 객체 window를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var button = document.getElementById(&apos;myButton&apos;);</span><br><span class="line"></span><br><span class="line">button.addEventListener(&apos;click&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(this === window); // =&gt; true</span><br><span class="line">  this.innerHTML = &apos;Clicked button&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>그래서, addEventListener 함수의 콜백 함수를 사용할 때는, 일반 함수인 function 키워드를 사용해야 한다. 일반 함수로 정의된 addEventListener 함수의 콜백 함수 내부의 this는 이벤트 리스너에 바인딩된 요소(currentTarget)를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var button = document.getElementById(&apos;myButton&apos;);</span><br><span class="line"></span><br><span class="line">button.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(this === button); // =&gt; true</span><br><span class="line">  this.innerHTML = &apos;Clicked button&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="Vue에서-화살표-함수-사용방법"><a href="#Vue에서-화살표-함수-사용방법" class="headerlink" title="Vue에서 화살표 함수 사용방법"></a>Vue에서 화살표 함수 사용방법</h1><hr>
+<p>Vue에서 화살표 함수는 기본적으로 ES6에서의 화살표 함수와 동일하다.</p>
+<p>화살표 함수의 사용 여부에 대한 대표적인 경우는 2가지이다.</p>
+<ul>
+<li>메소드를 정의할 때</li>
+<li>콜백함수를 정의할 때</li>
+</ul>
+<p><br></p>
+<h2 id="Vue에서-메소드를-정의할-때"><a href="#Vue에서-메소드를-정의할-때" class="headerlink" title="Vue에서 메소드를 정의할 때"></a>Vue에서 메소드를 정의할 때</h2><hr>
+<p>Vue에서 메소드를 정의할 때는, 화살표 함수를 사용하면 안된다. 즉, function 키워드를 사용하는 일반 함수로 정의해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newTodo&quot;&gt;</span><br><span class="line">      &lt;button v-on:click=&quot;addTodo&quot;&gt;add&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data: () =&gt; (&#123;</span><br><span class="line">        newTodo: &apos;&apos;</span><br><span class="line">    &#125;),</span><br><span class="line">    methods: &#123;</span><br><span class="line">        addTodo: function () &#123;</span><br><span class="line">            console.log(this.newTodo); // input에서 입력한 값을 가져옴</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>methods에서 <code>addTodo</code>를 정의할 때, function 키워드를 사용하면, 이 함수내의 this는 Vue 인스턴스를 가리킨다. 그래서, <code>this.newTodo</code>의 값을 가져올 수 있다.</p>
+<p>만약, 화살표 함수로 <code>addTodo</code>를 정의하면 어떻게 될까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newTodo&quot;&gt;</span><br><span class="line">      &lt;button v-on:click=&quot;addTodo&quot;&gt;add&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data: () =&gt; (&#123;</span><br><span class="line">        newTodo: &apos;&apos;</span><br><span class="line">    &#125;),</span><br><span class="line">    methods: &#123;</span><br><span class="line">        addTodo: () =&gt; &#123;</span><br><span class="line">            console.log(this.newTodo); // undefined</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>화살표 함수로 <code>addTodo</code>를 정의하면, 이 함수내의 this는 전역객체 window를 가리킨다. 그래서 값이 <code>undefined</code>가 된다.</p>
+<p>대신, ES6의 축약 메소드 표현을 사용하면, 다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    addTodo () &#123;</span><br><span class="line">        console.log(this.newTodoItem) // input에서 입력한 값을 가져옴</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h2 id="Vue에서-콜백-함수를-정의할-때"><a href="#Vue에서-콜백-함수를-정의할-때" class="headerlink" title="Vue에서 콜백 함수를 정의할 때"></a>Vue에서 콜백 함수를 정의할 때</h2><hr>
+<p>Vue에서 콜백 함수를 정의할 때, 화살표 함수를 사용하면, 정의된 콜백 함수내의 this는 Vue의 인스턴스를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  data: &#123;</span><br><span class="line">    size: &apos;small&apos;,</span><br><span class="line">    items: [ &#123; size: &apos;small&apos; &#125;, &#123; size: &apos;large&apos; &#125; ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  computed: &#123;</span><br><span class="line">    filterBySize() &#123;</span><br><span class="line">      return this.items.filter((item) =&gt; &#123;</span><br><span class="line">        return item.size === this.size; // this는 Vue의 인스턴스를 가리킴</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>만약, 콜백 함수를 정의할 때, function 키워드를 사용하면, 정의된 콜백 함수내의 this는 상위 컨택스트, 즉 전역 객체 window를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  data: &#123;</span><br><span class="line">    size: &apos;small&apos;,</span><br><span class="line">    items: [ &#123; size: &apos;small&apos; &#125;, &#123; size: &apos;large&apos; &#125; ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  computed: &#123;</span><br><span class="line">    filterBySize() &#123;</span><br><span class="line">      let size = this.size // 여기서 this는 Vue 인스턴스를 가리키기 때문에, 미리 size라는 변수에 위 data의 size의 값을 할당</span><br><span class="line">      return this.items.filter(function(item) &#123;</span><br><span class="line">        return item.size === size;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h1 id="결론-Vue에서의-화살표-함수-및-일반-함수-사용-방법"><a href="#결론-Vue에서의-화살표-함수-및-일반-함수-사용-방법" class="headerlink" title="결론: Vue에서의 화살표 함수 및 일반 함수 사용 방법"></a>결론: Vue에서의 화살표 함수 및 일반 함수 사용 방법</h1><hr>
+<ul>
+<li><strong>메소드를 정의할 때는, 일반 함수를 사용한다.</strong> 이때, funtion 키워드르 안쓰고 싶다면, ES6의 축약 메소드 표현을 사용해서, 간단히 작성하면 된다.</li>
+<li><strong>콜백 함수를 정의할 때는, 화살표 함수를 사용한다.</strong> 이때, 정의된 콜백 함수내의 this는 해당 컨택스트, 즉 정의된 콜백 함수를 가지고 있는 Vue 인스턴스를 가리킨다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ES6/">ES6</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrow-Function/">Arrow Function</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-computed-methods"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1113,73 +1250,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-what-is-stablecoin"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/18/what-is-stablecoin/">What Is Stablecoin?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/12/18/what-is-stablecoin/" class="article-date">
-	  <time datetime="2018-12-18T13:59:50.000Z" itemprop="datePublished">December 18, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="What-Stablecoin-Is"><a href="#What-Stablecoin-Is" class="headerlink" title="What Stablecoin Is"></a>What Stablecoin Is</h1><hr>
-<p><strong>A stablecoin is cryptocurrency with stable prices.</strong></p>
-<p>It is pegged to another stable assets such as gold or U.S dollar in order to minimize volatility. For instance, because Tether(USDT) is pegged to the U.S dollar, it is traded for $1 USD, which is a blockchain based asset.</p>
-<p><br></p>
-<h1 id="Functions-of-Stablecoin"><a href="#Functions-of-Stablecoin" class="headerlink" title="Functions of Stablecoin"></a>Functions of Stablecoin</h1><hr>
-<p>There are three functions of stablecoin:</p>
-<ul>
-<li><strong>Medium of exchange</strong>: the ability to trade goods and services without bartering</li>
-<li><strong>Store of value</strong>: means of maintaining wealth over time</li>
-<li><strong>Unit of account</strong>: measurement unit to define and compare market values</li>
-</ul>
-<p><br></p>
-<h1 id="How-Stablecoin-Works"><a href="#How-Stablecoin-Works" class="headerlink" title="How Stablecoin Works"></a>How Stablecoin Works</h1><hr>
-<p>Stablecoin holds collateral of some type and manages the supply to help incentivize the market to trade the coin for no more or less than $1. For Tether or TrueUSD, the concept is to hold actual dollars in reserve that are redeemable for the token. For others, like Dai, they hold crypto assets in reserve and have a lending system.</p>
-<p><br></p>
-<h1 id="Stablecoin-Market-Map"><a href="#Stablecoin-Market-Map" class="headerlink" title="Stablecoin Market Map"></a>Stablecoin Market Map</h1><hr>
-<p><img src="/images/stablecoin_market.jpeg" alt="Stablecoin Market Map"><br>출처: <a href="https://medium.com/konfid-io-blockchain-reports/what-stablecoins-are-out-there-7082b78a36f9" target="_blank" rel="noopener">Stablecoin Market Map</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cryptocurrency/">Cryptocurrency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stablecoin/">Stablecoin</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1290,6 +1360,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/25/refs/">Refs and DOM</a></h6>
+              <span>April 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a></h6>
               <span>April 24, 2019</span>
             </div>
@@ -1344,18 +1426,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/17/facebook-share/">Facebook 공유하기 버튼 만드는 방법</a></h6>
-              <span>April 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1365,7 +1435,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

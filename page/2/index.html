@@ -98,6 +98,154 @@
         
           <section id="main">
   
+    <article id="post-how-ethereum-transaction-works"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/06/how-ethereum-transaction-works/">How Ethereum Transaction Works</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/06/how-ethereum-transaction-works/" class="article-date">
+	  <time datetime="2019-04-06T05:42:11.000Z" itemprop="datePublished">April 6, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="이더리움-트랜잭션-작동원리"><a href="#이더리움-트랜잭션-작동원리" class="headerlink" title="이더리움 트랜잭션 작동원리"></a>이더리움 트랜잭션 작동원리</h1><hr>
+<ol>
+<li>EOA(사용자 계정)가 트랜잭션을 발생(발생한 트랜잭션에는 nonce/to/value/gasLimit/gasPrice/data 등이 들어감)</li>
+<li>발생한 트랜잭션을 사용자가 가지고 있는 지갑의 pk로 전자서명(Sign)을 함(전자 서명 암호화 방식)</li>
+<li>Sign된 트랜잭션을 이더리움 네트워크의 노드들에게 보냄(트랜잭션을 브로드캐스트)</li>
+<li>노드(채굴자)들은 해당 트랜잭션의 유효성 검증을 함<ol>
+<li>해당 트랜잭션이 문법에 맞게 구성되었는지</li>
+<li>사용자의 공개 키를 사용하여 해당 전자 서명이 유효한지</li>
+<li>사용자 어카운트에 있는 Nonce와 맞는지</li>
+</ol>
+</li>
+<li>해당 트랜잭션이 유효하면, 해당 트랜잭션은 트랜잭션 풀(Tx pool)에 보관됨</li>
+<li>채굴자들은 수수료가 높은 순서대로 트랜잭션을 처리함</li>
+<li>여러 트랜잭션이 블록에 포함되고 블록이 생성되면, 모든 노드들에게 신규 블록이 전달됨(신규 블록 브로드캐스트)</li>
+</ol>
+<p><br></p>
+<h1 id="Ethereum-API를-활용한-트랜잭션-만드는-방법"><a href="#Ethereum-API를-활용한-트랜잭션-만드는-방법" class="headerlink" title="Ethereum API를 활용한 트랜잭션 만드는 방법"></a>Ethereum API를 활용한 트랜잭션 만드는 방법</h1><hr>
+<p>Ethereum API를 활용해서 다음과 같은 기능을 만들어 보자.</p>
+<ul>
+<li>이더리움 지갑 및 key 생성</li>
+<li>balance 조회</li>
+<li>transfer</li>
+<li>토큰 정보 가져오기</li>
+</ul>
+<p>위 기능들을 React에서 만들어 보자.</p>
+<p><br></p>
+<h1 id="1-이더리움-지갑-및-key-생성"><a href="#1-이더리움-지갑-및-key-생성" class="headerlink" title="1. 이더리움 지갑 및 key 생성"></a>1. 이더리움 지갑 및 key 생성</h1><hr>
+<p>이더리움의 지갑을 만들기 위해서는 이더리움에서 제공하는 ‘ethereumjs-wallet’ 라이브러리를 사용해야 한다.</p>
+<p>‘ethereumjs-wallet’ 설치<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ethereumjs-wallet</span><br></pre></td></tr></table></figure></p>
+<p>리액트에서 코드는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import Wallet from &apos;ethereumjs-wallet&apos;;</span><br><span class="line"></span><br><span class="line">class MultiWallets extends Component &#123;</span><br><span class="line"></span><br><span class="line">      constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    generateWallet = () =&gt; &#123;</span><br><span class="line">      let wallet = Wallet.generate();</span><br><span class="line">      let address = &apos;0x&apos; + wallet.getAddress().toString(&apos;hex&apos;);</span><br><span class="line">      let privKey = wallet.getPrivateKey().toString(&apos;hex&apos;);</span><br><span class="line">      let pubKey = wallet.getPublicKey().toString(&apos;hex&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div className=&quot;MultiWallets&quot;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; this.generateWallet()&#125;&gt;Generate a Wallet&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드는 button을 클릭하면, wallet과 wallet의 address, private key, 그리고 public key를 생성할 수 기능이다.</p>
+<ul>
+<li>generate() 함수를 사용하여, wallet을 생성한다. 생성한 wallet의 getAddress() 함수를 이용하여 주소값을 만드는데, 이더리움은 ‘0x’를 포함한 hex string으로 값을 만든다. 그래서, toString(‘hex’)와 앞에 ‘0x’를 붙여 address 값을 만든다.</li>
+<li>생성한 wallet의 getPrivateKey() 함수와 getPublicKey() 함수를 이용해서 private key와 public key를 생성한다.</li>
+</ul>
+<p><br></p>
+<h1 id="2-지갑의-balance-조회"><a href="#2-지갑의-balance-조회" class="headerlink" title="2. 지갑의 balance 조회"></a>2. 지갑의 balance 조회</h1><hr>
+<p>이더리움 지갑의 balance를 조회하기 위해서는 이더리움에서 제공하는 web3 라이브러리를 사용해야 한다.</p>
+<p>web3 설치</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install web3</span><br></pre></td></tr></table></figure>
+<p>리액트에서 코드는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import Wallet from &apos;ethereumjs-wallet&apos;;</span><br><span class="line">import Web3 from &apos;web3&apos;;</span><br><span class="line"></span><br><span class="line">class MultiWallets extends Component &#123;</span><br><span class="line"></span><br><span class="line">      constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      window.web3 = new Web3(new Web3.providers.HttpProvider(&apos;https://ropsten.infura.io/v3/API_KEY&apos;))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getBalance = () =&gt; &#123;</span><br><span class="line">        // 여기서 account는 위에서 만든 address이다.</span><br><span class="line">        const &#123; account &#125; = this.state;</span><br><span class="line">        window.web3.eth.getBalance(account).then(console.log)</span><br><span class="line">        window.web3.eth.getBalance(&apos;0xBF345977799290F574dB970366CF1712AdCd0632&apos;).then(console.log)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div className=&quot;MultiWallets&quot;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; this.getBalance()&#125;&gt;Get Balance&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드는 버튼을 클릭하면, balance를 조회하는 기능이다.</p>
+<ul>
+<li>web3를 사용하기 위해서는 우선, new 연산자를 이용해 web3 인스턴스를 생성하고, HttpProvider를 이용해서 이더리움 네트워크와 연결해야 한다.(위 코드는 이더리움의 테스트넷인 Ropsten의 infura API를 사용하여 infura에서 얻은 API_KEY로 노드를 연결했다.)</li>
+<li>만약, Private 블록체인으로 연결하고 싶다면, localhost:8545로 연결하면 된다.</li>
+<li>web3.eth의 getBalance() 함수를 이용해 내가 가진 지갑주소의 balance를 확인할 수 있다.</li>
+</ul>
+<p>*<a href="https://infura.io/" target="_blank" rel="noopener">infura</a></p>
+<ul>
+<li>infura는 개발자가 API KEY만으로도 이더리움의 메인넷 또는 테스트넷에 접근을 가능하게 한다.</li>
+<li>infura를 로그인하면 API KEY와 ENDPOINT를 제공해준다.</li>
+<li>web3의 HttpProvider를 사용해서 이더리움 네트워크에 연결할 때, infura에서 제공하는 ENDPOINT를 사용하면 된다.</li>
+</ul>
+<p><br></p>
+<h1 id="3-transfer"><a href="#3-transfer" class="headerlink" title="3. transfer"></a>3. transfer</h1><hr>
+<p>transfer(송금) 기능을 만들기 위해서는, transaction을 생성하고, 서명하여 전송하면 된다.</p>
+<p>리액트에서 코드는 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">import Wallet from &apos;ethereumjs-wallet&apos;;</span><br><span class="line">import Web3 from &apos;web3&apos;;</span><br><span class="line"></span><br><span class="line">class MultiWallets extends Component &#123;</span><br><span class="line"></span><br><span class="line">      constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      window.web3 = new Web3(new Web3.providers.HttpProvider(&apos;https://ropsten.infura.io/v3/API_KEY&apos;))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sendTransaction = () =&gt; &#123;</span><br><span class="line">        const &#123; account &#125; = this.state;</span><br><span class="line">        const sendAccount = &apos;0xBF345977799290F574dB970366CF1712AdCd0632&apos;;</span><br><span class="line"></span><br><span class="line">        // 1. check the number of nonce</span><br><span class="line">        window.web3.eth.getTransactionCount(sendAccount, (err, txCount) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">            // 2. create transaction</span><br><span class="line">            const txObject = &#123;</span><br><span class="line">                nonce: window.web3.utils.toHex(txCount),</span><br><span class="line">                to: account,</span><br><span class="line">                gasLimit: window.web3.utils.toHex(1000000),</span><br><span class="line">                gasPrice: window.web3.utils.toHex(window.web3.utils.toWei(&apos;10&apos;, &apos;gwei&apos;)),</span><br><span class="line">                value: window.web3.utils.toHex(window.web3.utils.toWei(&apos;0.01&apos;, &apos;ether&apos;))</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            const tx = new Tx(txObject)</span><br><span class="line"></span><br><span class="line">            // 3. Sign transaction</span><br><span class="line">            // a private key of the sendAccount</span><br><span class="line">            const privateKey = &apos;BE43625EA38CF1FA2D09D057F2E0AB36899E28338E2BCB698CFA6F066EDDF04C&apos;;</span><br><span class="line">            const _privateKey = Buffer.from(privateKey, &apos;hex&apos;);</span><br><span class="line">            tx.sign(_privateKey)</span><br><span class="line"></span><br><span class="line">            // 4. Send transaction</span><br><span class="line">            const serializedTx = &apos;0x&apos; + tx.serialize().toString(&apos;hex&apos;);</span><br><span class="line">            window.web3.eth.sendSignedTransaction(serializedTx, function(err, txId) &#123;</span><br><span class="line">                console.log(&apos;serializedTx:&apos;, serializedTx)</span><br><span class="line">                if(!err) &#123;</span><br><span class="line">                    console.log(&apos;txId:&apos;, txId)</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    console.log(&apos;err:&apos;, err)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div className=&quot;MultiWallets&quot;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; this.sendTransaction()&#125;&gt;Send Transaction&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드는 버튼을 클릭하면, transaction을 발생시키는 기능이다.</p>
+<p>transaction을 발생시키기 위한 단계는 다음과 같다.</p>
+<ol>
+<li>nonce 값 구하기</li>
+<li>transaction 생성</li>
+<li>transaction 서명</li>
+<li>transaction 보내기</li>
+</ol>
+<p><br></p>
+<h2 id="1-nonce-값-구하기"><a href="#1-nonce-값-구하기" class="headerlink" title="1. nonce 값 구하기"></a>1. nonce 값 구하기</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.web3.eth.getTransactionCount(sendAccount, (err, txCount) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>getTransactionCount() 함수를 사용하여 nonce값을 구하는데, getTransactionCount() 함수 안에 인자 <code>txCount</code>가 nonce 값이다. nonce값이란, 해당 transaction을 발생시키는 account가 발생시킨 총 transaction의 수를 말한다.</p>
+<p><br></p>
+<h2 id="2-transaction-생성"><a href="#2-transaction-생성" class="headerlink" title="2. transaction 생성"></a>2. transaction 생성</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import Tx from &apos;ethereumjs-tx&apos;;</span><br><span class="line"></span><br><span class="line">// 1. transaction 생성에 필요한 txObject 생성</span><br><span class="line">const txObject = &#123;</span><br><span class="line">    nonce: window.web3.utils.toHex(txCount),</span><br><span class="line">    to: account,</span><br><span class="line">    gasLimit: window.web3.utils.toHex(1000000),</span><br><span class="line">    gasPrice: window.web3.utils.toHex(window.web3.utils.toWei(&apos;10&apos;, &apos;gwei&apos;)),</span><br><span class="line">    value: window.web3.utils.toHex(window.web3.utils.toWei(&apos;0.01&apos;, &apos;ether&apos;))</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 2. &apos;ethereumjs-tx&apos; 라이브러리를 이용해 tx 인스턴스 생성</span><br><span class="line">const tx = new Tx(txObject)</span><br></pre></td></tr></table></figure>
+<p>transaction을 생성하기 위해 필요한 txObject를 만들어야 하는데, 이 txObject에는 위와 같은 값들이 들어간다. web3의 utils에 있는 toHex() 함수를 이용해 값들을 hex 값으로 만들었는데, 위 코드의 값들은 예시로 작성한 것이다.</p>
+<p>참고로, toWei() 함수는 인자로 들어간 값을 Wei 단위로 변환한다는 뜻이다. 예를 들어, window.web3.utils.toWei(‘10’, ‘gwei’)이면, 10 gwei 값을 wei 값으로 변환하라는 뜻이다.</p>
+<p>위에서 만든 txObject를 가지고 transaction을 생성하기 위해서는 <code>ethereumjs-tx</code> 라이브러리를 사용해 tx를 생성한다.</p>
+<p><br></p>
+<h2 id="3-transaction-서명"><a href="#3-transaction-서명" class="headerlink" title="3. transaction 서명"></a>3. transaction 서명</h2><hr>
+<p>이더리움에서 transaction을 서명(=== 전자서명)할 때는, 수신자의 private key를 가지고 transaction을 서명한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// a private key of the sendAccount</span><br><span class="line">const privateKey = &apos;PK&apos;;</span><br><span class="line">const _privateKey = Buffer.from(privateKey, &apos;hex&apos;);</span><br><span class="line">tx.sign(_privateKey)</span><br></pre></td></tr></table></figure>
+<p>private key로 서명하기 위해서는 private key 값을 buffer 타입으로 변경하여 사용해야 한다.</p>
+<p>buffer 타입이란, Unit8Array 타입으로, 값들이 배열(‘[]’)에 들어가 있다. 처음에 generate() 함수로 wallet을 생성했을 때, 그 wallet 안에 들어있는 private key 값의 타입은 Unit8Array 타입으로 되어있다. 이 private key 값을 위에서 hex 값으로 변경해서 사용했었는데, 이 값을 다시 buffer 타입으로 변경해서 Sign 할 때 사용해야 한다.</p>
+<p><br></p>
+<h2 id="4-transaction-보내기"><a href="#4-transaction-보내기" class="headerlink" title="4. transaction 보내기"></a>4. transaction 보내기</h2><hr>
+<p>서명된 transaction을 serialize하여 sendSignedTransaction() 함수를 이용해 transaction을 보낸다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 1. serialize transaction</span><br><span class="line">const serializedTx = &apos;0x&apos; + tx.serialize().toString(&apos;hex&apos;);</span><br><span class="line"></span><br><span class="line">// 2. send signed transaction</span><br><span class="line">window.web3.eth.sendSignedTransaction(serializedTx, function(err, txId) &#123;</span><br><span class="line">    console.log(&apos;serializedTx:&apos;, serializedTx)</span><br><span class="line">    if(!err) &#123;</span><br><span class="line">        console.log(&apos;txId:&apos;, txId)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        console.log(&apos;err:&apos;, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Serialization이란, 네트워크를 통해 데이터를 주고 받을 때, 서로간에 공유하는 규칙이 있는데, 이 규칙에 맞게 데이터를 출력하는 것을 말한다.</p>
+<p>sendSignedTransaction() 함수를 사용해 얻은 txId 값은, 이 transaction의 txHash값이 되고, 즉 transaction id가 된다. 이 txHash값으로 <a href="https://etherscan.io/" target="_blank" rel="noopener">Ether Scan</a>에서 이 transaction에 대한 거래내역을 확인할 수 있다.</p>
+<p>참고: <a href="https://medium.com/@majecty/%EB%B9%84%ED%8A%B8%EC%BD%94%EC%9D%B8%EA%B3%BC-%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80%EC%97%90%EC%84%9C-%EC%A7%81%EC%A0%91-serialize%EB%A5%BC-%EA%B5%AC%ED%98%84%ED%95%9C-%EC%9D%B4%EC%9C%A0-adb52f3307a8" target="_blank" rel="noopener">Serialization</a></p>
+<p><br></p>
+<h1 id="4-토큰-정보-가져오기"><a href="#4-토큰-정보-가져오기" class="headerlink" title="4. 토큰 정보 가져오기"></a>4. 토큰 정보 가져오기</h1><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import Web3 from &apos;web3&apos;;</span><br><span class="line">import &#123; erc20Abi &#125; from &apos;../constant/abi&apos;;</span><br><span class="line">import &#123; ethToken &#125; from &apos;../constant/ethToken&apos;</span><br><span class="line"></span><br><span class="line">class MultiWallets extends Component &#123;</span><br><span class="line"></span><br><span class="line">      constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addToken = () =&gt; &#123;</span><br><span class="line">        // Omisego token</span><br><span class="line">        const tokenAddress = &apos;0xd26114cd6EE289AccF82350c8d8487fedB8A0C07&apos;;</span><br><span class="line">        let token = window.web3.eth.Contract(erc20Abi, tokenAddress)</span><br><span class="line"></span><br><span class="line">        // get token info</span><br><span class="line">        const tokenInfo = ethToken.filter((token) =&gt; &#123;</span><br><span class="line">            return token.address.toLowerCase() === tokenAddress.toLowerCase()</span><br><span class="line">        &#125;);</span><br><span class="line">        console.log(&apos;tokenInfo:&apos;, tokenInfo)</span><br><span class="line">        console.log(&apos;symbol:&apos;, tokenInfo[0].symbol)</span><br><span class="line">        console.log(&apos;decimal:&apos;, tokenInfo[0].decimal)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div className=&quot;MultiWallets&quot;&gt;</span><br><span class="line">          &lt;button onClick=&#123;() =&gt; this.addToken()&#125;&gt;Add Token&lt;/button&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드는 addToken 버튼을 클릭하면, 해당 토큰의 정보를 가져올 수 있는 기능이다.</p>
+<p>각 토큰은 토큰의 address를 가지고 있다. web3의 Contract() 함수를 사용하면 토큰의 정보를 가져올 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new web3.eth.Contract(jsonInterface, address, options)</span><br></pre></td></tr></table></figure></p>
+<p>Contract() 함수안에 <code>jsonInterface</code>는 abi 파일로써, contract가 인스턴스화하기에 필요한 json interface 파일이다.(abi 파일)</p>
+<p>위 코드의 <code>ethToken</code>는 이더리움의 모든 토큰에 대한 정보를 모아놓은 파일이다. 즉, 선택한 토큰이 이 파일안에 있는 모든 이더리움 토큰과 비교해 해당 토큰을 찾아 그 토큰에 대한 정보를 가져오는 방식으로 코드를 작성했다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transaction/">Transaction</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-ethereum-state-transition-model"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1256,143 +1404,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-arrow-function"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/01/01/arrow-function/">Arrow Function</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/01/01/arrow-function/" class="article-date">
-	  <time datetime="2019-01-01T13:41:36.000Z" itemprop="datePublished">January 1, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="화살표-함수-Arrow-Function-란-무엇인가"><a href="#화살표-함수-Arrow-Function-란-무엇인가" class="headerlink" title="화살표 함수(Arrow Function)란 무엇인가?"></a>화살표 함수(Arrow Function)란 무엇인가?</h1><hr>
-<p>화살표 함수는 기존의 function 키워드 대신 화살표(=&gt;)를 사용하여, 보다 간단히 함수를 선언하는 방식이다. 문법은 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 매개변수 지정 방법</span><br><span class="line">    () =&gt; &#123; ... &#125; // 매개변수가 없을 경우</span><br><span class="line">     x =&gt; &#123; ... &#125; // 매개변수가 한 개인 경우, 소괄호를 생략할 수 있다.</span><br><span class="line">(x, y) =&gt; &#123; ... &#125; // 매개변수가 여러 개인 경우, 소괄호를 생략할 수 없다.</span><br><span class="line"></span><br><span class="line">// 함수 몸체 지정 방법</span><br><span class="line">x =&gt; &#123; return x * x &#125;  // single line block</span><br><span class="line">x =&gt; x * x             // 함수 몸체가 한줄의 구문이라면 중괄호를 생략할 수 있으며 암묵적으로 return된다. 위 표현과 동일하다.</span><br><span class="line"></span><br><span class="line">() =&gt; &#123; return &#123; a: 100 &#125;; &#125;</span><br><span class="line">() =&gt; (&#123; a: 100 &#125;)  // 위 표현과 동일하다. 객체는 반환할 때, 소괄호를 사용한다.</span><br><span class="line"></span><br><span class="line">() =&gt; &#123;           // multi line block.</span><br><span class="line">  const x = 100;</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="화살표-함수의-호출"><a href="#화살표-함수의-호출" class="headerlink" title="화살표 함수의 호출"></a>화살표 함수의 호출</h1><hr>
-<p><strong>화살표 함수는 익명 함수로만 사용할 수 있기 때문에, 화살표 함수를 호출하기 위해서는 함수 표현식을 사용해야 한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// ES5</span><br><span class="line">var pow = function (x) &#123; return x * x; &#125;;</span><br><span class="line">console.log(pow(5)); // 25</span><br><span class="line"></span><br><span class="line">// ES6</span><br><span class="line">const pow = x =&gt; x * x;</span><br><span class="line">console.log(pow(5)); // 25</span><br></pre></td></tr></table></figure></p>
-<p>콜백함수에서도 화살표 함수를 사용할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// ES5</span><br><span class="line">var arr = [2, 4, 6];</span><br><span class="line">var pow = arr.map(function (x) &#123; // x는 요소값</span><br><span class="line">  return x * x;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(pow); // [ 4, 16, 36 ]</span><br><span class="line"></span><br><span class="line">// ES6</span><br><span class="line">const arr = [2, 4, 6];</span><br><span class="line">const pow = arr.map(x =&gt; x * x);</span><br><span class="line"></span><br><span class="line">console.log(pow); // [ 4, 16, 36 ]</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="화살표-함수와-function으로-생성한-함수의-차이점"><a href="#화살표-함수와-function으로-생성한-함수의-차이점" class="headerlink" title="화살표 함수와 function으로 생성한 함수의 차이점"></a>화살표 함수와 function으로 생성한 함수의 차이점</h1><hr>
-<p><strong>두 방식의 가장 큰 차이점은 this 이다.</strong></p>
-<ul>
-<li><strong>function 함수</strong>: 생성자 함수와 객체의 메소드를 제외한 모든 함수(내부 함수, 콜백 함수 포함) 내부의 this는 전역 객체를 가리킨다.</li>
-<li><strong>화살표 함수</strong>: 언제나 상위 스코프의 this를 가리킨다.</li>
-</ul>
-<p><br></p>
-<h2 id="function-키워드로-생성한-함수의-this"><a href="#function-키워드로-생성한-함수의-this" class="headerlink" title="function 키워드로 생성한 함수의 this"></a>function 키워드로 생성한 함수의 this</h2><hr>
-<p>Javascirpt에서의 this는 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다. <a href="https://cheonmro.github.io/2018/11/01/what-is-this/">Javascript에서의 this</a>를 참고한다.</p>
-<p><strong>생성자 함수와 객체의 메소드를 제외한 모든 함수(내부 함수, 콜백 함수 포함) 내부의 this는 전역 객체를 가리키기 때문이다. 즉, 콜백 함수 내부의 this는 전역 객체 window를 가리킨다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  // (1)</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x; // (2)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure></p>
-<p>위치에 따라 this의 값은 달라진다.</p>
-<ul>
-<li>(1): 여기서, this는 생성자 함수 Prefixer가 생성한 객체, 즉 생성자 함수의 인스턴스(위 예제의 경우 pre)이다.</li>
-<li>(2): 여기서, this는 전역 객체 window를 가리킨다.</li>
-</ul>
-<p>콜백 함수 내부의 this가 메소드를 호출한 객체(생성자 함수의 인스턴스)를 가리키게 하는 3가지 방법이 있다.</p>
-<ol>
-<li>that = this</li>
-<li>map(func, this)</li>
-<li>bind(this)</li>
-</ol>
-<ol>
-<li><p>that = this</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  var that = this;  // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return that.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Lee&apos;, &apos;Kim&apos;]));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>map(func, this)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;, this); // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Lee&apos;, &apos;Kim&apos;]));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>bind(this)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  return arr.map(function (x) &#123;</span><br><span class="line">    return this.prefix + &apos; &apos; + x;</span><br><span class="line">  &#125;.bind(this)); // this: Prefixer 생성자 함수의 인스턴스</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><br></p>
-<h2 id="화살표-함수의-this"><a href="#화살표-함수의-this" class="headerlink" title="화살표 함수의 this"></a>화살표 함수의 this</h2><hr>
-<p><strong>화살표 함수의 this는 언제나 상위 스코프의 this를 가리킨다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Prefixer(prefix) &#123;</span><br><span class="line">  this.prefix = prefix;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Prefixer.prototype.prefixArray = function (arr) &#123;</span><br><span class="line">  // this는 상위 스코프인 prefixArray 메소드 내의 this를 가리킨다.</span><br><span class="line">  return arr.map(x =&gt; `$&#123;this.prefix&#125;  $&#123;x&#125;`);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const pre = new Prefixer(&apos;Hi&apos;);</span><br><span class="line">console.log(pre.prefixArray([&apos;Ro&apos;, &apos;Park&apos;]));</span><br></pre></td></tr></table></figure></p>
-<p>화살표 함수는 call, applay, bind 메소드를 사용하여 this를 변경할 수 없다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.x = 1;</span><br><span class="line">const normal = function () &#123; return this.x; &#125;;</span><br><span class="line">const arrow = () =&gt; this.x;</span><br><span class="line"></span><br><span class="line">console.log(normal.call(&#123; x: 10 &#125;)); // 10</span><br><span class="line">console.log(arrow.call(&#123; x: 10 &#125;));  // 1</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="화살표-함수를-사용하면-안되는-경우"><a href="#화살표-함수를-사용하면-안되는-경우" class="headerlink" title="화살표 함수를 사용하면 안되는 경우"></a>화살표 함수를 사용하면 안되는 경우</h1><hr>
-<p>화살표 함수는 Lexical this를 지원하므로 콜백 함수로 사용하기 편리하지만, 화살표 함수를 사용하지 말아야 하는 경우도 있다.</p>
-<h2 id="메소드"><a href="#메소드" class="headerlink" title=" 메소드"></a><1> 메소드</1></h2><hr>
-<p>메소드를 정의할 때는, 화살표 함수를 사용하면 안된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">  sayHi: () =&gt; console.log(`Hi $&#123;this.name&#125;`)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi undefined</span><br></pre></td></tr></table></figure></p>
-<p>위와 같이, sayHi라는 메소드를 정의할 때 화살표 함수를 사용하게 되면, 화살표 함수 내부의 this는 상위 컨택스트인 전역 객체 window를 가리킨다.</p>
-<p>ES6의 축약 메소드 표현을 사용하면, 다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">  sayHi() &#123; // === sayHi: function() &#123;</span><br><span class="line">    console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi Ro</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h2 id="prototype"><a href="#prototype" class="headerlink" title=" prototype"></a><2> prototype</2></h2><hr>
-<p>prototype에 할당하기 위한 메소드를 정의할 때는, 화살표 함수를 사용하면 안된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.prototype.sayHi = () =&gt; console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi undefined</span><br></pre></td></tr></table></figure></p>
-<p>prototype에 메소드를 할당하는 경우, 일반 함수를 사용해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const person = &#123;</span><br><span class="line">  name: &apos;Ro&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.prototype.sayHi = function() &#123;</span><br><span class="line">  console.log(`Hi $&#123;this.name&#125;`);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.sayHi(); // Hi Ro</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h2 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title=" 생성자 함수"></a><3> 생성자 함수</3></h2><hr>
-<p>생성자 함수를 사용할 때는, 화살표 함수를 사용하면 안된다. 생성자 함수는 prototype 프로퍼티를 가지며 prototype 프로퍼티가 가리키는 프로토타입 객체의 constructor를 사용한다. 그러나, 화살표 함수는 prototype 프로퍼티를 가지고 있지 않다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const Foo = () =&gt; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 화살표 함수는 prototype 프로퍼티가 없다</span><br><span class="line">console.log(Foo.hasOwnProperty(&apos;prototype&apos;)); // false</span><br><span class="line"></span><br><span class="line">const foo = new Foo(); // TypeError: Foo is not a constructor</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h2 id="addEventListener-함수의-콜백-함수"><a href="#addEventListener-함수의-콜백-함수" class="headerlink" title=" addEventListener 함수의 콜백 함수"></a><4> addEventListener 함수의 콜백 함수</4></h2><hr>
-<p>addEventListener 함수의 콜백 함수를 사용할 때는, 화살표 함수를 사용하면 안된다.</p>
-<p>만약, addEventListener 함수의 콜백 함수를 화살표 함수로 정의하면, 화살표 함수 내의 this는 상위 컨택스트인 전역 객체 window를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var button = document.getElementById(&apos;myButton&apos;);</span><br><span class="line"></span><br><span class="line">button.addEventListener(&apos;click&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(this === window); // =&gt; true</span><br><span class="line">  this.innerHTML = &apos;Clicked button&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>그래서, addEventListener 함수의 콜백 함수를 사용할 때는, 일반 함수인 function 키워드를 사용해야 한다. 일반 함수로 정의된 addEventListener 함수의 콜백 함수 내부의 this는 이벤트 리스너에 바인딩된 요소(currentTarget)를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var button = document.getElementById(&apos;myButton&apos;);</span><br><span class="line"></span><br><span class="line">button.addEventListener(&apos;click&apos;, function() &#123;</span><br><span class="line">  console.log(this === button); // =&gt; true</span><br><span class="line">  this.innerHTML = &apos;Clicked button&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="Vue에서-화살표-함수-사용방법"><a href="#Vue에서-화살표-함수-사용방법" class="headerlink" title="Vue에서 화살표 함수 사용방법"></a>Vue에서 화살표 함수 사용방법</h1><hr>
-<p>Vue에서 화살표 함수는 기본적으로 ES6에서의 화살표 함수와 동일하다.</p>
-<p>화살표 함수의 사용 여부에 대한 대표적인 경우는 2가지이다.</p>
-<ul>
-<li>메소드를 정의할 때</li>
-<li>콜백함수를 정의할 때</li>
-</ul>
-<p><br></p>
-<h2 id="Vue에서-메소드를-정의할-때"><a href="#Vue에서-메소드를-정의할-때" class="headerlink" title="Vue에서 메소드를 정의할 때"></a>Vue에서 메소드를 정의할 때</h2><hr>
-<p>Vue에서 메소드를 정의할 때는, 화살표 함수를 사용하면 안된다. 즉, function 키워드를 사용하는 일반 함수로 정의해야 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newTodo&quot;&gt;</span><br><span class="line">      &lt;button v-on:click=&quot;addTodo&quot;&gt;add&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data: () =&gt; (&#123;</span><br><span class="line">        newTodo: &apos;&apos;</span><br><span class="line">    &#125;),</span><br><span class="line">    methods: &#123;</span><br><span class="line">        addTodo: function () &#123;</span><br><span class="line">            console.log(this.newTodo); // input에서 입력한 값을 가져옴</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>methods에서 <code>addTodo</code>를 정의할 때, function 키워드를 사용하면, 이 함수내의 this는 Vue 인스턴스를 가리킨다. 그래서, <code>this.newTodo</code>의 값을 가져올 수 있다.</p>
-<p>만약, 화살표 함수로 <code>addTodo</code>를 정의하면 어떻게 될까?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;newTodo&quot;&gt;</span><br><span class="line">      &lt;button v-on:click=&quot;addTodo&quot;&gt;add&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data: () =&gt; (&#123;</span><br><span class="line">        newTodo: &apos;&apos;</span><br><span class="line">    &#125;),</span><br><span class="line">    methods: &#123;</span><br><span class="line">        addTodo: () =&gt; &#123;</span><br><span class="line">            console.log(this.newTodo); // undefined</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>화살표 함수로 <code>addTodo</code>를 정의하면, 이 함수내의 this는 전역객체 window를 가리킨다. 그래서 값이 <code>undefined</code>가 된다.</p>
-<p>대신, ES6의 축약 메소드 표현을 사용하면, 다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    addTodo () &#123;</span><br><span class="line">        console.log(this.newTodoItem) // input에서 입력한 값을 가져옴</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h2 id="Vue에서-콜백-함수를-정의할-때"><a href="#Vue에서-콜백-함수를-정의할-때" class="headerlink" title="Vue에서 콜백 함수를 정의할 때"></a>Vue에서 콜백 함수를 정의할 때</h2><hr>
-<p>Vue에서 콜백 함수를 정의할 때, 화살표 함수를 사용하면, 정의된 콜백 함수내의 this는 Vue의 인스턴스를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  data: &#123;</span><br><span class="line">    size: &apos;small&apos;,</span><br><span class="line">    items: [ &#123; size: &apos;small&apos; &#125;, &#123; size: &apos;large&apos; &#125; ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  computed: &#123;</span><br><span class="line">    filterBySize() &#123;</span><br><span class="line">      return this.items.filter((item) =&gt; &#123;</span><br><span class="line">        return item.size === this.size; // this는 Vue의 인스턴스를 가리킴</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p>만약, 콜백 함수를 정의할 때, function 키워드를 사용하면, 정의된 콜백 함수내의 this는 상위 컨택스트, 즉 전역 객체 window를 가리킨다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  data: &#123;</span><br><span class="line">    size: &apos;small&apos;,</span><br><span class="line">    items: [ &#123; size: &apos;small&apos; &#125;, &#123; size: &apos;large&apos; &#125; ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  computed: &#123;</span><br><span class="line">    filterBySize() &#123;</span><br><span class="line">      let size = this.size // 여기서 this는 Vue 인스턴스를 가리키기 때문에, 미리 size라는 변수에 위 data의 size의 값을 할당</span><br><span class="line">      return this.items.filter(function(item) &#123;</span><br><span class="line">        return item.size === size;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="결론-Vue에서의-화살표-함수-및-일반-함수-사용-방법"><a href="#결론-Vue에서의-화살표-함수-및-일반-함수-사용-방법" class="headerlink" title="결론: Vue에서의 화살표 함수 및 일반 함수 사용 방법"></a>결론: Vue에서의 화살표 함수 및 일반 함수 사용 방법</h1><hr>
-<ul>
-<li><strong>메소드를 정의할 때는, 일반 함수를 사용한다.</strong> 이때, funtion 키워드르 안쓰고 싶다면, ES6의 축약 메소드 표현을 사용해서, 간단히 작성하면 된다.</li>
-<li><strong>콜백 함수를 정의할 때는, 화살표 함수를 사용한다.</strong> 이때, 정의된 콜백 함수내의 this는 해당 컨택스트, 즉 정의된 콜백 함수를 가지고 있는 Vue 인스턴스를 가리킨다.</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Arrow-Function/">Arrow Function</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1503,6 +1514,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/25/refs/">Refs and DOM</a></h6>
+              <span>April 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a></h6>
               <span>April 24, 2019</span>
             </div>
@@ -1557,18 +1580,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/17/facebook-share/">Facebook 공유하기 버튼 만드는 방법</a></h6>
-              <span>April 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1578,7 +1589,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

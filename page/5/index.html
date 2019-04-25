@@ -98,6 +98,74 @@
         
           <section id="main">
   
+    <article id="post-printer"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/05/printer/">13. Printer(Stack/Queue)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/printer/" class="article-date">
+	  <time datetime="2018-11-05T12:01:48.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>일반적인 프린터는 인쇄 요청이 들어온 순서대로 인쇄합니다. 그렇기 때문에 중요한 문서가 나중에 인쇄될 수 있습니다. 이런 문제를 보완하기 위해 중요도가 높은 문서를 먼저 인쇄하는 프린터를 개발했습니다. 이 새롭게 개발한 프린터는 아래와 같은 방식으로 인쇄 작업을 수행합니다.</p>
+<ol>
+<li>인쇄 대기목록의 가장 앞에 있는 문서(J)를 대기목록에서 꺼냅니다.</li>
+<li>나머지 인쇄 대기목록에서 J보다 중요도가 높은 문서가 한 개라도 존재하면 J를 대기목록의 가장 마지막에 넣습니다.</li>
+<li>그렇지 않으면 J를 인쇄합니다.</li>
+</ol>
+<p>예를 들어, 4개의 문서(A, B, C, D)가 순서대로 인쇄 대기목록에 있고 중요도가 2 1 3 2 라면 C D A B 순으로 인쇄하게 됩니다. 내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 알고 싶습니다. 위의 예에서 C는 1번째로, A는 3번째로 인쇄됩니다.</p>
+<p>현재 대기목록에 있는 문서의 중요도가 순서대로 담긴 배열 priorities와 내가 인쇄를 요청한 문서가 현재 대기목록의 어떤 위치에 있는지를 알려주는 location이 매개변수로 주어질 때, 내가 인쇄를 요청한 문서가 몇 번째로 인쇄되는지 return 하도록 solution 함수를 작성해주세요.</p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ul>
+<li>queue의 push/shift를 이용한 문제</li>
+<li>Array 중에서 최대값을 구하고, 각 첫 요소가 최대값보다 같거나 크면, queue로 push한다.</li>
+<li>이때, 그 첫 요소가 우리가 찾는 값이면, 그 값의 순서는 queue.length(사이즈)로 몇번째인지 알 수 있다.</li>
+<li>array는 요소의 값이 아니라, 우선순위만 나와있기 때문에, 순서가 같을 수 있다. 그래서 그 첫 요소가 우리가 찾는 값인지 알기 위해, 두번째 인자로 제공되는 location의 인덱스를 활용한다. location을 계속 array안에서 변경시키면서 확인한다.</li>
+<li>그리고, 첫번째 요소만 확인하기 위해, while(i === 0)일때를 사용하여, 계속 첫번째 값만 확인하게 한다.</li>
+</ul>
+<p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function solution(priorities, location) &#123;</span><br><span class="line">  let answer = 0;</span><br><span class="line">  let queue = [];</span><br><span class="line">  let i = 0;</span><br><span class="line"></span><br><span class="line">  while(i === 0) &#123;</span><br><span class="line">    let max = Math.max(...priorities); // max = 9</span><br><span class="line">    if(priorities[i] &lt; max) &#123;</span><br><span class="line">      const notMaxValue = priorities.shift();</span><br><span class="line">      priorities.push(notMaxValue); // [1, 3, 2, 2]</span><br><span class="line">      location === 0 ? location = priorities.length - 1 : location = location - 1;</span><br><span class="line">    &#125; else if(priorities[i] &gt;= max) &#123;</span><br><span class="line">      const maxValue = priorities.shift(); // 9</span><br><span class="line">      queue.push(maxValue); // queue = [9], priorities = [1, 1, 1, 1, 1]</span><br><span class="line">      if(i === location) &#123;</span><br><span class="line">        return answer = queue.length;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        location = location - 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return answer;</span><br><span class="line">&#125;</span><br><span class="line">console.log(solution([1, 1, 9, 1, 1, 1], 0)); // 5</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack-Queue-algorithms/">Stack/Queue algorithms</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-pipe"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -632,95 +700,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-string-method"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/05/string-method/">String Method</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/05/string-method/" class="article-date">
-	  <time datetime="2018-11-05T05:34:24.000Z" itemprop="datePublished">November 5, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-String-prototype-charAt-index"><a href="#1-String-prototype-charAt-index" class="headerlink" title="1. String.prototype.charAt(index)"></a>1. String.prototype.charAt(index)</h1><hr>
-<ul>
-<li>매개변수로 전달한 index 번호에 해당하는 위치의 문자를 반환한다.</li>
-<li>index 번호는 0 ~ (문자열 길이 - 1) 사이의 정수이다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const str = &apos;Hello&apos;;</span><br><span class="line"></span><br><span class="line">console.log(str.charAt(0)); // H</span><br><span class="line">console.log(str.charAt(1)); // e</span><br><span class="line">console.log(str.charAt(2)); // l</span><br><span class="line">console.log(str.charAt(3)); // l</span><br><span class="line">console.log(str.charAt(4)); // o</span><br><span class="line"></span><br><span class="line">// 지정한 index가 범위(0 ~ str.length-1)를 벗어난 경우 빈문자열을 반환한다.</span><br><span class="line">console.log(str.charAt(5)); // &apos;&apos;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="2-String-prototype-concat-index"><a href="#2-String-prototype-concat-index" class="headerlink" title="2. String.prototype.concat(index)"></a>2. String.prototype.concat(index)</h1><hr>
-<ul>
-<li>매개변수로 전달된 1개 이상의 문자열과 연결하여 새로운 문자열을 반환한다.</li>
-<li>concat 메소드를 사용하는 것보다는 +, += 할당 연산자를 사용하는 것이 성능상 유리하다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;My name is &apos;;</span><br><span class="line">let name = &apos;Cheon&apos;;</span><br><span class="line"></span><br><span class="line">str = str.concat(name); // str = str + name;</span><br><span class="line">console.log(str); // &apos;My name is Cheon&apos;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="3-String-prototype-split-string-regular-Expression-number"><a href="#3-String-prototype-split-string-regular-Expression-number" class="headerlink" title="3. String.prototype.split(string | regular Expression, number)"></a>3. String.prototype.split(string | regular Expression, number)</h1><hr>
-<ul>
-<li>첫번째 인자에 전달된 문자열 또는 정규표현식을 대상 문자열에서 검색하여 문자열을 구분한 후, 분리된 각 문자열로 이루어진 배열을 반환한다.</li>
-<li>원본 문자열은 변경되지 않는다.</li>
-<li>인수가 없는 경우, 대상 문자열 전체를 단일 요소로 하는 배열을 반환한다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;How are you doing?&apos;;</span><br><span class="line"></span><br><span class="line">// 공백으로 구분(단어로 구분)하여 배열로 반환한다</span><br><span class="line">let splitStr = str.split(&apos; &apos;);</span><br><span class="line">console.log(splitStr); // [ &apos;How&apos;, &apos;are&apos;, &apos;you&apos;, &apos;doing?&apos; ]</span><br><span class="line"></span><br><span class="line">// 원본 문자열은 변경되지 않는다</span><br><span class="line">console.log(str); // How are you doing?</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 인수가 없는 경우, 대상 문자열 전체를 단일 요소로 하는 배열을 반환한다.</span><br><span class="line">splitStr = str.split();</span><br><span class="line">console.log(splitStr); // [ &apos;How are you doing?&apos; ]</span><br><span class="line"></span><br><span class="line">// 각 문자를 모두 분리한다</span><br><span class="line">splitStr = str.split(&apos;&apos;);</span><br><span class="line">console.log(splitStr); // [ &apos;H&apos;,&apos;o&apos;,&apos;w&apos;,&apos; &apos;,&apos;a&apos;,&apos;r&apos;,&apos;e&apos;,&apos; &apos;,&apos;y&apos;,&apos;o&apos;,&apos;u&apos;,&apos; &apos;,&apos;d&apos;,&apos;o&apos;,&apos;i&apos;,&apos;n&apos;,&apos;g&apos;,&apos;?&apos; ]</span><br><span class="line"></span><br><span class="line">// 공백으로 구분하여 배열로 반환한다. 단 요소수는 3개까지만 허용한다</span><br><span class="line">splitStr = str.split(&apos; &apos;, 3);</span><br><span class="line">console.log(splitStr); // [ &apos;How&apos;, &apos;are&apos;, &apos;you&apos; ]</span><br><span class="line"></span><br><span class="line">// &apos;o&apos;으로 구분하여 배열로 반환한다.</span><br><span class="line">splitStr = str.split(&apos;o&apos;);</span><br><span class="line">console.log(splitStr); // [ &apos;H&apos;, &apos;w are y&apos;, &apos;u d&apos;, &apos;ing?&apos; ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="4-String-prototype-substring-start-end"><a href="#4-String-prototype-substring-start-end" class="headerlink" title="4. String.prototype.substring(start, end)"></a>4. String.prototype.substring(start, end)</h1><hr>
-<ul>
-<li>첫번째 인자에 전달된 index(start)에 해당하는 문자부터 두번째 인자에 전달된 index(end)에 해당하는 문자의 바로 이전 문자까지를 모두 반환한다.</li>
-<li>이때 첫번째 인수 &lt; 두번째 인수의 관계가 성립된다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;Hello World&apos;; // str.length == 11</span><br><span class="line"></span><br><span class="line">let res = str.substring(1, 4);</span><br><span class="line">console.log(res); // ell</span><br><span class="line"></span><br><span class="line">// 첫번째 인수 &gt; 두번째 인수 : 두 인수는 교환된다.</span><br><span class="line">res = str.substring(4, 1);</span><br><span class="line">console.log(res); // ell</span><br><span class="line"></span><br><span class="line">// 두번째 인수가 생략된 경우 : 해당 문자열의 끝까지 반환한다.</span><br><span class="line">res = str.substring(4);</span><br><span class="line">console.log(res); // o World</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="5-String-prototype-toLowerCase"><a href="#5-String-prototype-toLowerCase" class="headerlink" title="5. String.prototype.toLowerCase()"></a>5. String.prototype.toLowerCase()</h1><hr>
-<ul>
-<li>대상 문자열의 모든 문자를 소문자로 변경한다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;Hello World!&apos;;</span><br><span class="line"></span><br><span class="line">const res = str.toLowerCase();</span><br><span class="line">console.log(res); // hello world!</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="6-String-prototype-toUpperCase"><a href="#6-String-prototype-toUpperCase" class="headerlink" title="6. String.prototype.toUpperCase()"></a>6. String.prototype.toUpperCase()</h1><hr>
-<ul>
-<li>대상 문자열의 모든 문자를 대문자로 변경한다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;Hello World!&apos;;</span><br><span class="line"></span><br><span class="line">const res = str.toUpperCase();</span><br><span class="line">console.log(res); // HELLO WORLD!</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String-Method/">String Method</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -831,6 +810,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/04/25/refs/">Refs and DOM</a></h6>
+              <span>April 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a></h6>
               <span>April 24, 2019</span>
             </div>
@@ -885,18 +876,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/17/facebook-share/">Facebook 공유하기 버튼 만드는 방법</a></h6>
-              <span>April 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -906,7 +885,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
