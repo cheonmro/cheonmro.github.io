@@ -20,7 +20,9 @@
 <meta property="og:description" content="Lifecycle API란 무엇인가? Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다. React 컴포넌트의 lifecycle은 다음과 같다. 출처: React 컴포넌트의 lifecycle  React lifecycle API 3단계 Mounting: React 컴포넌트의 인스턴스가 생성되고,">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://cheonmro.github.io/images/lifecycle.png">
-<meta property="og:updated_time" content="2019-03-08T14:49:53.408Z">
+<meta property="og:image" content="https://cheonmro.github.io/images/lifecycle-pre.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/lifecycle-new.png">
+<meta property="og:updated_time" content="2019-04-25T13:29:09.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lifecycle API">
 <meta name="twitter:description" content="Lifecycle API란 무엇인가? Lifecycle API란, 컴포넌트가 브라우저에서 생성될 때/업데이트 될 때/제거될 때, 호출되는 API이다. React 컴포넌트의 lifecycle은 다음과 같다. 출처: React 컴포넌트의 lifecycle  React lifecycle API 3단계 Mounting: React 컴포넌트의 인스턴스가 생성되고,">
@@ -143,7 +145,7 @@
 <p><img src="/images/lifecycle.png" alt="React 컴포넌트의 lifecycle"><br>출처: <a href="https://velopert.com/1130" target="_blank" rel="noopener">React 컴포넌트의 lifecycle</a></p>
 <p><br></p>
 <h1 id="React-lifecycle-API-3단계"><a href="#React-lifecycle-API-3단계" class="headerlink" title="React lifecycle API 3단계"></a>React lifecycle API 3단계</h1><hr>
-<p><strong>Mounting: React 컴포넌트의 인스턴스가 생성되고, DOM에 삽입되는 과정의 lifecycle</strong></p>
+<p><strong>Mounting: React 컴포넌트의 인스턴스가 생성되고, DOM에 삽입되는 과정의 lifecycle</strong><br>(Mount: 컴포넌트가 DOM에 삽입되는 것)</p>
 <ul>
 <li>constructor</li>
 <li>componentWillMount</li>
@@ -158,10 +160,13 @@
 <li>render</li>
 <li>componentDidUpdate</li>
 </ul>
-<p><strong>Unmounting: 컴포넌트가 제거되는 과정의 lifecycle</strong></p>
+<p><strong>Unmounting: 컴포넌트가 제거되는 과정의 lifecycle</strong><br>(Unmount: 페이지 이동으로 인한 그 전 페이지에서의 컴포넌트는 DOM에서 분리되는 것)</p>
 <ul>
 <li>componentWillUnmount</li>
 </ul>
+<p><br></p>
+<h1 id="React-v16-3-이전의-Lifecycle-API"><a href="#React-v16-3-이전의-Lifecycle-API" class="headerlink" title="React v16.3 이전의 Lifecycle API"></a>React v16.3 이전의 Lifecycle API</h1><hr>
+<p><img src="/images/lifecycle-pre.png" alt="React v16.3 이전의 Lifecycle API"><br>출처: <a href="https://velog.io/@kyusung/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B5%90%EA%B3%BC%EC%84%9C-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%99%80-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%EC%9D%B4%EB%B2%A4%ED%8A%B8" target="_blank" rel="noopener">React v16.3 이전의 Lifecycle API</a></p>
 <p><br></p>
 <h1 id="Mounting"><a href="#Mounting" class="headerlink" title="Mounting"></a>Mounting</h1><hr>
 <p><strong>React 컴포넌트의 인스턴스가 생성되고, DOM에 삽입되는 과정의 lifecycle</strong></p>
@@ -182,10 +187,15 @@
 <p><strong>super(props)를 호출한 이유:</strong></p>
 <p>ES6 class의 constructor에서 super 메소드를 사용하는 이유는, 자식 클래스에서 super 메소드를 사용함으로써 자식 class의 constructor 내부에서 부모 클래스의 constructor를 호출한다. 즉, 부모 클래스의 인스턴스를 생성해서, this를 사용할 수 있게 된다. 만약 super 키워드를 사용하지 않으면, this에 대한 참조 에러가 발생한다. 다시 말하면, super 메소드를 호출하기 이전에는 this를 참조할 수 없다는 것을 의미한다.</p>
 <p>리액트에서 컴포넌트를 class형으로 만들때는, 모두 기본적으로 리액트에 있는 ‘Component’라는 부모 클래스로부터 상속받아 자식 클래스로 시작하게 된다. 그래서 자식 클래스에서는 super 메소드를 사용해서 , 부모 클래스(Component)의 constructor를 호출, 즉 Component 클래스의 인스턴스를 생성해서 this를 사용할 수 있게 되는 것이다. 그 다음에, this를 이용해 프로퍼티를 초기화할 수 있다.</p>
+<p>정리하면, constructor를 사용한다면, 반드시 super()를 불러와야 한다. super()를 사용하지 않으면, this가 초기화되지 않는다.</p>
+<p><br><br><strong>그러면, super()에 props를 사용해야 하는가?</strong></p>
+<p>constructor 안에서 this.props에 접근하고 싶다면, super(props)를 사용한다.<br>만약, super() 이렇게만 사용하면 다음과 같이 나온다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class MyApp extends React.Component&#123;</span><br><span class="line">  constructor(props)&#123;</span><br><span class="line">    super();</span><br><span class="line">    console.log(this.props); // this.props is undefined</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>위 코드에서 super(props)라고 사용해야 this.props에 접근할 수 있다.</p>
+<p>그러나, constructor가 아닌 다른 곳에서 this.props를 사용하고 싶으면, constructor 안에 props를 넘겨줄 필요가 없다. 왜냐하면, React에서 자동으로 세팅해주기 때문이다.</p>
 <p>이 방법이 더 복잡하므로, class fields 문법으로 주로 사용하는 것이 더 편리!</p>
 <p><br></p>
 <h2 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount"></a>componentWillMount</h2><hr>
-<p><strong>컴포넌트가 브라우저에 나타나기 전(화면에 나가기 전)에 호출되는 API이다.</strong></p>
+<p><strong>컴포넌트가 DOM에 삽입되기 전(Mount 되기 전)에 호출되는 API이다. 즉, render가 되기 전이기 때문에, 컴포넌트가 브라우저에 나타나기 전(화면에 나가기 전)에 호출되는 API이다.</strong></p>
 <p>사용 이유</p>
 <ul>
 <li>mount 직전에 하고 싶은 것들(i.e. 방문자가 어떤 페이지를 방문했는지 Google Anlaytics에 신호할 때)이 있을 경우 사용</li>
@@ -194,13 +204,18 @@
 <p>React v16.3 이후부터는 해당 API가 deprecated 되어서, 사용하면 안된다.<br>기존에 이 API에서 하던 것들을 constructor와 componentDidMount에서 처리 가능하다.</p>
 <p><br></p>
 <h2 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount"></a>componentDidMount</h2><hr>
-<p><strong>컴포넌트가 화면에 나타나게 됐을 때, 호출되는 API이다. 즉, 컴포넌트가 생성되어 DOM까지 render가 다 된 후, 실행된다.</strong></p>
+<p><strong>컴포넌트가 DOM과 삽입(Mount)되고, render가 된 이후에 호출되는 API이다.</strong></p>
+<p>이 API는 페이지가 첫 렌더링 될 때, 호출되는 API이다. 즉, 이 컴포넌트가 사용된 페이지가 처음 로드 될때, 또는 refresh로 다시 이 페이지가 불러올 때 등으로 인해 처음으로 렌더링 될 때, 호출되는 API이다.</p>
 <p>사용 이유</p>
 <ul>
 <li>DOM에 대한 접근이 필요한 모든 설정을 수행할 때 사용(DOM의 속성을 읽거나 직접 변경하는 작업 등)</li>
 <li>해당 컴포넌트에서 필요로하는 데이터를 요청하기 위해 사용(axios, fetch 등을 통한 ajax 요청)</li>
 <li>외부 라이브러리 연동</li>
+<li>addEventListener 적용</li>
 </ul>
+<p>예를 들면, 액션을 발생시켜 서버로부터 데이터를 받아올 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">  this.props.getEachProject(this.props.projectId);</span><br><span class="line">  this.props.getContractList(&#123; projectId: this.props.projectId &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>또는, addEventListener를 적용할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    window.addEventListener(&quot;ICONEX_RELAY_RESPONSE&quot;, this.eventHandler, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h1 id="Updating"><a href="#Updating" class="headerlink" title="Updating"></a>Updating</h1><hr>
 <p><strong>컴포넌트의 업데이트는 props 또는 state의 변화에 따라 결정된다.</strong></p>
@@ -212,6 +227,8 @@
 <li>props를 받아서 state를 변경해야 하는 경우 유용하다.</li>
 </ul>
 <p>다음과 같이 작성할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">  if (this.props.percent !== nextProps.percent) &#123;</span><br><span class="line">    this.setUpPercent(nextProps.percent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>또는,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">		if (nextProps.message === &quot;&quot;) &#123;</span><br><span class="line">			this.setState(&#123;</span><br><span class="line">				hide: true</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			this.setState(&#123;</span><br><span class="line">				hide: false</span><br><span class="line">			&#125;);</span><br><span class="line">			setTimeout(() =&gt; &#123;</span><br><span class="line">				this.setState(&#123;</span><br><span class="line">					hide: true</span><br><span class="line">				&#125;);</span><br><span class="line">				this.props.handleToast(&quot;&quot;);</span><br><span class="line">			&#125;, 2500);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>이 API는 초기 렌더링시에는 호출되지 않는다.</p>
 <p><br></p>
 <h2 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h2><hr>
@@ -231,10 +248,11 @@
 <p><strong>이 API는 update가 발생하기 전 어떤 작업이 필요한 경우 사용하는 API로써, shouldComponentUpdate에서 true를 반환했을 때만, 호출되는 API이다.</strong> shouldComponentUpdate가 이미 사용되고 있는 컴포넌트에서 componentWillReceiveProps를 대신 사용한다. 이 API가 호출되고 난 다음에는 render() 함수가 호출된다.</p>
 <p>사용 이유</p>
 <ul>
-<li>애니메이션 효과르 초기화할 때 사용</li>
+<li>애니메이션 효과를 초기화할 때 사용</li>
 <li>이벤트 리스너를 없앨 때 사용</li>
 </ul>
 <p>이 API에서는 this.setState()를 사용하면 무한 루프가 일어나게 되므로 사용하면 안된다.</p>
+<p>예를 들어, props가 업데이트 되기 전에 어떤 element를 fade out 애니메이션 효과를 주고 싶은 경우에는 다음과 같이 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">componentWillUpdate (nextProps, nextState)&#123;</span><br><span class="line">    if(!nextState.show)&#123;</span><br><span class="line">        $(ReactDOM.findDOMNode(this.refs.elem)).css(&#123;&apos;opacity&apos;:&apos;1&apos;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">      $(ReactDOM.findDOMNode(this.refs.elem)).css(&#123;&apos;opacity&apos;:&apos;0&apos;&#125;);;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><br></p>
 <h2 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a>componentDidUpdate</h2><hr>
 <p><strong>componentWillUpdate 이후, render() 함수가 호출된 뒤에 호출되는 API이다.</strong><br>이 시점에서는 this.props와 this.state가 새로 변경되었고, 대신에 이전 값들인 prevProps와 prevState를 조회할 수 있다.</p>
@@ -242,17 +260,37 @@
 <ul>
 <li>props 또는 state에 따라서 DOM을 업데이트 할 때 사용</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">    if (this.props.location.query.pagename !== prevProps.location.query.pagename) &#123;</span><br><span class="line">      LayerPopup.clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h1 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h1><hr>
 <p><br></p>
 <h2 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a>componentWillUnmount</h2><hr>
-<p><strong>컴포넌트가 소멸된 시점에(DOM에서 삭제된 후) 실행되는 API이다.</strong><br>컴포넌트 내부에서 타이머나 비동기 API를 사용하고 있을 때, 이를 제거하기에 유용하다.</p>
+<p><strong>컴포넌트가 DOM에서 삭제된(분리된)(=== unmount) 후 호출되는 API이다.</strong></p>
+<p>A 페이지에서 로그인 컴포넌트를 사용하고, B 페이지에서는 장바구니 컴포넌트를 사용한다고 하자. 그러면, A 페이지가 로드가 되면, 로그인 컴포넌트가 마운트가 된다. 그러다가, B 페이지로 이동하게 되면, 로그인 컴포넌트는 언마운트 되고, 장바구니 컴포넌트가 마운트가 된다. 즉, 페이지 이동으로 인한 기존 페이지에서의 컴포넌트가 그 페이지의 DOM에서 분리되는 것을 Unmount 라고 한다.</p>
+<p>만약 componentDidMount에서 addEventListner를 사용했는데, 다른 페이지에서는 이 addEventListner를 사용하고 싶지 않다면, componentWillUnmount에서 이 컴포넌트가 Unmount 되기 전에, 이 addEventListner를 제거해야 한다.(removeEventListener)</p>
+<p>왜냐하면, addEventListner는 window.addEventListner 이렇게 사용하기 때문에(window 객체의 메소드), 전역으로 다른 페이지에도 영향이 간다. 그래서, 이 페이지에만 사용할 것이라면, 이 페이지의 컴포넌트가 Unmount 될 때, addEventListner를 제거해야 한다.</p>
 <p>사용 이유</p>
 <ul>
+<li>removeEventListener로 이벤트 제거</li>
 <li>등록했었던 이벤트 제거</li>
 <li>컴포넌트 내부에서 타이머나 비동기 API를 사용하고 있을 때, 이를 제거하기에 유용하다.</li>
 <li>setTimeout 함수를 사용했다면, clearTimeout을 통하여 제거</li>
 </ul>
+<p>예를 들어, removeEventListener로 이벤트 제거 할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillUnmount() &#123;</span><br><span class="line">    window.removeEventListener(&quot;ICONEX_RELAY_RESPONSE&quot;, this.eventHandler, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h1 id="React-v16-3-이후의-Lifecycle-API"><a href="#React-v16-3-이후의-Lifecycle-API" class="headerlink" title="React v16.3 이후의 Lifecycle API"></a>React v16.3 이후의 Lifecycle API</h1><hr>
+<p>React v17 부터 depreciated 될 API</p>
+<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps(v17: getDerivedStateFromProps)</li>
+<li>componentWillUpdate(v17: getSnapshotBeforeUpdate)</li>
+</ul>
+<p>React v17 부터 추가될 API</p>
+<ul>
+<li>componentDIdCatch: 컴포넌트 에러 핸들링 API</li>
+</ul>
+<p><img src="/images/lifecycle-new.png" alt="React v16.3 이후의 Lifecycle API"><br>출처: <a href="https://velog.io/@kyusung/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EA%B5%90%EA%B3%BC%EC%84%9C-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%99%80-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%EC%9D%B4%EB%B2%A4%ED%8A%B8" target="_blank" rel="noopener">React v16.3 이후의 Lifecycle API</a></p>
 <p><br></p>
 <h1 id="React-v16-3-이후에-변경된-부분"><a href="#React-v16-3-이후에-변경된-부분" class="headerlink" title="React v16.3 이후에 변경된 부분"></a>React v16.3 이후에 변경된 부분</h1><hr>
 <p>몇개 lifecycle API가 변경된 부분이 있다. 아래의 링크에서 확인해보자.</p>
@@ -303,7 +341,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lifecycle-API란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Lifecycle API란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-lifecycle-API-3단계"><span class="nav-number">2.</span> <span class="nav-text">React lifecycle API 3단계</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mounting"><span class="nav-number">3.</span> <span class="nav-text">Mounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">3.1.</span> <span class="nav-text">constructor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-fields-문법"><span class="nav-number">3.1.1.</span> <span class="nav-text">Class fields 문법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructor-사용"><span class="nav-number">3.1.2.</span> <span class="nav-text">Constructor 사용</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillMount"><span class="nav-number">3.2.</span> <span class="nav-text">componentWillMount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidMount"><span class="nav-number">3.3.</span> <span class="nav-text">componentDidMount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updating"><span class="nav-number">4.</span> <span class="nav-text">Updating</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillReceiveProps"><span class="nav-number">4.1.</span> <span class="nav-text">componentWillReceiveProps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">4.2.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUpdate"><span class="nav-number">4.3.</span> <span class="nav-text">componentWillUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">4.4.</span> <span class="nav-text">componentDidUpdate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unmounting"><span class="nav-number">5.</span> <span class="nav-text">Unmounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">5.1.</span> <span class="nav-text">componentWillUnmount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-v16-3-이후에-변경된-부분"><span class="nav-number">6.</span> <span class="nav-text">React v16.3 이후에 변경된 부분</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lifecycle-API란-무엇인가"><span class="nav-number">1.</span> <span class="nav-text">Lifecycle API란 무엇인가?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-lifecycle-API-3단계"><span class="nav-number">2.</span> <span class="nav-text">React lifecycle API 3단계</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-v16-3-이전의-Lifecycle-API"><span class="nav-number">3.</span> <span class="nav-text">React v16.3 이전의 Lifecycle API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mounting"><span class="nav-number">4.</span> <span class="nav-text">Mounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">4.1.</span> <span class="nav-text">constructor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-fields-문법"><span class="nav-number">4.1.1.</span> <span class="nav-text">Class fields 문법</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructor-사용"><span class="nav-number">4.1.2.</span> <span class="nav-text">Constructor 사용</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillMount"><span class="nav-number">4.2.</span> <span class="nav-text">componentWillMount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidMount"><span class="nav-number">4.3.</span> <span class="nav-text">componentDidMount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Updating"><span class="nav-number">5.</span> <span class="nav-text">Updating</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillReceiveProps"><span class="nav-number">5.1.</span> <span class="nav-text">componentWillReceiveProps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">5.2.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUpdate"><span class="nav-number">5.3.</span> <span class="nav-text">componentWillUpdate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">5.4.</span> <span class="nav-text">componentDidUpdate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unmounting"><span class="nav-number">6.</span> <span class="nav-text">Unmounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">6.1.</span> <span class="nav-text">componentWillUnmount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-v16-3-이후의-Lifecycle-API"><span class="nav-number">7.</span> <span class="nav-text">React v16.3 이후의 Lifecycle API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React-v16-3-이후에-변경된-부분"><span class="nav-number">8.</span> <span class="nav-text">React v16.3 이후에 변경된 부분</span></a></li></ol>
     
     </div>
   </aside>
