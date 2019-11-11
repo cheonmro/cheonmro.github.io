@@ -98,6 +98,73 @@
         
           <section id="main">
   
+    <article id="post-reset-css"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/11/11/reset-css/">Reset CSS 사용방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/11/reset-css/" class="article-date">
+	  <time datetime="2019-11-11T14:17:26.000Z" itemprop="datePublished">November 11, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Reset-CSS-개념"><a href="#Reset-CSS-개념" class="headerlink" title="Reset CSS 개념"></a>Reset CSS 개념</h1><hr>
+<p>각 웹브라우저마다 기본적인 스타일(default styles)을 가지고 있다. 그래서, 내가 의도한 css 코드가 각 브라우저마다 다르게 나올 수 있다. 각 브라우저가 지원하는 tag나 style이 다를 수 있다. 따라서, 프로젝트를 시작할 때, 모든 브라우저가 동일한 스타일을 갖도록 CSS를 초기화할 필요가 있다. CSS를 초기화하는 것을 Reset CSS라고 한다.</p>
+<p><br></p>
+<h1 id="Reset-CSS를-사용하는-방법"><a href="#Reset-CSS를-사용하는-방법" class="headerlink" title="Reset CSS를 사용하는 방법"></a>Reset CSS를 사용하는 방법</h1><hr>
+<p>아래 둘중에 하나의 방법으로 Reset CSS를 하면된다.</p>
+<p><strong>[1] Eric Meyer’s reset</strong></p>
+<p>다음의 css 코드를 CSS 파일 최상단에 작성하고 시작한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">/* http://meyerweb.com/eric/tools/css/reset/</span><br><span class="line">   v2.0 | 20110126</span><br><span class="line">   License: none (public domain)</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">html, body, div, span, applet, object, iframe,</span><br><span class="line">h1, h2, h3, h4, h5, h6, p, blockquote, pre,</span><br><span class="line">a, abbr, acronym, address, big, cite, code,</span><br><span class="line">del, dfn, em, img, ins, kbd, q, s, samp,</span><br><span class="line">small, strike, strong, sub, sup, tt, var,</span><br><span class="line">b, u, i, center,</span><br><span class="line">dl, dt, dd, ol, ul, li,</span><br><span class="line">fieldset, form, label, legend,</span><br><span class="line">table, caption, tbody, tfoot, thead, tr, th, td,</span><br><span class="line">article, aside, canvas, details, embed,</span><br><span class="line">figure, figcaption, footer, header, hgroup,</span><br><span class="line">menu, nav, output, ruby, section, summary,</span><br><span class="line">time, mark, audio, video &#123;</span><br><span class="line">	margin: 0;</span><br><span class="line">	padding: 0;</span><br><span class="line">	border: 0;</span><br><span class="line">	font-size: 100%;</span><br><span class="line">	font: inherit;</span><br><span class="line">	vertical-align: baseline;</span><br><span class="line">&#125;</span><br><span class="line">/* HTML5 display-role reset for older browsers */</span><br><span class="line">article, aside, details, figcaption, figure,</span><br><span class="line">footer, header, hgroup, menu, nav, section &#123;</span><br><span class="line">	display: block;</span><br><span class="line">&#125;</span><br><span class="line">body &#123;</span><br><span class="line">	line-height: 1;</span><br><span class="line">&#125;</span><br><span class="line">ol, ul &#123;</span><br><span class="line">	list-style: none;</span><br><span class="line">&#125;</span><br><span class="line">blockquote, q &#123;</span><br><span class="line">	quotes: none;</span><br><span class="line">&#125;</span><br><span class="line">blockquote:before, blockquote:after,</span><br><span class="line">q:before, q:after &#123;</span><br><span class="line">	content: &apos;&apos;;</span><br><span class="line">	content: none;</span><br><span class="line">&#125;</span><br><span class="line">table &#123;</span><br><span class="line">	border-collapse: collapse;</span><br><span class="line">	border-spacing: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>[2] normalize.css</strong></p>
+<p>npm 또는 yarn을 이용해서 normalize.css를 설치한다.</p>
+<p>참고: <a href="https://necolas.github.io/normalize.css/" target="_blank" rel="noopener">normalize.css</a></p>
+<p><br></p>
+<h1 id="React에서-Reset-CSS-사용하는-방법"><a href="#React에서-Reset-CSS-사용하는-방법" class="headerlink" title="React에서 Reset CSS 사용하는 방법"></a>React에서 Reset CSS 사용하는 방법</h1><hr>
+<p><strong>[1] normalize.css 설치</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// yarn</span><br><span class="line">yarn add normalize.css</span><br><span class="line"></span><br><span class="line">// npm</span><br><span class="line">npm install normalize.css</span><br></pre></td></tr></table></figure>
+<p><strong>[2] index.js에 import</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line"></span><br><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import ReactDOM from &quot;react-dom&quot;;</span><br><span class="line">// import &quot;./index.css&quot;;</span><br><span class="line"></span><br><span class="line">import &quot;normalize.css&quot;; // Reset CSS</span><br><span class="line"></span><br><span class="line">import App from &quot;./App&quot;;</span><br><span class="line">import * as serviceWorker from &quot;./serviceWorker&quot;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.getElementById(&quot;root&quot;));</span><br><span class="line"></span><br><span class="line">serviceWorker.unregister();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reset-CSS/">Reset CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-refs"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -833,88 +900,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-create-git-project"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/13/create-git-project/">Git으로 프로젝트 생성하는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/13/create-git-project/" class="article-date">
-	  <time datetime="2019-04-13T07:32:42.000Z" itemprop="datePublished">April 13, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Git/">Git</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git으로-프로젝트-생성하여-다른-사람이-작업을-시작할-수-있게-하기-위한-초기-세팅-과정"><a href="#Git으로-프로젝트-생성하여-다른-사람이-작업을-시작할-수-있게-하기-위한-초기-세팅-과정" class="headerlink" title="Git으로 프로젝트 생성하여 다른 사람이 작업을 시작할 수 있게 하기 위한 초기 세팅 과정"></a>Git으로 프로젝트 생성하여 다른 사람이 작업을 시작할 수 있게 하기 위한 초기 세팅 과정</h1><hr>
-<h4 id="1-Github-Gitlab-등에서-Repository-생성"><a href="#1-Github-Gitlab-등에서-Repository-생성" class="headerlink" title="1. Github/Gitlab 등에서 Repository 생성"></a>1. Github/Gitlab 등에서 Repository 생성</h4><hr>
-<p>Github/Gitlab 등에서 README.md 파일을 포함하여 Repository를 생성한다.</p>
-<p><br></p>
-<h4 id="2-로컬에서-clone-하기"><a href="#2-로컬에서-clone-하기" class="headerlink" title="2. 로컬에서 clone 하기"></a>2. 로컬에서 clone 하기</h4><hr>
-<p>로컬에서 <code>git clone https://github.com/cheonmro/testgit.git</code> 명령어를 실행하여, 원격 저장소를 clone 한다.</p>
-<p><br></p>
-<h4 id="3-clone-한-폴더-안에서-프로젝트-폴더를-생성"><a href="#3-clone-한-폴더-안에서-프로젝트-폴더를-생성" class="headerlink" title="3. clone 한 폴더 안에서 프로젝트 폴더를 생성"></a>3. clone 한 폴더 안에서 프로젝트 폴더를 생성</h4><hr>
-<p>리액트 프로젝트의 경우, <code>create-react-app testgit</code> 와 같이 새로운 프로젝트 폴더를 생성한다.</p>
-<p><br></p>
-<h4 id="4-원격으로-push-하기-master-브랜치-셋업"><a href="#4-원격으로-push-하기-master-브랜치-셋업" class="headerlink" title="4. 원격으로 push 하기(master 브랜치 셋업)"></a>4. 원격으로 push 하기(master 브랜치 셋업)</h4><hr>
-<p>다음과 같이, 원격 저장소로 로컬에 새로 생성한 프로젝트 폴더를 push한다.</p>
-<p><code>git add .</code></p>
-<p><code>git commit -m &quot;add create-react-app</code></p>
-<p><code>git push origin master</code></p>
-<p>이렇게 하면, 원격 저장소와 로컬 저장소에 기본적인 리액트 프로젝트 폴더가 들어가게 세팅이 된다.</p>
-<p>그러나, 실제 프로젝트 개발시에는 dev 브랜치를 이용해서 하기 때문에, master 브랜치는 여기까지만 생성하고, dev 브랜치를 이용해야 한다.</p>
-<p><br></p>
-<h4 id="5-로컬에서-dev-브랜치-생성"><a href="#5-로컬에서-dev-브랜치-생성" class="headerlink" title="5. 로컬에서 dev 브랜치 생성"></a>5. 로컬에서 dev 브랜치 생성</h4><hr>
-<p>로컬에서 다음의 명령어로 dev 브랜치를 생성한다.</p>
-<p><code>git checkout -b dev</code></p>
-<p><code>checkout</code>과 <code>-b</code>를 같이 사용하면, dev 브랜치를 생성하면서 동시에 dev 브랜치로 이동하게 된다.</p>
-<p><br></p>
-<h4 id="6-생성한-dev-브랜치에서-프로젝트를-위한-전반적인-폴더-구조-셋업"><a href="#6-생성한-dev-브랜치에서-프로젝트를-위한-전반적인-폴더-구조-셋업" class="headerlink" title="6. 생성한 dev 브랜치에서 프로젝트를 위한 전반적인 폴더 구조 셋업"></a>6. 생성한 dev 브랜치에서 프로젝트를 위한 전반적인 폴더 구조 셋업</h4><hr>
-<p>현재는 <code>create-react-app</code>으로 만들어진 기본적인 구조밖에 없다. 여기서 우리가 만들 프로젝트에 대한 전반적인 구조를 만들어야 한다.</p>
-<p><br></p>
-<h4 id="7-새롭게-셋업된-로컬의-dev-브랜치를-push-하기"><a href="#7-새롭게-셋업된-로컬의-dev-브랜치를-push-하기" class="headerlink" title="7. 새롭게 셋업된 로컬의 dev 브랜치를 push 하기"></a>7. 새롭게 셋업된 로컬의 dev 브랜치를 push 하기</h4><hr>
-<p>새롭게 프로젝트를 만들었다면, 로컬의 dev 브랜치를 원격저장소에 push 해야한다.</p>
-<p><code>git add .</code></p>
-<p><code>git commit -m &quot;add project-structure</code></p>
-<p><code>git push origin dev</code></p>
-<p>이렇게 하여, 본격적인 프로젝트를 시작하기 위한 dev 브랜치가 완성되었다. 이제부터는 각 팀원이 git clone을 하여 각 컴퓨터 로컬에 내려받고, 거기서 각자가 맡은 기능별로 브랜치를 새로 생성하여 개발을 시작하면 된다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Git/">Git</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1025,6 +1010,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/11/reset-css/">Reset CSS 사용방법</a></h6>
+              <span>November 11, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/04/25/refs/">Refs and DOM</a></h6>
               <span>April 25, 2019</span>
             </div>
@@ -1079,18 +1076,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/18/twitter-share/">Twitter 공유하기 버튼 만드는 방법</a></h6>
-              <span>April 18, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1100,7 +1085,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
