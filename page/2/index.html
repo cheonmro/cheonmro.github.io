@@ -98,6 +98,71 @@
         
           <section id="main">
   
+    <article id="post-facebook-share"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/17/facebook-share/">Facebook 공유하기 버튼 만드는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/17/facebook-share/" class="article-date">
+	  <time datetime="2019-04-17T14:59:09.000Z" itemprop="datePublished">April 17, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Facebook-공유하기-버튼-만들기"><a href="#Facebook-공유하기-버튼-만들기" class="headerlink" title="Facebook 공유하기 버튼 만들기"></a>Facebook 공유하기 버튼 만들기</h1><hr>
+<p>Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자.</p>
+<p>React에서 코드를 작성하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import facebook from &apos;../../image/facebook.png&apos;;</span><br><span class="line"></span><br><span class="line">class Facebook extends Component &#123;</span><br><span class="line">  onClicFacebook = () =&gt; &#123;</span><br><span class="line">    window.open(&apos;https://www.facebook.com/sharer/sharer.php?u=https://naver.com/&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;Facebook&quot;&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.onClickFacebook&#125;&gt;&lt;img src=&#123;facebook&#125; alt=&quot;facebook&quot;&gt;&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Facebook;</span><br></pre></td></tr></table></figure></p>
+<p>위 코드 중, naver.com 대신 공유할 도메인 주소로 변경하면 된다.</p>
+<p><br></p>
+<p>공유하기 버튼을 클릭하면, 다음과 같이 나온다.</p>
+<p><img src="/images/facebook-share.png" alt="페이스북 공유 페이지"></p>
+<p>위 그림에서 공유할 페이지의 이미지, title, description 등은 원하는 대로 변경할 수 있다.</p>
+<p>React 폴더 중, index.html에 meta 태그로 추가하면, 공유할 썸네일을 원하는대로 커스텀 할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta property=&quot;og:url&quot; content=&quot;https://www.your-domain.com/your-page.html&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:title&quot; content=&quot;Your Website Title&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:description&quot; content=&quot;Your description&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:image&quot; content=&quot;https://www.your-domain.com/path/image.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><br><br>*페이스북 공유 관련 참고 사이트</p>
+<ul>
+<li><a href="https://developers.facebook.com/docs/plugins/share-button" target="_blank" rel="noopener">Facebook Developers 1</a></li>
+<li><a href="https://developers.facebook.com/tools/debug/sharing/?q=https%3A%2F%2Fprayforgangwon.icon.foundation%2F" target="_blank" rel="noopener">Facebook Developers 2</a></li>
+<li><a href="https://developers.facebook.com/docs/sharing/webmasters#markup" target="_blank" rel="noopener">Facebook Developers 3</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Facebook-Share/">Facebook Share</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-kakao-share"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1217,107 +1282,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-webworker"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/10/webworker/">Web Worker</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/03/10/webworker/" class="article-date">
-	  <time datetime="2019-03-10T13:08:23.000Z" itemprop="datePublished">March 10, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Web-Worker란-무엇인가"><a href="#Web-Worker란-무엇인가" class="headerlink" title="Web Worker란 무엇인가?"></a>Web Worker란 무엇인가?</h1><hr>
-<p><strong>Web Worker란, script 실행을 main thread(UI thread)가 아니라 background thread에서 실행할 수 있도록 해주는 API이다.</strong></p>
-<p>*thread란, 어떤 프로그램 내에서 실행되는 흐름의 단위로, 보통 한 프로그램이 하나의 thread를 가지고 있다. 하나의 thread를 갖는다는 의미는, 어떤 이벤트(행위)가 발생했을 때, 그 하나의 이벤트를 처리할 때까지 다른 일은 못하게 된다는 뜻이다. 즉, 한번에 하나씩 처리한다는 뜻이다.</p>
-<p>둘 이상의 thread를 동시에 실행하는 방식을 multi thread라고 한다. 웹 브라우저상의 javascript는 싱글 thread이기 때문에, 한번에 하나의 일 밖에 처리를 못한다. 그래서, 웹페이지에서 script가 실행되면, 해당 웹 페이지는 실행 중인 script가 종료될 때까지 응답 불가 상태, 즉 다른 일을 처리할 수가 없다.</p>
-<p>이때, Web Worker를 사용하면, 시간이 오래 걸리는 javascript 작업 등을 background에서 처리하게 하여, 사용자의 UI를 방해하지 않고, 작업을 수행할 수 있다. 즉, script의 multi thread가 가능하게 된다.</p>
-<p><br></p>
-<h1 id="Web-Worker를-왜-사용하는가"><a href="#Web-Worker를-왜-사용하는가" class="headerlink" title="Web Worker를 왜 사용하는가?"></a>Web Worker를 왜 사용하는가?</h1><hr>
-<p>Web Worker를 사용하는 이유는, script 작업이 복잡하여 시간이 오래 걸리는 경우에도, 사용자의 다른 UI 작업에 방해를 주지 않기 위한 multi thread가 가능하기 때문이다.</p>
-<p><strong>Web Worker의 활용</strong></p>
-<ul>
-<li>사용자의 UI 작업(UI thread)에 방해 없이 계속 수행해야하는 작업이 있을 경우</li>
-<li>background에서 오랜시간 동안 작업해야 하는 경우</li>
-<li>원격에 있는 리소스에 대한 액세스 작업(localstorage를 액세스 하는 경우)이 있을 경우</li>
-<li>복잡한 수학적 계산 작업이 있을 경우</li>
-</ul>
-<p>Web Worker를 사용하기 예전 상황</p>
-<ul>
-<li>스크립트가 수행을 하는데 오랜 시간이 걸릴 때, 브라우저는 무반응 스크립트에 대한 경고를 보여줌</li>
-<li>webworker를 이용한 이후에는 이 문제 해결</li>
-</ul>
-<p><br></p>
-<h1 id="Web-Worker를-어떻게-사용하는가"><a href="#Web-Worker를-어떻게-사용하는가" class="headerlink" title="Web Worker를 어떻게 사용하는가?"></a>Web Worker를 어떻게 사용하는가?</h1><hr>
-<ul>
-<li>How Web Worker works</li>
-<li>기본적인 사용방법</li>
-</ul>
-<p><br></p>
-<h2 id="How-Web-Worker-Works"><a href="#How-Web-Worker-Works" class="headerlink" title="How Web Worker Works"></a>How Web Worker Works</h2><hr>
-<p><img src="/images/how_webworker_works.png" alt="How Web Worker Works"><br>출처: <a href="https://medium.com/@siobhanpmahoney/a-brief-introduction-to-web-workers-e5d6e39d9d28" target="_blank" rel="noopener">How Web Worker Works</a></p>
-<p>Main script가 실행되는 HTML 파일(웹페이지)과 background script가 실행되는 Worker가 있다. HTML 파일(웹페이지)과 Worker간의 데이터를 서로 주고 받으면서, script가 실행되는 방식이다.</p>
-<p>이때, 데이터를 송신할 때는 postMessage 메서드를 사용하고, 데이터를 수신할 때는 onmessage 이벤트 핸들러를 사용한다. HTML 파일(웹페이지)에서 데이터를 송신하거나 수신할 수 있고, Worker에서도 데이터를 송신하거나 수신할 수 있다.</p>
-<p>postMessage는 다수의 window 창간의 정보교환을 목적으로 사용한다. workers는 DOM에 대한 접근 권한이 없어서 직접 웹페이지를 조작이 불가능하다.</p>
-<p><br></p>
-<h2 id="Web-Worker의-기본적인-사용방법"><a href="#Web-Worker의-기본적인-사용방법" class="headerlink" title="Web Worker의 기본적인 사용방법"></a>Web Worker의 기본적인 사용방법</h2><hr>
-<p>코드상으로 Web Worker를 사용하기 위해서는 다음과 같이 해야한다.</p>
-<ul>
-<li>Worker 실행 파일(worker.js) 작성</li>
-<li>Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출</li>
-<li>Worker 종료</li>
-</ul>
-<p><br></p>
-<h3 id="Worker-실행-파일-worker-js-작성"><a href="#Worker-실행-파일-worker-js-작성" class="headerlink" title="Worker 실행 파일(worker.js) 작성"></a>Worker 실행 파일(worker.js) 작성</h3><hr>
-<p>Worker가 실행할 script, 즉 javascript(worker.js) 파일을 만들고 작성한다. 이때, on message 이벤트 핸들러와 postMessage 메서드를 같이 작성한다. 왜냐하면, HTML 페이지로부터 전달 받을 데이터를 onmessage 이벤트 핸들러로 수신받아 처리한 후, postMessage 메서드로 다시 HTML 페이지에 전달해줘야 하기 때문이다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// worker.js</span><br><span class="line"></span><br><span class="line">//웹페이지로부터 메세지를 수신하여 시간이 오래 걸리는 작업 등을 처리</span><br><span class="line">onmessage = function(e)&#123;</span><br><span class="line">  var receiveData = e.data;</span><br><span class="line"></span><br><span class="line">  //워커를 호출한 곳(웹페이지)으로 결과 메시지를 전송</span><br><span class="line">  if(receiveData) &#123;</span><br><span class="line">    var sendData = &quot;I&apos;m working for you&quot;</span><br><span class="line">    postMessage(sendData)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h3 id="Worker를-호출할-HTML-파일-웹페이지-에서-Worker를-호출"><a href="#Worker를-호출할-HTML-파일-웹페이지-에서-Worker를-호출" class="headerlink" title="Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출"></a>Worker를 호출할 HTML 파일(웹페이지)에서 Worker를 호출</h3><hr>
-<p>New 연산자와 Worker 생성자 함수를 이용해 worker 인스턴스를 생성한다. 생성한 worker 인스턴스를 사용해서, Worker(worker.js)에 보낼 데이터를 postMessage 메서드를 이용해 작성하고, 후에, Worker(worker.js)에서 처리된 후 받을 데이터를 on message 이벤트 핸들러를 이용해 작성한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      var worker;</span><br><span class="line">      function callWorker()&#123;</span><br><span class="line">        if(!!window.Worker)&#123; //브라우저가 웹 워커를 지원하는지 확인</span><br><span class="line"></span><br><span class="line">          if(worker) worker.terminate();      //워커가 이미 존재하면 종료시킴</span><br><span class="line">          worker = new Worker(&quot;worker.js&quot;);  //새로운 워커(객체)를 생성</span><br><span class="line"></span><br><span class="line">          //워커로부터 전달되는 메시지를 받음</span><br><span class="line">          worker.onmessage = function(e)&#123;</span><br><span class="line">            alert(e.data);</span><br><span class="line">          &#125;;</span><br><span class="line"></span><br><span class="line">          //워커에게 메시지를 전달</span><br><span class="line">          worker.postMessage(&quot;What does Worker do?&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">          alert(&quot;The current browser does not support web worker api&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      function stopWorker()&#123;</span><br><span class="line">        if(worker)&#123;</span><br><span class="line">          worker.terminate();</span><br><span class="line">          alert(&quot;web worker has terminated&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;button onclick=&quot;callWorker()&quot;&gt;Call web worker&lt;/button&gt;</span><br><span class="line">    &lt;button onclick=&quot;stopWorker()&quot;&gt;Stop web worker&lt;/button&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h3 id="Worker-종료"><a href="#Worker-종료" class="headerlink" title="Worker 종료"></a>Worker 종료</h3><hr>
-<p>Worker 인스턴스는 생성되고 종료될 때까지 계속해서 데이터를 받을 준비를 한다. 그래서, 브라우저나 컴퓨터의 자원을 돌려주기 위해 terminate() 메서드를 사용하여, worker를 반드시 종료해야 한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker.terminate();</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-Worker/">Web Worker</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1428,6 +1392,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/12/aligns/">HTML 요소를 수평/수직 방향으로 정렬하는 방법</a></h6>
+              <span>November 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
               <span>November 12, 2019</span>
             </div>
@@ -1482,18 +1458,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/23/fetch-api-using-redux-saga/">Redux-Saga를 이용한 API 통신</a></h6>
-              <span>April 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1503,7 +1467,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

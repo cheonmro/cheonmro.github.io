@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML 요소를 수평/수직 방향으로 정렬하는 방법 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSSAligns" />
+  
+  
+  
+  
+  <meta name="description" content="수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정 HTML 요소들을 수평방향으로 정렬하는 방법에 대해 알아보자. [1] inline/inline-block 요소 수평으로 정렬하고 싶은 요소의 부모요소에 “text-align”을 사용한다. 예를 들어, Navigation의 각 요소(a 태그)들을 수평으로 정렬시키기 위해서는 a 태그의 부모요소">
+<meta name="keywords" content="CSS,Aligns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML 요소를 수평&#x2F;수직 방향으로 정렬하는 방법">
+<meta property="og:url" content="https://cheonmro.github.io/2019/11/12/aligns/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정 HTML 요소들을 수평방향으로 정렬하는 방법에 대해 알아보자. [1] inline/inline-block 요소 수평으로 정렬하고 싶은 요소의 부모요소에 “text-align”을 사용한다. 예를 들어, Navigation의 각 요소(a 태그)들을 수평으로 정렬시키기 위해서는 a 태그의 부모요소">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-12T10:42:22.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML 요소를 수평&#x2F;수직 방향으로 정렬하는 방법">
+<meta name="twitter:description" content="수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정 HTML 요소들을 수평방향으로 정렬하는 방법에 대해 알아보자. [1] inline/inline-block 요소 수평으로 정렬하고 싶은 요소의 부모요소에 “text-align”을 사용한다. 예를 들어, Navigation의 각 요소(a 태그)들을 수평으로 정렬시키기 위해서는 a 태그의 부모요소">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-aligns" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      HTML 요소를 수평/수직 방향으로 정렬하는 방법
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/12/aligns/" class="article-date">
+	  <time datetime="2019-11-12T10:42:22.000Z" itemprop="datePublished">November 12, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="수평-정렬-수평으로-정렬하고-싶은-대상-요소의-부모요소에서-설정"><a href="#수평-정렬-수평으로-정렬하고-싶은-대상-요소의-부모요소에서-설정" class="headerlink" title="수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정"></a>수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정</h1><hr>
+<p>HTML 요소들을 수평방향으로 정렬하는 방법에 대해 알아보자.</p>
+<p><strong>[1] inline/inline-block 요소<strong></strong></strong></p>
+<p>수평으로 정렬하고 싶은 요소의 부모요소에 “text-align”을 사용한다.</p>
+<p>예를 들어, Navigation의 각 요소(a 태그)들을 수평으로 정렬시키기 위해서는 a 태그의 부모요소인 nav 태그에 “text-align:center;”를 적용해야한다.</p>
+<iframe id="cp_embed_gOOdYjy" src="//codepen.io/cheonmro/embed/gOOdYjy?height=[]]]&theme-id=[result&slug-hash=gOOdYjy&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2] block 요소<strong></strong></strong></p>
+<p>수평으로 정렬하고 싶은 요소가 block 요소일 경우, 정렬대상 요소에 width를 설정하고, margin-left와 margin-right를 auto로 설정한다.</p>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_jOOvOea" src="//codepen.io/cheonmro/embed/jOOvOea?height=[]]]&theme-id=[result&slug-hash=jOOvOea&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p>그런데, 만약 block 요소가 여러개일 경우, 정렬대상 block 요소를 inline-block으로 변경하고, 정렬대상 block 요소의 부모요소에 “text-align:center;”를 적용해야한다.</p>
+<p>만약, 정렬대상 block 요소에 width를 지정하지 않으면, 콘텐츠에 width가 맞추어 width가 결정되므로 명시적으로 width를 지정해야한다.</p>
+<iframe id="cp_embed_KKKxKYo" src="//codepen.io/cheonmro/embed/KKKxKYo?height=[]]]&theme-id=[result&slug-hash=KKKxKYo&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[3] FlexBox를 이용한 수평정렬<strong></strong></strong></p>
+<p>정렬대상 요소의 부모요소에 다음과 같이 flex를 적용하면 정렬대상 요소가 수평으로 정렬된다.</p>
+<iframe id="cp_embed_zYYJxOb" src="//codepen.io/cheonmro/embed/zYYJxOb?height=[]]]&theme-id=[result&slug-hash=zYYJxOb&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h1 id="수직-정렬"><a href="#수직-정렬" class="headerlink" title="수직 정렬"></a>수직 정렬</h1><hr>
+<p>HTML 요소들을 수직방향으로 정렬하는 방법에 대해 알아보자.</p>
+<p><strong>[1] inline/inline-block 요소<strong></strong></strong></p>
+<p><strong>[1-1] single line<strong></strong></strong></p>
+<p>정렬대상 요소의 부모 요소에 padding-top과 padding-bottom 값을 동일하게 적용한다.</p>
+<iframe id="cp_embed_PoodwpJ" src="//codepen.io/cheonmro/embed/PoodwpJ?height=[]]]&theme-id=[result&slug-hash=PoodwpJ&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p>만약, padding을 사용할 수 없다면, 정렬대상 요소에 height와 line-height 값을 동일하게 적용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.main a &#123;</span><br><span class="line">  background: black;</span><br><span class="line">  height: 100px; //</span><br><span class="line">  line-height: 100px; //</span><br><span class="line">  color: white;</span><br><span class="line">  padding: 40px 30px;</span><br><span class="line">  text-decoration: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[1-2] Multiple line<strong></strong></strong></p>
+<p>수직정렬을 할 line이 여러개일 경우, vertical-align을 사용하는 방법도 가능한데, table 속성을 사용해야한다.</p>
+<p>수직정렬 대상요소의 부모요소에 table을 사용하고, 수직정렬 대상요소에 table-cell과 vertical-align을 사용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: table;</span><br><span class="line">  height: 100px;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_ZEEMYaN" src="//codepen.io/cheonmro/embed/ZEEMYaN?height=[]]]&theme-id=[result&slug-hash=ZEEMYaN&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p>또는, padding-top과 padding-bottom 값을 동일하게 적용하는 방법도 가능하다.</p>
+<p><br></p>
+<p><strong>[1-3] FlexBox<strong></strong></strong></p>
+<p>수직정렬 대상요소의 부모요소에 다음과 같이 flex를 적용하면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  height: 400px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[2] block 요소<strong></strong></strong></p>
+<p><strong>[2-1] 해당 요소의 높이가 고정되어 있는 경우(ex) height: 100px;)<strong></strong></strong></p>
+<p>부모 요소를 기준으로 절대 위치를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  height: 100px;</span><br><span class="line">  margin-top: -50px; // 요소의 높이(100px)의 반 만큼 위로 이동</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_LYYJEMx" src="//codepen.io/cheonmro/embed/LYYJEMx?height=[]]]&theme-id=[result&slug-hash=LYYJEMx&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2-2] 해당 요소의 높이가 고정되어 있지 않는 경우<strong></strong></strong></p>
+<p>부모 요소를 기준으로 절대 위치를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translateY(-50%); // 요소의 높이의 반(50%) 만큼 위로 이동</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_vYYzEbe" src="//codepen.io/cheonmro/embed/vYYzEbe?height=[]]]&theme-id=[result&slug-hash=vYYzEbe&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2-3] FlexBox 사용<strong></strong></strong></p>
+<p>부모 요소에 Flexbox를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column; // 위에서 아래로 수직 배치</span><br><span class="line">  justify-content: center; // 중앙정렬</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aligns/">Aligns</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/12/display-property/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">display를 활용한 CSS 레이아웃</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#수평-정렬-수평으로-정렬하고-싶은-대상-요소의-부모요소에서-설정"><span class="nav-number">1.</span> <span class="nav-text">수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#수직-정렬"><span class="nav-number">2.</span> <span class="nav-text">수직 정렬</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

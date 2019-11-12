@@ -98,6 +98,113 @@
         
           <section id="main">
   
+    <article id="post-aligns"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/11/12/aligns/">HTML 요소를 수평/수직 방향으로 정렬하는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/12/aligns/" class="article-date">
+	  <time datetime="2019-11-12T10:42:22.000Z" itemprop="datePublished">November 12, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="수평-정렬-수평으로-정렬하고-싶은-대상-요소의-부모요소에서-설정"><a href="#수평-정렬-수평으로-정렬하고-싶은-대상-요소의-부모요소에서-설정" class="headerlink" title="수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정"></a>수평 정렬: 수평으로 정렬하고 싶은 대상 요소의 부모요소에서 설정</h1><hr>
+<p>HTML 요소들을 수평방향으로 정렬하는 방법에 대해 알아보자.</p>
+<p><strong>[1] inline/inline-block 요소<strong></strong></strong></p>
+<p>수평으로 정렬하고 싶은 요소의 부모요소에 “text-align”을 사용한다.</p>
+<p>예를 들어, Navigation의 각 요소(a 태그)들을 수평으로 정렬시키기 위해서는 a 태그의 부모요소인 nav 태그에 “text-align:center;”를 적용해야한다.</p>
+<iframe id="cp_embed_gOOdYjy" src="//codepen.io/cheonmro/embed/gOOdYjy?height=[]]]&theme-id=[result&slug-hash=gOOdYjy&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2] block 요소<strong></strong></strong></p>
+<p>수평으로 정렬하고 싶은 요소가 block 요소일 경우, 정렬대상 요소에 width를 설정하고, margin-left와 margin-right를 auto로 설정한다.</p>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_jOOvOea" src="//codepen.io/cheonmro/embed/jOOvOea?height=[]]]&theme-id=[result&slug-hash=jOOvOea&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p>그런데, 만약 block 요소가 여러개일 경우, 정렬대상 block 요소를 inline-block으로 변경하고, 정렬대상 block 요소의 부모요소에 “text-align:center;”를 적용해야한다.</p>
+<p>만약, 정렬대상 block 요소에 width를 지정하지 않으면, 콘텐츠에 width가 맞추어 width가 결정되므로 명시적으로 width를 지정해야한다.</p>
+<iframe id="cp_embed_KKKxKYo" src="//codepen.io/cheonmro/embed/KKKxKYo?height=[]]]&theme-id=[result&slug-hash=KKKxKYo&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[3] FlexBox를 이용한 수평정렬<strong></strong></strong></p>
+<p>정렬대상 요소의 부모요소에 다음과 같이 flex를 적용하면 정렬대상 요소가 수평으로 정렬된다.</p>
+<iframe id="cp_embed_zYYJxOb" src="//codepen.io/cheonmro/embed/zYYJxOb?height=[]]]&theme-id=[result&slug-hash=zYYJxOb&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h1 id="수직-정렬"><a href="#수직-정렬" class="headerlink" title="수직 정렬"></a>수직 정렬</h1><hr>
+<p>HTML 요소들을 수직방향으로 정렬하는 방법에 대해 알아보자.</p>
+<p><strong>[1] inline/inline-block 요소<strong></strong></strong></p>
+<p><strong>[1-1] single line<strong></strong></strong></p>
+<p>정렬대상 요소의 부모 요소에 padding-top과 padding-bottom 값을 동일하게 적용한다.</p>
+<iframe id="cp_embed_PoodwpJ" src="//codepen.io/cheonmro/embed/PoodwpJ?height=[]]]&theme-id=[result&slug-hash=PoodwpJ&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p>만약, padding을 사용할 수 없다면, 정렬대상 요소에 height와 line-height 값을 동일하게 적용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.main a &#123;</span><br><span class="line">  background: black;</span><br><span class="line">  height: 100px; //</span><br><span class="line">  line-height: 100px; //</span><br><span class="line">  color: white;</span><br><span class="line">  padding: 40px 30px;</span><br><span class="line">  text-decoration: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[1-2] Multiple line<strong></strong></strong></p>
+<p>수직정렬을 할 line이 여러개일 경우, vertical-align을 사용하는 방법도 가능한데, table 속성을 사용해야한다.</p>
+<p>수직정렬 대상요소의 부모요소에 table을 사용하고, 수직정렬 대상요소에 table-cell과 vertical-align을 사용한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: table;</span><br><span class="line">  height: 100px;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  display: table-cell;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_ZEEMYaN" src="//codepen.io/cheonmro/embed/ZEEMYaN?height=[]]]&theme-id=[result&slug-hash=ZEEMYaN&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p>또는, padding-top과 padding-bottom 값을 동일하게 적용하는 방법도 가능하다.</p>
+<p><br></p>
+<p><strong>[1-3] FlexBox<strong></strong></strong></p>
+<p>수직정렬 대상요소의 부모요소에 다음과 같이 flex를 적용하면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  height: 400px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[2] block 요소<strong></strong></strong></p>
+<p><strong>[2-1] 해당 요소의 높이가 고정되어 있는 경우(ex) height: 100px;)<strong></strong></strong></p>
+<p>부모 요소를 기준으로 절대 위치를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  height: 100px;</span><br><span class="line">  margin-top: -50px; // 요소의 높이(100px)의 반 만큼 위로 이동</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_LYYJEMx" src="//codepen.io/cheonmro/embed/LYYJEMx?height=[]]]&theme-id=[result&slug-hash=LYYJEMx&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2-2] 해당 요소의 높이가 고정되어 있지 않는 경우<strong></strong></strong></p>
+<p>부모 요소를 기준으로 절대 위치를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.child &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translateY(-50%); // 요소의 높이의 반(50%) 만큼 위로 이동</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>예를 들면, 다음과 같다.</p>
+<iframe id="cp_embed_vYYzEbe" src="//codepen.io/cheonmro/embed/vYYzEbe?height=[]]]&theme-id=[result&slug-hash=vYYzEbe&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<p><strong>[2-3] FlexBox 사용<strong></strong></strong></p>
+<p>부모 요소에 Flexbox를 지정한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.parent &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: column; // 위에서 아래로 수직 배치</span><br><span class="line">  justify-content: center; // 중앙정렬</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aligns/">Aligns</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-display-property"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -918,71 +1025,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-facebook-share"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/17/facebook-share/">Facebook 공유하기 버튼 만드는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/17/facebook-share/" class="article-date">
-	  <time datetime="2019-04-17T14:59:09.000Z" itemprop="datePublished">April 17, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Facebook-공유하기-버튼-만들기"><a href="#Facebook-공유하기-버튼-만들기" class="headerlink" title="Facebook 공유하기 버튼 만들기"></a>Facebook 공유하기 버튼 만들기</h1><hr>
-<p>Facebook 공유하기 버튼은 Facebook에서 제공하는 버튼 이미지를 사용해도 되지만, 여기서는 다른 Facebook 이미지를 버튼(일반 이미지)으로 사용하는 방법으로 해보자.</p>
-<p>React에서 코드를 작성하면 다음과 같다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import facebook from &apos;../../image/facebook.png&apos;;</span><br><span class="line"></span><br><span class="line">class Facebook extends Component &#123;</span><br><span class="line">  onClicFacebook = () =&gt; &#123;</span><br><span class="line">    window.open(&apos;https://www.facebook.com/sharer/sharer.php?u=https://naver.com/&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;Facebook&quot;&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.onClickFacebook&#125;&gt;&lt;img src=&#123;facebook&#125; alt=&quot;facebook&quot;&gt;&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Facebook;</span><br></pre></td></tr></table></figure></p>
-<p>위 코드 중, naver.com 대신 공유할 도메인 주소로 변경하면 된다.</p>
-<p><br></p>
-<p>공유하기 버튼을 클릭하면, 다음과 같이 나온다.</p>
-<p><img src="/images/facebook-share.png" alt="페이스북 공유 페이지"></p>
-<p>위 그림에서 공유할 페이지의 이미지, title, description 등은 원하는 대로 변경할 수 있다.</p>
-<p>React 폴더 중, index.html에 meta 태그로 추가하면, 공유할 썸네일을 원하는대로 커스텀 할 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta property=&quot;og:url&quot; content=&quot;https://www.your-domain.com/your-page.html&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:title&quot; content=&quot;Your Website Title&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:description&quot; content=&quot;Your description&quot; /&gt;</span><br><span class="line">&lt;meta property=&quot;og:image&quot; content=&quot;https://www.your-domain.com/path/image.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p><br><br>*페이스북 공유 관련 참고 사이트</p>
-<ul>
-<li><a href="https://developers.facebook.com/docs/plugins/share-button" target="_blank" rel="noopener">Facebook Developers 1</a></li>
-<li><a href="https://developers.facebook.com/tools/debug/sharing/?q=https%3A%2F%2Fprayforgangwon.icon.foundation%2F" target="_blank" rel="noopener">Facebook Developers 2</a></li>
-<li><a href="https://developers.facebook.com/docs/sharing/webmasters#markup" target="_blank" rel="noopener">Facebook Developers 3</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Facebook-Share/">Facebook Share</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1093,6 +1135,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/12/aligns/">HTML 요소를 수평/수직 방향으로 정렬하는 방법</a></h6>
+              <span>November 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
               <span>November 12, 2019</span>
             </div>
@@ -1147,18 +1201,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/23/fetch-api-using-redux-saga/">Redux-Saga를 이용한 API 통신</a></h6>
-              <span>April 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1168,7 +1210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
