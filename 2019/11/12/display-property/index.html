@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>display를 활용한 CSS 레이아웃 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSSdisplay 프로퍼티" />
+  
+  
+  
+  
+  <meta name="description" content="display 프로퍼티 display 프로퍼티는 HTML 요소들을 레이아웃 하는데 자주 사용된다.  display: block; –&amp;gt; block 특성을 가지는 요소로 지정 display: inline; –&amp;gt; inline 특성을 가지는 요소로 지정 display: inline-block; –&amp;gt; inline-block 특성을 가지는 요소로 지정">
+<meta name="keywords" content="CSS,display 프로퍼티">
+<meta property="og:type" content="article">
+<meta property="og:title" content="display를 활용한 CSS 레이아웃">
+<meta property="og:url" content="https://cheonmro.github.io/2019/11/12/display-property/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="display 프로퍼티 display 프로퍼티는 HTML 요소들을 레이아웃 하는데 자주 사용된다.  display: block; –&amp;gt; block 특성을 가지는 요소로 지정 display: inline; –&amp;gt; inline 특성을 가지는 요소로 지정 display: inline-block; –&amp;gt; inline-block 특성을 가지는 요소로 지정">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/display1.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display2.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display3.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display4.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display5.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display6.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/display7.png">
+<meta property="og:updated_time" content="2019-11-12T06:21:02.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="display를 활용한 CSS 레이아웃">
+<meta name="twitter:description" content="display 프로퍼티 display 프로퍼티는 HTML 요소들을 레이아웃 하는데 자주 사용된다.  display: block; –&amp;gt; block 특성을 가지는 요소로 지정 display: inline; –&amp;gt; inline 특성을 가지는 요소로 지정 display: inline-block; –&amp;gt; inline-block 특성을 가지는 요소로 지정">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/display1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-display-property" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      display를 활용한 CSS 레이아웃
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/12/display-property/" class="article-date">
+	  <time datetime="2019-11-12T06:21:02.000Z" itemprop="datePublished">November 12, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="display-프로퍼티"><a href="#display-프로퍼티" class="headerlink" title="display 프로퍼티"></a>display 프로퍼티</h1><hr>
+<p>display 프로퍼티는 HTML 요소들을 레이아웃 하는데 자주 사용된다.</p>
+<ul>
+<li><strong>display: block; –&gt; block 특성을 가지는 요소로 지정</strong></li>
+<li><strong>display: inline; –&gt; inline 특성을 가지는 요소로 지정</strong></li>
+<li><strong>display: inline-block; –&gt; inline-block 특성을 가지는 요소로 지정</strong></li>
+<li><strong>display: none; –&gt; 요소를 화면에 표시하지 않음(공간도 제거)</strong></li>
+</ul>
+<p>각 HTML 요소들은 block 또는 inline의 특성을 가지고 있다.</p>
+<p><br></p>
+<h1 id="요소의-종류"><a href="#요소의-종류" class="headerlink" title="요소의 종류"></a>요소의 종류</h1><hr>
+<h2 id="block-요소"><a href="#block-요소" class="headerlink" title="block 요소"></a>block 요소</h2><p><strong>[1] block 요소 특징</strong></p>
+<ul>
+<li>새로운 라인에서 시작</li>
+<li>width, height, margin, padding 프로퍼티 지정이 가능</li>
+<li>block 요소내에 inline 레벨 요소를 포함 가능</li>
+<li>화면 크기 전체의 가로폭을 차지(width: 100%)</li>
+</ul>
+<p><strong>[2] block 요소 종류</strong></p>
+<ul>
+<li>div</li>
+<li>ul</li>
+<li>li</li>
+<li>p</li>
+<li>h1~h6</li>
+<li>table</li>
+<li>form</li>
+<li>hr</li>
+<li>ol</li>
+</ul>
+<p><br></p>
+<h2 id="inline-요소"><a href="#inline-요소" class="headerlink" title="inline 요소"></a>inline 요소</h2><p><strong>[1] inline 요소 특징</strong></p>
+<ul>
+<li>줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치</li>
+<li>width, height, margin, padding 프로퍼티 지정이 ‘불’가능</li>
+<li>inline 요소내에 block 레벨 요소를 포함 ‘불’가능(inline 요소는 일반적으로 block 요소내에 포함되어 사용)</li>
+<li>content의 너비만큼 가로폭을 차지</li>
+<li>상, 하 여백은 line-height로 지정</li>
+<li>inline 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, 정의하지 않은 space(4px)가 자동 지정</li>
+</ul>
+<p><strong>[2] inline 요소 종류</strong></p>
+<ul>
+<li>span</li>
+<li>a</li>
+<li>img</li>
+<li>strong</li>
+<li>br</li>
+<li>input</li>
+<li>select</li>
+<li>button</li>
+<li>textarea</li>
+</ul>
+<p><br></p>
+<h2 id="inline-block-요소"><a href="#inline-block-요소" class="headerlink" title="inline-block 요소"></a>inline-block 요소</h2><p><strong>[1] inline-block 요소 특징(block과 inline 요소의 특징을 모두 갖음)</strong></p>
+<ul>
+<li>inline 요소와 같이 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있음</li>
+<li>block 요소와 같이 width, height, margin, padding 프로퍼티 지정이 가능</li>
+<li>content의 너비만큼 가로폭을 차지</li>
+<li>상, 하 여백을 margin과 line-height 두가지 프로퍼티 모두를 통해 제어 가능</li>
+<li>inline-block 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우, 정의하지 않은 space(4px)가 자동 지정</li>
+</ul>
+<p><br></p>
+<h1 id="display-v-visibility"><a href="#display-v-visibility" class="headerlink" title="display v. visibility"></a>display v. visibility</h1><hr>
+<p>visibility 프로퍼티는 요소를 보이게/안보이게 할 것인지를 정의한다. 즉, 요소의 렌더링 여부를 결정한다.</p>
+<ul>
+<li><strong>display: visible; –&gt; 해당 요소를 보이게 함 (default)</strong></li>
+<li><strong>display: hidden; –&gt; 해당 요소를 보이지 않게 함</strong></li>
+<li><strong>display: collapse; –&gt; table 요소에 사용하며 행이나 열을 보이지 않게 함</strong></li>
+<li><strong>display: none; –&gt; table 요소의 row나 column을 보이지 않게 함.(IE, 파이어폭스에서만 동작하며 크롬에서는 hidden과 동일하게 동작)</strong></li>
+</ul>
+<p><strong>display:none; 과 visibility:hidden 의 차이</strong></p>
+<ul>
+<li><strong>display: none;</strong>은 해당 요소의 공간까지 사라진다.</li>
+<li><strong>visibility: hidden;</strong>은 해당 요소의 공간은 사라지지 않고 남아있게 된다.</li>
+</ul>
+<p><br></p>
+<h1 id="display-활용-방법"><a href="#display-활용-방법" class="headerlink" title="display 활용 방법"></a>display 활용 방법</h1><hr>
+<p>로고와 navigation을 포함한 Header를 다음과 같이 만들어보자.(React)</p>
+<p><img src="/images/display1.png" alt="최종 Header"></p>
+<p><br></p>
+<p>현재상태는 다음과 같다.</p>
+<p><img src="/images/display2.png" alt="현재 Header"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// css</span><br><span class="line">header &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 60px;</span><br><span class="line">  z-index: 2000;</span><br><span class="line">  background-color: #fff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Header component</span><br><span class="line"></span><br><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import Logo from &quot;../images/logo.png&quot;;</span><br><span class="line"></span><br><span class="line">const Header = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div id=&quot;wrap&quot;&gt;</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;a className=&quot;logo&quot; href=&quot;#home&quot;&gt;</span><br><span class="line">          &lt;img src=&#123;Logo&#125; height=&quot;36px&quot; alt=&quot;my&quot; /&gt;</span><br><span class="line">        &lt;/a&gt;</span><br><span class="line">        &lt;nav&gt;</span><br><span class="line">          &lt;ul className=&quot;nav-items&quot;&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;a href=&quot;#projects&quot;&gt;Projects&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;a href=&quot;#contact&quot;&gt;Contact&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;li&gt;</span><br><span class="line">              &lt;a href=&quot;#about&quot;&gt;About&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          &lt;/ul&gt;</span><br><span class="line">        &lt;/nav&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Header;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[1] Navagation을 우측 상단으로 정렬한다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nav &#123;</span><br><span class="line">  float: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/display3.png" alt="현재 Header"></p>
+<p><br></p>
+<p><strong>[2] logo 이미지를 수직으로 중앙 정렬을 한다.</strong></p>
+<ul>
+<li>logo 이미지를 포함하는 “a” 태그의 height를 img 태그(logo 이미지)와 동일한 height인 36px로 지정한다.</li>
+<li>header의 height인 60px과 맞추기 위해, 상/하 여백으로 맞추는데, margin을 사용한다.</li>
+<li>이때, a 태그는 inline 요소이기 때문에, margin을 적용하기 위해서는 “display: inline-block;”을 설정해야 한다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.logo &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  height: 36px;</span><br><span class="line">  margin: 12px 0 12px 25px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/display4.png" alt="현재 Header"></p>
+<p><br></p>
+<p><strong>[3] Navigation의 각 요소들을 수평정렬한다.</strong></p>
+<ul>
+<li>각 Navigation의 요소들은 “li”로 block 요소이기 때문에, “display:inline-block;”로 설정해야한다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.nav-items &gt; li &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/display5.png" alt="현재 Header"></p>
+<p><br></p>
+<p><strong>[4] 각 Navigation 요소들을 Header와 맞추기 위해 수직으로 중앙 정렬한다.</strong></p>
+<ul>
+<li>각 Navigation의 텍스트의 높이를 Header의 height 동일하게 하기 위해 “line-height: 60px;”를 설정한다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.nav-items &gt; li &gt; a &#123;</span><br><span class="line">  line-height: 60px;</span><br><span class="line">  padding: 0 30px;</span><br><span class="line">  color: rgba(0, 0, 0, 0.4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/display6.png" alt="현재 Header"></p>
+<p><br></p>
+<p><strong>[5] 각 Navigation의 텍스트에 Mouse를 갖다대면 색상이 변하게 한다.</strong></p>
+<ul>
+<li>가상 셀렉터인 “:hover”를 이용한다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.nav-items &gt; li &gt; a:hover &#123;</span><br><span class="line">  color: rgba(0, 0, 0, 1.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/display7.png" alt="현재 Header"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/display-프로퍼티/">display 프로퍼티</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/12/box-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS Box Model</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#display-프로퍼티"><span class="nav-number">1.</span> <span class="nav-text">display 프로퍼티</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#요소의-종류"><span class="nav-number">2.</span> <span class="nav-text">요소의 종류</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#block-요소"><span class="nav-number">2.1.</span> <span class="nav-text">block 요소</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-요소"><span class="nav-number">2.2.</span> <span class="nav-text">inline 요소</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-block-요소"><span class="nav-number">2.3.</span> <span class="nav-text">inline-block 요소</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#display-v-visibility"><span class="nav-number">3.</span> <span class="nav-text">display v. visibility</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#display-활용-방법"><span class="nav-number">4.</span> <span class="nav-text">display 활용 방법</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

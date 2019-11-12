@@ -98,6 +98,198 @@
         
           <section id="main">
   
+    <article id="post-package-json"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/12/23/package-json/">package.json, node_modules, 그리고 package-lock.json간의 관계</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/12/23/package-json/" class="article-date">
+	  <time datetime="2018-12-22T15:13:46.000Z" itemprop="datePublished">December 23, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="npm이란-무엇인가"><a href="#npm이란-무엇인가" class="headerlink" title="npm이란 무엇인가?"></a>npm이란 무엇인가?</h1><hr>
+<p><strong>npm(node package manager)</strong>은 노드 패키지 매니저의 약자로써, 모듈(패키지) 관리(설치, 업데이트, 삭제)를 하기위한 매니저이다.</p>
+<p>노드의 정의는 크게 2가지로 나눌 수 있다.</p>
+<ul>
+<li><strong>서버</strong>: 네트워크를 통해 클라이언트에 정보나 서비스를 제공하는 컴퓨터 또는 프로그램을 말한다.</li>
+<li><strong>자바스크립트 런타임</strong>: 자바스크립트 프로그램을 컴퓨터에서 실행할 수 있게 하는 환경을 말한다.</li>
+</ul>
+<p><strong>npm에서의 노드는 자바스크립트 런타임을 의미한다.</strong> 즉, 대부분의 자바스크립트 프로그램은 패키지라는 이름으로 npm에 등록되어 특정 기능을 하는 패키지가 필요하면, npm에서 찾아 설치하면 된다. npm에 업로드된 노드 모듈(자바스크립트 기반으로 만들어진 프로그램 파일)을 패키지라고 부른다. 그래서, npm을 자바스크립트 패키지 매니저라고도 부른다.</p>
+<p>모듈이 다른 모듈을 사용할 수 있는 것처럼, 어떤 패키지가 다른 패키지를 사용할 수 있다. 이런 관계를 <strong>의존 관계(dependencies)</strong>라고 부른다.</p>
+<p>이런 패키지 매니저가 npm 말고도, 페이스북에서 만든 yarn도 있다.</p>
+<p><br></p>
+<h1 id="npm은-왜-사용하는가"><a href="#npm은-왜-사용하는가" class="headerlink" title="npm은 왜 사용하는가?"></a>npm은 왜 사용하는가?</h1><hr>
+<p>npm에는 약 60만 개(2018년 6월 기준)의 패키지가 등록되어 있는데, 이는 대부분 오픈소스로 등록되어 있어 웹개발을 할 때 많은 도움이 된다.</p>
+<p>또한, 새로운 모듈(패키지)를 설치하거나 관리를 위해, npm은 npm cli를 제공해서 cli 명령어로 설치, 업데이트 및 삭제를 쉽게 할 수 있다.</p>
+<p><br></p>
+<h1 id="package-json이란-무엇인가"><a href="#package-json이란-무엇인가" class="headerlink" title="package.json이란 무엇인가?"></a>package.json이란 무엇인가?</h1><hr>
+<p><strong>package.json</strong>이란, <strong>생성한 프로젝트의 메타정보와 이 프로젝트가 의존하고 있는(설치한) 모듈들에 대한 정보들을 json 형태로 모아놓은 파일이다.</strong></p>
+<p>package.json 파일내에 있는 각 속성들에 대해서는 다음 링크를 참고하면 좋을 것 같다.<br><a href="https://programmingsummaries.tistory.com/385" target="_blank" rel="noopener">package.json에 대한 자세한 설명</a></p>
+<p><br></p>
+<h1 id="package-json은-왜-사용하는가"><a href="#package-json은-왜-사용하는가" class="headerlink" title="package.json은 왜 사용하는가?"></a>package.json은 왜 사용하는가?</h1><hr>
+<p>만약 이 package.json 파일을 사용하지 않을 경우 다음과 같은 문제가 발생할 수 있다.</p>
+<ul>
+<li>프로젝트에서 사용하는 외부 모듈들이 많아지게 되면, 관리하기가 어려워진다.</li>
+<li>각 패키지들은 고유한 버전이 있기 때문에, 따로 기록해 두어야 한다. 왜냐하면, 패키지의 버전도 빈번하게 업데이트가 되기 때문이다.</li>
+<li>새로운 프로젝트를 진행할 때, 필요한 모듈들이 많다면 매번 npm 명령으로 설치해야 하는 번거로움이 있다.</li>
+</ul>
+<p>이런 경우, 필요한 패키지들의 목록을 파일로 정리해놓고, 목록 파일을 이용하여 단 한번의 명령어로 필요한 패키지들을 모두 설치할 수 있다. 이러한 패키지 정의 파일을 package.json 파일이라고 한다. 즉, <strong>package.json은 프로젝트에 대한 메타정보, 그리고 설치한 패키지의 의존성 및 버전을 관리하는 파일이다.</strong></p>
+<p>vue cli로 Vue 프로젝트를 생성하면, 자동으로 package.json 파일이 만들어 지지만, npm init을 사용하면, package.json 파일을 직접 만들 수도 있다. 그리고, 팀 내에서 동일한 개발환경을 구축하려고 할 때, 이미 작성된 package.json 파일이 있다면, 팀 내에 배포하여 동일한 개발환경을 빠르게 구축할 수 있다.</p>
+<p><br></p>
+<h1 id="node-modules란-무엇인가"><a href="#node-modules란-무엇인가" class="headerlink" title="node_modules란 무엇인가?"></a>node_modules란 무엇인가?</h1><hr>
+<p>Vue 프로젝트를 생성하면, package.json 파일 뿐만 아니라, node_modules 디렉토리가 같이 생성된다. package.json에는 프로젝트가 의존하고 있는 모듈들에 대한 정보가 나와있고, node_modules 디렉토리에는 package.json에 있는 모듈 뿐만 아니라, package.json에 있는 모듈이 의존하고 있는 모듈 전부를 포함하고 있다. 그래서 node_modules 디렉토리안에는 정말 많은 모듈들이 들어가 있다. npm으로 새로운 모듈(패키지)를 설치하게 되면, package.json과 node_modules에 추가된다.</p>
+<p>참고로, git에 커밋할 때, node_modules을 제외해도 된다. 왜냐하면, node_modules가 없어도, package.json에 설치한 패키지들이 모두 있기 때문에, <code>npm install</code>로 node_modules를 언제든지 설치가 가능하기 때문이다.</p>
+<p><br></p>
+<h1 id="package-lock-json이란-무엇인가"><a href="#package-lock-json이란-무엇인가" class="headerlink" title="package-lock.json이란 무엇인가?"></a>package-lock.json이란 무엇인가?</h1><hr>
+<p><strong>package-lock.json은 이 package-lock.json이 생성되는 시점의 의존성 트리(node_modules)에 대한 정보를 가지고 있는 파일을 말한다.</strong> 의존성 트리는 package.json에 등록된 모듈과 그 모듈들이 의존하고 있는 모듈 전부를 포함하고 있기 때문에, 결국 package-lock.json도 이 모든 모듈들을 가지고 있다. npm을 사용해서 node_modules나 package.json을 수정하게 되면, package-lock.json 또한 자동으로 업데이트가 된다.</p>
+<p><br></p>
+<h1 id="package-lock-json은-왜-사용하는가"><a href="#package-lock-json은-왜-사용하는가" class="headerlink" title="package-lock.json은 왜 사용하는가?"></a>package-lock.json은 왜 사용하는가?</h1><hr>
+<p>package.json 파일에는 의존성 모듈(dependencies)의 version range가 사용된다. version range란, 특정 버전이 아닌, 버전의 범위를 의미한다. 예를 들어, <code>npm install express</code>로 express를 설치하면, package.json에는 ‘^4.10.3’(Caret Ranges)과 같이 버전 범위가 추가된다. 이 버전의 express가 추가된 package.json을 가지고 <code>npm install</code>을 실행하면, 현재는 4.10.3 버전이 설치되지만, express의 버전이 업데이트된 상태로 publish가 된 후에, 동일한 package.json 파일로 <code>npm install</code>을 실행했을 경우, 원래 버전이 아닌, 새로 업데이트된 버전으로 express가 변경된다. 이럴 경우, 기존에 가지고 있던 node_modules(의존성 트리)에 있던 모듈의 버전과 충돌이 일어나, 오류를 발생시킬 수 있다. 이 문제를 해결하기 위해, package-lock.json을 사용하는 것이다.</p>
+<p>package-lock.json은 node_modules(의존성 트리)에 대한 정보를 가지고 있는데, package-lock.json이 업데이트가 되는 시점에 node_modules(의존성 트리)을 재생성할 수 있다. 그래서, package-lock.json 파일이 있다면, <code>npm install</code>로 package.json과 package-lock.json에 있는 모듈이 새로 업데이트되는 동시에, node_modules(의존성 트리)가 새로 생성되어, 각 파일이 가지고 있는 모듈의 버전을 동일하게 맞출 수가 있게 된다.</p>
+<p>즉, package.json에 있는 모듈의 버전은 <code>npm install</code>을 수행하는 시점에 따라 달라진다. 이 말은, <code>npm install</code>을 수행하는 시점에 publish 되어있는 모듈의 버전으로 업데이트가 된다는 뜻이다. 이렇게 되면, package.json과 package-lock.json에 있는 모듈이 같은 버전으로 업데이트가 되고, 이때 package-lock.json 때문에 node_modules(의존성 트리)가 재생성되어, 3개의 파일에 있는 모듈이 모두 같은 버전으로 맞춰지게 되어 오류가 안나게 된다.</p>
+<p>이런 이유로, git에 커밋할 때, package.json 파일 뿐만 아니라, packge-lock.json 파일 또한 같이 커밋을 해야 한다.</p>
+<p><br></p>
+<h1 id="패키지-version"><a href="#패키지-version" class="headerlink" title="패키지 version"></a>패키지 version</h1><hr>
+<p>노드 패키지들의 버전은 세 자리로 되어있는데, 이는 SemVer 방식의 버전 넘버링을 따르기 때문이다. SemVer는 Semantic Versioning(유의적 버전)의 약어인데, 이는 버전을 구성하는 세 자리가 모두 의미가 있다는 뜻이다.</p>
+<p>서비스를 개발하다 보면, 정말 많은 패키지들을 사용하게 되는데, 이런 많은 패키지들이 서로 얽히다 보면 문제가 생길 수 있다. 예를 들어, 어떤 패키지의 버전을 업그레이드 했는데, 그것을 사용하는 다른 패키지에서 에러가 발생한다면 문제가 된다. 따라서 버전 번호를 어떻게 정하고, 올려야 하는지를 명시하는 규칙을 만들었는데, 이것이 바로 SemVer 이다.</p>
+<p>버전은 세 자리로 구성되어 있다.</p>
+<ul>
+<li><strong>major 버전</strong>: 하위 호환이 안될 정도로 패키지의 내용이 수정되었을 때 올린다.<ul>
+<li>주 버전이 0이면, 초기 개발 중이라는 뜻이다.</li>
+<li>1부터는 정식 버전이다.</li>
+<li>만약, 1.7.1에서 2.0.0으로 올렸다면, 1.7.1 버전 패키지를 사용하고 있던 사람들이 2.0.0으로 업데이트 했을 때, 에러가 발생할 확률이 크다.</li>
+</ul>
+</li>
+<li><strong>minor 버전</strong>: 하위 호환이 되는 업데이트 시에 올린다.<ul>
+<li>만약, 1.7.1에서 1.8.0으로 올렸다면, 1.7.1 사용자가 1.8.0으로 업데이트 했을 때, 아무 문제가 없어야 한다.</li>
+</ul>
+</li>
+<li><strong>patch 버전</strong>: 새로운 기능이 추가되었다기 보다는, 기존 기능에 문제가 있어 수정한 것을 내놓았을 때, patch 버전을 올린다.<ul>
+<li>1.7.0에서 1.7.1으로 올렸다면, 업데이트 후 문제가 없어야 한다.</li>
+</ul>
+</li>
+</ul>
+<p>새 버전을 배포한 후에는, 그 버전의 내용을 절대 수정하면 안된다. 만약, 수정 사항이 생기면, major버전, minor 버전, patch버전 중 하나를 의미에 맞게 올려서 새로운 버전으로 배포해야 한다.</p>
+<p>버전의 숫자마다 의미가 부여되어 있기 때문에, 다른 패키지를 사용할 때도 버전만 보고 에러 발생 여부를 판단할 수 있다.</p>
+<p>만약, 의존하는 패키지의 major 버전이 업데이트 되었다면, 기존 코드와 호환이 되지 않을 확률이 크기 때문에, 미리 주의를 기울여야 한다. 만약, minor나 patch 버전으로 업데이트 되었다면, 상대적으로 안심하고 버전을 올리 수 있다.</p>
+<p>package.json에는 버전 말고도, 다른 기호(‘^’, ‘~’ 등)들이 있다. 이런 기호들은 버전에는 포함되지 않지만, 설치 또는 업데이트 시 어떤 버전의 범위를 설치해야 하는지 알 수 있다.</p>
+<ul>
+<li><strong>^(캐럿)</strong>: minor 버전까지만 설치 또는 업데이트한다.<ul>
+<li>예를 들어, npm install express@^1.7.1 이라면, 1.7.1 &lt;= 버전 &lt; 2.0.0까지 설치가 되고, 2.0.0은 설치되지 않는다.</li>
+</ul>
+</li>
+<li><strong>~(틸트)</strong>: patch 버전까지만 설치 또는 업데이트한다.<ul>
+<li>npm install express@~1.7.1 이라면, 1.7.1 &lt;= 버전 &lt; 1.8.0까지 설치가 된다.</li>
+</ul>
+</li>
+</ul>
+<p>~ 보다 ^가 많이 사용되는 이유는, minor 버전까지는 하위 호환이 되기 때문이다.</p>
+<p><a href="https://semver.npmjs.com/" target="_blank" rel="noopener">npm semver calculator</a>에 방문하면, 패키지 별로 버전 표기법을 사용하여, 업데이터 버전 범위를 확인 가능하다.</p>
+<p>참고로, npm install 명령어의 패키명 뒤에 @버전을 추가하면 패키지 버전을 지정하여 설치할 수 있다.</p>
+<p><br></p>
+<h1 id="nodemon이란"><a href="#nodemon이란" class="headerlink" title="nodemon이란?"></a>nodemon이란?</h1><hr>
+<p><strong>nodemon은 프로젝트 폴더의 파일들을 모니터링하고 있다가, 파일이 수정될 경우 자동으로 서버를 재시작을 해준다.</strong> nodemon을 위해서 소스에 다른 설정을 추가할 필요도 없기 때문에 상당히 편리하게 사용할 수 있습니다.</p>
+<p><br></p>
+<h1 id="–save와-–dev"><a href="#–save와-–dev" class="headerlink" title="–save와 –dev"></a>–save와 –dev</h1><hr>
+<p><code>npm install 모듈명 --save</code> 을 입력하면, 설치하는 모듈을 package.json에 등록할 수 있다.(npm@5 부터는 –save는 기본옵션이다.)<br>그래서, npm@5 부터는 –save 옵션을 사용하지 않더라도, 모든 install 명령은 package.json의 dependencies에 설치되어 관리된다.<br>그리고, <code>npm install 모듈명 --save --dev</code>을 입력하면, 설치하는 모듈을 package.json에 등록할 수 있을 뿐만 아니라, –dev 때문에, package.json 파일에서 devDepencies에 등록된다. devDepencies에서 관리하는 모듈들은 개발용 모듈들이고, depencies에서 관리하는 모듈들은 배포용 모듈들이다.</p>
+<p>package.json에 명시된 모든 의존 패키지를 한번에 설치하기 위해서는, npm install 명령어를 사용하면 된다.</p>
+<p><br></p>
+<h1 id="자주-사용하는-npm-명령어"><a href="#자주-사용하는-npm-명령어" class="headerlink" title="자주 사용하는 npm 명령어"></a>자주 사용하는 npm 명령어</h1><hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">목적</th>
+<th style="text-align:center">npm 명령어</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">package.json 생성</td>
+<td style="text-align:center">npm init</td>
+</tr>
+<tr>
+<td style="text-align:center">패키지 로컬 설치</td>
+<td style="text-align:center">npm install package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">패키지 전역 설치</td>
+<td style="text-align:center">npm install -g package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">패키지 개발 설치</td>
+<td style="text-align:center">npm install –save –dev package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">package.json의 모든 패키지 설치</td>
+<td style="text-align:center">npm install</td>
+</tr>
+<tr>
+<td style="text-align:center">package.json의 모든 패키지 설치</td>
+<td style="text-align:center">npm install</td>
+</tr>
+<tr>
+<td style="text-align:center">로컬/개발 패키지 제거</td>
+<td style="text-align:center">npm uninstall package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">전역 패키지 제거</td>
+<td style="text-align:center">npm uninstall -g package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">패키지 업데이트</td>
+<td style="text-align:center">npm update package-name</td>
+</tr>
+<tr>
+<td style="text-align:center">버전 확인</td>
+<td style="text-align:center">npm -v</td>
+</tr>
+<tr>
+<td style="text-align:center">npm 명령어 설명 참조</td>
+<td style="text-align:center">npm help <command></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Package-json/">Package.json</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-vue-project"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1019,58 +1211,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-graph-vs-tree"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/06/graph-vs-tree/">그래프(Graph)와 트리(Tree)의 차이점</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/06/graph-vs-tree/" class="article-date">
-	  <time datetime="2018-11-06T02:41:24.000Z" itemprop="datePublished">November 6, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="그래프-Graph-vs-트리-Tree"><a href="#그래프-Graph-vs-트리-Tree" class="headerlink" title="그래프(Graph) vs. 트리(Tree)"></a>그래프(Graph) vs. 트리(Tree)</h1><hr>
-<p><img src="/images/graph-vs-tree.png" alt="Graph vs. Tree"><br>출처: <a href="https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html" target="_blank" rel="noopener">Graph vs. Tree</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1181,6 +1321,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
+              <span>November 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/12/box-model/">CSS Box Model</a></h6>
               <span>November 12, 2019</span>
             </div>
@@ -1235,18 +1387,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/20/combo-box/">Combo Box</a></h6>
-              <span>April 20, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1256,7 +1396,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

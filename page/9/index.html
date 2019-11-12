@@ -98,6 +98,93 @@
         
           <section id="main">
   
+    <article id="post-event-object"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/09/04/event-object/">Event Object(이벤트 객체)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/09/04/event-object/" class="article-date">
+	  <time datetime="2018-09-03T23:57:18.000Z" itemprop="datePublished">September 4, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Event-Object-이벤트-객체-란-무엇인가"><a href="#Event-Object-이벤트-객체-란-무엇인가" class="headerlink" title="Event Object(이벤트 객체)란 무엇인가?"></a>Event Object(이벤트 객체)란 무엇인가?</h1><hr>
+<p>이벤트 객체란, 이벤트를 발생시킨 요소와 발생한 이벤트에 대한 정보를 제공하는 것을 말한다. 이벤트가 발생하면, 이벤트 객체는 동적으로 생성되어, 이벤트 핸들러에 인자로 암묵적으로 전달된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">  function getColor(e) &#123;</span><br><span class="line">  e.target.style.color = &apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getColor);</span><br></pre></td></tr></table></figure>
+<p>위 코드에서 ‘e’가 이벤트 객체인데, 위 코드처럼 이벤트 핸들러를 선언할 때, 이벤트 객체를 전달받을 첫번째 매개변수를 명시적으로 선언해야 한다. 그 이름은 위와 같이 ‘e’가 되든, ‘event’가 되든 상관이 없다.</p>
+<p>이벤트도 객체이기 때문에, 프로퍼티와 메소드를 가진다.</p>
+<p><br></p>
+<h2 id="Event-Property"><a href="#Event-Property" class="headerlink" title="Event Property"></a>Event Property</h2><hr>
+<h3 id="Event-target-amp-amp-Event-currentTarget"><a href="#Event-target-amp-amp-Event-currentTarget" class="headerlink" title="Event.target &amp;&amp; Event.currentTarget"></a>Event.target &amp;&amp; Event.currentTarget</h3><hr>
+<ul>
+<li>Event.target: 실제로 이벤트를 발생시킨 요소</li>
+<li>Event.currentTarget: 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)</li>
+</ul>
+<p>버튼 2개를 자식요소로 가지고 있는 parent 요소가 있다고 해보자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;btn2&quot;&gt;button 2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventTarget(e) &#123;</span><br><span class="line">  console.log(e.target); // &lt;button id=&quot;btn1&quot;&gt;button 1&lt;/button&gt;</span><br><span class="line">  console.log(e.currentTarget); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(this); // &lt;div class=&quot;parent&quot;&gt;...&lt;div&gt;</span><br><span class="line">  console.log(e.currentTarget === this); // true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var parent = document.querySelector(&apos;.parent&apos;);</span><br><span class="line">parent.addEventListener(&apos;click&apos;, getEventTarget);</span><br></pre></td></tr></table></figure></p>
+<p>만약 첫번째 버튼(button 1)을 클릭하게 되면 결과는 위와 같이 나온다. e.target은 실제로 이벤트를 발생시킨 요소로, 첫번째 버튼(button 1)이 된다. 그러나, e.currentTarget은 이벤트에 바인딩된 DOM 요소(addEventListener 메소드 앞에 기술된 객체)로, 이벤트가 발생된 곳은 첫번째 버튼이지만, 이벤트에 바인딩된 DOM 요소는 parent(부모요소)이기 때문에, e.currentTarget은 parent 요소가 된다. 또한, addEventListener 함수에서 지정한 이벤트 핸들러 내부의 this는 Event Listener에 바인딩된 요소(parent)를 가리킨다. 이것은 이벤트 객체의 currentTarget 프로퍼티와 같다.</p>
+<p><br></p>
+<h3 id="Event-type-amp-amp-Event-keyCode"><a href="#Event-type-amp-amp-Event-keyCode" class="headerlink" title="Event.type &amp;&amp; Event.keyCode"></a>Event.type &amp;&amp; Event.keyCode</h3><hr>
+<ul>
+<li>Event.type: 발생한 이벤트의 종류</li>
+<li>Event.keyCode: 발생한 이벤트의 키보드 번호</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; class=&quot;val&quot;&gt;</span><br><span class="line">  &lt;button id=&quot;btn&quot;&gt;button&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">function getEventType(e) &#123;</span><br><span class="line">  console.log(e.type); // keyup</span><br><span class="line">  console.log(e.keyCode); // 13</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var inputBox = document.querySelector(&apos;.val&apos;);</span><br><span class="line">inputBox.addEventListener(&apos;keyup&apos;, getEventType);</span><br></pre></td></tr></table></figure>
+<p>어떤 알파벳 하나를 입력하고, 키보드에서 ‘enter’를 입력하게 되면 e.type은 ‘keyup’이 되고, e.keyCode는 13이 된다. 즉, 발생한 이벤트의 타입은 ‘keyup’이고, 발생한 이벤트의 키보드 번호(enter의 키보드 번호)는 13이다.</p>
+<p><br></p>
+<h3 id="Event-preventDefault-amp-amp-Event-stopPropagation"><a href="#Event-preventDefault-amp-amp-Event-stopPropagation" class="headerlink" title="Event.preventDefault() &amp;&amp; Event.stopPropagation()"></a>Event.preventDefault() &amp;&amp; Event.stopPropagation()</h3><hr>
+<ul>
+<li>Event.preventDefault(): 이벤트의 기본 동작을 중단</li>
+<li>Event.stopPropagation(): 이벤트의 전파(버블링/캡처링)를 중단</li>
+</ul>
+<p><br></p>
+<h4 id="Event-preventDefault"><a href="#Event-preventDefault" class="headerlink" title="Event.preventDefault()"></a>Event.preventDefault()</h4><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line"> &lt;a href=&quot;https://cheonmro.github.io/&quot;&gt;블로그로 이동&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">var elem = document.querySelector(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">  elem.addEventListener(&apos;click&apos;, function (e) &#123;</span><br><span class="line">  console.log(e.cancelable); // true</span><br><span class="line"></span><br><span class="line">  // 이벤트의 기본 동작을 중단</span><br><span class="line">  e.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>원래는 ‘a’태그를 클릭하면 블로그로 이동을 해야하지만, 위와 같이 e.preventDefault()를 사용하게 되면, 이벤트의 기본 동작을 중단할 수 있다. 단, Event.cancelable가 true일 경우만 가능하다. Event.cancelable는 이벤트 객체의 프로퍼티로, 요소의 기본 동작을 중단할 수 있는지에 대한 여부(true/false)를 나타낸다.</p>
+<p><br></p>
+<h4 id="Event-stopPropagation"><a href="#Event-stopPropagation" class="headerlink" title="Event.stopPropagation()"></a>Event.stopPropagation()</h4><hr>
+<p>어느 한 요소를 이용하여 이벤트를 처리한 후, 이벤트가 부모 요소로 이벤트가 전파되는 것을 중단하기 위해 사용되는 메소드이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;div id=&quot;divBox&quot;&gt;</span><br><span class="line">  &lt;p id=&quot;paraBox&quot;&gt;블로그</span><br><span class="line">    &lt;a id=&quot;linkBox&quot; href=&quot;https://cheonmro.github.io/&quot;&gt;클릭&lt;/a&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// Javascript</span><br><span class="line">document.getElementById(&quot;divBox&quot;).addEventListener(&quot;click&quot;, clickDiv);</span><br><span class="line">document.getElementById(&quot;paraBox&quot;).addEventListener(&quot;click&quot;, clickPara);</span><br><span class="line">document.getElementById(&quot;linkBox&quot;).addEventListener(&quot;click&quot;, clickLink);</span><br><span class="line"></span><br><span class="line">function clickDiv(event) &#123;</span><br><span class="line">  console.log(&apos;Event for div&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickPara(event) &#123;</span><br><span class="line">  console.log(&apos;Event for p&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function clickLink(event) &#123;</span><br><span class="line">  event.stopPropagation();	// 이벤트의 전파를 중단함.</span><br><span class="line">  console.log(&apos;Stop Propagation!&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위 코드에서 paraBox 요소를 클릭하게 되면, 부모요소로 이벤트가 전파된다. 그러나, linkBox 요소를 클릭하게 되면, 이벤트는 부모요소로 전파되지 않는다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Event-Object/">Event Object</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-event-flow"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1271,101 +1358,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 <!-- Table of Contents -->
 
   
-    <article id="post-how-to-setup-hexo"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/08/06/how-to-setup-hexo/">hexo를 이용해서 블로그를 설치하는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/08/06/how-to-setup-hexo/" class="article-date">
-	  <time datetime="2018-08-05T15:24:54.000Z" itemprop="datePublished">August 6, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="hexo를-이용해서-블로그-설치하기"><a href="#hexo를-이용해서-블로그-설치하기" class="headerlink" title="hexo를 이용해서 블로그 설치하기"></a>hexo를 이용해서 블로그 설치하기</h1><hr>
-<h2 id="hexo-설치하기"><a href="#hexo-설치하기" class="headerlink" title="hexo 설치하기"></a>hexo 설치하기</h2><hr>
-<p>hexo 설치하기 위해서는 기본적으로 설치해야할 것이 2가지가 있다.</p>
-<ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
-<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
-</ul>
-<p><br></p>
-<p>위 2개를 설치했다면, 먼저 npm을 사용해서 hexo를 설치해야 한다.<br>나같은 경우에는 git을 관리하는 dev 폴더안에서 설치했다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>본인이 원하는 이름(나의 경우: myblog)으로 hexo init을 하고, npm을 설치한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myblog</span><br><span class="line">cd myblog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>hexo 서버를 통해 구축된 hexo 기본 사이트를 확인한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
-<p>위와 같이 따라서 설치하면 기본적인 hexo 블로그를 로컬 호스트로 구축을 할 수 있다.</p>
-<p><br><br><br></p>
-<h2 id="Github에서-제공하는-github-io로-사이트-구축하기"><a href="#Github에서-제공하는-github-io로-사이트-구축하기" class="headerlink" title="Github에서 제공하는 github.io로 사이트 구축하기"></a>Github에서 제공하는 github.io로 사이트 구축하기</h2><hr>
-<p>hexo 블로그를 사용하기 위해서는 깃헙에서 제공하는 블로그용 깃헙사이트가 필요하다.</p>
-<p><br></p>
-<p>Github에서 블로그용으로 만들 repo를 생성한다.<br>repo를 username.github.io 이런식으로 만들면 된다.</p>
-<p><br></p>
-<p>내 컴퓨터로 클론한다.<br>나같은 경우 dev 폴더안에서 클론했다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cheonmro/cheonmro.github.io.git</span><br></pre></td></tr></table></figure></p>
-<p><br><br><br></p>
-<h2 id="config-yml에서-세팅하기"><a href="#config-yml에서-세팅하기" class="headerlink" title="_config.yml에서 세팅하기"></a><code>_config.yml</code>에서 세팅하기</h2><hr>
-<p>실제 사이트 url로 배포하기 위해 기본적인 세팅이 필요하다.<br>세팅 관련해서는 항상 <code>_config.yml</code>에서 한다.</p>
-<p>앞으로 hexo 블로그를 이용해서 작성할 모든 내용들을, 위에서 생성한 블로그용 깃헙에서 관리를 할 것이기 때문에, 아래와 같이 type에 git으로 하고, repository에 자신의 블로그용 깃헙 주소를 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/cheonmro/cheonmro.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
-<p><br><br><br></p>
-<h2 id="구축한-사이트-배포하기"><a href="#구축한-사이트-배포하기" class="headerlink" title="구축한 사이트 배포하기"></a>구축한 사이트 배포하기</h2><hr>
-<p>지금까지 구축한 hexo 블로그를 배포(deploy)한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>위 명령어를 실행하게 되면, 자동으로 commit, push가 되어, 깃헙과 웹사이트(블로그)에 파일들이 generate되어, 기본적인 사이트 구축이 완성되게 된다.(웹사이트 자체를 배포할 때 사용한다.)</p>
-<p><br></p>
-<p>위에서 구축한 사이트를 직접 확인한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cheonmro.github.io/</span><br></pre></td></tr></table></figure></p>
-<p><br><br><br></p>
-<h1 id="hexo-블로그의-테마를-바꾸는-방법"><a href="#hexo-블로그의-테마를-바꾸는-방법" class="headerlink" title="hexo 블로그의 테마를 바꾸는 방법"></a>hexo 블로그의 테마를 바꾸는 방법</h1><hr>
-<p>위와 같이, 기본적인 hexo 블로그 설치는 간단한다.<br>기본적으로 <code>themes</code> 폴더안에 있는 <code>landscape</code> 테마를 바탕으로한 기본 사이트가 구축된다.</p>
-<p>hexo 블로그에서 테마를 바꾸고 싶을 때는, 원하는 테마를 <code>themes</code> 안에 가져오고, <code>_config.yml</code>에서 theme의 이름만 바꿔주면 된다.</p>
-<p>원하는 테마를 <code>themes</code> 폴더안으로 git clone 한다.<br>(나같은 경우는 <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank" rel="noopener">hexo-theme-hipaper</a> 테마를 사용했다.)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iTimeTraveler/hexo-theme-hipaper.git</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p><code>_config.yml</code>에서 theme 옆에 이름을 새로 변경할 테마의 이름으로 바꾼다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: hexo-theme-hipaper</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>기존 테마를 지우고, 새로 변경할 테마로 바꾸려면, hexo 블로그를 다시 배포(deploy)해야한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>위와같이 하면, Github의 파일들이 새로 변경할 테마의 내용들로 바뀌고, 사이트 또한 새롭게 변경된다.</p>
-<p><br></p>
-<p>만약, “Deployer not found: git” 이라는 에러가 난다면, deployer를 설치하면 된다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<p>그리고, 다시 배포한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1476,6 +1468,18 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
+              <span>November 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/12/box-model/">CSS Box Model</a></h6>
               <span>November 12, 2019</span>
             </div>
@@ -1530,18 +1534,6 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/20/combo-box/">Combo Box</a></h6>
-              <span>April 20, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1551,7 +1543,7 @@ HTTP client 작성을 위한 Promise 기반의 라이브러리 [axios](https://g
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
