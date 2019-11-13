@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Float를 활용한 CSS 레이아웃 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSSFloat" />
+  
+  
+  
+  
+  <meta name="description" content="Float 개념 Float란, CSS에서 레이아웃을 하기 위한 하나의 기술로써, 주로 block 요소를 가로 정렬하기 위해 사용되는 레이아웃 방법이다.  float: none; -&amp;gt; 요소를 떠 있게 하지 않음(default) float: right; -&amp;gt; 요소를 오른쪽으로 이동시키고, 오른쪽부터 가로로 정렬됨 float: left; -&amp;gt; 요">
+<meta name="keywords" content="CSS,Float">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Float를 활용한 CSS 레이아웃">
+<meta property="og:url" content="https://cheonmro.github.io/2019/11/13/float/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Float 개념 Float란, CSS에서 레이아웃을 하기 위한 하나의 기술로써, 주로 block 요소를 가로 정렬하기 위해 사용되는 레이아웃 방법이다.  float: none; -&amp;gt; 요소를 떠 있게 하지 않음(default) float: right; -&amp;gt; 요소를 오른쪽으로 이동시키고, 오른쪽부터 가로로 정렬됨 float: left; -&amp;gt; 요">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://cheonmro.github.io/images/float1.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float2.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float3.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float4.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float5.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float6.png">
+<meta property="og:image" content="https://cheonmro.github.io/images/float7.png">
+<meta property="og:updated_time" content="2019-11-13T00:03:13.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Float를 활용한 CSS 레이아웃">
+<meta name="twitter:description" content="Float 개념 Float란, CSS에서 레이아웃을 하기 위한 하나의 기술로써, 주로 block 요소를 가로 정렬하기 위해 사용되는 레이아웃 방법이다.  float: none; -&amp;gt; 요소를 떠 있게 하지 않음(default) float: right; -&amp;gt; 요소를 오른쪽으로 이동시키고, 오른쪽부터 가로로 정렬됨 float: left; -&amp;gt; 요">
+<meta name="twitter:image" content="https://cheonmro.github.io/images/float1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-float" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Float를 활용한 CSS 레이아웃
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/13/float/" class="article-date">
+	  <time datetime="2019-11-13T00:03:13.000Z" itemprop="datePublished">November 13, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Float-개념"><a href="#Float-개념" class="headerlink" title="Float 개념"></a>Float 개념</h1><hr>
+<p>Float란, CSS에서 레이아웃을 하기 위한 하나의 기술로써, 주로 block 요소를 가로 정렬하기 위해 사용되는 레이아웃 방법이다.</p>
+<ul>
+<li><strong>float: none; -&gt; 요소를 떠 있게 하지 않음(default)</strong></li>
+<li><strong>float: right; -&gt; 요소를 오른쪽으로 이동시키고, 오른쪽부터 가로로 정렬됨</strong></li>
+<li><strong>float: left; -&gt; 요소를 왼쪽으로 이동시키고, 왼쪽부터 가로로 정렬됨</strong></li>
+</ul>
+<p>float 프로퍼티를 사용하면, 해당 요소를 다음 요소 위에 떠 있게(부유하게) 하는데, 이는 해당 요소가 기본적인 레이아웃에서 벗어나 요소의 모서리가 왼쪽이나 오른쪽으로 이동하는 것을 말한다.(참고로, float를 사용한다면, 요소의 위치를 고정시키는 position의 absolute는 사용하면 안된다.)</p>
+<p><br></p>
+<h1 id="Float-기본-사용법"><a href="#Float-기본-사용법" class="headerlink" title="Float 기본 사용법"></a>Float 기본 사용법</h1><hr>
+<p>왼쪽 또는 오른쪽부터 가로 정렬을 하고 싶은 요소들에 float를 적용하면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  float: &quot;right&quot;, // float 적용</span><br><span class="line">  backgroundColor: &quot;orange&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  width: &quot;100px&quot;,</span><br><span class="line">  height: &quot;100px&quot;,</span><br><span class="line">  margin: &quot;30px&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  float: &quot;left&quot;, // float 적용</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  width: &quot;100px&quot;,</span><br><span class="line">  height: &quot;100px&quot;,</span><br><span class="line">  margin: &quot;30px&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">        first</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">        second</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p>다음과 같이 나온다.</p>
+<p><img src="/images/float1.png" alt="float 적용"></p>
+<p>float를 사용하면 위와 같이, 오른쪽/왼쪽에서 가로 정렬만 가능하다. 만약, 중앙에서 가로 정렬을 하고 싶다면, “margin”을 적용해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  // float: &quot;right&quot;,</span><br><span class="line">  backgroundColor: &quot;orange&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  width: &quot;100px&quot;, //</span><br><span class="line">  height: &quot;100px&quot;,</span><br><span class="line">  margin: &quot;30px auto&quot; // 가로정렬을 위해 auto 적용</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  // float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  width: &quot;100px&quot;, //</span><br><span class="line">  height: &quot;100px&quot;,</span><br><span class="line">  margin: &quot;30px auto&quot; // 가로정렬을 위해 auto 적용</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">        first</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">        second</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/float2.png" alt="중앙 가로 정렬"></p>
+<p><br></p>
+<h1 id="Float-사용시-문제와-해결방법"><a href="#Float-사용시-문제와-해결방법" class="headerlink" title="Float 사용시 문제와 해결방법"></a>Float 사용시 문제와 해결방법</h1><hr>
+<p><strong>[1] float를 적용한 요소와 적용하지 않은 요소간 margin이 사라지는 문제</strong></p>
+<p>다음의 코드를 작성해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  backgroundColor: &quot;blue&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">        first</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">        second</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p>그러면, 다음과 같이 두개의 div가 나온다.</p>
+<p><img src="/images/float3.png" alt="2개의 div"></p>
+<p>여기서 첫번째 div에만 float를 적용하면 어떻게 될까?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  float: &quot;left&quot;, // float 적용</span><br><span class="line">  backgroundColor: &quot;blue&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">        first</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">        second</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/float4.png" alt="1개의 div에 float 적용"></p>
+<p>이렇게 되면, float가 적용된 첫번째 div는 width가 inline 요소와 같이 content에 맞게 최소화가 되고, 다음 요소(두번째 div) 위에 부유하게 된다.(떠있게 된다.) 그러나, 두번째 div 요소의 width는 100%를 그대로 유지한다.</p>
+<p>즉, 두 요소간의 margin은 제대로 표현되지 않는다.</p>
+<p>이 문제를 해결하기 위한 방법은 float를 적용하지 않은 두번째 div에 “overflow:hidden;”을 적용하는 것이다. “overflow: hidden;”은 자식 요소가 부모 요소의 영역보다 클 경우 넘치는 부분을 안보이게 해주는 역할을 하는데, 여기서는 float 프로퍼티가 없어서 제대로 표현되지 못하는 요소를 제대로 출력해준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;blue&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  overflow: &quot;hidden&quot;, // 적용</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  height: &quot;50px&quot;,</span><br><span class="line">  margin: &quot;0 10px&quot;,</span><br><span class="line">  padding: &quot;10px&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">        first</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">        second</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/float5.png" alt="overflow:hidden 적용"></p>
+<p><br></p>
+<p><strong>[2] float가 적용된 자식요소를 포함하는 부모요소의 높이가 정상적으로 반영되지 않는 문제</strong></p>
+<p>다음의 코드를 작성해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const parentStyle = &#123;</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  textAlign: &quot;center&quot;,</span><br><span class="line">  padding: &quot;10px&quot;,</span><br><span class="line">  backgroundColor: &quot;gray&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;blue&quot;,</span><br><span class="line">  width: &quot;50%&quot;,</span><br><span class="line">  padding: &quot;20px 0&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  width: &quot;50%&quot;,</span><br><span class="line">  padding: &quot;20px 0&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleLast = &#123;</span><br><span class="line">  backgroundColor: &quot;red&quot;,</span><br><span class="line">  padding: &quot;10px&quot;,</span><br><span class="line">  color: &quot;white&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div className=&quot;parent&quot; style=&#123;parentStyle&#125;&gt;</span><br><span class="line">        &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">          first</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">          second</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;last&quot; style=&#123;styleLast&#125;&gt;</span><br><span class="line">        last</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/float6.png" alt="부모요소 높이 문제"></p>
+<p>위와 같이, 부모요소의 높이가 정상적이지 못하다. 이를 해결하는 방법은 대표적으로 2가지가 있다.</p>
+<p><strong>[2-1] float가 적용된 요소의 부모요소에 “overflow:hidden”을 적용</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const parentStyle = &#123;</span><br><span class="line">  color: &quot;white&quot;,</span><br><span class="line">  textAlign: &quot;center&quot;,</span><br><span class="line">  padding: &quot;10px&quot;,</span><br><span class="line">  backgroundColor: &quot;gray&quot;,</span><br><span class="line">  overflow: &quot;hidden&quot; // 적용</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[2-2] float가 적용된 요소의 부모요소에 clearfix 클래스를 추가하고, :after 가상 요소 선택자를 적용하여 css를 추가</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">// Side.js</span><br><span class="line"></span><br><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &quot;../clearfix.css&quot;; // clearfix.css 적용</span><br><span class="line"></span><br><span class="line">const styleFirst = &#123;</span><br><span class="line">  float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;blue&quot;,</span><br><span class="line">  width: &quot;50%&quot;,</span><br><span class="line">  padding: &quot;20px 0&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleSecond = &#123;</span><br><span class="line">  float: &quot;left&quot;,</span><br><span class="line">  backgroundColor: &quot;green&quot;,</span><br><span class="line">  width: &quot;50%&quot;,</span><br><span class="line">  padding: &quot;20px 0&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const styleLast = &#123;</span><br><span class="line">  backgroundColor: &quot;red&quot;,</span><br><span class="line">  padding: &quot;10px&quot;,</span><br><span class="line">  color: &quot;white&quot;</span><br><span class="line">&#125;;</span><br><span class="line">const Side = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div className=&quot;parent clearfix&quot;&gt; // clearfix 클래스 추가</span><br><span class="line">        &lt;div className=&quot;childFirst&quot; style=&#123;styleFirst&#125;&gt;</span><br><span class="line">          first</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div className=&quot;childSecond&quot; style=&#123;styleSecond&#125;&gt;</span><br><span class="line">          second</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;last&quot; style=&#123;styleLast&#125;&gt;</span><br><span class="line">        last</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Side;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// clearfix.css</span><br><span class="line"></span><br><span class="line">.parent &#123;</span><br><span class="line">  background-color: blue;</span><br><span class="line">  color: white;</span><br><span class="line">  text-align: center;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  background-color: gray;</span><br><span class="line">&#125;</span><br><span class="line">.parent:after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  display: block;</span><br><span class="line">  clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위와 같이 코드를 작성하면, 다음과 같이 나온다.</p>
+<p><img src="/images/float7.png" alt="clearfix 적용"></p>
+<p><br></p>
+<h1 id="Float-예시"><a href="#Float-예시" class="headerlink" title="Float 예시"></a>Float 예시</h1><hr>
+<p>화면 왼쪽과 오른쪽에 “aside”와 “section” 태그를 보여주려고 한다. 이때, float를 사용해서 코드를 다음과 같이 작성하면 된다. 즉, 화면에 보여주려는 요소들에 float를 적용하고, 해당 요소의 부모요소에 clearfix를 적용하는 방식으로 코드를 작성한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// Float.js</span><br><span class="line"></span><br><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &quot;../clearfix.css&quot;;</span><br><span class="line"></span><br><span class="line">const Float = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div id=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;aside&gt;</span><br><span class="line">        &lt;h1&gt;Aside&lt;/h1&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;</span><br><span class="line">              Economy</span><br><span class="line">            &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">          &lt;li&gt;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;Math&lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      &lt;/aside&gt;</span><br><span class="line">      &lt;section&gt;</span><br><span class="line">        &lt;article id=&quot;economy&quot;&gt;</span><br><span class="line">          &lt;h1&gt;Economy&lt;/h1&gt;</span><br><span class="line">          &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;article id=&quot;math&quot;&gt;</span><br><span class="line">          &lt;h1&gt;Math&lt;/h1&gt;</span><br><span class="line">          &lt;p&gt;...&lt;/p&gt;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">      &lt;/section&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Float;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// clearfix.css</span><br><span class="line"></span><br><span class="line">#parent:after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  display: block;</span><br><span class="line">  clear: both;</span><br><span class="line">&#125;</span><br><span class="line">aside &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 30%;</span><br><span class="line">&#125;</span><br><span class="line">section &#123;</span><br><span class="line">  float: right;</span><br><span class="line">  width: 70%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Float/">Float</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/12/aligns/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML 요소를 수평/수직 방향으로 정렬하는 방법</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Float-개념"><span class="nav-number">1.</span> <span class="nav-text">Float 개념</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Float-기본-사용법"><span class="nav-number">2.</span> <span class="nav-text">Float 기본 사용법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Float-사용시-문제와-해결방법"><span class="nav-number">3.</span> <span class="nav-text">Float 사용시 문제와 해결방법</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Float-예시"><span class="nav-number">4.</span> <span class="nav-text">Float 예시</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -98,6 +98,78 @@
         
           <section id="main">
   
+    <article id="post-how-browser-works"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/10/31/how-browser-works/">브라우저 동작원리</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/10/31/how-browser-works/" class="article-date">
+	  <time datetime="2018-10-31T12:59:40.000Z" itemprop="datePublished">October 31, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Network/">Network</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="브라우저-동작원리-How-Browser-Works"><a href="#브라우저-동작원리-How-Browser-Works" class="headerlink" title="브라우저 동작원리(How Browser Works)"></a>브라우저 동작원리(How Browser Works)</h1><hr>
+<p>브라우저와 서버와의 통신은 다음과 같이 진행된다.</p>
+<p><img src="/images/how_browser_works.png" alt="How Browser Works"><br>출처: <a href="https://poiemaweb.com/js-browser" target="_blank" rel="noopener">How Browser Works</a></p>
+<p>브라우저의 핵심 기능은 사용자가 브라우저에서 URL 입력창에 어떤 사이트를 입력하게 될 때, 그 사이트의 서버에 요청(Request)을 하고, 서버로부터 응답(Response)을 받아 브라우저에 그 사이트의 웹페이지를 표시하는 것이다. 이때, 브라우저는 서버로부터 HTML, CSS, Javascript, 그리고 이미지 파일 등을 받는데, 그 과정은 다음과 같다.</p>
+<ul>
+<li>브라우저가 서버에 첫 요청을 하고, 서버는 먼저 index.html을 응답으로 브라우저에 보낸다.</li>
+<li>브라우저의 렌더링 엔진에 있는 HTML 파서에 의해 파싱(해독)되어, DOM 트리를 생성한다.</li>
+<li>HTML 파서가 html 파일을 파싱할 때, css 태그를 만나면 다시 서버에 요청하고, 서버는 css 파일을 응답으로 브라우저에 보내준다.</li>
+<li>그러면, 브라우저의 렌더링 엔진에 있는 CSS 파서에 의해 파싱되어, CSSOM 트리를 생성한다.</li>
+<li>또한, HTML 파서는 script 태그를 만나게 되면, 자바스크립트 코드를 실행하기 위해, DOM 생성 프로세스를 중지하고, 자바스크립트 엔진으로 제어 권한을 넘긴다.</li>
+<li>그리고, 다시 서버에 요청해, 응답으로 자바스크립트 파일을 응답받아, 자바스크립트 엔진은 자바스크립트 파일을 파싱하여 실행한다.</li>
+<li>자바스크립트의 실행이 완료되면, 다시 HTML 파서로 제어 권한을 넘겨서 브라우저가 중지했던 시점부터 DOM 생성을 재개한다.</li>
+<li>DOM 생성이 완료되면, DOM과 CSSOM 트리는 최종적으로 렌더 트리로 결합하게 된다.</li>
+<li>이 렌더 트리를 기반으로 브라우저는 웹페이지를 화면에 표시하게 된다.</li>
+</ul>
+<p><br></p>
+<p>이처럼, 브라우저는 동기적으로 HTML/CSS/Javascript를 처리한다. 이는 script 태그의 위치에 따라 블로킹이 발생하여, DOM 생성이 지연될 수 있다는 것을 의미한다. 즉, script 태그의 위치는 중요하다.</p>
+<p>그래서, body 요소의 가장 아래에 자바스크립트 태그를 위치시키는 것이 좋다. 그 이유는 다음과 같다.</p>
+<ul>
+<li>HTML 요소들이 자바스크립트 로딩 지연으로 인해 렌더링에 지장 받는 일이 발생하지 않기 때문에, 웹페이지 로딩 시간이 단축되기 때문이다.</li>
+<li>DOM이 완성되지 않은 상태에서 자바스크립트가 DOM을 조작하게 된다면, 에러가 발생할 수 있기 때문이다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Network/">Network</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Browser/">Browser</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-sort-algorithms"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -963,67 +1035,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-queue-stack"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/09/12/queue-stack/">2. Queue Using Two Stacks</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/09/12/queue-stack/" class="article-date">
-	  <time datetime="2018-09-12T01:39:44.000Z" itemprop="datePublished">September 12, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>Create a queue using two stacks.</p>
-<p><br></p>
-<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ol>
-<li>Create a stack.</li>
-<li>Create a queue with two instances of Stack( ).</li>
-<li>For dequeue of Queue, Move elements from stack1(inbox) to stack2(outbox), and return the highest element in outbox.</li>
-</ol>
-<p><br></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">// STACK</span><br><span class="line">function Stack() &#123;</span><br><span class="line">  var items = [];</span><br><span class="line"></span><br><span class="line">  this.push = function() &#123;</span><br><span class="line">    items.push.apply(items, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.pop = function() &#123;</span><br><span class="line">      return items.pop.apply(items, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.size = function() &#123;</span><br><span class="line">      return items.length;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.peek = function() &#123;</span><br><span class="line">      return items;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.isEmpty = function() &#123;</span><br><span class="line">    return items.length === 0;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// STACK TESTS</span><br><span class="line">var stack = new Stack();</span><br><span class="line">stack.push(1, 2, 3, 4, 5);</span><br><span class="line">console.log(stack.peek()); // [ 1, 2, 3, 4, 5 ]</span><br><span class="line">stack.pop();</span><br><span class="line">console.log(stack.peek()); // [ 1, 2, 3, 4 ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// QUEUE</span><br><span class="line">function Queue() &#123;</span><br><span class="line">  var inbox = new Stack();</span><br><span class="line">  var outbox = new Stack();</span><br><span class="line"></span><br><span class="line">  this.eneque = function() &#123;</span><br><span class="line">      inbox.push.apply(inbox, arguments);</span><br><span class="line">  &#125;;</span><br><span class="line">  this.dequeue = function() &#123;</span><br><span class="line">      if (outbox.size() === 0) &#123;</span><br><span class="line">          while (inbox.size())</span><br><span class="line">              outbox.push(inbox.pop());</span><br><span class="line">      &#125;</span><br><span class="line">      return outbox.pop();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.size = function()&#123;</span><br><span class="line">    return inbox.size() + outbox.size();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.peek = function() &#123;</span><br><span class="line">      return outbox.peek();</span><br><span class="line">  &#125;;</span><br><span class="line">  this.isEmpty = function() &#123;</span><br><span class="line">    return inbox.length + outbox.length === 0;</span><br><span class="line">  &#125;;</span><br><span class="line">  this.front = function() &#123;</span><br><span class="line">    if (outbox.size() === 0) &#123;</span><br><span class="line">      while (inbox.size())</span><br><span class="line">        outbox.push(inbox.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return outbox.peek()[0];</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// QUEUE TESTS</span><br><span class="line">var queue = new Queue();</span><br><span class="line">console.log(queue.size()); // 0</span><br><span class="line">queue.eneque(10, 20, 30, 40, 50, 60);</span><br><span class="line">console.log(queue.size()); // 6</span><br><span class="line">console.log(queue.peek()); // [] Not move to outbox yet</span><br><span class="line">console.log(queue.dequeue()); // 10</span><br><span class="line">console.log(queue.dequeue()); // 20</span><br><span class="line">console.log(queue.peek()); // [ 60, 50, 40, 30 ]</span><br><span class="line">console.log(queue.front()); // 60</span><br><span class="line">console.log(queue.size()); // 4</span><br><span class="line">console.log(queue.dequeue()); // 30</span><br><span class="line">console.log(queue.dequeue()); // 40</span><br><span class="line">console.log(queue.peek()); // [ 60, 50 ]</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="What-I-learned"><a href="#What-I-learned" class="headerlink" title="[What I learned]"></a><h3>[What I learned]</h3></h2><p>Use the value of array.pop() as parameter of other array.push()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this.dequeue = function() &#123;</span><br><span class="line">    if (outbox.size() === 0) &#123;</span><br><span class="line">        while (inbox.size())</span><br><span class="line">            outbox.push(inbox.pop());</span><br><span class="line">    &#125;</span><br><span class="line">    return outbox.pop();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1134,6 +1145,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/13/float/">Float를 활용한 CSS 레이아웃</a></h6>
+              <span>November 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/12/aligns/">HTML 요소를 수평/수직 방향으로 정렬하는 방법</a></h6>
               <span>November 12, 2019</span>
             </div>
@@ -1188,18 +1211,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a></h6>
-              <span>April 24, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1209,7 +1220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
