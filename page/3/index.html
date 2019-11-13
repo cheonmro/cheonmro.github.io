@@ -98,6 +98,138 @@
         
           <section id="main">
   
+    <article id="post-icon-unit"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/03/22/icon-unit/">ICON Unit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/22/icon-unit/" class="article-date">
+	  <time datetime="2019-03-22T14:42:15.000Z" itemprop="datePublished">March 22, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ether의-기본단위"><a href="#Ether의-기본단위" class="headerlink" title="Ether의 기본단위"></a>Ether의 기본단위</h1><hr>
+<p>이더리움의 가장 작은 단위는 <code>wei</code> 이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 ether</td>
+<td style="text-align:center">1<em>10^18 wei(=== 1</em>e^18 wei)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 ether</td>
+<td style="text-align:center">1<em>10^9 Gwei(=== 1</em>e^9 Gwei)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 Gwei</td>
+<td style="text-align:center">1<em>10^9 wei(=== 1</em>e^9 wei)</td>
+</tr>
+</tbody>
+</table>
+<p>참고로, Gwei는 가스(이더리움 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
+<p><br></p>
+<h1 id="ICX의-기본단위"><a href="#ICX의-기본단위" class="headerlink" title="ICX의 기본단위"></a>ICX의 기본단위</h1><hr>
+<p>ICON도 이더리움과 비슷한 개념을 사용한다.</p>
+<p>ICON의 가장 작은 단위는 <code>loop</code> 이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1 icx</td>
+<td style="text-align:center">10^18 loop(=== 1*e^18 loop)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 icx</td>
+<td style="text-align:center">10^9 Gloop(=== 1*e^9 Gloop)</td>
+</tr>
+<tr>
+<td style="text-align:center">1 Gloop</td>
+<td style="text-align:center">10^9 loop(=== 1*e^9 loop)</td>
+</tr>
+</tbody>
+</table>
+<p>참고로, Gloop는 step(ICON 네트워크 거래 수수료) 비용을 계산할 때, 주로 사용한다.</p>
+<p><br></p>
+<h1 id="Ethereum-Fee-System"><a href="#Ethereum-Fee-System" class="headerlink" title="Ethereum Fee System"></a>Ethereum Fee System</h1><hr>
+<p>이더리움에서 어떤 1개의 트랜잭션을 실행하는 데 사용자가 지불해야하는 수수료를 최대 트랜잭션 실행 비용(Max Transaction Fee)이라고 한다.</p>
+<p><strong>Max Transaction Fee(최대 트랜잭션 실행 비용) = Gas Limit(가스 총량) * Gas Price(가스 가격)</strong></p>
+<p><strong>Gas Limit(가스 총량)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 가스량을 말한다.</strong></p>
+<p><strong>Gas Price(가스 가격)이란, 1 가스당 가격을 말한다.</strong></p>
+<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Gas Limit(가스 총량) * Gas Price(가스 가격)으로 계산되어진다.</p>
+<p>이때, Gas Limit(가스 총량)은 각 트랜잭션에 필요한 총 가스량을 추정(estimated)해서 계산된 값이 나오고, Gas Price(가스 가격)은 1 가스당 가격으로 이 가격이 높을수록 마이너들이 보상을 많이 받기 때문에, 트랜잭션이 빨리 처리가 된다. 즉, 트랜잭션 실행 속도가 빠르게 된다.</p>
+<p><br></p>
+<p><img src="/images/ether-gas.png" alt="How Gas works"><br>출처: <a href="https://steemit.com/kr-dev/@modolee/q6hpz" target="_blank" rel="noopener">How Gas works</a></p>
+<p><br></p>
+<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 ether 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
+<ul>
+<li>만약 적거나, 트랜잭션 실행 도중에 가스를 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 가스는 발신자에게 반환되지 않는다.</li>
+<li>만약 ether 잔액이 충분하고, 트랜잭션이 성공적으로 실행이 되었는데, 가스가 남았다면 이 가스는 사용자에게 반납된다.</li>
+</ul>
+<p><br></p>
+<h1 id="ICON-Fee-System"><a href="#ICON-Fee-System" class="headerlink" title="ICON Fee System"></a>ICON Fee System</h1><hr>
+<p>ICON의 step limit과 step price는 이더리움의 gas limit과 gas price 개념과 동일하다.</p>
+<p><strong>Estimated Transaction Fee(최대 트랜잭션 실행 비용) = Step Limit(스텝 한도) * Step Price(스텝 가격)</strong></p>
+<p><strong>Step Limit(스텝 한도)이란, 트랜잭션을 실행하는데 예상되는(추정되는) 총 스텝양을 말한다.</strong></p>
+<p><strong>Step Price(스텝 가격)이란, 1 스텝당 가격을 말한다.</strong></p>
+<p>즉, 어떤 사용자가 1개의 트랜잭션을 수행하려고 하면, 그 트랜잭션을 수행하는 것에 대한 수수료(최대 트랜잭션 실행 비용)를 지불해야 하는데, 그 수수료는 Step Limit(스텝 한도) * Step Price(스텝 가격)으로 계산되어진다.</p>
+<p>ICON에서 송금 등의 트랜잭션 실행을 할 때, 기본적으로 Step Limit이 100000이다. 이 값은 default로 사용자가 Step Limit의 값을 변경할 수 있다. 그러나, Step Limit의 최대값과 최소값은 정해져 있어서 그 범위안에서만 변경이 가능하다.</p>
+<p>Step Price는 0.00000001 ICX (10 Gloop)로 고정되어있다.</p>
+<p>어떤 트랜잭션을 실행하려면, 사용자 어카운트에 있는 icx 잔액이 최대 트랜잭션 실행 비용보다 많아야 한다.</p>
+<ul>
+<li>만약 적거나, 트랜잭션 실행 도중에 step을 모두 사용하면, 해당 트랜잭션은 중단되고 이전 상태로 복귀되지만, 사용된 step은 발신자에게 반환되지 않는다.</li>
+<li>만약 step limit을 잔액보다 높게 설정하더라도, 해당 트랜잭션에 필요한 step 만큼만 소진된다.</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ICON/">ICON</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ICON-Unit/">ICON Unit</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-redux-saga"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -1247,108 +1379,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-axios-and-vue"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/12/27/axios-and-vue/">Vue에서 Axios 사용하는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/12/27/axios-and-vue/" class="article-date">
-	  <time datetime="2018-12-27T12:39:31.000Z" itemprop="datePublished">December 27, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Axios란-무엇인가"><a href="#Axios란-무엇인가" class="headerlink" title="Axios란 무엇인가?"></a>Axios란 무엇인가?</h1><hr>
-<p><strong>axios란, Pormise 기반의 http 통신을 위한 클라이언트 라이브러리이다.</strong></p>
-<p>vue에는 vue-resource라는 것이 있으나, 2016년 9월 이후 업데이트가 되어있지않고, Evan You(Vue 만든사람) 또한, 공식적으로 추천하지 않고, axios 쓰는 것을 추천한다.</p>
-<p><br></p>
-<h1 id="Axios-설치하기"><a href="#Axios-설치하기" class="headerlink" title="Axios 설치하기"></a>Axios 설치하기</h1><hr>
-<p>npm으로 axios를 설치한다.</p>
-<p><code>npm install axios vue-axios</code></p>
-<p><br></p>
-<h1 id="Axios-등록하기"><a href="#Axios-등록하기" class="headerlink" title="Axios 등록하기"></a>Axios 등록하기</h1><hr>
-<p><strong>Vue 애플리케이션을 개발할 때, Vuex(store.js)의 actions에서 axios를 사용하므로, store.js에 axios를 등록한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">// axios &amp; vue-axios를 import</span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import VueAxios from &apos;vue-axios&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line">// axios &amp; vue-axios를 등록</span><br><span class="line">Vue.use(VueAxios, axios);</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h1 id="Axios-사용하기"><a href="#Axios-사용하기" class="headerlink" title="Axios 사용하기"></a>Axios 사용하기</h1><hr>
-<h2 id="1-JSON-server-만들기"><a href="#1-JSON-server-만들기" class="headerlink" title="1. JSON server 만들기"></a>1. JSON server 만들기</h2><hr>
-<p><strong>가상의 서버에서 데이터를 만들어 사용하기 위해, 프론트엔드 개발자가 직접 JSON server를 구축하여, axios 통신을 테스트할 수 있다.</strong></p>
-<p><code>npm install -g json-server</code></p>
-<p><br></p>
-<h2 id="2-JSON-server-만들기"><a href="#2-JSON-server-만들기" class="headerlink" title="2. JSON server 만들기"></a>2. JSON server 만들기</h2><hr>
-<p><strong>JSON server에 가상 데이터를 만들기 위해, db.json 파일을 src 폴더 아래에 만들고, 다음과 같이 데이터를 추가한다.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// db.json</span><br><span class="line">&#123;</span><br><span class="line">    &quot;todos&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">         &quot;id&quot;: &quot;1&quot;,</span><br><span class="line">         &quot;text&quot;: &quot;vue&quot;,</span><br><span class="line">         &quot;completed&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;2&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;react&quot;,</span><br><span class="line">          &quot;completed&quot;: false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;3&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;angular&quot;,</span><br><span class="line">          &quot;completed&quot;: true</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">          &quot;id&quot;: &quot;4&quot;,</span><br><span class="line">          &quot;text&quot;: &quot;python&quot;,</span><br><span class="line">          &quot;completed&quot;: false</span><br><span class="line">      &#125;</span><br><span class="line">       ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h2 id="3-JSON-server-띄우기-Running"><a href="#3-JSON-server-띄우기-Running" class="headerlink" title="3. JSON server 띄우기(Running)"></a>3. JSON server 띄우기(Running)</h2><hr>
-<p><code>json-server --watch src/db.json --port 4000</code></p>
-<p><br></p>
-<h2 id="4-Vuex-store-js-의-actions에-메소드-등록하기"><a href="#4-Vuex-store-js-의-actions에-메소드-등록하기" class="headerlink" title="4. Vuex(store.js)의 actions에 메소드 등록하기"></a>4. Vuex(store.js)의 actions에 메소드 등록하기</h2><hr>
-<p>actions에 등록하고, 등록할 때, mutations를 commit하여 변경된 상태를 추적가능하게 하면 된다.</p>
-<p>서버와 통신을 할 때, CRUD라는 것이 있는데, todo 앱과 비교하면 다음과 같다.</p>
-<ul>
-<li><strong>Create</strong>: addTodo</li>
-<li><strong>Read</strong>: getTodo</li>
-<li><strong>Update</strong>: changeTodo(toggle)</li>
-<li><strong>Delete</strong>: deleteTodo</li>
-</ul>
-<p>Vuex(store.js)의 actions에 메소드 등록할 때, 위에 4가지로 나눠서 코드를 작성해보자.</p>
-<p><br></p>
-<h3 id="Create-addTodo"><a href="#Create-addTodo" class="headerlink" title=". Create: addTodo"></a><1>. Create: addTodo</1></h3><hr>
-<p><strong>Create는 클라이언트단에서 데이터를 새로 생성하여, 서버에 추가하는 것이다. todo 앱에서는 addTodo가 된다.</strong></p>
-<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 post<strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  addTodo: function(context, payload) &#123;</span><br><span class="line">    // post를 사용할 때는, 요청할 uri에 보낼 데이터를 같이 요청한다.</span><br><span class="line">    axios.post(&apos;http://localhost:4000/todos&apos;, &#123;</span><br><span class="line">        id: 4,</span><br><span class="line">        text: payload,</span><br><span class="line">        completed: false</span><br><span class="line">    &#125;)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 원래 데이터에 요청한 데이터를 추가한다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;addTodo&apos;, res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">        // 요청이 실패하면, 에러에 대한 조치를 취한다.</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></strong></strong></p>
-<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  addTodo (state, todo) &#123;</span><br><span class="line">    state.todoList = [...state.todoList, todo]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h3 id="Read-getTodo"><a href="#Read-getTodo" class="headerlink" title=". Read: getTodo"></a><2>. Read: getTodo</2></h3><hr>
-<p><strong>Read는 클라이언트단에서 데이터를 서버에 요청하여, 데이터를 받는 것이다. todo 앱에서는 getTodo가 된다.</strong></p>
-<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 get</strong>을 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  getTodo: function(context) &#123;</span><br><span class="line">    // get을 사용할 때는, 요청할 uri를 작성한다.</span><br><span class="line">    axios.get(&apos;http://localhost:4000/todos&apos;)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 원래 데이터에 요청받은 데이터를 할당한다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;getTodo&apos;, res.data)</span><br><span class="line">        &#125;)</span><br><span class="line">        // 요청이 실패하면, 에러에 대한 조치를 취한다.</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  getTodo (state, data) &#123;</span><br><span class="line">    state.todoList = data;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h3 id="Update-changeTodo-toggle"><a href="#Update-changeTodo-toggle" class="headerlink" title=". Update: changeTodo(toggle)"></a><3>. Update: changeTodo(toggle)</3></h3><hr>
-<p><strong>Update는 클라이언트단에서 기존에 있던 데이터를 서버에 요청하여, 데이터를 변경하는 것이다. todo 앱에서는 toggle이 된다.</strong></p>
-<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 patch</strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  toggle: function(context, payload) &#123;</span><br><span class="line">    // patch를 사용할 때는, 요청할 uri에 변경할 데이터의 uri를 붙여서 보낸다. 예를 들어, /todos/id가 올 수 있다.</span><br><span class="line">    axios.patch(`http://localhost:4000/todos/$&#123;payload&#125;`)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 특정 데이터가 변경된 상태로 데이터가 변경된다.</span><br><span class="line">        .then((res) =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;toggle&apos;, payload)</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  toggle (state, id) &#123;</span><br><span class="line">    const index = state.todolist.findIndex((item)=&gt;item.id === id);</span><br><span class="line">    state.todolist[index].completed = !this.todolist[index].completed;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h3 id="Delete-deleteTodo"><a href="#Delete-deleteTodo" class="headerlink" title=". Delete: deleteTodo"></a><4>. Delete: deleteTodo</4></h3><hr>
-<p><strong>Update는 클라이언트단에서 기존에 있던 데이터를 서버에 요청하여, 데이터를 변경하는 것이다. todo 앱에서는 toggle이 된다.</strong></p>
-<p>Vuex(store.js)의 actions에 메소드 등록할 때, <strong>axios의 patch</strong>를 사용한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// store.js</span><br><span class="line">actions: &#123;</span><br><span class="line">  deleteTodo: function(context, payload) &#123;</span><br><span class="line">    // delete를 사용할 때는, 요청할 uri에 제거할 데이터의 uri를 붙여서 보낸다. 예를 들어, /todos/id가 올 수 있다.</span><br><span class="line">    axios.delete(`http://localhost:4000/todos/$&#123;payload&#125;`)</span><br><span class="line">        // 요청이 성공하면, mutations에 commit을 하여, 특정 데이터가 지워진 상태로 데이터가 변경된다.</span><br><span class="line">        .then((res =&gt; &#123;</span><br><span class="line">            console.log(res);</span><br><span class="line">            context.commit(&apos;deleteTodo&apos;, payload)</span><br><span class="line">        &#125;))</span><br><span class="line">        .catch((err) =&gt; &#123;</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>actions에서 commit한 mutations에 로직을 작성한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">  deleteTodo (state, id) &#123;</span><br><span class="line">    state.todoList = state.todoList.filter((t) =&gt; &#123;</span><br><span class="line">        return t.id !== id</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Vue/">Vue</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Axios/">Axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1459,6 +1489,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/13/z-index/">Z-index 이해하기</a></h6>
+              <span>November 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/13/position/">Position을 활용한 CSS 레이아웃</a></h6>
               <span>November 13, 2019</span>
             </div>
@@ -1513,18 +1555,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/11/11/reset-css/">Reset CSS 사용방법</a></h6>
-              <span>November 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1534,7 +1564,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
