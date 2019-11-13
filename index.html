@@ -98,6 +98,127 @@
         
           <section id="main">
   
+    <article id="post-position"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/11/13/position/">Position을 활용한 CSS 레이아웃</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/13/position/" class="article-date">
+	  <time datetime="2019-11-13T03:19:23.000Z" itemprop="datePublished">November 13, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Position-개념"><a href="#Position-개념" class="headerlink" title="Position 개념"></a>Position 개념</h1><hr>
+<p>position이란, 요소의 위치를 정의하는 CSS의 프로퍼티로써, top, bottom, left, right와 함께 요소의 위치를 지정할 때 사용된다.</p>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><hr>
+<p><strong>[1] 특징<strong></strong></strong></p>
+<ul>
+<li>position의 default 값으로써, position을 지정하지 않은 것과 동일하게 작동한다.</li>
+<li>요소를 배치하는 기본적인 순서에 따라 위 -&gt; 아래, 왼쪽 -&gt; 오른쪽 순서에 따라 배치가 된다.</li>
+<li>position의 적용된 요소의 부모요소가 존재한다면, 해당 요소는 부모요소의 기준으로 위치가 배치된다.</li>
+<li>부모요소에서의 width의 100%를 갖고, height는 auto가 적용된다.(line-height로 부모요소와 동일한 height를 가질수 있다.)</li>
+<li>top, bottom, left, right를 같이 사용할 수가 없고, 사용을 해도 무시된다.</li>
+<li>기본적으로 position:static;을 사용하는 일은 거의 없다.</li>
+</ul>
+<p><strong>[2] 사용방법<strong></strong></strong></p>
+<iframe id="cp_embed_eYYLMZE" src="//codepen.io/cheonmro/embed/eYYLMZE?height=[]]]&theme-id=[result&slug-hash=eYYLMZE&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h2 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h2><hr>
+<p><strong>[1] 특징<strong></strong></strong></p>
+<ul>
+<li>기본 위치(static으로 지정되었을 때의 위치)를 기준으로 top, bottom, left, right를 사용하여 위치를 이동시킨다.(static과 동일)</li>
+<li>즉, static과 같이 부모요소가 있을 경우, 부모요소의 위치를 기준으로 위치가 배치된다.(부모요소의 width의 100%, height는 auto)</li>
+<li>이때, top, bottom, left, right를 사용하여 부모요소로부터 상/하/좌/우 방향으로 위치가 이동된다.</li>
+<li>static과의 유일한 차이점은 top, bottom, left, right를 사용하여 위치를 이동시킬 수 있다는 점이다.</li>
+</ul>
+<p><strong>[2] 사용방법<strong></strong></strong></p>
+<iframe id="cp_embed_ExxeEvR" src="//codepen.io/cheonmro/embed/ExxeEvR?height=[]]]&theme-id=[result&slug-hash=ExxeEvR&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h2 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h2><hr>
+<p><strong>[1] 특징<strong></strong></strong></p>
+<ul>
+<li>position에서 relative, absolute, fixed 중 1개가 적용되어 있는 부모요소 또는 그 상위요소를 기준으로 top, bottom, left, right를 사용하여 위치를 이동시킨다.</li>
+<li>이때, 부모 또는 그 상위 요소가 static인 경우, document body를 기준으로 top, bottom, left, right를 사용하여 위치하게 된다.</li>
+<li>부모 요소를 배치의 기준으로 하기 위해서는 부모 요소에 position:relative;를 적용해야한다.</li>
+<li>또한, 다른 요소가 먼저 위치를 점유하고 있어도 position:relative;를 적용한 요소는 뒤로 밀리지 않고 다른 요소를 덮어쓴다.</li>
+<li>absolute 선언 시, block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 적절한 width를 지정하여야 한다.</li>
+</ul>
+<p><strong>[2] 사용방법<strong></strong></strong></p>
+<iframe id="cp_embed_dyyqmZL" src="//codepen.io/cheonmro/embed/dyyqmZL?height=[]]]&theme-id=[result&slug-hash=dyyqmZL&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h2 id="relative-v-absolute"><a href="#relative-v-absolute" class="headerlink" title="relative v. absolute"></a>relative v. absolute</h2><hr>
+<p><strong>[1] relative와 absolute의 차이점<strong></strong></strong></p>
+<ul>
+<li>position: relative; -&gt; 기본위치(부모요소가 있을 경우, 부모요소)를 기준으로 위치한다.</li>
+<li>position: absolute;<ul>
+<li>부모요소에 relative, absolute, fixed 중 1개가 적용되어 있는 경우 -&gt; 부모를 기준으로 위치한다.</li>
+<li>부모요소나 그 상위요소에 static 또는 아무것도 적용된 것이 없는 경우 -&gt; document body를 기준으로 위치한다.(부모 요소의 영역을 벗어나 자유롭게 어디든지 위치할 수 있다.)</li>
+</ul>
+</li>
+</ul>
+<p><strong>[2] 사용방법<strong></strong></strong></p>
+<iframe id="cp_embed_YzzOavm" src="//codepen.io/cheonmro/embed/YzzOavm?height=[]]]&theme-id=[result&slug-hash=YzzOavm&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h2 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h2><hr>
+<p><strong>[1] 특징<strong></strong></strong></p>
+<ul>
+<li>부모 요소와 관계없이 브라우저의 viewport를 기준으로 top, bottom, left, right를 사용하여 위치를 이동시킨다.(특정 위치에 고정시킬 때 사용)</li>
+<li>스크롤이 되더라도 화면에서 사라지지 않고 항상 같은 곳에 위치한다.</li>
+<li>fixed를 적용한 block 요소의 width는 inline 요소와 같이 content에 맞게 변화되므로 적절한 width를 지정하여야 한다.</li>
+</ul>
+<p><strong>[2] 사용방법<strong></strong></strong></p>
+<iframe id="cp_embed_KKKxorX" src="//codepen.io/cheonmro/embed/KKKxorX?height=[]]]&theme-id=[result&slug-hash=KKKxorX&default-tab=[257" scrolling="no" frameborder="no" height="[]]]" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+<p><br></p>
+<h1 id="position-사용-예시"><a href="#position-사용-예시" class="headerlink" title="position 사용 예시"></a>position 사용 예시</h1><hr>
+<p><strong>[1] position: absolute;<strong></strong></strong></p>
+<p>footer를 다른 요소 위에 올려놓고 싶을 경우</p>
+<p>이때, block 요소의 width를 적절히 지정해야한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;footer&gt;© Copyright&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line">// CSS</span><br><span class="line">footer &#123;</span><br><span class="line">  position: absolute; // 다른 요소(aside 등) 위에 올릴 수 있다.</span><br><span class="line">  height: 60px;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding: 0 25px;</span><br><span class="line">  line-height: 60px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>[2] position: fixed;<strong></strong></strong></p>
+<p>header를 최상단에 고정시키고 싶을 경우</p>
+<p>이때, 부모요소 신경 안쓰고, viewport 기준으로 배치가 가능하고, block 요소의 width를 적절히 지정해야한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// HTML</span><br><span class="line">&lt;header&gt;</span><br><span class="line">  &lt;nav&gt;</span><br><span class="line">    &lt;ul class=&quot;nav-items&quot;&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;#home&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;#projects&quot;&gt;Projects&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;#contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">      &lt;li&gt;&lt;a href=&quot;#about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/nav&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line"></span><br><span class="line">// CSS</span><br><span class="line">header &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 60px;</span><br><span class="line">  z-index: 2000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/CSS/">CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Position/">Position</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-float"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -976,96 +1097,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-promise"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/19/promise/">Promise</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/19/promise/" class="article-date">
-	  <time datetime="2019-04-18T16:28:52.000Z" itemprop="datePublished">April 19, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Promise란-무엇인가"><a href="#Promise란-무엇인가" class="headerlink" title="Promise란 무엇인가"></a>Promise란 무엇인가</h1><hr>
-<p>Promise란 자바스크립트 비동기 처리에 사용되는 객체이다. 비동기 처리란, 특정 코드의 실행이 완료될 때까지 기다리지 않고, 다음 코드를 먼저 수행하는 자바스크립트의 특성을 말한다.</p>
-<p><br></p>
-<h1 id="Promise를-사용하는-이유"><a href="#Promise를-사용하는-이유" class="headerlink" title="Promise를 사용하는 이유"></a>Promise를 사용하는 이유</h1><hr>
-<p>자바스크립트는 비동기 처리를 위해 콜백 함수를 사용하였다. 그러나, 콜백 패턴은 처리 순서를 보장하기 위해 콜백 함수가 계속해서 중첩(nesting)되어 복잡도가 높아지는 콜백 헬이 발생하는 문제가 있다. 즉, 가독성이 좋지가 않게 된다. 이 문제를 해결하기 위해 ES6에서는 Promise를 사용한다.</p>
-<p><br></p>
-<h1 id="Promise-사용-방법"><a href="#Promise-사용-방법" class="headerlink" title="Promise 사용 방법"></a>Promise 사용 방법</h1><hr>
-<p><br></p>
-<h3 id="Promise-생성"><a href="#Promise-생성" class="headerlink" title="Promise 생성"></a>Promise 생성</h3><p>Promise는 Promise 생성자 함수를 이용해 인스턴스, 즉 Promise 객체를 반환한다. Promise 생성자 함수는 비동기 작업을 수행할 콜백 함수를 인자로 전달 받는다. 이 콜백 함수는 resolve 함수와 reject 함수이다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 비동기 작업을 수행</span><br><span class="line"></span><br><span class="line">  if (/* 비동기 작업 수행 성공 */) &#123;</span><br><span class="line">    resolve(&apos;result&apos;); // resolve 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123; /* 비동기 작업 수행 실패 */</span><br><span class="line">    reject(&apos;failure&apos;); // reject 함수 호출</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><br></p>
-<h3 id="Promise-실행"><a href="#Promise-실행" class="headerlink" title="Promise 실행"></a>Promise 실행</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error -&gt; console.log(error))</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h3 id="Promise-상태"><a href="#Promise-상태" class="headerlink" title="Promise 상태"></a>Promise 상태</h3><ul>
-<li>pending: 비동기 처리가 아직 수행되지 않은 상태(resolve 또는 reject 함수가 아직 호출되지 않은 상태)</li>
-<li>fulfilled: 비동기 처리가 성공적으로 수행된 상태(resolve 함수가 호출된 상태)</li>
-<li>rejected: 비동기 처리가 실패된 상태(reject 함수가 호출된 상태)</li>
-</ul>
-<p><br></p>
-<h3 id="Promise-기본-코드"><a href="#Promise-기본-코드" class="headerlink" title="Promise 기본 코드"></a>Promise 기본 코드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const promise1 = function(param) &#123;</span><br><span class="line">      return new Promise(function(resolve, reject) &#123;</span><br><span class="line">        if(param) &#123;</span><br><span class="line">          resolve(&quot;success&quot;) // &quot;success&quot;가 then 메소드의 result의 값으로 전달됨</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          reject(&quot;fail&quot;) // &quot;fail&quot;이 catch 메소드의 error의 값으로 전달됨</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">promise1(true)</span><br><span class="line">  .then(result =&gt; console.log(result))</span><br><span class="line">  .catch(error =&gt; console.log(error))</span><br></pre></td></tr></table></figure>
-<p>비동기 처리에 성공하면, resolve 함수가 호출되고, 이때 resolve 함수의 인자로 비동기 처리 결과를 전달한다. 이 처리 결과는 Promise 객체의 후속 처리 메소드로 전달된다.<br>비동기 처리에 실패하면, reject 함수가 호출되고, 이때 reject 함수의 인자로 에러 메시지를 전달한다. 이 에러 메시지는 Promise 객체의 후속 처리 메소드로 전달된다.</p>
-<p><br></p>
-<h1 id="Promise-처리-흐름"><a href="#Promise-처리-흐름" class="headerlink" title="Promise 처리 흐름"></a>Promise 처리 흐름</h1><hr>
-<p><img src="/images/how-promise-works.png" alt="How Promise Works"></p>
-<p>출처: <a href="https://3dmpengines.tistory.com/1992" target="_blank" rel="noopener">Promise 처리 흐름</a></p>
-<p><br></p>
-<h1 id="Promise-코드-예제"><a href="#Promise-코드-예제" class="headerlink" title="Promise 코드 예제"></a>Promise 코드 예제</h1><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123;</span><br><span class="line">  return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    api.get(&apos;https://naver.com/users/1&apos;, function (response) &#123;</span><br><span class="line">      if (response) &#123;</span><br><span class="line">        resolve(response);</span><br><span class="line">      &#125;</span><br><span class="line">      reject(new Error(&quot;Request failure&quot;));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData().then(function (data) &#123;</span><br><span class="line">  console.log(data); // response 값 출력(resolve 함수의 인자로 받아온 response가 data로 받아옴)</span><br><span class="line">&#125;).catch(function (err) &#123;</span><br><span class="line">  console.error(err); // Error 출력</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="Promise-체이닝-Chainning"><a href="#Promise-체이닝-Chainning" class="headerlink" title="Promise 체이닝(Chainning)"></a>Promise 체이닝(Chainning)</h1><hr>
-<p>Promise는 후속 처리 메소드를 체이닝(chainning)하여 여러 개의 프로미스를 연결하여 사용할 수 있기 때문에, 콜백 헬을 해결한다. Promise 객체를 반환한 비동기 함수는 프로미스 후속 처리 메소드인 then이나 catch 메소드를 사용할 수 있다. 따라서 then 메소드가 Promise 객체를 반환하도록 하면 여러 개의 프로미스를 연결하여 사용할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get(`$&#123;url&#125;/1`)</span><br><span class="line">  .then(result1 =&gt; document.getElementById(&apos;app&apos;).innerHTML = result1)</span><br><span class="line">  .then(result2 =&gt; document.getElementById(&apos;result&apos;).innerHTML = result2)</span><br><span class="line">  .catch(error =&gt; console.log(error));</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h1 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h1><hr>
-<p>Promise는 주로 생성자 함수(new Promise)로 사용되지만, 메소드도 가지고 있다. 그 중, Promise.all 메소드는 여러개의 비동기 작업들이 존재하고, 이 비동기 작업들이 모두 완료되었을 때 작업을 진행하고 싶을 때 사용한다.</p>
-<p>Promise.all 메소드는 프로미스가 담겨 있는 배열 등의 이터러블을 인자로 전달 받고, 이 모든 프로미스들은 병렬로 처리 되고, 그 처리 결과를 resolve하는 새로운 프로미스를 반환한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([</span><br><span class="line">  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(10), 3000)), // 10</span><br><span class="line">  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(20), 2000)), // 20</span><br><span class="line">  new Promise(resolve =&gt; setTimeout(() =&gt; resolve(30), 1000))  // 30</span><br><span class="line">]).then(console.log) // [ 10, 20, 30 ]</span><br><span class="line">  .catch(console.log);</span><br></pre></td></tr></table></figure>
-<p>Promise.all 메소드는 전달받은 모든 Promise를 병렬로 처리한다. 모든 Promise의 처리가 완료될 때까지 기다린 후에 모든 처리 결과를 resolve 또는 reject한다.</p>
-<p>Promise.all 메소드는 처리 순서가 보장되기 때문에, 나중에 있는 Promise가 먼저 처리되더라도, 반환되는 Promise의 배열안에는 순서대로 반환된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Promise.all([</span><br><span class="line">  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&apos;Error 1!&apos;)), 8000)),</span><br><span class="line">  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&apos;Error 2!&apos;)), 1000)),</span><br><span class="line">  new Promise((resolve, reject) =&gt; setTimeout(() =&gt; reject(new Error(&apos;Error 3!&apos;)), 5000))</span><br><span class="line">]).then(console.log)</span><br><span class="line">  .catch(console.log); // Error: Error 2!</span><br></pre></td></tr></table></figure>
-<p>Promise 처리가 하나라도 실패하면, 가장 먼저 실패한 Promise가 reject한 error를 reject하는 새로운 Promise를 반환한다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/ES6/">ES6</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1176,6 +1207,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/13/position/">Position을 활용한 CSS 레이아웃</a></h6>
+              <span>November 13, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/13/float/">Float를 활용한 CSS 레이아웃</a></h6>
               <span>November 13, 2019</span>
             </div>
@@ -1230,18 +1273,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/04/25/refs/">Refs and DOM</a></h6>
-              <span>April 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1251,7 +1282,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
