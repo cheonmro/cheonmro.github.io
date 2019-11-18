@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>프로젝트 시작전 개발 작업환경 설정하기 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Project Setting" />
+  
+  
+  
+  
+  <meta name="description" content="ESLint ESLint는 문법 검사 도구이다. VS Code의 MarketPlace에서 설치가 가능하다. ESLint를 사용하면, 코드를 작성할 때 실수를 하면 에러 또는 경고메시지를 VS Code 에디터에서 바로 확인이 가능하다.   Prettier Prettier는 코드 스타일 자동 정리 도구이다. VS Code의 MarketPlace(Prettie">
+<meta name="keywords" content="Project Setting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="프로젝트 시작전 개발 작업환경 설정하기">
+<meta property="og:url" content="https://cheonmro.github.io/2019/11/18/project-setting/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ESLint ESLint는 문법 검사 도구이다. VS Code의 MarketPlace에서 설치가 가능하다. ESLint를 사용하면, 코드를 작성할 때 실수를 하면 에러 또는 경고메시지를 VS Code 에디터에서 바로 확인이 가능하다.   Prettier Prettier는 코드 스타일 자동 정리 도구이다. VS Code의 MarketPlace(Prettie">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-18T01:40:33.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="프로젝트 시작전 개발 작업환경 설정하기">
+<meta name="twitter:description" content="ESLint ESLint는 문법 검사 도구이다. VS Code의 MarketPlace에서 설치가 가능하다. ESLint를 사용하면, 코드를 작성할 때 실수를 하면 에러 또는 경고메시지를 VS Code 에디터에서 바로 확인이 가능하다.   Prettier Prettier는 코드 스타일 자동 정리 도구이다. VS Code의 MarketPlace(Prettie">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner"
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://hexo.io/logo.svg">
+              </a>
+            
+          </h1>
+
+          
+
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">me &amp; projects</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-project-setting" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      프로젝트 시작전 개발 작업환경 설정하기
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/18/project-setting/" class="article-date">
+	  <time datetime="2019-11-18T01:40:33.000Z" itemprop="datePublished">November 18, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+	<!-- <span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span> -->
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ESLint"><a href="#ESLint" class="headerlink" title=" ESLint"></a><1> ESLint</1></h1><hr>
+<p>ESLint는 문법 검사 도구이다. VS Code의 MarketPlace에서 설치가 가능하다. ESLint를 사용하면, 코드를 작성할 때 실수를 하면 에러 또는 경고메시지를 VS Code 에디터에서 바로 확인이 가능하다.</p>
+<p><br></p>
+<h1 id="Prettier"><a href="#Prettier" class="headerlink" title=" Prettier"></a><2> Prettier</2></h1><hr>
+<p>Prettier는 코드 스타일 자동 정리 도구이다. VS Code의 MarketPlace(Prettier-Code formatter)에서 설치가 가능하다.</p>
+<p><strong>[1] 현재 프로젝트의 루트 디렉터리(src, public 등의 디렉터리들이 위치한 곳)에서 .prettierrc 라는 파일을 생성한다.</strong></p>
+<p><strong>[2] 들여쓰기, 따옴표, 세미콜론 등 원하는 스타일을 커스터마이징을 할 수 있다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// .prettierrc</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;singleQuote&quot;: true, // 작은 따옴표 사용</span><br><span class="line">  &quot;semi&quot;: true, // 세미콜론은 언제나 사용</span><br><span class="line">  &quot;useTabs&quot;: false,</span><br><span class="line">  &quot;tabWidth&quot;: 2 // 들여쓰기 시 탭 대신 공백을 두칸 사용</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>[3] 저장할 때, 자동으로 코드 정리하기</strong></p>
+<p>코드 스타일을 정리하기 위해서는 F1을 누르고, Format이라고 입력후, Enter를 눌러야 한다. 이 대신에, 코드를 저장할 때 마다 자동으로 코드 스타일을 정리하는 방법이 있다.</p>
+<p><strong>[3-1] Vs Code의 메뉴 중에서, Code - 기본설정 - 설정 메뉴에 들어간다.</strong><br><strong>[3-2] “format on save”를 검색하여 체크박스에 체크한다.</strong></p>
+<p>위와 같이하면, 저장할 때마다 코드가 자동으로 정리가 된다.</p>
+<p><br></p>
+<h1 id="Reactjs-Code-Snippets"><a href="#Reactjs-Code-Snippets" class="headerlink" title=" Reactjs Code Snippets"></a><3> Reactjs Code Snippets</3></h1><hr>
+<p>React 컴포넌트 및 라이프사이클 함수를 작성할 때, 단축 단어를 사용하여 간편하게 코드를 자동으로 생성해 낼 수 있는 코드 스니펫 모음이다. Reactjs Code Snippets는 VS Code의 MarketPlace에서 설치가 가능한데, 제작자가 charalampos karypidis인 것을 설치한다.</p>
+<p>이를 사용하면, 단축키로 컴포넌트 코드를 간편하고 빠르게 생성할 수 있다.</p>
+<p><strong>[1] rsc -&gt; Enter</strong></p>
+<p>함수형 컴포넌트를 생성한다.</p>
+<p><strong>[2] rcc -&gt; Enter</strong></p>
+<p>class형 컴포넌트를 생성한다.</p>
+<p><br></p>
+<h1 id="컴포넌트를-자동으로-불러오기-import"><a href="#컴포넌트를-자동으로-불러오기-import" class="headerlink" title=" 컴포넌트를 자동으로 불러오기(import)"></a><4> 컴포넌트를 자동으로 불러오기(import)</4></h1><hr>
+<p><strong>[1] 루트 디렉터리에 jsconfig.json 파일을 생성한다.</strong></p>
+<p><strong>[2] Ctrl + Space를 누르고 Enter를 누른다.</strong></p>
+<p><strong>[3] 그러면, 다음과 같은 코드가 자동완성된다.</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// jsconfig.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;compilerOptions&quot;: &#123;</span><br><span class="line">    &quot;target&quot;: &quot;es6&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위와 같이 하게되면, 불러오고 싶은 컴포넌트의 파일이 열려 있지 않아도, 자동완성을 통해 컴포넌트를 불러와서 사용이 가능하다. 예를 들어, 부모 컴포넌트에서 어떤 A 컴포넌트의 이름을 작성하면, 따로 import A 이런식으로 작성하지 않아도 자동으로 작성이 된다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/React/">React</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project-Setting/">Project Setting</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/13/z-index/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Z-index 이해하기</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ESLint"><span class="nav-number">1.</span> <span class="nav-text"> ESLint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prettier"><span class="nav-number">2.</span> <span class="nav-text"> Prettier</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reactjs-Code-Snippets"><span class="nav-number">3.</span> <span class="nav-text"> Reactjs Code Snippets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#컴포넌트를-자동으로-불러오기-import"><span class="nav-number">4.</span> <span class="nav-text"> 컴포넌트를 자동으로 불러오기(import)</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/about" class="mobile-nav-link">Me &amp; Projects</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Hexo All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-125478847-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
