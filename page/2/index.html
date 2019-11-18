@@ -98,6 +98,73 @@
         
           <section id="main">
   
+    <article id="post-url-share"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/24/url-share/" class="article-date">
+	  <time datetime="2019-04-23T15:36:17.000Z" itemprop="datePublished">April 24, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="URL-복사하기-버튼-만들기"><a href="#URL-복사하기-버튼-만들기" class="headerlink" title="URL 복사하기 버튼 만들기"></a>URL 복사하기 버튼 만들기</h1><hr>
+<p>어떤 이미지를 클릭하면, 해당 URL을 복사하고, 복사완료! 라는 tooltip이 잠깐 뜨게 하는 기능을 만들어 보자.</p>
+<ol>
+<li>react-copy-to-clipboard npm 설치</li>
+<li>위 npm으로 URL 복사 버튼 만들기</li>
+<li>버튼을 클릭하면, 몇 초 동안 복사완료! 라는 tooltip 생성</li>
+<li>css로 tooltip 위치 조절</li>
+</ol>
+<p><br></p>
+<h2 id="1-react-copy-to-clipboard-npm-설치"><a href="#1-react-copy-to-clipboard-npm-설치" class="headerlink" title="1. react-copy-to-clipboard npm 설치"></a>1. react-copy-to-clipboard npm 설치</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react react-copy-to-clipboard</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="2-3-URL-복사-버튼-및-복사완료-tooltip-만들기"><a href="#2-3-URL-복사-버튼-및-복사완료-tooltip-만들기" class="headerlink" title="2~3. URL 복사 버튼 및 복사완료! tooltip 만들기"></a>2~3. URL 복사 버튼 및 복사완료! tooltip 만들기</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import url from &apos;../../image/url.png&apos;</span><br><span class="line">import &#123; CopyToClipboard &#125; from &apos;react-copy-to-clipboard&apos;;</span><br><span class="line"></span><br><span class="line">export default class Share extends Component&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    copyUrl: &apos;https://google.com/&apos;,</span><br><span class="line">    copied: false</span><br><span class="line">  &#125;</span><br><span class="line">  closeCopied = () =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;copied: false&#125;)</span><br><span class="line">    &#125;, 2000)</span><br><span class="line">  &#125;</span><br><span class="line">  onCopy = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123;copied: true&#125;, () =&gt; this.closeCopied());</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    return(</span><br><span class="line">      &lt;section className=&quot;share&quot;&gt;</span><br><span class="line">          &lt;div className=&apos;share-box&apos;&gt;</span><br><span class="line"></span><br><span class="line">            // URL 복사 버튼</span><br><span class="line">            &lt;CopyToClipboard onCopy=&#123;this.onCopy&#125; text=&#123;this.state.copyUrl&#125;&gt;</span><br><span class="line">              &lt;button&gt;&lt;img src=&#123;url&#125; alt=&apos;url&apos;/&gt;&lt;/button&gt;</span><br><span class="line">            &lt;/CopyToClipboard&gt;</span><br><span class="line"></span><br><span class="line">            // 복사완료! tooltip</span><br><span class="line">            &#123;this.state.copied ?</span><br><span class="line">              &lt;span&gt;복사완료!&lt;/span&gt;</span><br><span class="line">              :</span><br><span class="line">              null</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="4-css로-tooltip-위치-조절"><a href="#4-css로-tooltip-위치-조절" class="headerlink" title="4. css로 tooltip 위치 조절"></a>4. css로 tooltip 위치 조절</h2><hr>
+<p>다음과 같이 css를 작성하면, 약간 작은 tooltip이 생성된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.share-box span&#123;</span><br><span class="line">	background-color: #000000;</span><br><span class="line">	background-color: rgba(0, 0, 0, 0.8);</span><br><span class="line">	box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);</span><br><span class="line"></span><br><span class="line">	border-radius: 5px;</span><br><span class="line"></span><br><span class="line">	color: #FFFFFF;</span><br><span class="line">	font-size: 12px;</span><br><span class="line"></span><br><span class="line">	margin-bottom: 10px;</span><br><span class="line">	top: 0;</span><br><span class="line">	padding: 7px 12px;</span><br><span class="line">	position: absolute;</span><br><span class="line">	width: auto;</span><br><span class="line">	min-width: 50px;</span><br><span class="line">	max-width: 300px;</span><br><span class="line">	word-wrap: break-word;</span><br><span class="line"></span><br><span class="line">	z-index: 9999;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/API/">API</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URL-Share/">URL Share</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-fetch-api-using-redux-saga"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -925,145 +992,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-ethereum-state-transition-model"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/02/ethereum-state-transition-model/">Ethereum State Transition Model(이더리움 상태 전이 모델)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/02/ethereum-state-transition-model/" class="article-date">
-	  <time datetime="2019-04-01T17:09:26.000Z" itemprop="datePublished">April 2, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h1><hr>
-<p>이더리움 네트워크에서는 트랜잭션이 발생할 때마다, 이에 대한 신뢰 여부를 채굴자들의 합의하에 블록을 생성하여 모든 트랜잭션을 처리한다. 이렇게 트랜잭션을 처리하게 되면, 관련된 Account의 상태가 변화하게 된다. 즉, 이더리움은 이와 같이 상태가 변화하는 상태 전이 과정을 기반으로 작동한다.</p>
-<p><strong>트랜잭션 발생 -&gt; 블록 생성 -&gt; 관련된 Account의 상태 변화</strong></p>
-<p>모든 Account의 상태 정보는 블록과 블록 내에 연결된 머클 패트리시아 트리로 저장되고 관리된다.</p>
-<p><br></p>
-<h1 id="상태-전이-State-Transition"><a href="#상태-전이-State-Transition" class="headerlink" title="상태 전이(State Transition)"></a>상태 전이(State Transition)</h1><hr>
-<p><strong>상태 전이란, 특정 시점의 현재 상태 S가 상태 전이 함수(APPLY())에 의해 다른 상태(S’)로 전이되거나 전이에 실패하고 이전 상태로 복귀되는 것을 말한다.</strong><br>Account의 상태는 상태 전이 함수에 의해 전이된다.</p>
-<p>APPLY(S, TX) -&gt; S’<br>[S: 현재 상태] -&gt; (APPLY: 상태 전이 함수) -&gt; [S’: 전이된 상태 또는 실패]</p>
-<p>상태 전이 함수</p>
-<ul>
-<li>개인 Account간의 송금 등에 의한 트랜잭션</li>
-<li>이더리움 가상 머신에서 실행되는 프로그램인 스마트 컨트랙트에 의한 트랜잭션</li>
-</ul>
-<p><img src="/images/state-transition.png" alt="State Transition"><br>출처: <a href="https://steemkr.com/kr/@brownbears/52kjic" target="_blank" rel="noopener">State Transition</a></p>
-<p><br></p>
-<h1 id="이더리움-단일-상태-전이"><a href="#이더리움-단일-상태-전이" class="headerlink" title="이더리움 단일 상태 전이"></a>이더리움 단일 상태 전이</h1><hr>
-<p><strong>이더리움의 상태(State)는 복수의 상태 변이를 갖지 못하고, 단 하나의 상태 변이만을 갖는다. 즉, Account의 특정 시점의 한 상태는 상태 전이 함수를 통해 단 하나의 상태(single state)로만 전이된다는 것이다. 만약, 하나의 상태가 여러 개의 상태로 전이된다면, 채굴자들은 어떤 상태가 맞는 것인지 판단하고 합의 할 수 없다.</strong></p>
-<p><img src="/images/single-state.png" alt="Ethereum Single State Transition"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">Ethereum Single State Transition</a></p>
-<p><br></p>
-<h1 id="상태-전이-프로세스"><a href="#상태-전이-프로세스" class="headerlink" title="상태 전이 프로세스"></a>상태 전이 프로세스</h1><hr>
-<ol>
-<li>기본 트랜잭션 형식 확인</li>
-<li>Gas 값 수수료 계산 및 잔고 확인</li>
-<li>기본 트랜잭션 형식 확인<ol>
-<li>트랜잭션의 형식이 맞는지 확인</li>
-<li>서명이 유효한지 확인</li>
-<li>Nonce가 발신처 Account의 Nonce와 일치하는지 확인</li>
-<li>트랜잭션이 유효하지 않을 경우, Error를 반환</li>
-</ol>
-</li>
-</ol>
-<p><img src="/images/transaction.png" alt="Transaction fields"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">Transaction fields</a></p>
-<ol start="2">
-<li>Gas 값 수수료 및 잔고 확인<ol>
-<li>트랜잭션 수수료(=gasLimit * gasPrice) 계산</li>
-<li>서명으로부터 발신처 주소를 결정</li>
-<li>발신처 Account의 balance에서 계산한 트랜잭션 수수료를 빼고, 발신자 Nonce를 증가</li>
-<li>발신처 balance가 충분하지 않으면, Error를 반환</li>
-<li>GAS = gasLimit으로 초기화 한 후, 트랜잭션에서 사용된 byte에 대한 값을 지불하기 위해 byte 당 gas의 특정 양을 차감(트랜잭션의 총 byte 길이 * byte 당 gas 수수료)</li>
-<li>발신처 Account에서 수신처 Account로 트랜잭션 값을 보냄</li>
-<li>이때, 수신처 Account가 존재하지 않으면 새로 생성</li>
-<li>만약, 수신처 Account가 컨트랙트면, 컨트랙트 코드를 끝까지 수행</li>
-<li>이때, GAS가 모두 소모되면, 소모될 때까지만 수행</li>
-<li>발신처의 balance가 전송할 값보다 적거나, 코드 수행시 GAS가 부족하면, 모든 상태 변경을 원상태로 돌려놓음</li>
-<li>이때, 코드를 수행한 만큼의 GAS는 채굴자 Account로 더해지고, 나머지 GAS는 발신처 Account에 다시 돌려짐</li>
-</ol>
-</li>
-</ol>
-<p>수수료</p>
-<ul>
-<li>트랜잭션 처리에 대한 수수료</li>
-<li>스마트 컨트랙트 코드 실행 처리에 대한 수수료</li>
-</ul>
-<p><br></p>
-<h1 id="상태-전이-예제"><a href="#상태-전이-예제" class="headerlink" title="상태 전이 예제"></a>상태 전이 예제</h1><hr>
-<p>&lt;예제&gt;</p>
-<ul>
-<li>트랜잭션은 다음과 같은 field를 가지고 전달된다고 가정<ul>
-<li>Value = 10 ether</li>
-<li>gasLimit = 2,000</li>
-<li>gasPrice = 0.001 ether</li>
-<li>Data = 64 bytes(스마트 컨트랙트 호출에 필요한 parameter 값)<ul>
-<li>0-31 bytes까지는 숫자 2로 나타내고, 32-63 bytes는 CHARLIE 문자열로 나타냄)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>트랜잭션의 총 길이 = 170 bytes, byte 당 GAS 수수료 = 5 gas (트랜잭션 처리에 대한 수수료 = 170 * 5 = 850 GAS)</li>
-<li>스마트 컨트랙트 코드 실행시 GAS 수수료 = 187 GAS</li>
-</ul>
-<p><br></p>
-<p>&lt;프로세스&gt;</p>
-<ol>
-<li>트랜잭션의 형식과 서명이 유효한지 확인(기본 트랜잭션 형식이 맞는지 확인)</li>
-<li>트랜잭션 발송처가 최소 2000 * 0.001 = 2 ether를 가지고 있는지 확인하고, 발송처의 Account에서 2 ether를 차감</li>
-<li>발신처 balance가 2 ether 보다 적으면, Error를 반환</li>
-<li>발신자 Nonce를 증가</li>
-<li>GAS = 2,000으로 초기화 한 후, 트랜잭션 처리에 대한 수수료 850 GAS를 차감하면, 1150 GAS가 남음</li>
-<li>발신처 Account에서 보내고자 하는 10 ether를 차감하고, 이것을 수신처 Account에 보냄</li>
-<li>이때, 수신처 Account가 스마트 컨트랙트면, 컨트랙트 Account에 더함</li>
-<li>스마트 컨트랙트의 코드를 실행하여 스마트 컨트랙트의 코드 실행 처리 수수료인 187 GAS를 차감하면, 963 GAS가 남음(1150 - 187 = 963)</li>
-<li>963 * 0.001 = 0.963 ether를 송신처의 Account에 되돌려주고, 상태를 반환</li>
-<li>만약, 코드 수행시에 GAS가 모두 소모되면, 소모될 때까지만 수행</li>
-<li>코드 수행시, GAS가 부족하면, 모든 상태 변경을 원상태로 돌려놓음</li>
-<li>이때, 코드를 수행한 만큼의 GAS는 채굴자 Account로 더해지고, 나머지 GAS는 발신처 Account에 다시 돌려짐</li>
-</ol>
-<p><img src="/images/state-transition-example.png" alt="State Transition Example"><br>출처: <a href="https://medium.com/@preethikasireddy/how-does-ethereum-work-anyway-22d1df506369" target="_blank" rel="noopener">State Transition Example</a></p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Ethereum/">Ethereum</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ethereum/">Ethereum</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/State-Transition/">State Transition</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1174,6 +1102,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/18/todo-sass/">Simple Todo UI</a></h6>
+              <span>November 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/18/project-setting/">프로젝트 시작전 개발 작업환경 설정하기</a></h6>
               <span>November 18, 2019</span>
             </div>
@@ -1228,18 +1168,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
-              <span>November 12, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1249,7 +1177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 

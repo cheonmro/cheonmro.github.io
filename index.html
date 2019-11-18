@@ -98,6 +98,119 @@
         
           <section id="main">
   
+    <article id="post-todo-sass"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/11/18/todo-sass/">Simple Todo UI</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/11/18/todo-sass/" class="article-date">
+	  <time datetime="2019-11-18T06:15:10.000Z" itemprop="datePublished">November 18, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Sass/">Sass</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Todo-UI"><a href="#Todo-UI" class="headerlink" title="Todo UI"></a>Todo UI</h1><hr>
+<p><img src="/images/todo_sass.png" alt="Simple Todo UI"></p>
+<p><br></p>
+<h1 id="UI-개발순서"><a href="#UI-개발순서" class="headerlink" title="UI 개발순서"></a>UI 개발순서</h1><hr>
+<p>[1] UI 컴포넌트 구성하기<br>[2] JSX로 HTML 구조 만들기<br>[3] Sass로 style 꾸미기(Sass 중 Scss 문법 사용)</p>
+<p><br></p>
+<h1 id="1-UI-컴포넌트-구성하기"><a href="#1-UI-컴포넌트-구성하기" class="headerlink" title="[1] UI 컴포넌트 구성하기"></a>[1] UI 컴포넌트 구성하기</h1><hr>
+<p><strong>[1-1] Todo List 전체를 나타내는 TodoTemplate 컴포넌트(전체화면)</strong></p>
+<ul>
+<li>화면을 가운데 정렬</li>
+<li>크게 앱의 타이틀(Todo List)과 콘텐츠(Insert와 TodoList)로 나눔</li>
+</ul>
+<p><strong>[1-2] 새로운 Todo를 입력하고 추가할 수 있는 TodoInsert 컴포넌트</strong></p>
+<p><strong>[1-3] TodoList 컴포넌트와 TodoListItem 컴포넌트</strong></p>
+<ul>
+<li>Todo의 item들을 나열하는 TodoList 컴포넌트</li>
+<li>각 Todo에 대한 정보를 보여주는 TodoListItem 컴포넌트</li>
+</ul>
+<p><strong>[1-4] 각 Todo에 대한 정보를 보여주는 TodoListItem 컴포넌트</strong></p>
+<p><br></p>
+<h2 id="1-1-TodoTemplate-컴포넌트"><a href="#1-1-TodoTemplate-컴포넌트" class="headerlink" title="[1-1] TodoTemplate 컴포넌트"></a>[1-1] TodoTemplate 컴포넌트</h2><hr>
+<h3 id="1-JSX"><a href="#1-JSX" class="headerlink" title="[1] JSX"></a>[1] JSX</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// TodoTemplate.js</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &apos;./TodoTemplate.scss&apos;;</span><br><span class="line"></span><br><span class="line">const TodoTemplate = (&#123; children &#125;) =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;TodoTemplate&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;app-title&quot;&gt;Todo List&lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;content&quot;&gt;&#123;children&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoTemplate;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// App.js</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import TodoTemplate from &apos;./components/TodoTemplate&apos;;</span><br><span class="line">import TodoInsert from &apos;./components/TodoInsert&apos;;</span><br><span class="line">import TodoList from &apos;./components/TodoList&apos;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;TodoTemplate&gt;</span><br><span class="line">      &lt;TodoInsert /&gt;</span><br><span class="line">      &lt;TodoList /&gt;</span><br><span class="line">    &lt;/TodoTemplate&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="2-Scss"><a href="#2-Scss" class="headerlink" title="[2] Scss"></a>[2] Scss</h3><p>Styles</p>
+<ul>
+<li>Todo 전체화면을 가운데 정렬</li>
+<li>앱 타이틀 글자를 가운데 정렬</li>
+</ul>
+<p><strong>[2-1] Todo 전체화면을 가운데 정렬</strong></p>
+<p>Todo 전체화면은 TodoTemplate 컴포넌트이고, 이는 “div” 형태이므로 블록요소이다. 블록요소를 가운데 정렬하기 위해서는 width를 설정하고, margin-left와 margin-right를 auto로 설정해야한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.TodoTemplate &#123;</span><br><span class="line">  background-color: orchid;</span><br><span class="line">  width: 512px;</span><br><span class="line">  margin-left: auto;</span><br><span class="line">  margin-right: auto;</span><br><span class="line">  margin-top: 6rem; // 기본 font-size 16px를 기준 -&gt; 16px * 6</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>[2-2] 앱 타이틀 글자를 가운데 정렬</strong></p>
+<p>글자를 가운데 정렬하기 위해 flex를 이용하여 상하/좌우 가운데 정렬한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.TodoTemplate &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  .app-title &#123;</span><br><span class="line">    background: #22b8cf;</span><br><span class="line">    color: white;</span><br><span class="line">    height: 4rem;</span><br><span class="line">    font-size: 1.5rem;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center; // 상하 정렬</span><br><span class="line">    justify-content: center; // 좌우 정렬</span><br><span class="line">  &#125;</span><br><span class="line">  .content &#123;</span><br><span class="line">    background: white;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="1-2-TodoInsert-컴포넌트"><a href="#1-2-TodoInsert-컴포넌트" class="headerlink" title="[1-2] TodoInsert 컴포넌트"></a>[1-2] TodoInsert 컴포넌트</h2><hr>
+<h3 id="1-JSX-1"><a href="#1-JSX-1" class="headerlink" title="[1] JSX"></a>[1] JSX</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// TodoInsert.js</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123; MdAdd &#125; from &apos;react-icons/md&apos;;</span><br><span class="line">import &apos;./TodoInsert.scss&apos;;</span><br><span class="line"></span><br><span class="line">const TodoInsert = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;form className=&quot;TodoInsert&quot;&gt;</span><br><span class="line">      &lt;input placeholder=&quot;Enter Todo&quot; /&gt;</span><br><span class="line">      &lt;button type=&quot;submit&quot;&gt;</span><br><span class="line">        &lt;MdAdd /&gt;</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoInsert;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="2-Scss-1"><a href="#2-Scss-1" class="headerlink" title="[2] Scss"></a>[2] Scss</h3><p>Styles</p>
+<ul>
+<li>각 요소의 기본 스타일 초기화</li>
+<li>input 태그의 placeholder 추가</li>
+<li>button을 제외한 모든 영역을 input이 차지</li>
+<li>button안의 ‘+’ 모양 수직정렬</li>
+<li>button 마우스 hover 시 배경색상 변경</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// TodoInsert.scss</span><br><span class="line"></span><br><span class="line">.TodoInsert &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  background: #495057;</span><br><span class="line">  input &#123;</span><br><span class="line">    // 기본 스타일 초기화</span><br><span class="line">    background: none;</span><br><span class="line">    outline: none;</span><br><span class="line">    border: none;</span><br><span class="line">    padding: 0.5rem;</span><br><span class="line">    font-size: 1.125rem;</span><br><span class="line">    line-height: 1.5;</span><br><span class="line">    color: white;</span><br><span class="line">    &amp;::placeholder &#123; // input 태그의 placeholder 추가</span><br><span class="line">      color: #dee2e6;</span><br><span class="line">    &#125;</span><br><span class="line">    flex: 1; // button을 제외한 모든 영역을 input이 차지</span><br><span class="line">  &#125;</span><br><span class="line">  button &#123;</span><br><span class="line">    background: none;</span><br><span class="line">    outline: none;</span><br><span class="line">    border: none;</span><br><span class="line">    background: #868e96;</span><br><span class="line">    color: white;</span><br><span class="line">    padding-left: 1rem;</span><br><span class="line">    padding-right: 1rem;</span><br><span class="line">    font-size: 1.5rem;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center; // button안의 &apos;+&apos; 모양 수직정렬</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    transition: 0.1s background ease-in;</span><br><span class="line">    &amp;:hover &#123; // button 마우스 hover 시 배경색상 변경</span><br><span class="line">      background: #adb5bd;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="1-3-TodoList-amp-TodoListItem-컴포넌트"><a href="#1-3-TodoList-amp-TodoListItem-컴포넌트" class="headerlink" title="[1-3] TodoList &amp; TodoListItem 컴포넌트"></a>[1-3] TodoList &amp; TodoListItem 컴포넌트</h2><hr>
+<h3 id="1-JSX-2"><a href="#1-JSX-2" class="headerlink" title="[1] JSX"></a>[1] JSX</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// TodoList.js</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import TodoListItem from &apos;./TodoListItem&apos;;</span><br><span class="line">import &apos;./TodoList.scss&apos;;</span><br><span class="line"></span><br><span class="line">const TodoList = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;TodoList&quot;&gt;</span><br><span class="line">      &lt;TodoListItem /&gt;</span><br><span class="line">      &lt;TodoListItem /&gt;</span><br><span class="line">      &lt;TodoListItem /&gt;</span><br><span class="line">      &lt;TodoListItem /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoList;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// TodoListItem.js</span><br><span class="line"></span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">  MdCheckBoxOutlineBlank,</span><br><span class="line">  MdCheckBox,</span><br><span class="line">  MdRemoveCircleOutline,</span><br><span class="line">&#125; from &apos;react-icons/md&apos;;</span><br><span class="line">import &apos;./TodoListItem.scss&apos;;</span><br><span class="line"></span><br><span class="line">const TodoListItem = () =&gt; &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className=&quot;TodoListItem&quot;&gt;</span><br><span class="line">      &lt;div className=&quot;checkbox&quot;&gt;</span><br><span class="line">        &lt;MdCheckBoxOutlineBlank /&gt;</span><br><span class="line">        &lt;div className=&quot;text&quot;&gt;Todo&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;remove&quot;&gt;</span><br><span class="line">        &lt;MdRemoveCircleOutline /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default TodoListItem;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="2-Scss-2"><a href="#2-Scss-2" class="headerlink" title="[2] Scss"></a>[2] Scss</h3><p>Styles</p>
+<ul>
+<li>TodoListItem에 있는 모든 요소는 수직 정렬</li>
+<li>짝수/홀수 Todo들의 배경색 다름</li>
+<li>checkbox가 체크되었을 때, svg(아이콘)와 text 색상 바뀜</li>
+<li>remove 이미지 수직정렬 및 hover 시 색상 바뀜</li>
+<li>두 item 사이에 border 색상 진하게 추가</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// TodoList.scss</span><br><span class="line"></span><br><span class="line">.TodoList &#123;</span><br><span class="line">  min-height: 320px;</span><br><span class="line">  max-height: 513px;</span><br><span class="line">  overflow-y: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">// TodoListItem.scss</span><br><span class="line"></span><br><span class="line">.TodoListItem &#123;</span><br><span class="line">  padding: 1rem;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center; // TodoListItem에 있는 모든 요소는 수직 정렬</span><br><span class="line">  &amp;:nth-child(even) &#123; // 짝수/홀수 Todo들의 배경색 다름</span><br><span class="line">    background: #f8f9fa;</span><br><span class="line">  &#125;</span><br><span class="line">  .checkbox &#123;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    flex: 1;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center;</span><br><span class="line">    svg &#123;</span><br><span class="line">      font-size: 1.5rem;</span><br><span class="line">    &#125;</span><br><span class="line">    .text &#123;</span><br><span class="line">      margin-left: 1.5rem;</span><br><span class="line">      flex: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;.checked &#123; // checkbox가 체크되었을 때, svg와 text 색상 바뀜</span><br><span class="line">      svg &#123;</span><br><span class="line">        color: #22b8cf;</span><br><span class="line">      &#125;</span><br><span class="line">      .text &#123;</span><br><span class="line">        color: #adb5bd;</span><br><span class="line">        text-decoration: line-through;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  .remove &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    align-items: center; // 수직정렬</span><br><span class="line">    font-size: 1.5rem;</span><br><span class="line">    color: #ff6b6b;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    &amp;:hover &#123; // hover 시 색상바뀜</span><br><span class="line">      color: #ff8787;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp; + &amp; &#123; // 두 item 사이에 border 색상 진하게 추가</span><br><span class="line">    border-top: 1px solid #dee2e6;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Sass/">Sass</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Todo/">Todo</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-project-setting"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -975,73 +1088,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-url-share"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/24/url-share/">URL 복사하기 버튼 만드는 방법</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/24/url-share/" class="article-date">
-	  <time datetime="2019-04-23T15:36:17.000Z" itemprop="datePublished">April 24, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="URL-복사하기-버튼-만들기"><a href="#URL-복사하기-버튼-만들기" class="headerlink" title="URL 복사하기 버튼 만들기"></a>URL 복사하기 버튼 만들기</h1><hr>
-<p>어떤 이미지를 클릭하면, 해당 URL을 복사하고, 복사완료! 라는 tooltip이 잠깐 뜨게 하는 기능을 만들어 보자.</p>
-<ol>
-<li>react-copy-to-clipboard npm 설치</li>
-<li>위 npm으로 URL 복사 버튼 만들기</li>
-<li>버튼을 클릭하면, 몇 초 동안 복사완료! 라는 tooltip 생성</li>
-<li>css로 tooltip 위치 조절</li>
-</ol>
-<p><br></p>
-<h2 id="1-react-copy-to-clipboard-npm-설치"><a href="#1-react-copy-to-clipboard-npm-설치" class="headerlink" title="1. react-copy-to-clipboard npm 설치"></a>1. react-copy-to-clipboard npm 설치</h2><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react react-copy-to-clipboard</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="2-3-URL-복사-버튼-및-복사완료-tooltip-만들기"><a href="#2-3-URL-복사-버튼-및-복사완료-tooltip-만들기" class="headerlink" title="2~3. URL 복사 버튼 및 복사완료! tooltip 만들기"></a>2~3. URL 복사 버튼 및 복사완료! tooltip 만들기</h2><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import url from &apos;../../image/url.png&apos;</span><br><span class="line">import &#123; CopyToClipboard &#125; from &apos;react-copy-to-clipboard&apos;;</span><br><span class="line"></span><br><span class="line">export default class Share extends Component&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    copyUrl: &apos;https://google.com/&apos;,</span><br><span class="line">    copied: false</span><br><span class="line">  &#125;</span><br><span class="line">  closeCopied = () =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;copied: false&#125;)</span><br><span class="line">    &#125;, 2000)</span><br><span class="line">  &#125;</span><br><span class="line">  onCopy = () =&gt; &#123;</span><br><span class="line">    this.setState(&#123;copied: true&#125;, () =&gt; this.closeCopied());</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    return(</span><br><span class="line">      &lt;section className=&quot;share&quot;&gt;</span><br><span class="line">          &lt;div className=&apos;share-box&apos;&gt;</span><br><span class="line"></span><br><span class="line">            // URL 복사 버튼</span><br><span class="line">            &lt;CopyToClipboard onCopy=&#123;this.onCopy&#125; text=&#123;this.state.copyUrl&#125;&gt;</span><br><span class="line">              &lt;button&gt;&lt;img src=&#123;url&#125; alt=&apos;url&apos;/&gt;&lt;/button&gt;</span><br><span class="line">            &lt;/CopyToClipboard&gt;</span><br><span class="line"></span><br><span class="line">            // 복사완료! tooltip</span><br><span class="line">            &#123;this.state.copied ?</span><br><span class="line">              &lt;span&gt;복사완료!&lt;/span&gt;</span><br><span class="line">              :</span><br><span class="line">              null</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="4-css로-tooltip-위치-조절"><a href="#4-css로-tooltip-위치-조절" class="headerlink" title="4. css로 tooltip 위치 조절"></a>4. css로 tooltip 위치 조절</h2><hr>
-<p>다음과 같이 css를 작성하면, 약간 작은 tooltip이 생성된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.share-box span&#123;</span><br><span class="line">	background-color: #000000;</span><br><span class="line">	background-color: rgba(0, 0, 0, 0.8);</span><br><span class="line">	box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);</span><br><span class="line"></span><br><span class="line">	border-radius: 5px;</span><br><span class="line"></span><br><span class="line">	color: #FFFFFF;</span><br><span class="line">	font-size: 12px;</span><br><span class="line"></span><br><span class="line">	margin-bottom: 10px;</span><br><span class="line">	top: 0;</span><br><span class="line">	padding: 7px 12px;</span><br><span class="line">	position: absolute;</span><br><span class="line">	width: auto;</span><br><span class="line">	min-width: 50px;</span><br><span class="line">	max-width: 300px;</span><br><span class="line">	word-wrap: break-word;</span><br><span class="line"></span><br><span class="line">	z-index: 9999;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/API/">API</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/URL-Share/">URL Share</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1152,6 +1198,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/18/todo-sass/">Simple Todo UI</a></h6>
+              <span>November 18, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/18/project-setting/">프로젝트 시작전 개발 작업환경 설정하기</a></h6>
               <span>November 18, 2019</span>
             </div>
@@ -1206,18 +1264,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/11/12/display-property/">display를 활용한 CSS 레이아웃</a></h6>
-              <span>November 12, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1227,7 +1273,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
