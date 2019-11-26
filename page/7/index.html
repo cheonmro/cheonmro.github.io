@@ -98,6 +98,69 @@
         
           <section id="main">
   
+    <article id="post-factorial"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/11/05/factorial/">4. Factorial</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/11/05/factorial/" class="article-date">
+	  <time datetime="2018-11-05T06:04:00.000Z" itemprop="datePublished">November 5, 2018</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="What-is-Factorial"><a href="#What-is-Factorial" class="headerlink" title="What is Factorial?"></a><h3>What is Factorial?</h3></h2><p>Factorial이란, 해당하는 수부터 그 이하로 1까지를 모두 곱하는 수를 말한다.<br>예를 들어, 3!이면 3 x 2 x 1 = 6을 말한다.</p>
+<p><br></p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="[Problem]"></a><h3>[Problem]</h3></h2><p>Factorial을 구현하는 함수를 작성하시오.</p>
+<p><br></p>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="[Algorithms]"></a><h3>[Algorithms]</h3></h2><ol>
+<li>number가 1일 경우, number를 반환한다.</li>
+<li>number가 2이상이면 number부터 1씩 값을 줄여가면서, 모두 곱한다.</li>
+<li>곱한 최종 값을 반환한다.</li>
+</ol>
+<p><br></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="[Solution]"></a><h3>[Solution]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function factorial(number) &#123;</span><br><span class="line">  if(number === 1) return number;</span><br><span class="line">  let result = 1;</span><br><span class="line">  for (var i = number; i &gt;= 1 ; --i ) &#123;</span><br><span class="line">    result *= i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(factorial(5)); // 120</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Better-Practice"><a href="#Better-Practice" class="headerlink" title="[Better Practice]"></a><h3>[Better Practice]</h3></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function factorial(number) &#123;</span><br><span class="line">  if(number === 1) &#123;</span><br><span class="line">      return number;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">      return number * factorial(number-1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(factorial(5)); // 120</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Factorial/">Factorial</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-string-method"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -817,92 +880,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-linkedlist-vs-array"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/11/03/linkedlist-vs-array/">Linked List와 Array의 차이점</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/11/03/linkedlist-vs-array/" class="article-date">
-	  <time datetime="2018-11-03T07:20:39.000Z" itemprop="datePublished">November 3, 2018</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Linked-List-연결-리스트"><a href="#Linked-List-연결-리스트" class="headerlink" title="Linked List(연결 리스트)"></a>Linked List(연결 리스트)</h1><hr>
-<p><strong>Linked List</strong>란, 데이터를 논리적 순서에 따라 입력하지만, 물리적 주소는 순차적이지 않는 자료구조를 말한다.</p>
-<p><strong>Linked List</strong>의 특징:</p>
-<ul>
-<li><p><strong>장점</strong>: Linked List에 데이터를 삽입하거나, 삭제시에 각 데이터가 가지고 있는 링크만 변경하면 되므로, 다른 데이터의 영향없이 빠르게 가능하다.</p>
-</li>
-<li><p><strong>단점</strong>: 배열의 인덱스 대신에 각 데이터가 이전 위치 및 다음 위치를 가리키는 링크를 가지고 있기 때문에, 데이터에 한번에 접근할 수는 없고, 연결되어 있는 링크를 따라가야 하기 때문에, 배열에 비해 속도가 느리다.</p>
-</li>
-</ul>
-<p><br></p>
-<h1 id="Array-배열"><a href="#Array-배열" class="headerlink" title="Array(배열)"></a>Array(배열)</h1><hr>
-<p><strong>Array</strong>란, 데이터를 논리적 순서에 따라 순차적으로 데이터를 입력하며, 물리적 주소 또한 순차적인 자료구조를 말한다.</p>
-<p><strong>Array</strong>의 특징:</p>
-<ul>
-<li><p><strong>장점</strong>: 인덱스를 가지고 있어서 원하는 데이터에 한번에 접근이 가능하기 때문에 접근속도가 빠르다.</p>
-</li>
-<li><p><strong>단점</strong>: Array에 데이터를 삽입하거나 삭제할 시에 배열을 통째로 복사해서 삽입/삭제가 이루어지고, 삽입/삭제가 이루어진 위치의 다음부터 모든 데이터의 위치를 변경해야 하기 때문에, 삽입/삭제 때마다 데이터의 위치를 바꾸는 데만 많은 리소스를 사용하게 된다.</p>
-</li>
-</ul>
-<p><br></p>
-<h1 id="1-접근-속도-Access"><a href="#1-접근-속도-Access" class="headerlink" title="1. 접근 속도(Access)"></a>1. 접근 속도(Access)</h1><hr>
-<p><strong>Linked List</strong>: 최소 한번은 리스트를 순회해야 하기 때문에, 시간복잡도는 O(n)이다.</p>
-<p><strong>Array</strong>: 인덱스로 접근하기 때문에, 시간복잡도는 O(1)이다.</p>
-<p><br></p>
-<p><img src="/images/Array-Linked-List.png" alt="Array vs. LinkedList: Access"><br>출처: <a href="http://www.stoimen.com/blog/2012/07/24/php-arrays-or-linked-lists/" target="_blank" rel="noopener">Array vs. LinkedList</a></p>
-<p><br></p>
-<h1 id="2-삽입-삭제-속도-Add-Remove"><a href="#2-삽입-삭제-속도-Add-Remove" class="headerlink" title="2. 삽입/삭제 속도(Add/Remove)"></a>2. 삽입/삭제 속도(Add/Remove)</h1><hr>
-<p><strong>Linked List</strong>: 어느 곳에 삽입/삭제를 하던간에 리스트를 순회해야 하기 때문에, 시간복잡도는 O(n)이다.</p>
-<p><strong>Array</strong>:</p>
-<ul>
-<li>데이터를 삽입/삭제시에 삽입 또는 삭제될 위치 그 이후의 데이터를 한 칸씩 미뤄야하는 추가과정과 시간 등 리소스가 소비됨.(Linked List는 필요없음)</li>
-<li>또한, 데이터를 삽입시에 모든 공간이 다 꽉 차버렸다면, 새로운 메모리 공간이 필요함.(Linked List는 필요없음)</li>
-</ul>
-<p><br></p>
-<h1 id="목적과-상황에-따라-선택해야-하는-자료구조"><a href="#목적과-상황에-따라-선택해야-하는-자료구조" class="headerlink" title="목적과 상황에 따라 선택해야 하는 자료구조"></a>목적과 상황에 따라 선택해야 하는 자료구조</h1><hr>
-<p><strong>Linked List를 사용해야 하는 경우</strong>: 데이터의 삽입/삭제가 자주 일어나야 한다면 사용<br><strong>Array를 사용해야 하는 경우</strong>: 데이터의 삽입/삭제가 많이 없고, 대신에 데이터의 접근이 자주 일어나야 한다면 사용</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linked-List/">Linked List</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -1013,6 +990,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/11/26/web-accessibility/">웹접근성을 고려한 HTML 구조 만들기</a></h6>
+              <span>November 26, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/11/25/web-standards/">웹표준 &amp; 웹접근성</a></h6>
               <span>November 25, 2019</span>
             </div>
@@ -1067,18 +1056,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/11/13/float/">Float를 활용한 CSS 레이아웃</a></h6>
-              <span>November 13, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1088,7 +1065,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/API/">API</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Market/">Blockchain(Market)</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Blockchain-Tech/">Blockchain(Tech)</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ES6/">ES6</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ethereum/">Ethereum</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ICON/">ICON</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sass/">Sass</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/UI/">UI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
